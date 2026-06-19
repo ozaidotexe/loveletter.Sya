@@ -20,6 +20,24 @@
             background-size: 20px 20px;
             box-sizing: border-box;
             padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        /* EFEK HATI JATUH */
+        .heart-particle {
+            position: fixed;
+            top: -10px;
+            color: #ff7597;
+            font-size: 20px;
+            pointer-events: none;
+            z-index: 999;
+            animation: fall linear forwards;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(105vh) rotate(360deg);
+                opacity: 0;
+            }
         }
 
         .container {
@@ -30,6 +48,7 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
+            z-index: 2;
         }
 
         /* 1. KOTAK PESAN PEMBUKA */
@@ -74,7 +93,7 @@
             background-color: #ff4a75;
         }
 
-        /* 2. MENU UTAMA GALERI SURAT (TERSEMBUNYI DI AWAL) */
+        /* 2. MENU UTAMA GALERI SURAT */
         .gallery-wrapper {
             display: none;
             width: 100%;
@@ -95,7 +114,6 @@
             margin-bottom: 40px;
         }
 
-        /* Grid Amplop biar rapi di PC */
         .envelope-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -113,10 +131,29 @@
             border-radius: 0 0 8px 8px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
             cursor: pointer;
-            transition: transform 0.3s;
+            transition: transform 0.3s, background-color 0.3s;
         }
 
-        .envelope-card:hover {
+        /* Gaya untuk amplop yang masih terkunci */
+        .envelope-card.locked {
+            background-color: #2c3e50 !important;
+            cursor: not-allowed;
+            opacity: 0.6;
+        }
+        .envelope-card.locked::before {
+            border-top-color: #34495e !important;
+        }
+        .envelope-card.locked::after {
+            border-left-color: #1a252f !important;
+            border-right-color: #1a252f !important;
+            border-bottom-color: #1a252f !important;
+        }
+        .envelope-card.locked .envelope-label {
+            background-color: #7f8c8d !important;
+            color: #bdc3c7;
+        }
+
+        .envelope-card:not(.locked):hover {
             transform: translateY(-10px) scale(1.03);
         }
 
@@ -132,6 +169,14 @@
             border-right: 100px solid transparent;
             border-top: 70px solid #52b2ae;
             z-index: 4;
+            transition: transform 0.3s, border-top-color 0.3s;
+            transform-origin: top;
+        }
+
+        /* Efek tutup membuka saat di-hover */
+        .envelope-card:not(.locked):hover::before {
+            transform: rotateX(180deg) translateY(0px);
+            z-index: 1;
         }
 
         /* Lipatan Dalam Amplop */
@@ -148,9 +193,10 @@
             border-bottom: 65px solid #398c89;
             border-radius: 0 0 8px 8px;
             z-index: 3;
+            transition: border-color 0.3s;
         }
 
-        /* Label Angka Surat (Stiker Bulat Pink) */
+        /* Label Angka Surat */
         .envelope-label {
             position: absolute;
             top: 45px;
@@ -168,9 +214,10 @@
             font-weight: bold;
             font-size: 16px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+            transition: background-color 0.3s;
         }
 
-        /* 4. POPUP OVERLAY UNTUK MEMBACA SURAT YANG DIKLIK */
+        /* 4. POPUP OVERLAY */
         .popup-overlay {
             display: none;
             position: fixed;
@@ -186,9 +233,8 @@
             transition: opacity 0.4s ease;
         }
 
-        /* Kertas Surat Besar yang Terbuka */
         .popup-letter {
-            background-color: #fff0f5; /* Putih Pinkish */
+            background-color: #fff0f5;
             border: 5px solid #ff7597;
             border-radius: 20px;
             width: 90%;
@@ -207,10 +253,9 @@
             color: #0b0c10;
             line-height: 1.6;
             font-weight: 600;
-            white-space: pre-line; /* Menjaga spasi dan baris baru */
+            white-space: pre-line;
         }
 
-        /* Tombol Tutup Surat */
         .btn-close {
             margin-top: 30px;
             background-color: #0b0c10;
@@ -229,7 +274,6 @@
             color: #0b0c10;
         }
 
-        /* Menampilkan Popup */
         .popup-overlay.show {
             display: flex;
             opacity: 1;
@@ -246,37 +290,35 @@
 </head>
 <body>
 
+    <audio id="backsound" loop src="https://assets.mixkit.co/music/preview/mixkit-beautiful-dream-493.mp3"></audio>
+
     <div class="container">
-        <!-- 1. BOX PESAN PEMBUKA STEP-BY-STEP -->
         <div class="message-box" id="msgBox">
-            <div class="message-text" id="textGanti">Halo Queen Ozaikuh ...\n\nYuk dimulai! Klik Next ya bee 💙🌸\n\nPastikan sudah tidak sibuk ya sayang.</div>
+            <div class="message-text" id="textGanti">Halo Queen Ozaikuh ...<br><br>Yuk dimulai! Klik Next ya bee 💙🌸<br><br>Pastikan sudah tidak sibuk ya sayang.</div>
             <button class="btn-next" onclick="nextPesan()" id="btnNext">Next ➡️</button>
         </div>
 
-        <!-- 2. GALERI 12 AMPLOP SURAT -->
         <div class="gallery-wrapper" id="galleryBox">
             <h1 class="gallery-title">Surat-Surat Untukmu Bee 💙🌸</h1>
-            <p class="gallery-subtitle">Pilih dan buka suratnya satu per satu ya Bee!</p>
+            <p class="gallery-subtitle">Pilih dan buka suratnya satu per satu secara berurutan ya Bee!</p>
             
             <div class="envelope-grid">
-                <!-- Loop 12 Amplop -->
-                <div class="envelope-card" onclick="bukaSurat(1)"><div class="envelope-label">1</div></div>
-                <div class="envelope-card" onclick="bukaSurat(2)"><div class="envelope-label">2</div></div>
-                <div class="envelope-card" onclick="bukaSurat(3)"><div class="envelope-label">3</div></div>
-                <div class="envelope-card" onclick="bukaSurat(4)"><div class="envelope-label">4</div></div>
-                <div class="envelope-card" onclick="bukaSurat(5)"><div class="envelope-label">5</div></div>
-                <div class="envelope-card" onclick="bukaSurat(6)"><div class="envelope-label">6</div></div>
-                <div class="envelope-card" onclick="bukaSurat(7)"><div class="envelope-label">7</div></div>
-                <div class="envelope-card" onclick="bukaSurat(8)"><div class="envelope-label">8</div></div>
-                <div class="envelope-card" onclick="bukaSurat(9)"><div class="envelope-label">9</div></div>
-                <div class="envelope-card" onclick="bukaSurat(10)"><div class="envelope-label">10</div></div>
-                <div class="envelope-card" onclick="bukaSurat(11)"><div class="envelope-label">11</div></div>
-                <div class="envelope-card" onclick="bukaSurat(12)"><div class="envelope-label">12</div></div>
+                <div class="envelope-card" id="env-1" onclick="bukaSurat(1)"><div class="envelope-label">1</div></div>
+                <div class="envelope-card locked" id="env-2" onclick="bukaSurat(2)"><div class="envelope-label">2</div></div>
+                <div class="envelope-card locked" id="env-3" onclick="bukaSurat(3)"><div class="envelope-label">3</div></div>
+                <div class="envelope-card locked" id="env-4" onclick="bukaSurat(4)"><div class="envelope-label">4</div></div>
+                <div class="envelope-card locked" id="env-5" onclick="bukaSurat(5)"><div class="envelope-label">5</div></div>
+                <div class="envelope-card locked" id="env-6" onclick="bukaSurat(6)"><div class="envelope-label">6</div></div>
+                <div class="envelope-card locked" id="env-7" onclick="bukaSurat(7)"><div class="envelope-label">7</div></div>
+                <div class="envelope-card locked" id="env-8" onclick="bukaSurat(8)"><div class="envelope-label">8</div></div>
+                <div class="envelope-card locked" id="env-9" onclick="bukaSurat(9)"><div class="envelope-label">9</div></div>
+                <div class="envelope-card locked" id="env-10" onclick="bukaSurat(10)"><div class="envelope-label">10</div></div>
+                <div class="envelope-card locked" id="env-11" onclick="bukaSurat(11)"><div class="envelope-label">11</div></div>
+                <div class="envelope-card locked" id="env-12" onclick="bukaSurat(12)"><div class="envelope-label">12</div></div>
             </div>
         </div>
     </div>
 
-    <!-- 3. POPUP UTAMA UNTUK BACA ISI SURAT -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-letter">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
@@ -285,9 +327,7 @@
     </div>
 
     <script>
-        // ==========================================
-        // 1. EDIT TEKS PESAN PEMBUKA DI SINI
-        // ==========================================
+        // Teks Pesan Pembuka
         const daftarPesan = [
             "Hai Bee... Akhirnya dibuka juga link-nya 💙",
             "Aku sengaja bikin halaman web ini khusus buat Syavira Dwi Dinanti.",
@@ -295,16 +335,12 @@
             "Aku udah siapin 12 surat spesial yang bisa kamu baca.",
             "Kamu bisa jeda-jeda ya! Kalau suka kamu bisa Screenshot hehe..",
             "Bukanya WAJIB berurutan ya bee ... hehehe",
-            "Silakan klik Next buat masuk ke suratn specialnya ya bee! 👇💙"
+            "Silakan klik Next buat masuk ke surat specialnya ya bee! 👇💙"
         ];
 
-        // ==========================================
-        // 2. EDIT 12 ISI SURAT DI SINI
-        // ==========================================
-        // Kamu bisa bebas mengubah teks di dalam tanda kutip di bawah ini.
-        // Gunakan \n jika ingin membuat baris baru (pindah paragraf).
+        // 12 Isi Surat
         const daftarSurat = {
-            1: "Surat 1: Halo Sayang!\n\nIni surat pertama buat kamu. Cuma mau bilang makasih ya udah nemenin aku sampai hari ini. I love you! 💙\n\n-pin",
+            1: "Surat 1: Halo Sayang!\n\nIni surat pertama buat kamu. Cuma mau billing makasih ya udah nemenin aku sampai hari ini. I love you! 💙\n\n-pin",
             2: "Surat 2: Semangat Ya!\n\nKalau kamu lagi capek atau pusing sama urusan kamu, inget ya ada aku di sini yang selalu dukung kamu. Kamu pasti bisa! 🌸\n\n-pin",
             3: "Surat 3: Kangen Deh...\n\nSelalu berharap cepet cepet mau liburan aja kalau lagi ga se shift \n\nFokus ya kerjanya bee, LOVE YOU SO FUCKING BADLY BEE ! 🖤\n\n-pin",
             4: "Surat 4: Makasih Ya!\n\nMakasih udah selalu sabar kalau aku lagi rewel atau banyak maunya. Sabar terus ya sama aku, hehe.\n\n-pin",
@@ -318,12 +354,34 @@
             12: "Surat 12: Terakhir Banget ✨\n\nFokus kerjanya, jangan sampai lengah ya sayang, aku tau lagi sepi tapi harus fokus, aku suka banget selalu dikabarin lewat video saat aku sedang tidak percaya diri.\n\n-pin"
         };
 
-
-        // --- SCRIPT LOGIKA JANGAN DIUBAH ---
         let indeksPesan = 0;
+        let suratTerbukaMaksimal = 1; // Menyimpan progres surat yang sudah berurutan dibuka
+        let currentActiveSurat = null;
+
+        // Fungsi Memutar Musik Latar Belakang & Membuat Hati Jatuh
+        function startEffects() {
+            const music = document.getElementById("backsound");
+            if (music.paused) {
+                music.play().catch(e => console.log("Autoplay dicegah browser, musik jalan saat interaksi berikutnya."));
+            }
+            // Trigger efek hati jatuh berkala
+            setInterval(createHeart, 500);
+        }
+
+        function createHeart() {
+            const heart = document.createElement("div");
+            heart.classList.add("heart-particle");
+            heart.innerHTML = ["❤️", "💖", "🌸", "✨", "💙"][Math.floor(Math.random() * 5)];
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            heart.style.fontSize = Math.random() * 15 + 15 + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => { heart.remove(); }, 5000);
+        }
         
         function nextPesan() {
             const textElement = document.getElementById("textGanti");
+            startEffects(); // Jalankan musik/hati begitu tombol Next di klik pertama kali
             
             if (indeksPesan < daftarPesan.length) {
                 textElement.style.opacity = 0;
@@ -339,13 +397,18 @@
         }
 
         function bukaSurat(nomor) {
+            // Jika surat nomor tersebut masih terkunci, jangan biarkan dibuka
+            if (nomor > suratTerbukaMaksimal) {
+                alert("Eitss! Bukanya harus berurutan ya sayang... Buka surat nomor " + suratTerbukaMaksimal + " dulu 💙");
+                return;
+            }
+
+            currentActiveSurat = nomor;
             const overlay = document.getElementById("popupOverlay");
             const isiSurat = document.getElementById("isiSuratDetail");
             
-            // Masukkan teks surat yang sesuai nomornya
             isiSurat.innerText = daftarSurat[nomor];
             
-            // Tampilkan popup
             overlay.style.display = "flex";
             setTimeout(() => {
                 overlay.classList.add("show");
@@ -357,6 +420,15 @@
             overlay.classList.remove("show");
             setTimeout(() => {
                 overlay.style.display = "none";
+                
+                // Jika dia menutup surat yang sedang aktif dikerjakan, buka kunci surat berikutnya
+                if (currentActiveSurat === suratTerbukaMaksimal && suratTerbukaMaksimal < 12) {
+                    suratTerbukaMaksimal++;
+                    const nextEnvelope = document.getElementById("env-" + suratTerbukaMaksimal);
+                    if (nextEnvelope) {
+                        nextEnvelope.classList.remove("locked");
+                    }
+                }
             }, 400);
         }
     </script>
