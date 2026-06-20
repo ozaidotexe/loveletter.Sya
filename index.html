@@ -4,8 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>12 Surat Spesial Buat Syavira Dwi Dinanti ✨</title>
-    <!-- Tambahan Library html2canvas untuk Fitur Download Gambar -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap');
 
@@ -237,14 +235,13 @@
             transition: opacity 0.4s ease;
         }
 
-        /* Ditambahkan sedikit padding bawah agar muat tombol download */
         .popup-letter {
             background-color: #fff0f5;
             border: 5px solid #ff7597;
             border-radius: 20px;
             width: 90%;
             max-width: 500px;
-            padding: 30px 30px 40px 30px;
+            padding: 40px;
             box-sizing: border-box;
             position: relative;
             transform: scale(0.7);
@@ -262,7 +259,7 @@
         }
 
         .btn-close {
-            margin-top: 15px;
+            margin-top: 30px;
             background-color: #0b0c10;
             color: #ff7597;
             border: 2px solid #ff7597;
@@ -277,27 +274,6 @@
         .btn-close:hover {
             background-color: #ff7597;
             color: #0b0c10;
-        }
-
-        /* Tombol download estetik */
-        .btn-download {
-            margin-top: 25px;
-            background-color: #ff7597;
-            color: #0b0c10;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Fredoka', sans-serif;
-            font-weight: bold;
-            font-size: 14px;
-            transition: all 0.2s;
-            box-shadow: 0 4px 10px rgba(255, 117, 151, 0.2);
-        }
-
-        .btn-download:hover {
-            transform: scale(1.03);
-            background-color: #ff4a75;
         }
 
         .popup-overlay.show {
@@ -346,15 +322,11 @@
     </div>
 
     <div class="popup-overlay" id="popupOverlay">
-        <!-- Ditambahkan ID khusus untuk area screenshot -->
-        <div class="popup-letter" id="captureArea">
+        <div class="popup-letter">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
             
             <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
             
-            <br>
-            <!-- Tombol screenshot otomatis -->
-            <button class="btn-download" id="btnDownload" onclick="unduhSurat Gambar()">Simpan Surat Jadi Gambar 📸</button>
             <br>
             <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
         </div>
@@ -364,7 +336,7 @@
         // Teks Pesan Pembuka
         const daftarPesan = [
             "Hai Bee...✨<br>Akhirnya dibuka juga link-nya 💙",
-            "Maaf ya bee .. hari ini dan seterusnya aku engga tulis pesan dinotes lagi..",
+            "Maaf ya be .. hari ini dan seterusnya aku engga tulis pesan dinotes lagi..",
             "Khusus dari aku untuk kamu...",
             "Tapi sebagai gantinya, aku buatkan halaman web ini khusus buat kamu <br>Syavira Dwi Dinanti.",
             "Oh ya.. Aku udah siapin 12 surat Spesial yang bisa kamu baca..❤️",
@@ -392,14 +364,11 @@
         };
 
         // --- PENGATURAN FOTO DI SINI ---
+        // Ganti nama file di bawah ini sesuai foto yang kamu unggah ke GitHub.
+        // Jika nomor surat dihapus dari daftar ini, maka surat itu otomatis TIDAK menampilkan foto.
         const daftarFoto = {
-            // Kosong dulu seperti request sebelumnya, isi nanti jika sudah ada foto.
+            13: "N/A",
         };
-
-        // --- PENGATURAN SURAT FAVORIT (SISTEM DOWNLOAD) ---
-        // Masukkan nomor surat mana saja yang ingin diberikan tombol download otomatis.
-        // Contoh di bawah ini: tombol download akan muncul di surat nomor 3, 7, 10, dan 12.
-        const suratFavorit = [3, 7, 10, 12];
 
         let indeksPesan = 0;
         let suratTerbukaMaksimal = 1; 
@@ -453,63 +422,22 @@
             currentActiveSurat = nomor;
             const overlay = document.getElementById("popupOverlay");
             const isiSurat = document.getElementById("isiSuratDetail");
-            const komponenFoto = document.getElementById("fotoSuratDetail");
-            const tombolDownload = document.getElementById("btnDownload");
+            const komponenFoto = document.getElementById("fotoSuratDetail"); // Ambil komponen foto
             
             isiSurat.innerText = daftarSurat[nomor];
             
-            // Aturan Logika Menampilkan Foto
+            // Aturan Logika Menampilkan Foto Berdasarkan Pilihan Nomor
             if (daftarFoto[nomor]) {
                 komponenFoto.src = daftarFoto[nomor];
-                komponenFoto.style.display = "inline-block";
+                komponenFoto.style.display = "inline-block"; // Tampilkan foto
             } else {
-                komponenFoto.style.display = "none";
-            }
-
-            // Aturan Logika Tombol Download (Hanya muncul jika nomor tercantum di list 'suratFavorit')
-            if (suratFavorit.includes(nomor)) {
-                tombolDownload.style.display = "inline-block";
-            } else {
-                tombolDownload.style.display = "none";
+                komponenFoto.style.display = "none"; // Sembunyikan total jika tidak diset
             }
             
             overlay.style.display = "flex";
             setTimeout(() => {
                 overlay.classList.add("show");
             }, 10);
-        }
-
-        function unduhSuratGambar() {
-            const target = document.getElementById("captureArea");
-            const tombolDownload = document.getElementById("btnDownload");
-            const tombolTutup = document.querySelector(".btn-close");
-
-            // Sembunyikan tombol sementara agar tidak ikut kefoto
-            tombolDownload.style.visibility = "hidden";
-            tombolTutup.style.visibility = "hidden";
-
-            // Ambil gambar dari element kotak popup saja
-            html2canvas(target, {
-                backgroundColor: "#fff0f5", // Warna dasar background kotak surat
-                borderRadius: 20,
-                scale: 2, // Kualitas gambar diperjelas agar HD & presisi
-                useCORS: true // Supaya gambar/foto dari GitHub eksternal tetap termuat
-            }).then(canvas => {
-                // Kembalikan tombol agar muncul lagi di web
-                tombolDownload.style.visibility = "visible";
-                tombolTutup.style.visibility = "visible";
-
-                // Proses Download Gambar
-                const link = document.createElement("a");
-                link.download = "Surat_Spesial_No_" + currentActiveSurat + ".png";
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-            }).catch(err => {
-                // Jika error, kembalikan tombol
-                tombolDownload.style.visibility = "visible";
-                tombolTutup.style.visibility = "visible";
-                alert("Waduh maaf bee, gagal memproses gambar. Coba sekali lagi ya!");
-            });
         }
 
         function tutupSurat() {
