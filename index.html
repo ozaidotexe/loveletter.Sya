@@ -321,6 +321,48 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+
+        /* STYLING TAMBAHAN UNTUK POP-UP PERINGATAN IDLE */
+        .popup-warning {
+            background-color: #1f2833;
+            border: 4px dashed #66fcf1;
+            border-radius: 20px;
+            width: 85%;
+            max-width: 400px;
+            padding: 30px;
+            box-sizing: border-box;
+            text-align: center;
+            box-shadow: 0 10px 25px rgba(102, 252, 241, 0.3);
+            transform: scale(0.7);
+            transition: transform 0.4s ease;
+        }
+        .popup-warning-text {
+            color: #ffffff;
+            font-size: 18px;
+            font-family: 'Fredoka', sans-serif;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .btn-warning-close {
+            background-color: #66fcf1;
+            color: #0b0c10;
+            border: none;
+            padding: 10px 25px;
+            font-size: 15px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+            transition: transform 0.2s, background-color 0.2s;
+        }
+        .btn-warning-close:hover {
+            transform: scale(1.05);
+            background-color: #45a29e;
+            color: #ffffff;
+        }
+        .popup-overlay.show .popup-warning {
+            transform: scale(1);
+        }
     </style>
 </head>
 <body>
@@ -377,6 +419,14 @@
         </div>
     </div>
 
+    <!-- STRUKTUR BARU: POP-UP OVERLAY UNTUK PERINGATAN IDLE -->
+    <div class="popup-overlay" id="warningOverlay">
+        <div class="popup-warning">
+            <div class="popup-warning-text" id="warningText">Pesan Peringatan...</div>
+            <button class="btn-warning-close" onclick="tutupWarning()">Maaf Bee 🥺❤️</button>
+        </div>
+    </div>
+
     <script>
         // Teks Pesan Pembuka
         const daftarPesan = [
@@ -386,7 +436,7 @@
             "Jika waktunya sedang senggang tulislah apapun...",
             "Hari ini, aku buatkan 20 Surat Special yang bisa kamu baca...🥰",
             "Semoga surat-suratku bisa temenin shift kamu ya sayangku.. 🧸",
-            "Kalau suka kamu bisa Download dan simpan di tempat yang kamu suka..<br>Entah di HP ataupun di Drive mu sendiri...",
+            "Kalau suka kamu bisa Download dan simpan di tempat yang kamu suka..<br>Entah di HP ataupun di Drive mu second...",
             "Aku harap selain kamu suka, suratku ini bisa temnin kekosongan kamu..✨",
             "Silakan klik dibawah buat masuk ke surat Specialnya ya Bee! 👇❤️"
         ];
@@ -401,9 +451,9 @@
             6: "Surat 6: Semua Tentang Kamu 🧸\n\nAku suka kamu selalu berkabar.. Video mu dan Photo yang kamu kasih semua aku suka melihatnya..\nAku suka perhatian kamu, aku suka senyum manis yang selalu kamu lontarkan saat kita bertemu,Ya! berikan semua ke aku, aku suka semua..\nSuka semua tentang kamu, apapun itu bentuknya jika berasal dari kamu, aku suka semuanya.\nLOVE YOU BE !! 💙\n\n-pin",
             7: "Surat 7: Menghitung Waktu ⏳\n\nRasanya waktu berjalan lambat banget kalau kita lagi nggak satu shift. Aku di sini selalu menghitung jam, nggak sabar buat bisa dengar suara kamu langsung. Fokus kerjanya ya Bee, I miss you so damn badly! 🖤\n\n-pin",
             8: "Surat 8: Harapan Besarku 🌌\n\nAku berharap kita bisa terus bareng-bareng menghadapi apa pun ke depannya.\nJika Ego lagi tinggi disaat sedang sama sama tidak baik baik saja moodnya, tolong lepaskan dulu sebentar ya..\nKarena akupun juga begitu..\nBaik hari yang seru maupun hari yang berat. Jangan pernah lepasin genggaman tangan kita ya, Bee.\nSebesar apapun marahku, Sebesar apapun bete aku, Cinta dan sayang aku tidak akan pernah pudar bahkan berkurang sayang..\nBahkan selalu bertambah lagi.. lagi... dan lagi...\nI love you to the moon and back! 💙\n\n-pin",
-            9: "Surat 9: Jujurly Bee..\n\Aku suka menatapmu lama bukan karena aku tau dirimu selalu salahtingkah saat aku menatap kamu lama.\nTapi karena karena memang aku suka menatap wanita ku yang cantik adn hebat lalu menyimpan wajah kamu disaat seperti ini, yakni kamu sedang tidak ada disampingku.\n\n-pin",
+            9: "Surat 9: Jujurly Bee..\n\nAku suka menatapmu lama bukan karena aku tau dirimu selalu salahtingkah saat aku menatap kamu lama.\nTapi karena karena memang aku suka menatap wanita ku yang cantik adn hebat lalu menyimpan wajah kamu disaat seperti ini, yakni kamu sedang tidak ada disampingku.\n\n-pin",
             10: "Surat 10: Rumah Teraman 🧸\n\nTerima kasih karena selalu punya cara untuk menenangkan badai di kepalaku. Saat aku mulai overthinking, sabarmu selalu jadi penawarnya. Maaf ya kalau aku suka rewel, itu karena aku terlalu menyayangimu.\n\n-pin",
-            11: "Surat 11: Hi Wanitaku...🥰\n\nDari sekian banyaknya manusia di KPS ini, aku sangat bersyukur kita di pertemukan dengan cara yang tidak pernah diduga-duga.\nYang dimana aku bisa bisa nya mengajak kamu jalan berdua dengan alasan berbincang.\nLucu ya, aku bersyukur kejadian itu terjadi.\N LOVE YOU SO MUCH BEE !! ✨\n\n-pin",
+            11: "Surat 11: Hi Wanitaku...🥰\n\nDari sekian banyaknya manusia di KPS ini, aku sangat bersyukur kita di pertemukan dengan cara yang tidak pernah diduga-duga.\nYang dimana aku bisa bisa nya mengajak kamu jalan berdua dengan alasan berbincang.\nLucu ya, aku bersyukur kejadian itu terjadi.\n LOVE YOU SO MUCH BEE !! ✨\n\n-pin",
             12: "Surat 12: Keajaiban Kecilku 🌟\n\nKamu nggak perlu jadi orang lain untuk terlihat mengagumkan. Di mataku, segala kekurangan dan kelebihanmu adalah perpaduan yang paling sempurna. Kamu adalah definisi wanita hebat yang sesungguhnya.\n\n-pin",
             13: "Surat 13: Masa Depan Bersamamu 🌌\n\nAku ingin melewati lebih banyak lembaran cerita baru bersamamu. Menghadapi hari baik, hari buruk, tawa, maupun tantangan ke depannya. Tetap genggam erat tanganku ya, Bee. I love you to the moon and back! 💙\n\n-pin",
             14: "Surat 14: Mood Boosterku.. 🥰\n\nSetiap kali hariku terasa berat atau melelahkan, mengingat senyummu saja sudah cukup buat mengembalikan energiku. Makasih ya sayang sudah menjadi alasan terbesar di balik semangat dan senyumku hari ini.\n\n-pin",
@@ -413,7 +463,7 @@
             18: "Surat 18: PERINGATAN !! \n\nJangan lupa pap! Aku mau claim semua hadiah ku sayang...\nAku mau 10-1, 10-8 lagi.. Aku mau! Aku mau! Aku mau! Aku mau!\n\n-pin",
             19: "Surat 19: You're My Reason..💙\n\nMemiliki kamu itu hal yang luar biasa didalam hidup aku bee..\nMenemukanmu adalah hal yang terbaik selama aku hidup. Terimakasih sudah selalu menjadi dan berusaha yang terbaik untuk aku ya Bee.. LOVE YOU !💙\n\n-pin",
             20: "Surat 20: Terakhir Tapi Selamanya ✨\n\nFokus tuntasin shift-nya ya sayang, dikit lagi selesai kok! Btw, aku selalu suka tiap kali kamu ngabarin lewat pap video, itu beneran bikin tenang. Semangat terus Bee, aku tungguin kamu! 🖤🌸\n\n-pin"
-            
+             
         };
 
         // --- PENGATURAN FOTO DI SINI ---
@@ -421,10 +471,25 @@
             21: "N/A",
         };
 
+
+        // --- KUSTOMISASI ISI PERINGATAN IDLE DISINI ---
+        // Kamu bisa tambah kalimat baru sebanyak yang kamu mau, gunakan <br> jika ingin enter/baris baru.
+        const daftarPeringatanIdle = [
+            "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, fokus shift-nya atau lanjut baca suratnya yuk! 🧸💙",
+            "Hayo lhoo.. Malah bengong! <br>Aku di sini nungguin kamu selesai shift tauu, jangan dianggurin websitenya.. 🥰🌸",
+            "Dorrr! ✨<br>Kaget gak? Kalo gak kaget, tandanya kamu harus klik tombol di bawah dan baca surat selanjutnya, Bee! 😜",
+            "Kangen ya sampai didiamkan begini? <br>Yuk dibuka lagi surat manisnya, masih banyak cerita buat kamu hari ini. 🌌🖤"
+        ];
+
+        // Waktu tunggu dalam milidetik (Contoh: 15000 = 15 detik didiamkan baru muncul pop-up)
+        const WAKTU_IDLE = 15000; 
+
+
         let indeksPesan = 0;
         let suratTerbukaMaksimal = 1; 
         let currentActiveSurat = null;
         let heartInterval = null; 
+        let idleTimer = null; // Menyimpan timer deteksi diam
 
         function startEffects() {
             const music = document.getElementById("backsound");
@@ -434,6 +499,8 @@
             if (!heartInterval) {
                 heartInterval = setInterval(createHeart, 1500);
             }
+            // Mulai memantau aktivitas setelah interaksi pertama
+            resetIdleTimer();
         }
 
         function createHeart() {
@@ -552,6 +619,47 @@
                 }
             }, 400);
         }
+
+        // --- FUNGSI BARU UNTUK SISTEM IDLE DETECTOR ---
+        function resetIdleTimer() {
+            // Hapus timer lama tiap ada pergerakan/interaksi baru
+            clearTimeout(idleTimer);
+            
+            // Jangan memicu peringatan jika pop-up surat utama atau pop-up peringatan sedang terbuka
+            const isPopupOpen = document.getElementById("popupOverlay").classList.contains("show");
+            const isWarningOpen = document.getElementById("warningOverlay").classList.contains("show");
+
+            if (!isPopupOpen && !isWarningOpen) {
+                idleTimer = setTimeout(munculkanWarning, WAKTU_IDLE);
+            }
+        }
+
+        function munculkanWarning() {
+            const warningOverlay = document.getElementById("warningOverlay");
+            const warningText = document.getElementById("warningText");
+            
+            // Mengambil satu pesan secara acak dari array daftarPeringatanIdle
+            const pesanAcak = daftarPeringatanIdle[Math.floor(Math.random() * daftarPeringatanIdle.length)];
+            warningText.innerHTML = pesanAcak;
+
+            warningOverlay.style.display = "flex";
+            setTimeout(() => {
+                warningOverlay.classList.add("show");
+            }, 10);
+        }
+
+        function tutupWarning() {
+            const warningOverlay = document.getElementById("warningOverlay");
+            warningOverlay.classList.remove("show");
+            setTimeout(() => {
+                warningOverlay.style.display = "none";
+                resetIdleTimer(); // Mulai hitung ulang waktu diam dari nol kembali
+            }, 400);
+        }
+
+        // Mendeteksi klik atau sentuhan jari di layar untuk mereset timer diam
+        window.onclick = resetIdleTimer;
+        window.ontouchstart = resetIdleTimer;
     </script>
 </body>
 </html>
