@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>12 Surat Spesial Buat Syavira Dwi Dinanti ✨</title>
-    <!-- Library html2canvas untuk Fitur Simpan Gambar -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap');
@@ -260,6 +259,17 @@
             white-space: pre-line;
         }
 
+        /* Gaya Khusus untuk Tanggal yang Muncul di Tengah Bawah Gambar */
+        .popup-date {
+            display: none; /* Sembunyi secara default di halaman web */
+            font-size: 13px;
+            color: #7f8c8d;
+            margin-top: 25px;
+            font-weight: bold;
+            font-family: 'Quicksand', sans-serif;
+            letter-spacing: 1px;
+        }
+
         .btn-close {
             margin-top: 15px;
             background-color: #0b0c10;
@@ -278,7 +288,6 @@
             color: #0b0c10;
         }
 
-        /* Tombol Download Baru */
         .btn-download {
             margin-top: 25px;
             background-color: #ff7597;
@@ -346,14 +355,14 @@
     </div>
 
     <div class="popup-overlay" id="popupOverlay">
-        <!-- Ditambahkan ID captureArea agar sistem tahu bagian mana yang mau dijadikan gambar -->
         <div class="popup-letter" id="captureArea">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
             
             <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
             
+            <div class="popup-date" id="tanggalDownload"></div>
+
             <br>
-            <!-- Tombol Simpan Gambar -->
             <button class="btn-download" id="btnDownload" onclick="unduhSuratGambar()">Simpan Surat Jadi Gambar 📸</button>
             <br>
             <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
@@ -387,7 +396,7 @@
             7: "Surat 7: Paling Spesial\n\nKamu tahu gak? Di mataku, kamu itu orang paling hebat dan paling manis yang pernah aku temuin. Jadi selalu percaya diri ya sayangku. Paling dimataku kamu itu cuma dua, yaitu cantik sama cantik pake banget Bee...\n\n-pin",
             8: "Surat 8: Maaf Ya...\n\nMaaf ya kalau kadang aku bikin kamu kesel atau bad mood. Aku bakal berusaha jadi yang lebih baik lagi buat kamu..\n\n-pin",
             9: "Surat 9: Harapan Aku\n\nSemoga kita bisa terus bareng-bareng ya, melewati banyak hal seru maupun susah ke depannya. Tetap genggam tangan aku bee ILYSM !! 💙\n\n-pin",
-            10: "Surat 10: Dear Mybee..✨\n\nIni surat kesepuluh di web ini, tapi sayang aku ke kamu gak akan ada akhirnya.\nStay Fokus kesayanganku, pacar terindahku,belahan jiwaku, manusia terfavorit aku! 🖤🌸💙\n\n-pin",
+            10: "Surat 10: Dear Mybee..✨\n\nIni surat kesepuluh di web ini, tapi sayang aku ke kamu gak akan ada endingsnya.\nStay Fokus kesayanganku, pacar terindahku,belahan jiwaku, manusia terfavorit aku! 🖤🌸💙\n\n-pin",
             11: "Surat 11: Hola kecayangan acuh!!\n\nOverthingking itu cuma buat orang yang lagi ga percaya diri.\nMaaf ya aku selalu buat kamu repot karena aku selalu ga percaya diri bee kalau jauh dari kamu.\nBut LOVE YOU SO MUCH!!!\n\n-pin",
             12: "Surat 12: Terakhir Banget ✨\n\nFokus kerjanya, jangan sampai lengah ya sayang, Walaupun lagi sepi harus fokus.\nBtw aku suka banget selalu dikabarin lewat video saat aku sedang tidak percaya diri.\n\n-pin"
         };
@@ -466,11 +475,22 @@
             }, 10);
         }
 
-        // FUNGSI BARU: Mengunduh amplop isi surat menjadi gambar PNG
+        // Mengunduh amplop isi surat menjadi gambar PNG + Menyertakan Tanggal Real-Time
         function unduhSuratGambar() {
             const target = document.getElementById("captureArea");
             const tombolDownload = document.getElementById("btnDownload");
             const tombolTutup = document.querySelector(".btn-close");
+            const elemenTanggal = document.getElementById("tanggalDownload");
+
+            // 1. Dapatkan tanggal hari ini secara otomatis saat diklik
+            const hariIni = new Date();
+            const dd = String(hariIni.getDate()).padStart(2, '0');
+            const mm = String(hariIni.getMonth() + 1).padStart(2, '0'); // Januari adalah 0
+            const yyyy = hariIni.getFullYear();
+            
+            // 2. Set format teks DD/MM/YYYY ke elemen tanggal, lalu tampilkan
+            elemenTanggal.innerText = dd + "/" + mm + "/" + yyyy;
+            elemenTanggal.style.display = "block";
 
             // Sembunyikan tombol sementara agar tidak ikut kefoto
             tombolDownload.style.visibility = "hidden";
@@ -485,6 +505,9 @@
                 // Munculkan kembali tombolnya
                 tombolDownload.style.visibility = "visible";
                 tombolTutup.style.visibility = "visible";
+                
+                // Sembunyikan kembali tanggal di halaman web
+                elemenTanggal.style.display = "none";
 
                 const link = document.createElement("a");
                 link.download = "Surat_Cinta_No_" + currentActiveSurat + ".png";
@@ -493,6 +516,7 @@
             }).catch(err => {
                 tombolDownload.style.visibility = "visible";
                 tombolTutup.style.visibility = "visible";
+                elemenTanggal.style.display = "none";
                 alert("Fitur download otomatis ini baru akan aktif 100% setelah filenya kamu upload ke GitHub Pages ya Bee!");
             });
         }
