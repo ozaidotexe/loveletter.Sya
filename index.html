@@ -72,7 +72,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.3s ease; /* Tambahan agar transisi text pudar lebih mulus */
+            transition: opacity 0.3s ease; /* Transisi text pudar mulus */
             opacity: 1;
         }
 
@@ -324,6 +324,10 @@
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-letter">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
+            
+            <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
+            
+            <br>
             <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
         </div>
     </div>
@@ -357,17 +361,25 @@
             12: "Surat 12: Terakhir Banget ✨\n\nFokus kerjanya, jangan sampai lengah ya sayang, Walaupun lagi sepi harus fokus.\nBtw aku suka banget selalu dikabarin lewat video saat aku sedang tidak percaya diri.\n\n-pin"
         };
 
+        // --- PENGATURAN FOTO DI SINI ---
+        // Ganti nama file di bawah ini sesuai foto yang kamu unggah ke GitHub.
+        // Jika nomor surat dihapus dari daftar ini, maka surat itu otomatis TIDAK menampilkan foto.
+        const daftarFoto = {
+            3: "foto-surat3.jpg",  // Contoh: Surat nomor 3 muncul foto ini
+            5: "foto-pantai.png",  // Contoh: Surat nomor 5 muncul foto ini
+            10: "kenangan.jpg"     // Contoh: Surat nomor 10 muncul foto ini
+        };
+
         let indeksPesan = 0;
         let suratTerbukaMaksimal = 1; 
         let currentActiveSurat = null;
-        let heartInterval = null; // Menyimpan interval hati agar tidak menumpuk ganda
+        let heartInterval = null; 
 
         function startEffects() {
             const music = document.getElementById("backsound");
             if (music.paused) {
-                music.play().catch(e => console.log("Autoplay dicegah browser, musik aktif setelah interaksi."));
+                music.play().catch(e => console.log("Autoplay ditolak, aktif di interaksi selanjutnya."));
             }
-            // Mencegah ganda efek interval hati ketika tombol diklik berkali-kali
             if (!heartInterval) {
                 heartInterval = setInterval(createHeart, 1500);
             }
@@ -389,10 +401,10 @@
             startEffects(); 
             
             if (indeksPesan < daftarPesan.length) {
-                textElement.style.opacity = 0; // Efek pudar keluar sebelum teks diganti
+                textElement.style.opacity = 0;
                 setTimeout(() => {
                     textElement.innerHTML = daftarPesan[indeksPesan];
-                    textElement.style.opacity = 1; // Efek pudar masuk setelah teks diganti
+                    textElement.style.opacity = 1;
                     indeksPesan++;
                 }, 300);
             } else {
@@ -410,8 +422,17 @@
             currentActiveSurat = nomor;
             const overlay = document.getElementById("popupOverlay");
             const isiSurat = document.getElementById("isiSuratDetail");
+            const komponenFoto = document.getElementById("fotoSuratDetail"); // Ambil komponen foto
             
             isiSurat.innerText = daftarSurat[nomor];
+            
+            // Aturan Logika Menampilkan Foto Berdasarkan Pilihan Nomor
+            if (daftarFoto[nomor]) {
+                komponenFoto.src = daftarFoto[nomor];
+                komponenFoto.style.display = "inline-block"; // Tampilkan foto
+            } else {
+                komponenFoto.style.display = "none"; // Sembunyikan total jika tidak diset
+            }
             
             overlay.style.display = "flex";
             setTimeout(() => {
