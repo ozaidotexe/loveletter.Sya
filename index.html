@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>12 Surat Spesial Buat Syavira Dwi Dinanti ✨</title>
+    <title>15 Surat Spesial Buat Syavira Dwi Dinanti ✨</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap');
@@ -336,7 +336,7 @@
         <div class="gallery-wrapper" id="galleryBox">
             <h1 class="gallery-title">Surat-Surat Cintaku Untukmu Bee 💙🌸</h1>
             <p class="gallery-subtitle">Pilih dan buka suratnya satu per satu secara berurutan ya Bee!</p>
-            
+             
             <div class="envelope-grid">
                 <div class="envelope-card" id="env-1" onclick="bukaSurat(1)"><div class="envelope-label">1</div></div>
                 <div class="envelope-card locked" id="env-2" onclick="bukaSurat(2)"><div class="envelope-label">2</div></div>
@@ -350,6 +350,14 @@
                 <div class="envelope-card locked" id="env-10" onclick="bukaSurat(10)"><div class="envelope-label">10</div></div>
                 <div class="envelope-card locked" id="env-11" onclick="bukaSurat(11)"><div class="envelope-label">11</div></div>
                 <div class="envelope-card locked" id="env-12" onclick="bukaSurat(12)"><div class="envelope-label">12</div></div>
+                <div class="envelope-card locked" id="env-13" onclick="bukaSurat(13)"><div class="envelope-label">13</div></div>
+                <div class="envelope-card locked" id="env-14" onclick="bukaSurat(14)"><div class="envelope-label">14</div></div>
+                <div class="envelope-card locked" id="env-15" onclick="bukaSurat(15)"><div class="envelope-label">15</div></div>
+                <div class="envelope-card locked" id="env-16" onclick="bukaSurat(16)"><div class="envelope-label">16</div></div>
+                <div class="envelope-card locked" id="env-17" onclick="bukaSurat(17)"><div class="envelope-label">17</div></div>
+                <div class="envelope-card locked" id="env-18" onclick="bukaSurat(18)"><div class="envelope-label">18</div></div>
+                <div class="envelope-card locked" id="env-19" onclick="bukaSurat(19)"><div class="envelope-label">19</div></div>
+                <div class="envelope-card locked" id="env-20" onclick="bukaSurat(20)"><div class="envelope-label">20</div></div>
             </div>
         </div>
     </div>
@@ -357,9 +365,9 @@
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-letter" id="captureArea">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
-            
+             
             <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
-            
+             
             <div class="popup-date" id="tanggalDownload"></div>
 
             <br>
@@ -372,39 +380,45 @@
     <script>
         // Teks Pesan Pembuka
         const daftarPesan = [
-            "Hai Bee...✨<br>Akhirnya dibuka juga link-nya 💙",
-            "Bee, ga apakan kalau tulisan tanganku, aku ganti jadi begini? hari ini dan seterusnya aku engga tulis pesan dinotes lagi..",
-            "Hari ini dan seterusnya aku udah engga nulis pesan dinotes lagi..",
-            "Khusus dari aku untuk kamu...",
-            "Tapi sebagai gantinya, aku buatkan halaman web ini khusus buat kamu <br>Syavira Dwi Dinanti.",
-            "Oh ya.. Aku udah siapin 12 surat Spesial yang bisa kamu baca..❤️",
-            "Kamu bisa kasih jeda-jeda ya baca surat dan baca secara perlahan di waktu senggang kamu..",
-            "Kalau suka kamu bisa Download ya..",
-            "Dan juga pesan pasti tidak akan sama, nanti aku gonta ganti ya sayang ku..",
-            "Aku buat sesuai nomer urutan, jadi buka secara perlahan saja ya Bee..💙",
-            "Aku berharap kamu suka ya sayangkuh ..",
-            "Silakan klik dibawah buat masuk ke surat specialnya ya Bee! 👇❤️"
+            "Special aku buatkan mini Website khusus untuk seorang yang ku sayangi dan ku cintai <br>Syavira Dwi Dinanti. 💙",
+            "Bee, tetap tulis aja apa yang kamu mau tulis ya untukku...",
+            "Aku tetap mau membaca tulisan tangan kamu.. Jika waktunya sedang senggang tulislah apapun...",
+            "Jika waktunya sedang senggang tulislah apapun...",
+            "Hari ini, aku buatkan 20 Surat Special yang bisa kamu baca...🥰",
+            "Semoga surat-suratku bisa temenin shift kamu ya sayangku.. 🧸",
+            "Kalau suka kamu bisa Download dan simpan di tempat yang kamu suka..<br>Entah di HP ataupun di Drive mu sendiri...",
+            "Aku harap selain kamu suka, suratku ini bisa temnin kekosongan kamu..✨",
+            "Silakan klik dibawah buat masuk ke surat Specialnya ya Bee! 👇❤️"
         ];
 
-        // 12 Isi Surat
+        // EDIT ISI SURAT DISINI
         const daftarSurat = {
-            1: "Surat 1: Halo Sayang!\n\nIni surat pertama buat kamu. Cuma mau billing makasih ya udah nemenin aku sampai hari ini.Aku akan selalu kasih yang terbaik sebisa mungkin sayangkuh.\nI love you! 💙\n\n-pin",
-            2: "Surat 2: Semangat Ya!\n\nKalau kamu lagi capek atau pusing sama urusan kamu apa lagi sama member kamu, inget ya ada aku di sini yang selalu dukung kamu.\nKamu pasti bisa! dan aku tau kamu pasti bisa sayangku 🌸\n\n-pin",
-            3: "Surat 3: Kangen Deh... Pengen cepet ketemu kamu!\n\nSelalu berharap cepet cepet mau liburan aja kalau lagi ga seshift kayak gini.\nFokus ya kerjanya bee.\nLOVE YOU SO FUCKING BADLY BEE ! 🖤\n\n-pin",
-            4: "Surat 4: Makasih Ya!\n\nMakasih udah selalu sabar kalau aku lagi rewel atau banyak maunya apalagi kalau lagi Overthingking.\nSabar terus ya sama aku, hehe..\nAku begini karena susah banget jauh dari kamu sayangku.\n\n-pin",
-            5: "Surat 5: Ingat Hal Ini?\n\nAku masih inget banget pas pertama kali kita sedekat ini, di pantai itu loh...\nGak nyangka ya sekarang kita bisa sedeket ini, terus disisiku ya sayang, aku mau kamu dan selamanya itu kamu.\n\n-pin",
-            6: "Surat 6: Jaga Kesehatan!\n\nJangan suka tidur kelamaan dan jangan telat makan ya + Vitamin C diminum ya!\nAku gak mau kamu drop atau sakit.\nHarus nurut! Oh ya, Jangan lupa minum air ya bee. 🖤\nOhya, BAK dan BAB nya dipakai habis ya, hari ini aku ga pakai karena fokus buatin kamu ini... hehe\n\n-pin",
-            7: "Surat 7: Paling Spesial\n\nKamu tahu gak? Di mataku, kamu itu orang paling hebat dan paling manis yang pernah aku temuin. Jadi selalu percaya diri ya sayangku. Paling dimataku kamu itu cuma dua, yaitu cantik sama cantik pake banget Bee...\n\n-pin",
-            8: "Surat 8: Maaf Ya...\n\nMaaf ya kalau kadang aku bikin kamu kesel atau bad mood. Aku bakal berusaha jadi yang lebih baik lagi buat kamu..\n\n-pin",
-            9: "Surat 9: Harapan Aku\n\nSemoga kita bisa terus bareng-bareng ya, melewati banyak hal seru maupun susah ke depannya. Tetap genggam tangan aku bee ILYSM !! 💙\n\n-pin",
-            10: "Surat 10: Dear Mybee..✨\n\nIni surat kesepuluh di web ini, tapi sayang aku ke kamu gak akan ada endingsnya.\nStay Fokus kesayanganku, pacar terindahku,belahan jiwaku, manusia terfavorit aku! 🖤🌸💙\n\n-pin",
-            11: "Surat 11: Hola kecayangan acuh!!\n\nOverthingking itu cuma buat orang yang lagi ga percaya diri.\nMaaf ya aku selalu buat kamu repot karena aku selalu ga percaya diri bee kalau jauh dari kamu.\nBut LOVE YOU SO MUCH!!!\n\n-pin",
-            12: "Surat 12: Terakhir Banget ✨\n\nFokus kerjanya, jangan sampai lengah ya sayang, Walaupun lagi sepi harus fokus.\nBtw aku suka banget selalu dikabarin lewat video saat aku sedang tidak percaya diri.\n\n-pin"
+            1: "Surat 1: Your First Letter...❤️\n\nIni surat pertama buat kamu. Cuma mau bilang,terimakasih kamu sudah hadir disetiap Bahagiaku, sedihku, senangku, susahku..\nAku sangat beruntung memiliki kamu disini sayang.Mungkin kalimat tidak akan cukup panjang untuk mengungkapkan rasa sayang dan terimakasih ku kekamu.\nLove You So Much Bee... 💙\n\n-pin",
+            2: "Surat 2: Dear Manusia Kesayanganku,\n\nMungkin orang bisa bilang aku lebay, berlebihan atau semacamnya...\nCuma itu yang terjadi, aku hanya mengungkapkan apa yang sedang kurasakan saja.\nTidak mau melebihkan apalagi mengurang ngurangkannya..\nLagi senang pasti aku bilang senang, lagi sedih pasti aku akan bilang sedih. 🌸\n\n-pin",
+            3: "Surat 3: Maaf aku aku sedang di situasi rewel, overthingking, ga mood selalu membuat kamu ga nyaman.\nTerimakasih sudah selalu ada selalu di samping aku. Kamu yang mau sabar banget hadapin aku...\n\n\n-pin",
+            4: "Surat 4: Pengingat Kecil..✨\n\nDari orang yang selalu khawatir dengan kesehatan kamu setiap hari yaitu aku, Jangan lupa diminum airnya.. Selalu di minum vitamin C nya ya!\nJangan telat makan!aku cuma ga mau senyum manis kamu pudar karena kamu sakit.\n\n-pin",
+            5: "Surat 5: Dear Syavira,\n\nAkulah orang yang selalu mau tau kamu kenapa, Bahagiakah? Sedihkah? Betekah? Ya, itu aku..\nSicuek itu yang kini luluh dan mulai bisa memperhatikan seseorang yang dia sayangi dan cintai. LOVE YOU BEE ! 💙\n\n-pin",
+            6: "Surat 6: Semua Tentang Kamu 🧸\n\nAku suka kamu selalu berkabar.. Video mu dan Photo yang kamu kasih semua aku suka melihatnya..\nAku suka perhatian kamu, aku suka senyum manis yang selalu kamu lontarkan saat kita bertemu,Ya! berikan semua ke aku, aku suka semua..\nSuka semua tentang kamu, apapun itu bentuknya jika berasal dari kamu, aku suka semuanya.\nLOVE YOU BE !! 💙\n\n-pin",
+            7: "Surat 7: Menghitung Waktu ⏳\n\nRasanya waktu berjalan lambat banget kalau kita lagi nggak satu shift. Aku di sini selalu menghitung jam, nggak sabar buat bisa dengar suara kamu langsung. Fokus kerjanya ya Bee, I miss you so damn badly! 🖤\n\n-pin",
+            8: "Surat 8: Harapan Besarku 🌌\n\nAku berharap kita bisa terus bareng-bareng menghadapi apa pun ke depannya.\nJika Ego lagi tinggi disaat sedang sama sama tidak baik baik saja moodnya, tolong lepaskan dulu sebentar ya..\nKarena akupun juga begitu..\nBaik hari yang seru maupun hari yang berat. Jangan pernah lepasin genggaman tangan kita ya, Bee.\nSebesar apapun marahku, Sebesar apapun bete aku, Cinta dan sayang aku tidak akan pernah pudar bahkan berkurang sayang..\nBahkan selalu bertambah lagi.. lagi... dan lagi...\nI love you to the moon and back! 💙\n\n-pin",
+            9: "Surat 9: Jujurly Bee..\n\Aku suka menatapmu lama bukan karena aku tau dirimu selalu salahtingkah saat aku menatap kamu lama.\nTapi karena karena memang aku suka menatap wanita ku yang cantik adn hebat lalu menyimpan wajah kamu disaat seperti ini, yakni kamu sedang tidak ada disampingku.\n\n-pin",
+            10: "Surat 10: Rumah Teraman 🧸\n\nTerima kasih karena selalu punya cara untuk menenangkan badai di kepalaku. Saat aku mulai overthinking, sabarmu selalu jadi penawarnya. Maaf ya kalau aku suka rewel, itu karena aku terlalu menyayangimu.\n\n-pin",
+            11: "Surat 11: Hi Wanitaku...🥰\n\nDari sekian banyaknya manusia di KPS ini, aku sangat bersyukur kita di pertemukan dengan cara yang tidak pernah diduga-duga.\nYang dimana aku bisa bisa nya mengajak kamu jalan berdua dengan alasan berbincang.\nLucu ya, aku bersyukur kejadian itu terjadi.\N LOVE YOU SO MUCH BEE !! ✨\n\n-pin",
+            12: "Surat 12: Keajaiban Kecilku 🌟\n\nKamu nggak perlu jadi orang lain untuk terlihat mengagumkan. Di mataku, segala kekurangan dan kelebihanmu adalah perpaduan yang paling sempurna. Kamu adalah definisi wanita hebat yang sesungguhnya.\n\n-pin",
+            13: "Surat 13: Masa Depan Bersamamu 🌌\n\nAku ingin melewati lebih banyak lembaran cerita baru bersamamu. Menghadapi hari baik, hari buruk, tawa, maupun tantangan ke depannya. Tetap genggam erat tanganku ya, Bee. I love you to the moon and back! 💙\n\n-pin",
+            14: "Surat 14: Mood Boosterku.. 🥰\n\nSetiap kali hariku terasa berat atau melelahkan, mengingat senyummu saja sudah cukup buat mengembalikan energiku. Makasih ya sayang sudah menjadi alasan terbesar di balik semangat dan senyumku hari ini.\n\n-pin",
+            15: "Surat 15: Penutup yang Manis ✨🌸\n\nIni surat terakhir di halaman web ini, tapi rasa sayang dan cintaku ke kamu tidak akan pernah ada kata selesai. Selesaikan shift kamu dengan baik dan fokus ya pacar hebatku. Aku selalu menunggumu di sini! 🖤\n\n-pin",
+            16: "Surat 16: Sandaran dihari Lelah...🌸\n\nAku tau, harimu kadang tidak selalu mudah untuk di lewati.Pasti ada yang selalu membuat kamu kesal.\nTidak apa kalau marah, kamu sudah selalu melakukan yang terbaik sayangku.\nTapi ingat ya, tiap kali kamu merasa lelah, pundakku selalu ada untuk jadi tempatmu pulang dan bersandar. Semangat sayangku! 🥰\n\n-pin",
+            17: "Surat 17: My Fear..\n\nAku takut kamu berpaling, aku takut kamu pergi, aku takut aku di duakan, aku takut kamu kecewa, aku takut perasaan mu, perhatian mu hilang ...\n Ya! itu adalah rasa takutku.. sebegitu takut karena sebesar itu sayang dan rasa kepemilikan ku atas mu bee...\n\n-pin",
+            18: "Surat 18: PERINGATAN !! \n\nJangan lupa pap! Aku mau claim semua hadiah ku sayang...\nAku mau 10-1, 10-8 lagi.. Aku mau! Aku mau! Aku mau! Aku mau!\n\n-pin",
+            19: "Surat 19: You're My Reason..💙\n\nMemiliki kamu itu hal yang luar biasa didalam hidup aku bee..\nMenemukanmu adalah hal yang terbaik selama aku hidup. Terimakasih sudah selalu menjadi dan berusaha yang terbaik untuk aku ya Bee.. LOVE YOU !💙\n\n-pin",
+            20: "Surat 20: Terakhir Tapi Selamanya ✨\n\nFokus tuntasin shift-nya ya sayang, dikit lagi selesai kok! Btw, aku selalu suka tiap kali kamu ngabarin lewat pap video, itu beneran bikin tenang. Semangat terus Bee, aku tungguin kamu! 🖤🌸\n\n-pin"
+            
         };
 
         // --- PENGATURAN FOTO DI SINI ---
         const daftarFoto = {
-            13: "N/A",
+            21: "N/A",
         };
 
         let indeksPesan = 0;
@@ -528,7 +542,8 @@
             setTimeout(() => {
                 overlay.style.display = "none";
                 
-                if (currentActiveSurat === suratTerbukaMaksimal && suratTerbukaMaksimal < 12) {
+                // Batas maksimal sekarang diubah menjadi 15 agar surat 13, 14, 15 bisa terbuka bertahap
+                if (currentActiveSurat === suratTerbukaMaksimal && suratTerbukaMaksimal < 15) {
                     suratTerbukaMaksimal++;
                     const nextEnvelope = document.getElementById("env-" + suratTerbukaMaksimal);
                     if (nextEnvelope) {
