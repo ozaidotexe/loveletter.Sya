@@ -72,6 +72,8 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            transition: opacity 0.3s ease; /* Tambahan agar transisi text pudar lebih mulus */
+            opacity: 1;
         }
 
         .btn-next {
@@ -341,7 +343,7 @@
 
         // 12 Isi Surat
         const daftarSurat = {
-            1: "Surat 1: Halo Sayang!\n\nIni surat pertama buat kamu. Cuma mau bilang makasih ya udah nemenin aku sampai hari ini.Aku akan selalu kasih yang terbaik sebisa mungkin sayangkuh.\nI love you! 💙\n\n-pin",
+            1: "Surat 1: Halo Sayang!\n\nIni surat pertama buat kamu. Cuma mau billing makasih ya udah nemenin aku sampai hari ini.Aku akan selalu kasih yang terbaik sebisa mungkin sayangkuh.\nI love you! 💙\n\n-pin",
             2: "Surat 2: Semangat Ya!\n\nKalau kamu lagi capek atau pusing sama urusan kamu apa lagi sama member kamu, inget ya ada aku di sini yang selalu dukung kamu.\nKamu pasti bisa! dan aku tau kamu pasti bisa sayangku 🌸\n\n-pin",
             3: "Surat 3: Kangen Deh... Pengen cepet ketemu kamu!\n\nSelalu berharap cepet cepet mau liburan aja kalau lagi ga seshift kayak gini.\nFokus ya kerjanya bee.\nLOVE YOU SO FUCKING BADLY BEE ! 🖤\n\n-pin",
             4: "Surat 4: Makasih Ya!\n\nMakasih udah selalu sabar kalau aku lagi rewel atau banyak maunya apalagi kalau lagi Overthingking.\nSabar terus ya sama aku, hehe..\nAku begini karena susah banget jauh dari kamu sayangku.\n\n-pin",
@@ -356,17 +358,19 @@
         };
 
         let indeksPesan = 0;
-        let suratTerbukaMaksimal = 1; // Menyimpan progres surat yang sudah berurutan dibuka
+        let suratTerbukaMaksimal = 1; 
         let currentActiveSurat = null;
+        let heartInterval = null; // Menyimpan interval hati agar tidak menumpuk ganda
 
-        // Fungsi Memutar Musik Latar Belakang & Membuat Hati Jatuh
         function startEffects() {
             const music = document.getElementById("backsound");
             if (music.paused) {
-                music.play().catch(e => console.log("Autoplay dicegah browser, musik jalan saat interaksi berikutnya."));
+                music.play().catch(e => console.log("Autoplay dicegah browser, musik aktif setelah interaksi."));
             }
-            // Trigger efek hati jatuh berkala
-            setInterval(createHeart, 1500);
+            // Mencegah ganda efek interval hati ketika tombol diklik berkali-kali
+            if (!heartInterval) {
+                heartInterval = setInterval(createHeart, 1500);
+            }
         }
 
         function createHeart() {
@@ -382,13 +386,13 @@
         
         function nextPesan() {
             const textElement = document.getElementById("textGanti");
-            startEffects(); // Jalankan musik/hati begitu tombol Next di klik pertama kali
+            startEffects(); 
             
             if (indeksPesan < daftarPesan.length) {
-                textElement.style.opacity = 0;
+                textElement.style.opacity = 0; // Efek pudar keluar sebelum teks diganti
                 setTimeout(() => {
                     textElement.innerHTML = daftarPesan[indeksPesan];
-                    textElement.style.opacity = 1;
+                    textElement.style.opacity = 1; // Efek pudar masuk setelah teks diganti
                     indeksPesan++;
                 }, 300);
             } else {
@@ -398,7 +402,6 @@
         }
 
         function bukaSurat(nomor) {
-            // Jika surat nomor tersebut masih terkunci, jangan biarkan dibuka
             if (nomor > suratTerbukaMaksimal) {
                 alert("Eitss! Bukanya harus berurutan ya sayang... Buka surat nomor " + suratTerbukaMaksimal + " dulu 💙");
                 return;
@@ -422,7 +425,6 @@
             setTimeout(() => {
                 overlay.style.display = "none";
                 
-                // Jika dia menutup surat yang sedang aktif dikerjakan, buka kunci surat berikutnya
                 if (currentActiveSurat === suratTerbukaMaksimal && suratTerbukaMaksimal < 12) {
                     suratTerbukaMaksimal++;
                     const nextEnvelope = document.getElementById("env-" + suratTerbukaMaksimal);
