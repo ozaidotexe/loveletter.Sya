@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>12 Surat Spesial Buat Syavira Dwi Dinanti ✨</title>
+    <!-- Library html2canvas untuk Fitur Simpan Gambar -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap');
 
@@ -241,7 +243,7 @@
             border-radius: 20px;
             width: 90%;
             max-width: 500px;
-            padding: 40px;
+            padding: 30px 30px 40px 30px;
             box-sizing: border-box;
             position: relative;
             transform: scale(0.7);
@@ -259,7 +261,7 @@
         }
 
         .btn-close {
-            margin-top: 30px;
+            margin-top: 15px;
             background-color: #0b0c10;
             color: #ff7597;
             border: 2px solid #ff7597;
@@ -274,6 +276,28 @@
         .btn-close:hover {
             background-color: #ff7597;
             color: #0b0c10;
+        }
+
+        /* Tombol Download Baru */
+        .btn-download {
+            margin-top: 25px;
+            background-color: #ff7597;
+            color: #0b0c10;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            font-size: 14px;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(255, 117, 151, 0.2);
+            display: inline-block;
+        }
+
+        .btn-download:hover {
+            transform: scale(1.03);
+            background-color: #ff4a75;
         }
 
         .popup-overlay.show {
@@ -322,11 +346,15 @@
     </div>
 
     <div class="popup-overlay" id="popupOverlay">
-        <div class="popup-letter">
+        <!-- Ditambahkan ID captureArea agar sistem tahu bagian mana yang mau dijadikan gambar -->
+        <div class="popup-letter" id="captureArea">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
             
             <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
             
+            <br>
+            <!-- Tombol Simpan Gambar -->
+            <button class="btn-download" id="btnDownload" onclick="unduhSuratGambar()">Simpan Surat Jadi Gambar 📸</button>
             <br>
             <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
         </div>
@@ -365,8 +393,6 @@
         };
 
         // --- PENGATURAN FOTO DI SINI ---
-        // Ganti nama file di bawah ini sesuai foto yang kamu unggah ke GitHub.
-        // Jika nomor surat dihapus dari daftar ini, maka surat itu otomatis TIDAK menampilkan foto.
         const daftarFoto = {
             13: "N/A",
         };
@@ -423,22 +449,52 @@
             currentActiveSurat = nomor;
             const overlay = document.getElementById("popupOverlay");
             const isiSurat = document.getElementById("isiSuratDetail");
-            const komponenFoto = document.getElementById("fotoSuratDetail"); // Ambil komponen foto
+            const komponenFoto = document.getElementById("fotoSuratDetail"); 
             
             isiSurat.innerText = daftarSurat[nomor];
             
-            // Aturan Logika Menampilkan Foto Berdasarkan Pilihan Nomor
-            if (daftarFoto[nomor]) {
+            if (daftarFoto[nomor] && daftarFoto[nomor] !== "N/A") {
                 komponenFoto.src = daftarFoto[nomor];
-                komponenFoto.style.display = "inline-block"; // Tampilkan foto
+                komponenFoto.style.display = "inline-block"; 
             } else {
-                komponenFoto.style.display = "none"; // Sembunyikan total jika tidak diset
+                komponenFoto.style.display = "none"; 
             }
             
             overlay.style.display = "flex";
             setTimeout(() => {
                 overlay.classList.add("show");
             }, 10);
+        }
+
+        // FUNGSI BARU: Mengunduh amplop isi surat menjadi gambar PNG
+        function unduhSuratGambar() {
+            const target = document.getElementById("captureArea");
+            const tombolDownload = document.getElementById("btnDownload");
+            const tombolTutup = document.querySelector(".btn-close");
+
+            // Sembunyikan tombol sementara agar tidak ikut kefoto
+            tombolDownload.style.visibility = "hidden";
+            tombolTutup.style.visibility = "hidden";
+
+            html2canvas(target, {
+                backgroundColor: "#fff0f5",
+                borderRadius: 20,
+                scale: 2,
+                useCORS: true
+            }).then(canvas => {
+                // Munculkan kembali tombolnya
+                tombolDownload.style.visibility = "visible";
+                tombolTutup.style.visibility = "visible";
+
+                const link = document.createElement("a");
+                link.download = "Surat_Cinta_No_" + currentActiveSurat + ".png";
+                link.href = canvas.toDataURL("image/png");
+                link.click();
+            }).catch(err => {
+                tombolDownload.style.visibility = "visible";
+                tombolTutup.style.visibility = "visible";
+                alert("Fitur download otomatis ini baru akan aktif 100% setelah filenya kamu upload ke GitHub Pages ya Bee!");
+            });
         }
 
         function tutupSurat() {
