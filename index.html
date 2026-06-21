@@ -3,521 +3,292 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Spesial untuk Syavira Dwi Dinanti ✨❤️</title>
+    <title>Surat Special untuk Syavira Dwi Dinanti</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap');
-
+        * {
+            box-sizing: border-box;
+        }
         body {
             margin: 0;
             padding: 0;
-            background-color: #0b0c10; /* Latar Belakang Hitam */
-            font-family: 'Quicksand', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-image: radial-gradient(#1f2833 1px, transparent 1px);
-            background-size: 20px 20px;
-            box-sizing: border-box;
-            padding: 40px 20px;
+            background-color: #fff0f5;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             overflow-x: hidden;
         }
-
-        /* EFEK HATI JATUH */
-        .heart-particle {
-            position: fixed;
-            top: -10px;
-            color: #ff7597;
-            font-size: 20px;
-            pointer-events: none;
-            z-index: 999;
-            animation: fall linear forwards;
-        }
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-                opacity: 0;
-            }
-        }
-
         .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
             text-align: center;
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
         }
-
-        /* 1. KOTAK PESAN PEMBUKA */
-        .message-box {
-            background-color: rgba(31, 40, 51, 0.9);
-            border: 4px solid #ff7597; /* Pink */
+        .card-box {
+            background: white;
             border-radius: 20px;
             padding: 30px;
-            max-width: 450px;
-            box-shadow: 0 8px 20px rgba(255, 117, 151, 0.3);
-            transition: all 0.5s ease;
-        }
-
-        .message-text {
-            color: #66fcf1; /* Biru Pastel */
-            font-size: 22px;
-            font-family: 'Fredoka', sans-serif;
-            margin-bottom: 25px;
-            line-height: 1.5;
-            min-height: 80px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+            margin-top: 50px;
+            min-height: 200px;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            transition: opacity 0.3s ease; /* Transisi text pudar mulus */
-            opacity: 1;
+            align-items: center;
         }
-
         .btn-next {
-            background-color: #ff7597;
-            color: #0b0c10;
+            background: #ff7675;
+            color: white;
             border: none;
             padding: 12px 30px;
+            border-radius: 25px;
             font-size: 16px;
             font-weight: bold;
-            border-radius: 50px;
             cursor: pointer;
-            font-family: 'Fredoka', sans-serif;
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 10px rgba(255, 117, 151, 0.4);
+            margin-top: 20px;
+            transition: 0.3s;
         }
-
         .btn-next:hover {
+            background: #ff4757;
             transform: scale(1.05);
-            background-color: #ff4a75;
         }
-
-        /* 2. MENU UTAMA GALERI SURAT */
-        .gallery-wrapper {
-            display: none;
-            width: 100%;
-            animation: fadeIn 1s ease forwards;
-        }
-
-        .gallery-title {
-            color: #ff7597;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 32px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255,117,151,0.5);
-        }
-
-        .gallery-subtitle {
-            color: #66fcf1;
-            font-size: 16px;
-            margin-bottom: 40px;
-        }
-
-        .section-divider {
-            margin: 60px 0 20px 0;
-            width: 100%;
-            border-top: 2px dashed #9b59b6;
-        }
-
-        .envelope-grid {
+        .grid-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 50px;
-            justify-items: center;
-            padding: 20px;
-            margin-bottom: 30px;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+            margin-top: 20px;
         }
-
-        /* 3. KOMPONEN AMPLOP KECIL (SURAT CINTA - BIRU) */
-        .envelope-card {
-            position: relative;
-            width: 200px;
-            height: 130px;
-            background-color: #45a29e; /* Biru Amplop */
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        .envelope {
+            background: #ff7675;
+            color: white;
+            padding: 20px 10px;
+            border-radius: 10px;
             cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s, opacity 0.3s;
-        }
-
-        .envelope-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-top: 70px solid #52b2ae;
-            z-index: 4;
-            transition: transform 0.3s, border-top-color 0.3s;
-            transform-origin: top;
-        }
-
-        .envelope-card:hover::before {
-            transform: rotateX(180deg) translateY(0px);
-            z-index: 1;
-        }
-
-        .envelope-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 100px solid #398c89;
-            border-right: 100px solid #398c89;
-            border-top: 65px solid transparent;
-            border-bottom: 65px solid #398c89;
-            border-radius: 0 0 8px 8px;
-            z-index: 3;
-            transition: border-color 0.3s;
-        }
-
-        /* 3B. KOMPONEN AMPLOP TRUTH OR DARE (UNGU/PINK) */
-        .envelope-game {
-            background-color: #8e44ad !important; /* Ungu */
-        }
-        .envelope-game::before {
-            border-top-color: #a29bfe !important;
-        }
-        .envelope-game::after {
-            border-left-color: #732d91 !important;
-            border-right-color: #732d91 !important;
-            border-bottom-color: #732d91 !important;
-        }
-        .envelope-game .envelope-label {
-            background-color: #9b59b6 !important;
-            color: #ffffff !important;
-        }
-
-        .envelope-card:hover {
-            transform: translateY(-10px) scale(1.03);
-        }
-
-        /* Label Angka Surat */
-        .envelope-label {
-            position: absolute;
-            top: 45px;
-            left: 80px;
-            width: 40px;
-            height: 40px;
-            background-color: #ff7597;
-            border-radius: 50%;
-            z-index: 5;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: #0b0c10;
-            font-family: 'Fredoka', sans-serif;
             font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            transition: background-color 0.3s, color 0.3s;
+            transition: 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
         }
-
-        /* ==================== WARNA JIKA AMPLOP SUDAH TERBUKA ==================== */
-        .envelope-card.opened {
-            opacity: 0.5; /* Membuat amplop terlihat sedikit transparan menandakan sudah dibuka */
+        .envelope:hover {
+            background: #ff4757;
+            transform: translateY(-5px);
         }
-        .envelope-card.opened .envelope-label {
-            background-color: #7f8c8d !important; /* Mengubah bulatan label menjadi abu-abu */
-            color: #ffffff !important;
+        .envelope.opened {
+            background: #74b9ff !important;
         }
-
-        /* 4. POPUP OVERLAY */
-        .popup-overlay {
-            display: none;
+        .overlay {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(11, 12, 16, 0.9);
-            z-index: 100;
+            background: rgba(0,0,0,0.5);
+            display: none;
             justify-content: center;
             align-items: center;
+            z-index: 1000;
             opacity: 0;
             transition: opacity 0.4s ease;
         }
-
-        .popup-letter {
-            background-color: #fff0f5;
-            border: 5px solid #ff7597;
-            border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            padding: 30px 30px 40px 30px;
-            box-sizing: border-box;
-            position: relative;
-            transform: scale(0.7);
-            transition: transform 0.4s ease;
-            box-shadow: 0 10px 30px rgba(255,117,151,0.3);
-            text-align: center;
-        }
-
-        .popup-text {
-            font-size: 18px;
-            color: #0b0c10;
-            line-height: 1.6;
-            font-weight: 600;
-            white-space: pre-line;
-        }
-
-        /* Gaya Khusus untuk Tanggal yang Muncul di Tengah Bawah Gambar */
-        .popup-date {
-            display: none; /* Sembunyi secara default di halaman web */
-            font-size: 13px;
-            color: #7f8c8d;
-            margin-top: 25px;
-            font-weight: bold;
-            font-family: 'Quicksand', sans-serif;
-            letter-spacing: 1px;
-        }
-
-        .btn-close {
-            margin-top: 15px;
-            background-color: #0b0c10;
-            color: #ff7597;
-            border: 2px solid #ff7597;
-            padding: 10px 25px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Fredoka', sans-serif;
-            font-weight: bold;
-            transition: all 0.2s;
-        }
-
-        .btn-close:hover {
-            background-color: #ff7597;
-            color: #0b0c10;
-        }
-
-        .btn-download {
-            margin-top: 25px;
-            background-color: #ff7597;
-            color: #0b0c10;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Fredoka', sans-serif;
-            font-weight: bold;
-            font-size: 14px;
-            transition: all 0.2s;
-            box-shadow: 0 4px 10px rgba(255, 117, 151, 0.2);
-            display: inline-block;
-        }
-
-        .btn-download:hover {
-            transform: scale(1.03);
-            background-color: #ff4a75;
-        }
-
-        .popup-overlay.show {
-            display: flex;
+        .overlay.show {
             opacity: 1;
         }
-        .popup-overlay.show .popup-letter {
-            transform: scale(1);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* STYLING TAMBAHAN UNTUK POP-UP PERINGATAN IDLE */
-        .popup-warning {
-            background-color: #1f2833;
-            border: 4px dashed #66fcf1;
+        .popup-card {
+            background: #fff0f5;
+            width: 90%;
+            max-width: 450px;
             border-radius: 20px;
-            width: 85%;
-            max-width: 400px;
-            padding: 30px;
-            box-sizing: border-box;
+            padding: 25px;
             text-align: center;
-            box-shadow: 0 10px 25px rgba(102, 252, 241, 0.3);
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.15);
             transform: scale(0.7);
             transition: transform 0.4s ease;
         }
-        .popup-warning-text {
-            color: #ffffff;
-            font-size: 18px;
-            font-family: 'Fredoka', sans-serif;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .btn-warning-close {
-            background-color: #66fcf1;
-            color: #0b0c10;
-            border: none;
-            padding: 10px 25px;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Fredoka', sans-serif;
-            transition: transform 0.2s, background-color 0.2s;
-        }
-        .btn-warning-close:hover {
-            transform: scale(1.05);
-            background-color: #45a29e;
-            color: #ffffff;
-        }
-        .popup-overlay.show .popup-warning {
+        .overlay.show .popup-card {
             transform: scale(1);
+        }
+        .popup-content {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            min-height: 150px;
+            white-space: pre-line;
+            text-align: left;
+            font-size: 15px;
+            color: #333;
+            line-height: 1.6;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.02);
+        }
+        .popup-buttons {
+            margin-top: 20px;
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+        .btn-close {
+            background: #a4b0be;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .heart-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 999;
+            animation: floatUp linear forwards;
+            opacity: 0.8;
+        }
+        @keyframes floatUp {
+            0% { transform: translateY(100vh) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(-10vh) rotate(360deg); opacity: 0; }
         }
     </style>
 </head>
 <body>
 
-    <audio id="backsound" loop src="Glenn Fredly - Nyali Terakhir.mp3"></audio>
+    <audio id="backsound" loop>
+        <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mp3">
+    </audio>
 
     <div class="container">
-        <div class="message-box" id="msgBox">
-            <div class="message-text" id="textGanti">Dear Queen Ozai,<br><br>Yuk kita mulai Bee.. 💙🌸</div>
-            <button class="btn-next" onclick="nextPesan()" id="idBtnNext">Next ➡️</button>
+        <!-- Box Pembuka -->
+        <div id="msgBox" class="card-box">
+            <h2 id="textGanti" style="color: #ff4757; line-height: 1.5;">Halo Sayangku Syavira... ❤️ Pijat tombol di bawah ya!</h2>
+            <button class="btn-next" onclick="nextPesan()">Lanjut ✨</button>
         </div>
 
-        <div class="gallery-wrapper" id="galleryBox">
-            <!-- BARIS 1: SURAT CINTA UTAMA -->
-            <h1 class="gallery-title">Surat-Surat Cintaku Untukmu Bee 💙🌸</h1>
-            <p class="gallery-subtitle">Bebas pilih dan buka amplop mana saja yang kamu mau dulu ya Bee!</p>
-             
-            <div class="envelope-grid">
-                <div class="envelope-card" id="env-1" onclick="bukaSurat(1)"><div class="envelope-label">1</div></div>
-                <div class="envelope-card" id="env-2" onclick="bukaSurat(2)"><div class="envelope-label">2</div></div>
-                <div class="envelope-card" id="env-3" onclick="bukaSurat(3)"><div class="envelope-label">3</div></div>
-                <div class="envelope-card" id="env-4" onclick="bukaSurat(4)"><div class="envelope-label">4</div></div>
-                <div class="envelope-card" id="env-5" onclick="bukaSurat(5)"><div class="envelope-label">5</div></div>
-                <div class="envelope-card" id="env-6" onclick="bukaSurat(6)"><div class="envelope-label">6</div></div>
-                <div class="envelope-card" id="env-7" onclick="bukaSurat(7)"><div class="envelope-label">7</div></div>
-                <div class="envelope-card" id="env-8" onclick="bukaSurat(8)"><div class="envelope-label">8</div></div>
-                <div class="envelope-card" id="env-9" onclick="bukaSurat(9)"><div class="envelope-label">9</div></div>
-                <div class="envelope-card" id="env-10" onclick="bukaSurat(10)"><div class="envelope-label">10</div></div>
-                <div class="envelope-card" id="env-11" onclick="bukaSurat(11)"><div class="envelope-label">11</div></div>
-                <div class="envelope-card" id="env-12" onclick="bukaSurat(12)"><div class="envelope-label">12</div></div>
-                <div class="envelope-card" id="env-13" onclick="bukaSurat(13)"><div class="envelope-label">13</div></div>
-                <div class="envelope-card" id="env-14" onclick="bukaSurat(14)"><div class="envelope-label">14</div></div>
-                <div class="envelope-card" id="env-15" onclick="bukaSurat(15)"><div class="envelope-label">15</div></div>
-                <div class="envelope-card" id="env-16" onclick="bukaSurat(16)"><div class="envelope-label">16</div></div>
-                <div class="envelope-card" id="env-17" onclick="bukaSurat(17)"><div class="envelope-label">17</div></div>
-                <div class="envelope-card" id="env-18" onclick="bukaSurat(18)"><div class="envelope-label">18</div></div>
-                <div class="envelope-card" id="env-19" onclick="bukaSurat(19)"><div class="envelope-label">19</div></div>
-                <div class="envelope-card" id="env-20" onclick="bukaSurat(20)"><div class="envelope-label">20</div></div>
+        <!-- Box Utama (Gallery Amplop) -->
+        <div id="galleryBox" style="display: none; margin-top: 30px;">
+            <h2 style="color: #ff4757; margin-bottom: 5px;">✉️ Surat Spesial Hari Ke-3 ✉️</h2>
+            <p style="color: #666; font-size: 14px; margin-top: 0; margin-bottom: 25px;">Pilih amplopnya dan simpan surat atau tantangan yang kamu sukai ya bee! 🥰</p>
+            
+            <h3 style="text-align: left; color: #ff7675; margin-left: 5px;">Baris Surat Cinta 💕</h3>
+            <div class="grid-container">
+                <div id="env-1" class="envelope" onclick="bukaSurat(1)">1</div>
+                <div id="env-2" class="envelope" onclick="bukaSurat(2)">2</div>
+                <div id="env-3" class="envelope" onclick="bukaSurat(3)">3</div>
+                <div id="env-4" class="envelope" onclick="bukaSurat(4)">4</div>
+                <div id="env-5" class="envelope" onclick="bukaSurat(5)">5</div>
+                <div id="env-6" class="envelope" onclick="bukaSurat(6)">6</div>
+                <div id="env-7" class="envelope" onclick="bukaSurat(7)">7</div>
+                <div id="env-8" class="envelope" onclick="bukaSurat(8)">8</div>
+                <div id="env-9" class="envelope" onclick="bukaSurat(9)">9</div>
+                <div id="env-10" class="envelope" onclick="bukaSurat(10)">10</div>
+                <div id="env-11" class="envelope" onclick="bukaSurat(11)">11</div>
+                <div id="env-12" class="envelope" onclick="bukaSurat(12)">12</div>
+                <div id="env-13" class="envelope" onclick="bukaSurat(13)">13</div>
+                <div id="env-14" class="envelope" onclick="bukaSurat(14)">14</div>
+                <div id="env-15" class="envelope" onclick="bukaSurat(15)">15</div>
+                <div id="env-16" class="envelope" onclick="bukaSurat(16)">16</div>
+                <div id="env-17" class="envelope" onclick="bukaSurat(17)">17</div>
+                <div id="env-18" class="envelope" onclick="bukaSurat(18)">18</div>
+                <div id="env-19" class="envelope" onclick="bukaSurat(19)">19</div>
+                <div id="env-20" class="envelope" onclick="bukaSurat(20)">20</div>
             </div>
 
-            <!-- PEMBATAS BARIS BARU -->
-            <div class="section-divider"></div>
+            <h3 style="text-align: left; color: #2ed573; margin-top: 35px; margin-left: 5px;">Baris Mini Game & Tantangan 🎲</h3>
+            <div class="grid-container">
+                <div id="game-1" class="envelope" style="background: #2ed573;" onclick="bukaGame(1)">A</div>
+                <div id="game-2" class="envelope" style="background: #2ed573;" onclick="bukaGame(2)">B</div>
+                <div id="game-3" class="envelope" style="background: #2ed573;" onclick="bukaGame(3)">C</div>
+                <div id="game-4" class="envelope" style="background: #2ed573;" onclick="bukaGame(4)">D</div>
+                <div id="game-5" class="envelope" style="background: #2ed573;" onclick="bukaGame(5)">E</div>
+                <div id="game-6" class="envelope" style="background: #2ed573;" onclick="bukaGame(6)">F</div>
+                <div id="game-7" class="envelope" style="background: #2ed573;" onclick="bukaGame(7)">G</div>
+                <div id="game-8" class="envelope" style="background: #2ed573;" onclick="bukaGame(8)">H</div>
+                <div id="game-9" class="envelope" style="background: #2ed573;" onclick="bukaGame(9)">I</div>
+                <div id="game-10" class="envelope" style="background: #2ed573;" onclick="bukaGame(10)">J</div>
+            </div>
+        </div>
 
-            <!-- BARIS 2: TRUTH OR DARE & MINI GAMES (UNDIAN) -->
-            <h1 class="gallery-title" style="color: #9b59b6;">Truth, Dare, or Mini Challenge! 🎲✨</h1>
-            <p class="gallery-subtitle" style="color: #a29bfe;">Isinya acak! Coba pilih satu amplop undian di bawah ini dan lakuin tantangannya ya Bee!</p>
+        <!-- Ruang Baru: List Pilihan Seleksi & Download Massal -->
+        <div id="ruangSimpanContainer" style="display: none; max-width: 100%; margin: 40px auto 20px auto; padding: 20px; background: #ffeaa7; border-radius: 20px; text-align: center; box-shadow: 0 6px 20px rgba(0,0,0,0.08);">
+            <h3 style="margin-top: 0; color: #ff7675; font-size: 18px;">💖 Daftar Pilihan Syavira 💖</h3>
+            <div id="daftarSimpanList" style="max-height: 220px; overflow-y: auto; margin-bottom: 15px; padding: 5px; text-align: left;">
+                <p style="color: #888; font-style: italic; text-align: center;">Belum ada surat atau tantangan yang kamu pilih, Bee.. ❤️</p>
+            </div>
+            <button id="btnDownloadSemua" onclick="unduhSemuaYangDipilih()" style="background: #6c5ce7; color: white; border: none; padding: 12px 25px; border-radius: 12px; font-weight: bold; cursor: pointer; width: 100%; font-size: 15px; box-shadow: 0 4px 10px rgba(108, 92, 231, 0.3);">
+                📥 Download Semua Yang Dipilih
+            </button>
+        </div>
+    </div>
 
-            <div class="envelope-grid">
-                <div class="envelope-card envelope-game" id="game-1" onclick="bukaGame(1)"><div class="envelope-label">A</div></div>
-                <div class="envelope-card envelope-game" id="game-2" onclick="bukaGame(2)"><div class="envelope-label">B</div></div>
-                <div class="envelope-card envelope-game" id="game-3" onclick="bukaGame(3)"><div class="envelope-label">C</div></div>
-                <div class="envelope-card envelope-game" id="game-4" onclick="bukaGame(4)"><div class="envelope-label">D</div></div>
-                <div class="envelope-card envelope-game" id="game-5" onclick="bukaGame(5)"><div class="envelope-label">E</div></div>
-                <div class="envelope-card envelope-game" id="game-6" onclick="bukaGame(6)"><div class="envelope-label">F</div></div>
-                <div class="envelope-card envelope-game" id="game-7" onclick="bukaGame(7)"><div class="envelope-label">G</div></div>
-                <div class="envelope-card envelope-game" id="game-8" onclick="bukaGame(8)"><div class="envelope-label">H</div></div>
-                <div class="envelope-card envelope-game" id="game-9" onclick="bukaGame(9)"><div class="envelope-label">I</div></div>
-                <div class="envelope-card envelope-game" id="game-10" onclick="bukaGame(10)"><div class="envelope-label">J</div></div>
+    <!-- Pop-up Overlay Utama Surat/Game -->
+    <div id="popupOverlay" class="overlay">
+        <div id="captureArea" class="popup-card">
+            <div id="isiSuratDetail" class="popup-content"></div>
+            <img id="fotoSuratDetail" src="" alt="Foto Kenangan" style="display: none; max-width: 100%; height: auto; margin-top: 15px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+            <div id="tanggalDownload" style="display: none; text-align: right; font-size: 12px; color: #888; margin-top: 10px; font-weight: bold;"></div>
+            <div class="popup-buttons">
+                <button id="btnSave" onclick="toggleSaveSurat()" style="padding: 10px 20px; border-radius: 10px; border: none; color: white; font-weight: bold; cursor: pointer; font-size: 14px; background: #2ed573;">💾 Simpan ke Daftar</button>
+                <button class="btn-close" onclick="tutupSurat()">Tutup</button>
             </div>
         </div>
     </div>
 
-    <div class="popup-overlay" id="popupOverlay">
-        <div class="popup-letter" id="captureArea">
-            <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
-             
-            <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
-             
-            <div class="popup-date" id="tanggalDownload"></div>
-
-            <br>
-            <button class="btn-download" id="btnDownload" onclick="unduhSuratGambar()">Simpan Surat Jadi Gambar 📸</button>
-            <br>
-            <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
-        </div>
-    </div>
-
-    <!-- STRUKTUR BARU: POP-UP OVERLAY UNTUK PERINGATAN IDLE -->
-    <div class="popup-overlay" id="warningOverlay">
-        <div class="popup-warning">
-            <div class="popup-warning-text" id="warningText">Pesan Peringatan...</div>
-            <button class="btn-warning-close" onclick="tutupWarning()">Iya Bey 🥺❤️</button>
+    <!-- Pop-up Peringatan Idle (Melamun) -->
+    <div id="warningOverlay" class="overlay">
+        <div class="popup-card" style="background: #fff; max-width: 380px;">
+            <h3 style="color: #ff4757; margin-top: 0;">Halo Sayangku... 🥰</h3>
+            <p id="warningText" style="color: #555; font-size: 15px; line-height: 1.6; padding: 10px 0;"></p>
+            <button class="btn-close" style="background: #ff7675; width: 100%; padding: 12px;" onclick="tutupWarning()">Iya Bee 🥺❤️</button>
         </div>
     </div>
 
     <script>
-        // Teks Pesan Pembuka
         const daftarPesan = [
-            "Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
-            "Oh ya bee,tetap tulis aja apa yang kamu mau tulis ya untukku...",
-            "Aku tetap mau membaca tulisan tangan kamu..",
-            "Jika waktunya sedang senggang aku mau kamu tuliskan lagi..🥺",
-            "Hari ini, aku buatkan 20 Surat Special yang bisa kamu baca...🥰",
-            "Ada beberapa permainan kecil juga disana kamu bisa mainkan juga..✨",
-            "Semoga surat-suratku bisa temenin shift kamu ya sayangku.. 🧸",
-            "Kalau suka kamu bisa Download dan simpan di tempat yang kamu suka..",
-            "Entah di HP atau di PC kamu ataupun dimanapun itu sayang...🥰",
-            "Aku harap selain kamu suka, suratku ini bisa temani kekosongan kamu..✨",
-            "LOVE YOU SOO MUCH....LOVE YOU SOO MUCH....LOVE YOU SOO MUCH....LOVE YOU SOO MUCH....",
-            "Silakan klik dibawah buat masuk ke surat Specialnya ya Bee! 👇❤️"
+            "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
+            "Special song for you LANY - ILYSB",
+            "Hari ini adalah hari ke-3, menulis surat special untuk kekasih ku yang ku sayang..",
+            "Aku selalu berharap, harimu selalu indah sayangku..",
+            "Semoga surat-surat ini dapat temenin kamu di saat shift ya sayangku..🥺❤️",
+            "Jangan lupa setelah makan minum vitamin C ya bee..🧸🖤",
+            "Jangan lupa diminum airnya ya bee..🧸💙",
+            "LOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...",
+            "Silakan klik dibawah buat masuk ke Surat Specialnya ya Bee! 👇❤️"
         ];
 
-        // EDIT ISI SURAT DISINI
         const daftarSuratMentah = {
-            1: "Didalam surat ini, Aku cuma mau bilang..\nTerimakasih kamu sudah hadir disetiap Bahagiaku, sedihku, senangku, susahku..\nAku sangat beruntung memiliki kamu disini sayang.Mungkin kalimat tidak akan cukup panjang untuk mengungkapkan rasa sayang dan terimakasih ku kekamu.\nLove You So Much Bee... 💙\n\n-pin",
-            2: "Dear Manusia Kesayanganku,\n\nMungkin orang bisa bilang aku lebay, berlebihan atau semacamnya...\nCuma itu yang terjadi, aku hanya mengungkapkan apa yang sedang kurasakan saja.\nTidak mau melebihkan apalagi mengurang ngurangkannya..\nLagi senang pasti aku bilang senang, lagi sedih pasti aku akan bilang sedih. 🌸\n\n-pin",
-            3: "Maaf aku aku sedang di situasi rewel, overthingking, ga mood selalu membuat kamu ga nyaman.\nTerimakasih sudah selalu ada selalu di samping aku. Kamu yang mau sabar banget hadapin aku...\n\n\n-pin",
-            4: "Pengingat Kecil..✨\n\nDari orang yang selalu khawatir dengan kesehatan kamu setiap hari yaitu aku, Jangan lupa diminum airnya.. Selalu di minum vitamin C nya ya!\nJangan telat makan!aku cuma ga mau senyum manis kamu pudar karena kamu sakit.\n\n-pin",
-            5: "Dear Syavira,\n\nAkulah orang yang selalu mau tau kamu kenapa, Bahagiakah? Sedihkah? Betekah? Ya, itu aku..\nSicuek itu yang kini mulai luluh dan mulai bisa memperhatikan seseorang yang dia sayangi dan cintai. LOVE YOU BEE ! 💙\n\n-pin",
-            6: "Semua Tentang Kamu 🧸\n\nAku suka kamu selalu berkabar.. Video mu dan Photo yang kamu kasih semua aku suka melihatnya..\nAku suka perhatian kamu, aku suka senyum manis yang selalu kamu lontarkan saat kita bertemu,Ya! berikan semua ke aku, aku suka semua..\nSuka semua tentang kamu, apapun itu bentuknya jika berasal dari kamu, aku suka semuanya.\nLOVE YOU BE !! 💙\n\n-pin",
-            7: "Menghitung Waktu ⏳\n\nRasanya waktu berjalan lambat banget kalau kita lagi nggak satu shift. Menghitung detik , menit hingga jam, Aku nggak sabar buat bisa dengar suara kamu langsung. Fokus kerjanya ya Bee, I miss you so damn badly! 🖤\n\n-pin",
-            8: "Harapan Besarku 🌌\n\nAku berharap kita bisa terus bareng-bareng menghadapi apa pun ke depannya.\nJika Ego lagi tinggi disaat sedang sama-sama tidak baik-baik saja moodnya, tolong tinggalkan dulu Ego masing-masing dulu sebentar ya..\nKarena akupun juga begitu..\nBaik hari yang seru maupun hari yang berat. Jangan pernah lepasin genggaman tangan kita ya, Bee.\nSebesar apapun marahku, Sebesar apapun bete aku, Cinta dan sayang aku tidak akan pernah pudar bahkan berkurang sayang..\nBahkan selalu bertambah lagi.. lagi... dan lagi...\nI love you to the moon and back! 💙\n\n-pin",
-            9: "Jujurly Bee..\n\nAku suka menatapmu lama bukan karena aku tau dirimu selalu salah tingkah saat aku menatap kamu lama.\nTapi karena memang aku sesuka itu menatap wanita ku yang cantik dan hebat lalu menyimpan wajah kamu disaat seperti ini, yakni kamu sedang tidak ada disampingku.\n\n-pin",
-            10: "Rumah Teraman 🧸\n\nTerima kasih karena selalu punya cara untuk menenangkan badai di kepalaku. Saat aku mulai overthinking, sabarmu selalu jadi penawarnya. Maaf ya kalau aku suka rewel, itu karena aku terlalu menyayangimu.\nAku ga mau kurangin rasa sayang aku, maunya di tambah terus..lagi dan lagi dan lagi...\n\n-pin",
-            11: "Hi Wanitaku...🥰\n\nDari sekian banyaknya manusia di KPS ini, aku sangat bersyukur kita di pertemukan dengan cara yang tidak pernah diduga-duga.\nYang dimana aku bisa bisa nya mengajak kamu jalan berdua dengan alasan berbincang.\nLucu ya, aku bersyukur kejadian itu terjadi.\n LOVE YOU SO MUCH BEE !! ✨\n\n-pin",
-            12: "Keajaiban Kecilku 🌟\n\nKamu nggak perlu jadi orang lain untuk terlihat mengagumkan. Di mataku, segala kekurangan dan kelebihanmu adalah perpaduan yang paling sempurna. Kamu adalah definisi wanita hebat yang sesungguhnya.\n\n-pin",
-            13: "Masa Depan Bersamamu 🌌\n\nAku tidak peduli gimana masa lalu kamu, dan keinginan aku melewati lebih banyak lembaran cerita baru bersamamu bee. Menghadapi hari baik, hari buruk, tawa, maupun tantangan ke depannya bee.\nTetap genggam erat tanganku ya, Bee. I love you to the moon and back! 💙\n\n-pin",
-            14: "Mood Boosterku.. 🥰\n\nSetiap kali hariku terasa berat atau melelahkan, mengingat senyummu saja sudah cukup buat mengembalikan energiku. Makasih ya sayang sudah menjadi alasan terbesar di balik semangat dan senyumku hari ini.\n\n-pin",
-            15: "Penutup yang Manis ✨🌸\n\nIni surat terakhir di halaman web ini, tapi rasa sayang dan cintaku ke kamu tidak akan pernah ada kata selesai. Selesaikan shift kamu dengan baik dan fokus ya pacar hebatku. Aku selalu menunggumu di sini! 🖤\n\n-pin",
-            16: "Sandaran dihari Lelah...🌸\n\nAku tau, harimu kadang tidak selalu mudah untuk di lewati.Pasti ada yang selalu membuat kamu kesal.\nTidak apa kalau marah, kamu sudah selalu melakukan yang terbaik sayangku.\nTapi ingat ya, tiap kali kamu merasa lelah, pundakku selalu ada untuk jadi tempatmu pulang dan bersandar. Semangat sayangku! 🥰\n\n-pin",
-            17: "My Fear..\n\nAku takut kamu berpaling, aku takut kamu pergi, aku takut aku di duakan, aku takut kamu kecewa, aku takut perasaan mu, perhatian mu hilang ...\n Ya! itu adalah rasa takutku.. sebegitu takut karena sebesar itu sayang dan rasa kepemilikan ku atas mu bee...\n\n-pin",
-            18: "PERINGATAN !! \n\nJangan lupa pap! Aku mau claim semua hadiah ku sayang...\nAku mau 10-1, 10-8 lagi.. Aku mau! Aku mau! Aku mau! Aku mau!\n\n-pin",
-            19: "You're My Reason..💙\n\nMemiliki kamu itu hal yang luar biasa didalam hidup aku bee..\nMenemukanmu adalah hal yang terbaik selama aku hidup. Terimakasih sudah selalu menjadi dan berusaha yang terbaik untuk aku ya Bee.. LOVE YOU !💙\n\n-pin",
-            20: "Terakhir Tapi Selamanya ✨\n\nFokus tuntasin shift-nya ya sayang, dikit lagi selesai kok! Btw, aku selalu suka tiap kali kamu ngabarin lewat pap video, itu beneran bikin tenang. Semangat terus Bee, aku tungguin kamu! 🖤🌸\n\n-pin"
+            1: "Dear Belahan Jiwa,\nAkulah yang selalu merasa tidak nyaman ketika jauh dari kamu bee,\nAkulah yang paling pertama mencari kamu jika kamu tidak kamu tidak ada berada diradius pandangan ku sayang.\nMakasih sayang sudah selalu ada disini, selalu disamping aku, selalu sabar, selalu kuatin aku, selalu buat aku percaya akan cinta yang tulus lagi. \nLOVE YOU SYAVIRA..❤🥺️\n\n-pin",
+            2: "Kejujuranku...\n\nKu terima semua kekurangan kamu, akan ku lengkapi dengan apa yang kupunya, jangan saling diam jika sedang dingin, selalu buat dia hangat sayang. LOVE YOU SO MUCH ! 💙\n\n-pin",
+            3: "Iya bener, banyak wanita diluar sana...\nBanyak juga wanita yang ku temui...\nDari beberapa masa laluku,cuma kamu yang berhasil buat aku tau rasanya di mencintai dan di cintai setulus ini sayang.\nAku senang sekaligus bersyukur pilih dan dipilih oleh kamu.\nAku bahagia bisa dapetin kamu.\nAku bahagia bisa memiliki kamu sepenuhnya.\nAku bahagia... benar benar sangat bahagia...\nILYSM Bee... 💙\n\n-pin",
+            4: "02/05/2026\n\nBegitulah tanggal,bulan dan tahun itu tercipta dari dua orang manusia yang tidak saling kenal dan saling sibuk dengan urusan masing-masing berujung saling menyayangi satu sama lain, melengkapi sedikit demi sedikit kekurangan yang kita tidak punyai..\nSekarang kedua orang asing itu sudah bukan jadi Aku dan kamu, tapi sudah menjadi Kita.\nLOVE YOU BEE !! SOOOOO MUCH !! 🥺❤️\n\n-pin",
+            5: "Yap! Kamu selalu berhasil buat aku selalu jatuh dan jatuh cinta lagi setiap hari.\nAku selalu suka dengan cara kamu bertindak dan berfikir.\nAku selalu suka cara kamu menyayangi aku.\nAku selalu suka cara kamu memandang ku dengan tulus tanpa membedakan ataupun melihat kekurangan aku. Terimakasih sayangku! Love You So Much... Much.... and Much..... ❤️\n\n-pin",
+            6: "HARUS !! KUDU !! MESTI !! WAJIB !!! Selalu bilang loveyou di akhir kalimat jika sedang dipisahkan jarang, atau sedang sibuk satu sama lain, mengakhiri hari, ataupun sedang lagi berkelahi. INGAT YA !! LOPYU CO MUCH BEE !!! 💋🥰\n\n-pin",
+            7: "Maaf sayangku... jika aku selalu lupa tentang hal penting dari kamu, cuma memang aku sering pelupa. \nTerimakasih kamu selalu sabar mengingatkan aku...\nBahkan malah kamu yang mengingat semuanya tentang aku..\nAku selalu berusaha mengingatnya ....\nSemua tentang kamu, maaf jika waktunya terkadang lama dan butuh beberapa kali di ingat terus.\nLOVEYOU SO MUCH SYAVIRA!! 💙\n\n-pin",
+            8: "Aku hanya penakut.. \nBukan berarti aku menyudutkan kamu...\nAku hanya memiliki trauma..\nBukan berarti aku tidak percaya sama kamu.. \nTapi kamu selalu sabar untuk selalu menyakinkan aku bahwasannya pikiran berlebihan ku salah besar.\nTerimakasih wanitaku... Aku sayang kamu! Sangat sayang kamu.. 🥰\n\n-pin",
+            9: "Akulah si orang yang tidak pede akan diri sendiri jika bertemu wanita, tapi kamu beda...\nKamu wanita yang tidak pernah memandang kelemahan ku..\nJustru melengkapi kelemahan ku...\nAku... bisa jadi aku... dan ku harap kamu bisa jadi kamu.\nMaaf jika aku egois..\nTapi akan kurubah dan ku perbaiki jika kamu mau.\nBilang! selalu bilang saja apa yang membuatmu tidak nyaman.. atau ada hal yang harus ku rubah...\nAku ingin memberikan semua kesempurnaan ku untuk kamu seorang sayang. LOVE YOUU SO MUCH ! ❤🥺️\n\n-pin",
+            10: "Aku tidak akan membatasi kamu mau berteman dengan siapa saja, tapi tolong...\nJaga batasan jika memang itu lawan jenismu..\nTapi, terimakasih kamu selalu bilang ...\nKamu selalu cerita...\nKamu selalu meyakinkan aku di saat pemikiran jelekku mengambil alih seluruh otakku..\nLOVE YOU SO MUCH BEE !! 🥰❤️\n\n-pin",
+            11: "Iya bener be, kita memiliki perbedaan bahasa..\nPerbedaan kebiasaan..\nPerbedaan cara berfikir...\nKu harap dari perbedaan itu,kita bisa saling melengkapi ya sayang.. \nAku yakin bisa selagi kita mengkomunikasikan dengan benar... \nSelagi kita saling mau menerima... \nSelagi kita saling mau tetap bersama..\nAku selalu sayang kamu, tidak pernah berkurang tapi akan selalu bertambah banyak... ❤️\n\n-pin",
+            12: "Selalu pegang erat tangan aku ya bee...\nJika badai benar-benar sedang besarnya.\nJangan sempat pernah memiliki pikiran untuk melepas, walaupun ikatan ditangan kita sedang berduri.\nKarena aku yang akan menggenggam eratnya pertama kali.\nAku juga yakin kamu pun juga sama...\nLOVE YOU SO MUCH !! 🥰🌸\n\n-pin",
+            13: "Aku ga tau, kamu kapan dapet surat ini diawal atau di akhir nanti...\nSemangat kerjanya sayangku, keep fokus LC nya..\nDiminum airnya,dimakan juga vitamin C nya...\nTidak pernah bosan aku selalu ingatkan hal-hal ini,agar kamu tetap sehat dan aku bisa selalu liat senyum kamu yang aku sukai itu. 😚🌸\n\n-pin",
+            14: "BEE !! AKU LAGI NGANTUK .... GA TAU KAMU BAKAL DAPET SURAT INI DI AKHIR ATAU DI PERTENGAHAN ATAU MUNGKIN DI AKHIR.... Tapi asal kamu tau,\n Cintaku dan rasa Sayang aku ke kamu setulus dan sebesar itu loh bee...!\nJangan sia siakan aku ya sayang..\nEntah jadi apa aku jika kamu berpaling... mungkin aku jadi jenis umbi-umbian..\nLOP YU CO MAT BEE !! 😚🌸💙\n\n-pin",
+            15: "Kita lagi suka sekali saling surat menyurat, pertanggal hari ini... aku Alvin Ardian akan selalu menyayangi dan mencintai Syavira  Dwi Dinanti dengan setulus dan sepenuh dan segenap jiwa ...\nKu harap ini bisa menjadi yang terakhir hingga kita tua nanti dan membuka kenakan surat digital ini. 😚🥰❤️\n\n-pin",
+            16: "Selalu ingat yang manis, jika situasi sedang pahit...\nSelalu ingat yang hangat-hangatnya, jika kita sedang berada di tempat yang dingin...\nSelalu ingatlah,bulu kuduk ini pernah setegang itu saat kamu bisikan kata sayang kekuping ini..\n\n-pin",
+            17: "Bau yang tersisa di selimut kamu buat aku hangat, nyaman, dan menambahkan mood aku saat kerja bee.. \nAku sukak... aku sukak sekali... \nKalau lagi dikamu, sering sering di pake ya.. aku sangat suka semua tentang kamu.\nApappun itu aku suka..semuanya!\n\n-pin",
+            18: "LOVE YOU SO MUCH SYAVIRA..\nLOVE YOU SO MUCH BEE\nLOVE YOU SO MUCH KESAYANGAN APIN\nLOVE YOU SO MUCH HUNNY\nLOVE YOU...\nLOVE YOU...\nLOVE YOU...\nLOVE YOU...\n\n-pin",
+            19: "Berikan semua hari terbaik kamu untuk aku...\nBerikan semua hari buruk mu untuk aku..\nBerikan kebahagiaan mu kepada ku..\nBerikan juga kesedihan kamu kepadaku...\n Jangan berikan senyumanmu saja, tapi berikan juga kesedihan mu kepada ku juga..\nSemuanya yah be...semua tentang mu... jangan berikan kelebihan mu , tapi berikan juga kekurangan kamu..\n Love you so fucking bad Syavira Dwi Dinanti!  ❤️❤️\n\n-pin",
+            20: "Syavira Dwi Dinanti,\n\nLet's get married someday. have kids.\nkiss every morning. fuck every night.\ncuddle every night, every time and every day. make breakfast together.\nand spend our weekends in our room. like what were destinied to be.\n\nyou belong with me. you're born to be mine. god made you for me. and me, too.\ni love you every day.. \nmore and more and more... again and again... 😚💙\n\n-pin"
         };
 
-        // EDIT ATAU TAMBAH TANTANGAN / TRUTH OR DARE DI SINI (Isinya otomatis diacak ke amplop A-J)
         const daftarGameMentah = {
-            1: "🎲 [TRUTH]\n\nApa hal kecil yang aku lakuin yang diam-diam paling bikin kamu baper setengah mati? Jujur ya Bee! 🫣❤️ \n\n\n*SS dan kirimkan untuk menjawab pertanyaan.",
-            2: "🎲 [DARE]\n\nKirim VN (Voice Note) ke WA nyanyiin reff lagu kesukaan kamu atau lagu romantis sekarang juga ke aku! Nggak boleh nolak! 🎤🎶",
-            3: "🎲 [TANTANGAN]\n\nKirim foto pap muka jelek atau muka konyol kamu sekarang! Aku mau lihat sisi gemes kamu yang ini 🤪",
-            4: "🎲 [TRUTH]\n\nKalau kamu lagi kesel banget sama aku, bagian mana dari sikapku yang paling pengen kamu ubah? 🥺",
-            5: "🎲 [DARE]\n\nSpam chat aku pake emoji 'LOVE YOU SO MUCH !!' (🥷❤️) sebanyak 20 kali tanpa putus sekarang! 🥰",
-            6: "🎲 [DARE]\n\nKirim VN (Voice Note) ke WA dengan kata-kata 'Aku Sayang Kamu' jangan lupa di kasih nama panggilan di belakang ya bee!",
-            7: "🎲 [TRUTH]\n\nKapan momen pertama kali kamu ngerasa bener-bener sayang dan gamau kehilangan aku? Ceritain dong Bey.. ⏳✨",
-            8: "🎲 [DARE]\n\nKirim pap video pendek tiup kecup (blowing kiss) paling manis khusus buat aku hari ini! 💋🌸",
-            9: "🎲 [UNDIAN]\n\nSelamat! Kamu dapet JACKPOT! Kamu berhak minta 1 hadiah bebas ke aku (bisa jajan, dipeluk, atau dituruti maunya) pas kita ketemu nanti! Simpan SS ini ya! 🎁🔥",
-            10: "🎲 [TRUTH]\n\nSebutin 3 panggilan sayang dari kamu buat aku yang paling kamu suka kalau lagi berdua! 🧸🖤"
+            1: "🎲 [TRUTH] 🎲\n\nSebutkan satu sifat atau kebiasaan buruk aku yang menurut kamu paling aneh tapi sebenernya malah bikin kamu makin sayang? Jujur ya Bee! 🫣💙 \n\n*SS dan kirimkan untuk menjawab.",
+            2: "🎲 [DARE] 🎲\n\nTelepon aku sekarang juga via WA, terus langsung bilang 'Halo pacar gantengku' tanpa ketawa dalam 5 detik pertama! 📞😎",
+            3: "🎲 [TANTANGAN]\n\nKirim pap selfie kamu sekarang pakai filter paling estetik atau filter paling lucu yang ada di HP kamu! Mau lihat muka gemesnya hari ini 🌸✨",
+            4: "🎲 [TRUTH]\n\nDi antara semua kado, chat, atau hal yang pernah aku kasih, mana yang paling membekas di hati kamu dan sering kamu inget-inget lagi? 🥺❤️",
+            5: "🎲 [DARE]\n\nKirim pesan suara (Voice Note) ke WA sambil niruin suara hewan kesukaan kamu dengan cara paling manja! Ditunggu ya Bee! 🐱🐾",
+            6: "🎲 [DARE]\n\nGanti nama kontak WA aku di HP kamu jadi nama panggilan paling manja atau paling alay versi kamu, terus SS buktinya kirim ke aku sekarang! 😂🔥",
+            7: "🎲 [TRUTH]\n\nKalau tiba-tiba kita dapet libur panjang bareng, tempat mana yang paling pengen kamu kunjungi berdua aja sama aku? Ceritain dong Bee..",
+            8: "🎲 [DARE]\n\nKirim pap teks tulisan tangan kamu di kertas kosong yang tulisannya 'I LOVE YOU PIN!' terus kasih emot love sekreatif mungkin! 📝❤️",
+            9: "🎲 [UNDIAN]\n\nSELAMAT!! Kamu dapet VOUCHER SPESIAL! Kamu berhak dapet 1 kali pelukan erat gratis plus aku temenin jajan apa aja yang kamu mau pas kita ketemu nanti! Simpan SS ini ya! 🎫🎁",
+            10: "🎲 [TRUTH]\n\nApa lagu yang kalau kamu dengerin, langsung otomatis bikin kamu inget atau kangen sama aku? Sebutin 2 lagu + judulnya ya sayang! 🎧🖤"
         };
 
         const daftarSurat = {};
         const daftarGame = {};
+        const suratDisimpan = [];
 
-        // Fungsi Pengacak Objek
         function acakKonten(mentah, target) {
             const keys = Object.keys(mentah);
             const values = Object.values(mentah);
@@ -530,28 +301,37 @@
             });
         }
         
-        // Jalankan pengacakan saat web dibuka
-        acakKonten(daftarSuratMentah, daftarSurat);
+        Object.keys(daftarSuratMentah).forEach(key => {
+            daftarSurat[key] = daftarSuratMentah[key];
+        });
+        
         acakKonten(daftarGameMentah, daftarGame);
 
-        // --- PENGATURAN FOTO DI SINI ---
         const daftarFoto = {
             21: "N/A",
         };
 
-        // --- KUSTOMISASI ISI PERINGATAN IDLE DISINI ---
         const daftarPeringatanIdle = [
             "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
-            "Bee... Hati-hati ngantuk ya! Kalau ngantuk + Senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
+            "WARNING!!✨ Hati-hati ngantuk ya sayangku! Kalau ngantuk dan sudah senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
             "Jangan lupa diminum airnya ya sayang, Kalau sudah senggang yuk baca lagi surat nya! 🥰🌸",
-            "Dorrr! ✨<br>Rame gak bee? <br>Cuma mau bilang aja, Semangat ya shiftnya! <br>Jangan lupa diminum air nya ya! <br>Di pakai juga DOC Izinnya, Love You So Much Bee!",
+            "WARNING!! WARNING!! Ada yang kangen nih, yaitu akuh... 😚💙",
+            "Hey! tiati kalau ngantuk ambil BAK aja ya atau kamu bisa lanjut baca suratnya ya bee..🥰💙😚",
+            "Dari pada diem terus pikiran kosong, mending mikirin aku aja sayang! hehe.. 😚",
+            "Jangan lupa, untuk hastag #linkdone selalu di pakai ya sayangku... LOVE YOU BEE !!! 😚",
+            "Dorrr! ✨<br>Rame gak bee? <br>Cuma mau bilang aja, Semangat ya shiftnya!🔥 <br>Jangan lupa diminum air nya ya! <br>Love You So Much Bee! 😚🌸",
+            "REMINDER!! Untuk yang tersayang agar selalu semangat shift hari ini, LOVE YOU SO MUCH Syavira Dwi Dinanti. 🧸💙",
+            "PENGINGAT KECIL!! Jangan lupa minum air ya kalau lagi bengong gini bee.. I LOVE YOU 3000 🥰",
             "Ngantuk ya sampai didiamkan begini? <br>Yuk dibuka lagi surat manisnya, masih banyak cerita buat kamu hari ini. 🌌🖤"
         ];
 
-        const WAKTU_IDLE = 20000; 
+        const WAKTU_IDLE = 45000; 
 
         let indeksPesan = 0;
         let currentActiveSurat = null;
+        let currentTextKonten = "";
+        let currentNomorKonten = null;
+        let isCurrentGame = false;
         let heartInterval = null; 
         let idleTimer = null;
 
@@ -569,7 +349,7 @@
         function createHeart() {
             const heart = document.createElement("div");
             heart.classList.add("heart-particle");
-            heart.innerHTML = ["❤️", "💖", "🌸", "✨", "💙"][Math.floor(Math.random() * 5)];
+            heart.innerHTML = ["❤️", "💖", "🌸", "✨", "💙", "⭐"][Math.floor(Math.random() * 5)];
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.animationDuration = Math.random() * 3 + 2 + "s";
             heart.style.fontSize = Math.random() * 15 + 15 + "px";
@@ -591,25 +371,30 @@
             } else {
                 document.getElementById("msgBox").style.display = "none";
                 document.getElementById("galleryBox").style.display = "block";
+                if(document.getElementById("ruangSimpanContainer")) {
+                    document.getElementById("ruangSimpanContainer").style.display = "block";
+                }
             }
         }
 
-        // Fungsi Buka Surat Cinta (Baris Atas)
         function bukaSurat(nomor) {
             currentActiveSurat = "Surat_" + nomor;
+            currentTextKonten = daftarSurat[nomor];
+            currentNomorKonten = nomor;
+            isCurrentGame = false;
             
-            // MENAMBAHKAN CLASS 'opened' PADA AMPLOP YANG DIKLIK
             const amplop = document.getElementById("env-" + nomor);
             if (amplop) amplop.classList.add("opened");
 
-            prosesBukaPopup(daftarSurat[nomor], nomor);
+            prosesBukaPopup(daftarSurat[nomor], nomor, false);
         }
 
-        // Fungsi Buka Game Undian / ToD (Baris Bawah)
         function bukaGame(nomor) {
             currentActiveSurat = "Game_" + nomor;
+            currentTextKonten = daftarGame[nomor];
+            currentNomorKonten = nomor;
+            isCurrentGame = true;
             
-            // MENAMBAHKAN CLASS 'opened' PADA AMPLOP GAME YANG DIKLIK
             const amplopGame = document.getElementById("game-4" + nomor) || document.getElementById("game-" + nomor);
             if (amplopGame) amplopGame.classList.add("opened");
 
@@ -620,10 +405,10 @@
             const overlay = document.getElementById("popupOverlay");
             const isiSurat = document.getElementById("isiSuratDetail");
             const komponenFoto = document.getElementById("fotoSuratDetail"); 
+            const tombolSave = document.getElementById("btnSave");
             
             isiSurat.innerText = teks;
             
-            // Foto hanya untuk surat cinta baris 1 jika ada konfigurasinya
             if (!isGame && daftarFoto[nomor] && daftarFoto[nomor] !== "N/A") {
                 komponenFoto.src = daftarFoto[nomor];
                 komponenFoto.style.display = "inline-block"; 
@@ -631,11 +416,21 @@
                 komponenFoto.style.display = "none"; 
             }
             
+            const keyUnik = currentActiveSurat;
+            if (tombolSave) {
+                if (suratDisimpan.some(item => item.id === keyUnik)) {
+                    tombolSave.innerText = "❤️ Tersimpan (Cancel)";
+                    tombolSave.style.background = "#ff4757";
+                } else {
+                    tombolSave.innerText = "💾 Simpan ke Daftar";
+                    tombolSave.style.background = "#2ed573";
+                }
+            }
+            
             overlay.style.display = "flex";
             setTimeout(() => { overlay.classList.add("show"); }, 10);
         }
 
-        // Fungsi Menutup Pop-up Surat
         function tutupSurat() {
             const overlay = document.getElementById("popupOverlay");
             overlay.classList.remove("show");
@@ -643,56 +438,128 @@
             resetIdleTimer();
         }
 
-        function unduhSuratGambar() {
+        function toggleSaveSurat() {
+            const keyUnik = currentActiveSurat;
+            const index =  suratDisimpan.findIndex(item => item.id === keyUnik);
+            
+            if (index > -1) {
+                suratDisimpan.splice(index, 1);
+                alert("Pilihan dibatalkan!");
+            } else {
+                suratDisimpan.push({
+                    id: keyUnik,
+                    teks: currentTextKonten,
+                    nomor: currentNomorKonten,
+                    isGame: isCurrentGame
+                });
+                alert("Berhasil disimpan ke daftar download!");
+            }
+            
+            prosesBukaPopup(currentTextKonten, currentNomorKonten, isCurrentGame);
+            perbaruiRuangSimpanUI();
+        }
+
+        function perbaruiRuangSimpanUI() {
+            const containerList = document.getElementById("daftarSimpanList");
+            if (!containerList) return;
+            
+            containerList.innerHTML = "";
+            
+            if (suratDisimpan.length === 0) {
+                containerList.innerHTML = "<p style='color: #888; font-style: italic; text-align: center;'>Belum ada surat atau tantangan yang kamu pilih, Bee.. ❤️</p>";
+                return;
+            }
+            
+            suratDisimpan.forEach((item, index) => {
+                const itemDiv = document.createElement("div");
+                itemDiv.style.background = "#fff";
+                itemDiv.style.padding = "10px 15px";
+                itemDiv.style.margin = "8px 0";
+                itemDiv.style.borderRadius = "10px";
+                itemDiv.style.display = "flex";
+                itemDiv.style.justifyContent = "space-between";
+                itemDiv.style.alignItems = "center";
+                itemDiv.style.boxShadow = "0 2px 5px rgba(0,0,0,0.05)";
+                
+                const labelTeks = item.isGame ? `🎲 Tantangan Ke-${item.nomor}` : `✉️ Surat Ke-${item.nomor}`;
+                
+                itemDiv.innerHTML = `
+                    <span style='font-weight: bold; color: #d63031; font-size:14px;'>${labelTeks}</span>
+                    <button onclick="hapusItemSimpan(${index})" style='background: #ff7675; color: white; border: none; padding: 5px 10px; border-radius: 5px; cursor: pointer; font-size:12px;'>Hapus</button>
+                `;
+                containerList.appendChild(itemDiv);
+            });
+        }
+
+        function deleteItemSimpan(index) {
+            suratDisimpan.splice(index, 1);
+            perbaruiRuangSimpanUI();
+        }
+
+        async function unduhSemuaYangDipilih() {
+            if (suratDisimpan.length === 0) {
+                alert("Pilih dan simpan beberapa surat atau tantangan dulu ya, Bee!");
+                return;
+            }
+            
+            alert("Sedang memproses download massal, mohon tunggu sebentar ya sayang.. ✨");
+            
             const target = document.getElementById("captureArea");
-            const tombolDownload = document.getElementById("btnDownload");
+            const isiSurat = document.getElementById("isiSuratDetail");
+            const komponenFoto = document.getElementById("fotoSuratDetail");
+            const tombolSave = document.getElementById("btnSave");
             const tombolTutup = document.querySelector(".btn-close");
             const elemenTanggal = document.getElementById("tanggalDownload");
 
+            if(tombolSave) tombolSave.style.visibility = "hidden";
+            if(tombolTutup) tombolTutup.style.visibility = "hidden";
+            
             const hariIni = new Date();
             const dd = String(hariIni.getDate()).padStart(2, '0');
             const mm = String(hariIni.getMonth() + 1).padStart(2, '0'); 
             const yyyy = hariIni.getFullYear();
-            
             elemenTanggal.innerText = dd + "/" + mm + "/" + yyyy;
             elemenTanggal.style.display = "block";
 
-            tombolDownload.style.visibility = "hidden";
-            tombolTutup.style.visibility = "hidden";
+            for (let item of suratDisimpan) {
+                isiSurat.innerText = item.teks;
+                
+                if (!item.isGame && daftarFoto[item.nomor] && daftarFoto[item.nomor] !== "N/A") {
+                    komponenFoto.src = daftarFoto[item.nomor];
+                    komponenFoto.style.display = "inline-block";
+                } else {
+                    komponenFoto.style.display = "none";
+                }
+                
+                await html2canvas(target, {
+                    backgroundColor: "#fff0f5",
+                    borderRadius: 20,
+                    scale: 2,
+                    useCORS: true
+                }).then(canvas => {
+                    const link = document.createElement("a");
+                    link.download = `Pilihan_${item.id}.png`;
+                    link.href = canvas.toDataURL("image/png");
+                    link.click();
+                }).catch(err => console.log(err));
+            }
 
-            html2canvas(target, {
-                backgroundColor: "#fff0f5",
-                borderRadius: 20,
-                scale: 2,
-                useCORS: true
-            }).then(canvas => {
-                tombolDownload.style.visibility = "visible";
-                tombolTutup.style.visibility = "visible";
-                elemenTanggal.style.display = "none";
-
-                const link = document.createElement("a");
-                link.download = "Surat_Cinta_" + currentActiveSurat + ".png";
-                link.href = canvas.toDataURL("image/png");
-                link.click();
-            }).catch(err => {
-                tombolDownload.style.visibility = "visible";
-                tombolTutup.style.visibility = "visible";
-                elemenTanggal.style.display = "none";
-                console.log(err);
-            });
+            if(tombolSave) tombolSave.style.visibility = "visible";
+            if(tombolTutup) tombolTutup.style.visibility = "visible";
+            elemenTanggal.style.display = "none";
+            
+            prosesBukaPopup(currentTextKonten, currentNomorKonten, isCurrentGame);
+            alert("Semua file pilihan kamu berhasil di-download! 🌸💖");
         }
 
-        // Fungsi Sistem Peringatan Idle (Melamun)
         function resetIdleTimer() {
             clearTimeout(idleTimer);
-            // Cek jika box gallery sudah aktif, baru aktifkan timer idle
             if (document.getElementById("galleryBox").style.display === "block") {
                 idleTimer = setTimeout(munculkanWarning, WAKTU_IDLE);
             }
         }
 
         function munculkanWarning() {
-            // Jika popup surat sedang terbuka, jangan tampilkan warning idle
             if (document.getElementById("popupOverlay").classList.contains("show")) {
                 resetIdleTimer();
                 return;
@@ -713,7 +580,6 @@
             resetIdleTimer();
         }
 
-        // Deteksi aktivitas user untuk reset timer melamun
         window.onload = resetIdleTimer;
         window.onmousemove = resetIdleTimer;
         window.onmousedown = resetIdleTimer; 
