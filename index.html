@@ -154,7 +154,7 @@
     <div class="container">
         <!-- Box Pembuka -->
         <div id="msgBox" class="card-box">
-            <h2 id="textGanti" style="color: #ff4757; line-height: 1.5;">Halo Sayangku Syavira... ❤️ <br>Tekan tombol di bawah ya!</h2>
+            <h2 id="textGanti" style="color: #ff4757; line-height: 1.5;">Halo Sayangku Syavira... ❤️ Pijat tombol di bawah ya!</h2>
             <button class="btn-next" onclick="nextPesan()">Lanjut ✨</button>
         </div>
 
@@ -202,19 +202,19 @@
             </div>
         </div>
 
-        <!-- Ruang List Seleksi & Download Massal (Didesain Selaras dengan Tema Awal) -->
-        <div id="ruangSimpanContainer" style="display: none; max-width: 100%; margin: 40px auto 20px auto; padding: 20px; background: white; border-radius: 20px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.08);">
-            <h3 style="margin-top: 0; color: #ff7675; font-size: 18px;">💖 Daftar Pilihan Syavira 💖</h3>
+        <!-- Ruang List Pilihan & Download Massal (Kembali ke Style Kardus Putih Murni Awal) -->
+        <div id="ruangSimpanContainer" style="display: none; max-width: 100%; margin: 40px auto 20px auto; padding: 25px; background: white; border-radius: 20px; text-align: center; box-shadow: 0 10px 25px rgba(0,0,0,0.08);">
+            <h3 style="margin-top: 0; color: #ff4757; font-size: 18px;">💖 Daftar Pilihan Syavira 💖</h3>
             <div id="daftarSimpanList" style="max-height: 220px; overflow-y: auto; margin-bottom: 15px; padding: 5px; text-align: left;">
                 <p style="color: #888; font-style: italic; text-align: center;">Belum ada surat atau tantangan yang kamu pilih, Bee.. ❤️</p>
             </div>
-            <button id="btnDownloadSemua" onclick="unduhSemuaYangDipilih()" style="background: #ff7675; color: white; border: none; padding: 12px 25px; border-radius: 25px; font-weight: bold; cursor: pointer; width: 100%; font-size: 15px; transition: 0.3s; box-shadow: 0 4px 10px rgba(255, 118, 117, 0.2);">
+            <button id="btnDownloadSemua" onclick="unduhSemuaYangDipilih()" style="background: #ff7675; color: white; border: none; padding: 12px 30px; border-radius: 25px; font-weight: bold; cursor: pointer; width: 100%; font-size: 15px; transition: 0.3s; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
                 📥 Download Semua Yang Dipilih
             </button>
         </div>
     </div>
 
-    <!-- Pop-up Overlay Utama Surat/Game -->
+    <!-- Pop-up Overlay Utama Surat/Game (Gaya Sesuai Dokumen Awal) -->
     <div id="popupOverlay" class="overlay">
         <div id="captureArea" class="popup-card">
             <div id="isiSuratDetail" class="popup-content"></div>
@@ -301,12 +301,10 @@
             });
         }
         
-        // Surat tetap berurutan asli
         Object.keys(daftarSuratMentah).forEach(key => {
             daftarSurat[key] = daftarSuratMentah[key];
         });
         
-        // Game diacak acak posisinya
         acakKonten(daftarGameMentah, daftarGame);
 
         const daftarFoto = {
