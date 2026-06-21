@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Spesial untuk Syavira Dwi Dinanti ✨❤️</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <!-- Tambahan JSZip untuk fitur download massal menjadi ZIP -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap');
 
@@ -364,6 +366,92 @@
         .popup-overlay.show .popup-warning {
             transform: scale(1);
         }
+
+        /* DESIGN TAMBAHAN UNTUK CONTAINER STORAGE DOWNLOAD MASSAL */
+        .storage-box {
+            background-color: rgba(31, 40, 51, 0.9);
+            border: 4px dashed #66fcf1;
+            border-radius: 20px;
+            padding: 30px;
+            width: 100%;
+            max-width: 600px;
+            margin: 50px auto 20px auto;
+            box-shadow: 0 8px 25px rgba(102, 252, 241, 0.2);
+            box-sizing: border-box;
+        }
+        .storage-title {
+            color: #66fcf1;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        .storage-subtitle {
+            color: #ffffff;
+            font-size: 14px;
+            margin-bottom: 20px;
+            opacity: 0.8;
+        }
+        .storage-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 25px;
+            min-height: 50px;
+        }
+        .storage-item {
+            background-color: #ff7597;
+            color: #0b0c10;
+            font-family: 'Fredoka', sans-serif;
+            font-weight: bold;
+            padding: 8px 16px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            animation: fadeIn 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 117, 151, 0.3);
+        }
+        .storage-item.game-type {
+            background-color: #9b59b6;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3);
+        }
+        .btn-delete-item {
+            background: none;
+            border: none;
+            color: inherit;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 0 2px;
+        }
+        .btn-mass-download {
+            background-color: #66fcf1;
+            color: #0b0c10;
+            border: none;
+            padding: 14px 35px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+            transition: transform 0.2s, background-color 0.2s;
+            box-shadow: 0 4px 15px rgba(102, 252, 241, 0.4);
+        }
+        .btn-mass-download:hover {
+            transform: scale(1.05);
+            background-color: #45a29e;
+            color: #ffffff;
+        }
+        .btn-mass-download:disabled {
+            background-color: #555;
+            color: #888;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
     </style>
 </head>
 <body>
@@ -422,6 +510,19 @@
                 <div class="envelope-card envelope-game" id="game-9" onclick="bukaGame(9)"><div class="envelope-label">I</div></div>
                 <div class="envelope-card envelope-game" id="game-10" onclick="bukaGame(10)"><div class="envelope-label">J</div></div>
             </div>
+
+            <!-- PEMBATAS BARIS BARU UNTUK AREA PENYIMPANAN MASSAL -->
+            <div class="section-divider" style="border-top-color: #66fcf1;"></div>
+
+            <!-- KOTAK PENYIMPANAN KHUSUS UNTUK DOWNLOAD MASSAL -->
+            <div class="storage-box">
+                <h2 class="storage-title">Keranjang Surat Pilihanmu 🛒</h2>
+                <p class="storage-subtitle">Surat yang kamu kumpulkan akan muncul di sini. Kamu bisa memilahnya sebelum didownload sekaligus!</p>
+                <div class="storage-list" id="storageList">
+                    <!-- Item yang disimpan akan masuk lewat JavaScript -->
+                </div>
+                <button class="btn-mass-download" id="btnMassDownload" onclick="unduhSemuaMassal()" disabled>Unduh Semua Surat Pilihan (ZIP) ⚡</button>
+            </div>
         </div>
     </div>
 
@@ -434,7 +535,8 @@
             <div class="popup-date" id="tanggalDownload"></div>
 
             <br>
-            <button class="btn-download" id="btnDownload" onclick="unduhSuratGambar()">Simpan Surat Jadi Gambar 📸</button>
+            <!-- Merubah tombol download satuan menjadi simpan ke keranjang massal -->
+            <button class="btn-download" id="btnDownload" onclick="simpanKeKeranjang()">Simpan ke Keranjang Massal 🛒</button>
             <br>
             <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
         </div>
@@ -452,12 +554,12 @@
         const daftarPesan = [
             "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
             "Special song for you LANY - ILYSB",
-            "Hari ini adalah hari ke-3, menulis surat special untuk kekasih ku yang ku sayang..",
+            "Hari ini adalah hari ke-3, <br>menulis surat special untuk kekasih ku yang ku sayang..",
             "Aku selalu berharap, harimu selalu indah sayangku..",
             "Semoga surat-surat ini dapat temenin kamu di saat shift yang sayangku..🥺❤️",
             "Jangan lupa setelah makan minum vitamin C ya bee..🧸🖤",
             "Jangan lupa diminum airnya ya bee..🧸💙",
-            "LOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...",
+            "LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...",
             "Silakan klik dibawah buat masuk ke Surat Specialnya ya Bee! 👇❤️"
         ];
 
@@ -537,6 +639,10 @@
         let heartInterval = null; 
         let idleTimer = null;
 
+        // Penyimpanan data untuk download massal
+        let keranjangSurat = []; 
+        let currentOpenData = null; 
+
         function startEffects() {
             const music = document.getElementById("backsound");
             if (music.paused) {
@@ -579,11 +685,13 @@
 
         function bukaSurat(nomor) {
             currentActiveSurat = "Surat_" + nomor;
+            currentOpenData = { id: currentActiveSurat, teks: daftarSurat[nomor], nomor: nomor, isGame: false };
             prosesBukaPopup(daftarSurat[nomor], nomor);
         }
 
         function bukaGame(nomor) {
             currentActiveSurat = "Game_" + nomor;
+            currentOpenData = { id: currentActiveSurat, teks: daftarGame[nomor], nomor: nomor, isGame: true };
             prosesBukaPopup(daftarGame[nomor], nomor, true);
         }
 
@@ -591,6 +699,7 @@
             const overlay = document.getElementById("popupOverlay");
             const isiSurat = document.getElementById("isiSuratDetail");
             const komponenFoto = document.getElementById("fotoSuratDetail"); 
+            const tombolSimpan = document.getElementById("btnDownload");
             
             isiSurat.innerText = teks;
             
@@ -599,6 +708,16 @@
                 komponenFoto.style.display = "inline-block"; 
             } else {
                 komponenFoto.style.display = "none"; 
+            }
+
+            // Mengubah teks tombol jika item sudah ada di keranjang
+            const sudahAda = keranjangSurat.some(item => item.id === currentActiveSurat);
+            if(sudahAda) {
+                tombolSimpan.innerText = "Sudah di Keranjang ✔";
+                tombolSimpan.style.opacity = "0.7";
+            } else {
+                tombolSimpan.innerText = "Simpan ke Keranjang Massal 🛒";
+                tombolSimpan.style.opacity = "1";
             }
             
             overlay.style.display = "flex";
@@ -612,42 +731,153 @@
             resetIdleTimer();
         }
 
-        function unduhSuratGambar() {
-            const target = document.getElementById("captureArea");
-            const tombolDownload = document.getElementById("btnDownload");
+        // Fungsi baru untuk memasukkan surat yang sedang dibuka ke keranjang massal
+        function simpanKeKeranjang() {
+            if (!currentOpenData) return;
+            
+            const cekDuplikat = keranjangSurat.some(item => item.id === currentOpenData.id);
+            if (!cekDuplikat) {
+                keranjangSurat.push({ ...currentOpenData });
+                perbaruiTampilanKeranjang();
+                
+                const tombolSimpan = document.getElementById("btnDownload");
+                tombolSimpan.innerText = "Berhasil Disimpan! ✔";
+                tombolSimpan.style.opacity = "0.7";
+                setTimeout(() => {
+                    tutupSurat();
+                }, 600);
+            } else {
+                tutupSurat();
+            }
+        }
+
+        // Fungsi baru untuk merefresh komponen list keranjang di bawah halaman beserta tombol hapusnya
+        function perbaruiTampilanKeranjang() {
+            const wrapperList = document.getElementById("storageList");
+            const tombolUnduhMassal = document.getElementById("btnMassDownload");
+            wrapperList.innerHTML = "";
+
+            if (keranjangSurat.length === 0) {
+                tombolUnduhMassal.disabled = true;
+                return;
+            }
+
+            tombolUnduhMassal.disabled = false;
+
+            keranjangSurat.forEach((item, index) => {
+                const itemDiv = document.createElement("div");
+                itemDiv.classList.add("storage-item");
+                if(item.isGame) {
+                    itemDiv.classList.add("game-type");
+                }
+
+                // Menentukan nama label di dalam list
+                const namaTampilan = item.isGame ? "Game " + item.id.split("_")[1] : "Surat " + item.id.split("_")[1];
+                
+                itemDiv.innerHTML = `
+                    <span>💌 ${namaTampilan}</span>
+                    <button class="btn-delete-item" onclick="hapusItemKeranjang(${index})">❌</button>
+                `;
+                wrapperList.appendChild(itemDiv);
+            });
+        }
+
+        // Fungsi baru untuk menghapus item pilihan dari dalam keranjang (fitur pilah-pilih)
+        function hapusItemKeranjang(index) {
+            keranjangSurat.splice(index, 1);
+            perbaruiTampilanKeranjang();
+        }
+
+        // Fungsi utama baru untuk mengonversi massal teks isi surat menjadi gambar, digabung ke ZIP dan didownload otomatis
+        function unduhSemuaMassal() {
+            if (keranjangSurat.length === 0) return;
+
+            const tombolUnduhMassal = document.getElementById("btnMassDownload");
+            const overlayPopup = document.getElementById("popupOverlay");
+            const isiSurat = document.getElementById("isiSuratDetail");
+            const komponenFoto = document.getElementById("fotoSuratDetail");
+            const tombolSimpan = document.getElementById("btnDownload");
             const tombolTutup = document.querySelector(".btn-close");
             const elemenTanggal = document.getElementById("tanggalDownload");
 
+            const teksAsliTombol = tombolUnduhMassal.innerText;
+            tombolUnduhMassal.disabled = true;
+            tombolUnduhMassal.innerText = "Sedang Memproses Gambar... ⏳";
+
+            // Sembunyikan elemen dekorasi tombol di dalam pop-up selama pembuatan gambar
+            tombolSimpan.style.visibility = "hidden";
+            tombolTutup.style.visibility = "hidden";
+            
+            // Set tanggal hari ini
             const hariIni = new Date();
             const dd = String(hariIni.getDate()).padStart(2, '0');
             const mm = String(hariIni.getMonth() + 1).padStart(2, '0'); 
             const yyyy = hariIni.getFullYear();
-            
             elemenTanggal.innerText = dd + "/" + mm + "/" + yyyy;
             elemenTanggal.style.display = "block";
 
-            tombolDownload.style.visibility = "hidden";
-            tombolTutup.style.visibility = "hidden";
+            // Buka overlay untuk background html2canvas render secara tersembunyi/aman
+            overlayPopup.style.display = "flex";
+            overlayPopup.style.opacity = "0"; // Tidak terlihat di layar tetapi ada di DOM
 
-            html2canvas(target, {
-                backgroundColor: "#fff0f5",
-                borderRadius: 20,
-                scale: 2,
-                useCORS: true
-            }).then(canvas => {
-                tombolDownload.style.visibility = "visible";
+            const zip = new JSZip();
+            const targetRender = document.getElementById("captureArea");
+            let urutanProses = Promise.resolve();
+
+            keranjangSurat.forEach((item) => {
+                urutanProses = urutanProses.then(() => {
+                    // Isi data popup secara bergantian di balik layar
+                    isiSurat.innerText = item.teks;
+                    if (!item.isGame && daftarFoto[item.nomor] && daftarFoto[item.nomor] !== "N/A") {
+                        komponenFoto.src = daftarFoto[item.nomor];
+                        komponenFoto.style.display = "inline-block";
+                    } else {
+                        komponenFoto.style.display = "none";
+                    }
+
+                    // Menunggu render html2canvas per file surat
+                    return html2canvas(targetRender, {
+                        backgroundColor: "#fff0f5",
+                        borderRadius: 20,
+                        scale: 2,
+                        useCORS: true
+                    }).then(canvas => {
+                        const dataUrl = canvas.toDataURL("image/png");
+                        const base64Data = dataUrl.split(',')[1];
+                        zip.file("Surat_Cinta_" + item.id + ".png", base64Data, { base64: true });
+                    });
+                });
+            });
+
+            // Setelah semua surat selesai dirender menjadi gambar
+            urutanProses.then(() => {
+                return zip.generateAsync({ type: "blob" });
+            }).then(isiZip => {
+                // Restore status popup asal
+                overlayPopup.style.display = "none";
+                overlayPopup.style.opacity = "1";
+                tombolSimpan.style.visibility = "visible";
                 tombolTutup.style.visibility = "visible";
                 elemenTanggal.style.display = "none";
 
-                const link = document.createElement("a");
-                link.download = "Surat_Cinta_" + currentActiveSurat + ".png";
-                link.href = canvas.toDataURL("image/png");
-                link.click();
+                // Download file zip secara otomatis ke device
+                const linkZip = document.createElement("a");
+                linkZip.download = "Kumpulan_Surat_Spesial_Bee.zip";
+                linkZip.href = URL.createObjectURL(isiZip);
+                linkZip.click();
+
+                // Kembalikan tombol download massal ke posisi semula
+                tombolUnduhMassal.disabled = false;
+                tombolUnduhMassal.innerText = teksAsliTombol;
             }).catch(err => {
-                tombolDownload.style.visibility = "visible";
+                console.log(err);
+                overlayPopup.style.display = "none";
+                overlayPopup.style.opacity = "1";
+                tombolSimpan.style.visibility = "visible";
                 tombolTutup.style.visibility = "visible";
                 elemenTanggal.style.display = "none";
-                console.log(err);
+                tombolUnduhMassal.disabled = false;
+                tombolUnduhMassal.innerText = teksAsliTombol;
             });
         }
 
@@ -679,7 +909,6 @@
             resetIdleTimer();
         }
 
-        window.onload = resetIdleTimer;
         window.onmousemove = resetIdleTimer;
         window.onmousedown = resetIdleTimer; 
         window.onclick = resetIdleTimer;     
