@@ -55,7 +55,7 @@
         /* 1. KOTAK PESAN PEMBUKA */
         .message-box {
             background-color: rgba(31, 40, 51, 0.9);
-            border: 4px solid #ff7597; /* Pink Border Asli */
+            border: 4px solid #ff7597; /* Pink */
             border-radius: 20px;
             padding: 30px;
             max-width: 450px;
@@ -73,7 +73,7 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: opacity 0.3s ease;
+            transition: opacity 0.3s ease; /* Transisi text pudar mulus */
             opacity: 1;
         }
 
@@ -132,55 +132,12 @@
             margin-bottom: 30px;
         }
 
-        /* FITUR BARU: PANEL KONTROL / UTILITY BUTTONS */
-        .utility-panel {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 30px;
-            background: rgba(31, 40, 51, 0.6);
-            padding: 15px 25px;
-            border-radius: 15px;
-            border: 1px solid #45a29e;
-        }
-
-        .utility-select {
-            background-color: #1f2833;
-            color: #66fcf1;
-            border: 2px solid #45a29e;
-            padding: 10px 15px;
-            border-radius: 50px;
-            font-family: 'Quicksand', sans-serif;
-            font-weight: bold;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .btn-utility {
-            background-color: #45a29e;
-            color: #0b0c10;
-            border: none;
-            padding: 10px 20px;
-            font-family: 'Fredoka', sans-serif;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-utility:hover {
-            transform: scale(1.05);
-            background-color: #66fcf1;
-        }
-
         /* 3. KOMPONEN AMPLOP KECIL (SURAT CINTA - BIRU) */
         .envelope-card {
             position: relative;
             width: 200px;
             height: 130px;
-            background-color: #45a29e; /* Biru Amplop Asli */
+            background-color: #45a29e; /* Biru Amplop */
             border-radius: 0 0 8px 8px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
             cursor: pointer;
@@ -225,7 +182,7 @@
 
         /* 3B. KOMPONEN AMPLOP TRUTH OR DARE (UNGU/PINK) */
         .envelope-game {
-            background-color: #8e44ad !important; /* Ungu Asli */
+            background-color: #8e44ad !important; /* Ungu */
         }
         .envelope-game::before {
             border-top-color: #a29bfe !important;
@@ -267,10 +224,10 @@
 
         /* ==================== WARNA JIKA AMPLOP SUDAH TERBUKA ==================== */
         .envelope-card.opened {
-            opacity: 0.5;
+            opacity: 0.5; /* Membuat amplop terlihat sedikit transparan menandakan sudah dibuka */
         }
         .envelope-card.opened .envelope-label {
-            background-color: #7f8c8d !important;
+            background-color: #7f8c8d !important; /* Mengubah bulatan label menjadi abu-abu */
             color: #ffffff !important;
         }
 
@@ -313,8 +270,9 @@
             white-space: pre-line;
         }
 
+        /* Gaya Khusus untuk Tanggal yang Muncul di Tengah Bawah Gambar */
         .popup-date {
-            display: none;
+            display: none; /* Sembunyi secara default di halaman web */
             font-size: 13px;
             color: #7f8c8d;
             margin-top: 25px;
@@ -375,7 +333,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* POP-UP PERINGATAN IDLE */
+        /* STYLING TAMBAHAN UNTUK POP-UP PERINGATAN IDLE */
         .popup-warning {
             background-color: #1f2833;
             border: 4px dashed #66fcf1;
@@ -429,16 +387,9 @@
         </div>
 
         <div class="gallery-wrapper" id="galleryBox">
+            <!-- BARIS 1: SURAT CINTA UTAMA -->
             <h1 class="gallery-title">Surat-Surat Cintaku Untukmu Bee 💙🌸</h1>
             <p class="gallery-subtitle">Bebas pilih dan buka amplop mana saja yang kamu mau dulu ya Bee!</p>
-            
-            <!-- PANEL KONTROL BARU -->
-            <div class="utility-panel">
-                <select id="dropdownSurat" class="utility-select" onchange="bukaDariDropdown()">
-                    <option value="">-- List Pilihan Surat (Terbuka) --</option>
-                </select>
-                <button class="btn-utility" onclick="unduhSemuaSurat()">Download Semua Surat 📸</button>
-            </div>
              
             <div class="envelope-grid">
                 <div class="envelope-card" id="env-1" onclick="bukaSurat(1)"><div class="envelope-label">1</div></div>
@@ -466,13 +417,9 @@
             <!-- PEMBATAS BARIS BARU -->
             <div class="section-divider"></div>
 
-            <!-- BARIS 2: TRUTH OR DARE -->
+            <!-- BARIS 2: TRUTH OR DARE & MINI GAMES (UNDIAN) -->
             <h1 class="gallery-title" style="color: #9b59b6;">Truth, Dare, or Mini Challenge! 🎲✨</h1>
             <p class="gallery-subtitle" style="color: #a29bfe;">Isinya acak! Coba pilih satu amplop undian di bawah ini dan lakuin tantangannya ya Bee!</p>
-
-            <div class="utility-panel" style="border-color: #9b59b6;">
-                <button class="btn-utility" style="background-color: #9b59b6; color: white;" onclick="pilihGameAcak()">Acak Game Otomatis 🎲</button>
-            </div>
 
             <div class="envelope-grid">
                 <div class="envelope-card envelope-game" id="game-1" onclick="bukaGame(1)"><div class="envelope-label">A</div></div>
@@ -504,7 +451,7 @@
         </div>
     </div>
 
-    <!-- POP-UP OVERLAY UNTUK PERINGATAN IDLE -->
+    <!-- STRUKTUR BARU: POP-UP OVERLAY UNTUK PERINGATAN IDLE -->
     <div class="popup-overlay" id="warningOverlay">
         <div class="popup-warning">
             <div class="popup-warning-text" id="warningText">Pesan Peringatan...</div>
@@ -513,61 +460,62 @@
     </div>
 
     <script>
-        // Teks Pesan Pembuka (Diperbaiki tanda koma yang hilang)
+        // Teks Pesan Pembuka
         const daftarPesan = [
             "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
-            "Special song for you LANY - ILYSB",
-            "Hari ini adalah hari ke-3, menulis surat special untuk kekasih ku yang ku sayang..",
-            "Aku selalu berharap, harimu selalu indah sayangku..",
-            "Semoga surat-surat ini dapat temenin kamu di saat shift yang sayangku..🥺❤️",
-            "Jangan lupa setelah makan minum vitamin C ya bee..🧸🖤",
-            "Jangan lupa diminum airnya ya bee..🧸💙",
-            "LOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...",
+			"Special song for you LANY - ILYSB"
+            "Hari ini adalah hari ke-3, menulis surat special untuk kekasih ku yang ku sayang.."
+			"Aku selalu berharap, harimu selalu indah sayangku.."
+			"Semoga surat-surat ini dapat temenin kamu di saat shift yang sayangku..🥺❤️"
+			"Jangan lupa setelah makan minum vitamin C ya bee..🧸🖤"
+			"Jangan lupa diminum airnya ya bee..🧸💙"
+			"LOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH...\nLOVE YOU SO MUCH..."
             "Silakan klik dibawah buat masuk ke Surat Specialnya ya Bee! 👇❤️"
         ];
 
-        // ISI SURAT ASLI
+        // EDIT ISI SURAT DISINI
         const daftarSuratMentah = {
             1: "Dear Belahan Jiwa,\nAkulah yang selalu merasa tidak nyaman ketika jauh dari kamu bee,\nAkulah yang paling pertama mencari kamu jika kamu tidak kamu tidak ada berada diradius pandangan ku sayang.\nMakasih sayang sudah selalu ada disini, selalu disamping aku, selalu sabar, selalu kuatin aku, selalu buat aku percaya akan cinta yang tulus lagi. \nLOVE YOU SYAVIRA..❤🥺️\n\n-pin",
             2: "Kejujuranku...\n\nKu terima semua kekurangan kamu, akan ku lengkapi dengan apa yang kupunya, jangan saling diam jika sedang dingin, selalu buat dia hangat sayang. LOVE YOU SO MUCH ! 💙\n\n-pin",
             3: "Iya bener, banyak wanita diluar sana...\nBanyak juga wanita yang ku temui...\nDari beberapa masa laluku,cuma kamu yang berhasil buat aku tau rasanya di mencintai dan di cintai setulus ini sayang.\nAku senang sekaligus bersyukur pilih dan dipilih oleh kamu.\nAku bahagia bisa dapetin kamu.\nAku bahagia bisa memiliki kamu sepenuhnya.\nAku bahagia... benar benar sangat bahagia...\nILYSM Bee... 💙\n\n-pin",
             4: "02/05/2026\n\nBegitulah tanggal,bulan dan tahun itu tercipta dari dua orang manusia yang tidak saling kenal dan saling sibuk dengan urusan masing-masing berujung saling menyayangi satu sama lain, melengkapi sedikit demi sedikit kekurangan yang kita tidak punyai..\nSekarang kedua orang asing itu sudah bukan jadi Aku dan kamu, tapi sudah menjadi Kita.\nLOVE YOU BEE !! SOOOOO MUCH !! 🥺❤️\n\n-pin",
-            5: "Yap! Kamu selalu berhasil buat aku selalu jatuh dan jatuh cinta lagi setiap hari.\nAku selalu suka dengan cara kamu bertindak dan berfikir.\nAku selalu suka cara kamu menyayangi aku.\nAku selalu suka cara kamu memandang ku dengan tulus tanpa membedakan ataupun melihat kekurangan aku. Terimakasih sayangku! Love You So Much... Much.... and Much..... ❤️\n\n-pin",
-            6: "HARUS !! KUDU !! MESTI !! WAJIB !!! Selalu bilang loveyou di akhir kalimat jika sedang dipisahkan jarang, atau sedang sibuk satu sama lain, mengakhiri hari, ataupun sedang lagi berkelahi. INGAT YA !! LOPYU CO MUCH BEE !!! 💋🥰\n\n-pin",
-            7: "Maaf sayangku... jika aku selalu lupa tentang hal penting dari kamu, cuma memang aku sering pelupa. \nTerimakasih kamu selalu sabar mengingatkan aku...\nBahkan malah kamu yang mengingat semuanya tentang aku..\nAku selalu berusaha mengingatnya ....\nSemua tentang kamu, maaf jika waktunya terkadang lama dan butuh beberapa kali di ingat terus.\nLOVEYOU SO MUCH SYAVIRA!! 💙\n\n-pin",
-            8: "Aku hanya penakut.. \nBukan berarti aku menyudutkan kamu...\nAku hanya memiliki trauma..\nBukan berarti aku tidak percaya sama kamu.. \nTapi kamu selalu sabar untuk selalu menyakinkan aku bahwasannya pikiran berlebihan ku salah besar.\nTerimakasih wanitaku... Aku sayang kamu! Sangat sayang kamu.. 🥰\n\n-pin",
-            9: "Akulah si orang yang tidak pede akan diri sendiri jika bertemu wanita, tapi kamu beda...\nKamu wanita yang tidak pernah memandang kelemahan ku..\nJustru melengkapi kelemahan ku...\nAku... bisa jadi aku... dan ku harap kamu bisa jadi kamu.\nMaaf jika aku egois..\nTapi akan kurubah dan ku perbaiki jika kamu mau.\nBilang! selalu billing saja apa yang membuatmu tidak nyaman.. atau ada hal yang harus ku rubah...\nAku ingin memberikan semua kesempurnaan ku untuk kamu seorang sayang. LOVE YOUU SO MUCH ! ❤🥺️\n\n-pin",
-            10: "Aku tidak akan membatasi kamu mau berteman dengan siapa saja, tapi tolong...\nJaga batasan jika memang itu lawan jenismu..\nTapi, terimakasih kamu selalu bilang ...\nKamu selalu cerita...\nKamu selalu meyakinkan aku di saat pemikiran jelekku mengambil alih seluruh otakku..\nLOVE YOU SO MUCH BEE !! 🥰❤️\n\n-pin",
-            11: "Iya bener be, kita memiliki perbedaan bahasa..\nPerbedaan kebiasaan..\nPerbedaan cara berfikir...\nKu harap dari perbedaan itu,kita bisa saling melengkapi ya sayang.. \nAku yakin bisa selagi kita mengkomunikasikan dengan benar... \nSelagi kita saling mau menerima... \nSelagi kita saling mau tetap bersama..\nAku selalu sayang kamu, tidak pernah berkurang tapi akan selalu bertambah banyak... ❤️\n\n-pin",
-            12: "Selalu pegang erat tangan aku ya bee...\nJika badai benar-benar sedang besarnya.\nJangan sempat pernah memiliki pikiran untuk melepas, walaupun ikatan ditangan kita sedang berduri.\nKarena aku yang akan menggenggam eratnya pertama kali.\nAku juga yakin kamu pun juga sama...\nLOVE YOU SO MUCH !! 🥰🌸\n\n-pin",
-            13: "Aku ga tau, kamu kapan dapet surat ini diawal atau di akhir nanti...\nSemangat kerjanya sayangku, keep fokus LC nya..\nDiminum airnya,dimakan juga vitamin C nya...\nTidak pernah bosan aku selalu ingatkan hal-hal ini,agar kamu tetap sehat dan aku bisa selalu liat senyum kamu yang aku sukai itu. 😚🌸\n\n-pin",
-            14: "BEE !! AKU LAGI NGANTUK .... GA TAU KAMU BAKAL DAPET SURAT INI DI AKHIR ATAU DI PERTENGAHAN ATAU MUNGKIN DI AKHIR.... Tapi asal kamu tau,\n Cintaku dan rasa Sayang aku ke kamu setulus dan sebesar itu loh bee...!\nJangan sia siakan aku ya sayang..\nEntah jadi apa aku jika kamu berpaling... mungkin aku jadi jenis umbi-umbian..\nLOP YU CO MAT BEE !! 😚🌸💙\n\n-pin",
-            15: "Kita lagi suka sekali saling surat menyurat, pertanggal hari ini... aku Alvin Ardian akan selalu menyayangi dan mencintai Syavira  Dwi Dinanti dengan setulus dan sepenuh dan segenap jiwa ...\nKu harap ini bisa menjadi yang terakhir hingga kita tua nanti dan membuka kenakan surat digital ini. 😚🥰❤️\n\n-pin",
-            16: "Selalu ingat yang manis, jika situasi sedang pahit...\nSelalu ingat yang hangat-hangatnya, jika kita sedang berada di tempat yang dingin...\nSelalu ingatlah,bulu kuduk ini pernah setegang itu saat kamu bisikan kata sayang kekuping ini..\n\n-pin",
-            17: "Bau yang tersisa di selimut kamu buat aku hangat, nyaman, dan menambahkan mood aku saat kerja bee.. \nAku sukak... aku sukak sekali... \nKalau lagi dikamu, sering sering di pake ya.. aku sangat suka semua tentang kamu.\nApappun itu aku suka..semuanya!\n\n-pin",
-            18: "LOVE YOU SO MUCH SYAVIRA..\nLOVE YOU SO MUCH BEE\nLOVE YOU SO MUCH KESAYANGAN APIN\nLOVE YOU SO MUCH HUNNY\nLOVE YOU...\nLOVE YOU...\nLOVE YOU...\nLOVE YOU...\n\n-pin",
-            19: "Berikan semua hari terbaik kamu untuk aku...\nBerikan semua hari buruk mu untuk aku..\nBerikan kebahagiaan mu kepada ku..\nBerikan juga kesedihan kamu kepadaku...\n Jangan berikan senyumanmu saja, tapi berikan juga kesedihan mu kepada ku juga..\nSemuanya yah be...semua tentang mu... jangan berikan kelebihan mu , tapi berikan juga kekurangan kamu..\n Love you so fucking bad Syavira Dwi Dinanti!  ❤️❤️\n\n-pin",
-            20: "Syavira Dwi Dinanti,\n\nLet's get married someday. have kids.\nkiss every morning. fuck every night.\ncuddle every night, every time and every day. make breakfast together.\nand spend our weekends in our room. like what were destinied to be.\n\nyou belong with me. you're born to be mine. god made you for me. and me, too.\ni love you every day.. \nmore and more and more... again and again... 😚💙\n\n-pin"
+			5: "Yap! Kamu selalu berhasil buat aku selalu jatuh dan jatuh cinta lagi setiap hari.\nAku selalu suka dengan cara kamu bertindak dan berfikir.\nAku selalu suka cara kamu menyayangi aku.\nAku selalu suka cara kamu memandang ku dengan tulus tanpa membedakan ataupun melihat kekurangan aku. Terimakasih sayangku! Love You So Much... Much.... and Much..... ❤️\n\n-pin",
+			6: "HARUS !! KUDU !! MESTI !! WAJIB !!! Selalu bilang loveyou di akhir kalimat jika sedang dipisahkan jarang, atau sedang sibuk satu sama lain, mengakhiri hari, ataupun sedang lagi berkelahi. INGAT YA !! LOPYU CO MUCH BEE !!! 💋🥰\n\n-pin",
+			7: "Maaf sayangku... jika aku selalu lupa tentang hal penting dari kamu, cuma memang aku sering pelupa. \nTerimakasih kamu selalu sabar mengingatkan aku...\nBahkan malah kamu yang mengingat semuanya tentang aku..\nAku selalu berusaha mengingatnya ....\nSemua tentang kamu, maaf jika waktunya terkadang lama dan butuh beberapa kali di ingat terus.\nLOVEYOU SO MUCH SYAVIRA!! 💙\n\n-pin",
+			8: "Aku hanya penakut.. \nBukan berarti aku menyudutkan kamu...\nAku hanya memiliki trauma..\nBukan berarti aku tidak percaya sama kamu.. \nTapi kamu selalu sabar untuk selalu menyakinkan aku bahwasannya pikiran berlebihan ku salah besar.\nTerimakasih wanitaku... Aku sayang kamu! Sangat sayang kamu.. 🥰\n\n-pin",
+			9: "Akulah si orang yang tidak pede akan diri sendiri jika bertemu wanita, tapi kamu beda...\nKamu wanita yang tidak pernah memandang kelemahan ku..\nJustru melengkapi kelemahan ku...\nAku... bisa jadi aku... dan ku harap kamu bisa jadi kamu.\nMaaf jika aku egois..\nTapi akan kurubah dan ku perbaiki jika kamu mau.\nBilang! selalu bilang saja apa yang membuatmu tidak nyaman.. atau ada hal yang harus ku rubah...\nAku ingin memberikan semua kesempurnaan ku untuk kamu seorang sayang. LOVE YOUU SO MUCH ! ❤🥺️\n\n-pin",
+			10: "Aku tidak akan membatasi kamu mau berteman dengan siapa saja, tapi tolong...\nJaga batasan jika memang itu lawan jenismu..\nTapi, terimakasih kamu selalu bilang ...\nKamu selalu cerita...\nKamu selalu meyakinkan aku di saat pemikiran jelekku mengambil alih seluruh otakku..\nLOVE YOU SO MUCH BEE !! 🥰❤️\n\n-pin",
+			11: "Iya bener be, kita memiliki perbedaan bahasa..\nPerbedaan kebiasaan..\nPerbedaan cara berfikir...\nKu harap dari perbedaan itu,kita bisa saling melengkapi ya sayang.. \nAku yakin bisa selagi kita mengkomunikasikan dengan benar... \nSelagi kita saling mau menerima... \nSelagi kita saling mau tetap bersama..\nAku selalu sayang kamu, tidak pernah berkurang tapi akan selalu bertambah banyak... ❤️\n\n-pin",
+			12: "Selalu pegang erat tangan aku ya bee...\nJika badai benar-benar sedang besarnya.\nJangan sempat pernah memiliki pikiran untuk melepas, walaupun ikatan ditangan kita sedang berduri.\nKarena aku yang akan menggenggam eratnya pertama kali.\nAku juga yakin kamu pun juga sama...\nLOVE YOU SO MUCH !! 🥰🌸\n\n-pin",
+			13: "Aku ga tau, kamu kapan dapet surat ini diawal atau di akhir nanti...\nSemangat kerjanya sayangku, keep fokus LC nya..\nDiminum airnya,dimakan juga vitamin C nya...\nTidak pernah bosan aku selalu ingatkan hal-hal ini,agar kamu tetap sehat dan aku bisa selalu liat senyum kamu yang aku sukai itu. 😚🌸\n\n-pin",
+			14: "BEE !! AKU LAGI NGANTUK .... GA TAU KAMU BAKAL DAPET SURAT INI DI AKHIR ATAU DI PERTENGAHAN ATAU MUNGKIN DI AKHIR.... Tapi asal kamu tau,\n Cintaku dan rasa Sayang aku ke kamu setulus dan sebesar itu loh bee...!\nJangan sia siakan aku ya sayang..\nEntah jadi apa aku jika kamu berpaling... mungkin aku jadi jenis umbi-umbian..\nLOP YU CO MAT BEE !! 😚🌸💙\n\n-pin",
+			15: "Kita lagi suka sekali saling surat menyurat, pertanggal hari ini... aku Alvin Ardian akan selalu menyayangi dan mencintai Syavira  Dwi Dinanti dengan setulus dan sepenuh dan segenap jiwa ...\nKu harap ini bisa menjadi yang terakhir hingga kita tua nanti dan membuka kenakan surat digital ini. 😚🥰❤️\n\n-pin",
+			16: "Selalu ingat yang manis, jika situasi sedang pahit...\nSelalu ingat yang hangat-hangatnya, jika kita sedang berada di tempat yang dingin...\nSelalu ingatlah,bulu kuduk ini pernah setegang itu saat kamu bisikan kata sayang kekuping ini..\n\n-pin",
+			17: "Bau yang tersisa di selimut kamu buat aku hangat, nyaman, dan menambahkan mood aku saat kerja bee.. \nAku sukak... aku sukak sekali... \nKalau lagi dikamu, sering sering di pake ya.. aku sangat suka semua tentang kamu.\nApappun itu aku suka..semuanya!\n\n-pin",
+			18: "LOVE YOU SO MUCH SYAVIRA..\nLOVE YOU SO MUCH BEE\nLOVE YOU SO MUCH KESAYANGAN APIN\nLOVE YOU SO MUCH HUNNY\nLOVE YOU...\nLOVE YOU...\nLOVE YOU...\nLOVE YOU...\n\n-pin",
+			19: "Berikan semua hari terbaik kamu untuk aku...\nBerikan semua hari buruk mu untuk aku..\nBerikan kebahagiaan mu kepada ku..\nBerikan juga kesedihan kamu kepadaku...\n Jangan berikan senyumanmu saja, tapi berikan juga kesedihan mu kepada ku juga..\nSemuanya yah be...semua tentang mu... jangan berikan kelebihan mu , tapi berikan juga kekurangan kamu..\n Love you so fucking bad Syavira Dwi Dinanti!  ❤️❤️\n\n-pin",
+			20: "Syavira Dwi Dinanti,\n\nLet's get married someday. have kids.\nkiss every morning. fuck every night.\ncuddle every night, every time and every day. make breakfast together.\nand spend our weekends in our room. like what were destinied to be.\n\nyou belong with me. you're born to be mine. god made you for me. and me, too.\ni love you every day.. \nmore and more and more... again and again... 😚💙\n\n-pin",
         };
 
-        // ISI TANTANGAN GAME ASLI (Diperbaiki tanda koma yang hilang)
+        // EDIT ATAU TAMBAH TANTANGAN / TRUTH OR DARE DI SINI (Isinya otomatis diacak ke amplop A-J)
         const daftarGameMentah = {
             1: "🎲 [TRUTH] 🎲\n\nSebutkan satu sifat atau kebiasaan buruk aku yang menurut kamu paling aneh tapi sebenernya malah bikin kamu makin sayang? Jujur ya Bee! 🫣💙 \n\n*SS dan kirimkan untuk menjawab.",
             2: "🎲 [DARE] 🎲\n\nTelepon aku sekarang juga via WA, terus langsung bilang 'Halo pacar gantengku' tanpa ketawa dalam 5 detik pertama! 📞😎",
-            3: "🎲 [TANTANGAN]\n\nKirim pap selfie kamu sekarang pakai filter paling estetik atau filter paling lucu yang ada di HP kamu! Mau lihat muka gemesnya hari ini 🌸✨",
-            4: "🎲 [TRUTH]\n\nDi antara semua kado, chat, atau hal yang pernah aku kasih, mana yang paling membekas di hati kamu dan sering kamu inget-inget lagi? 🥺❤️",
-            5: "🎲 [DARE]\n\nKirim pesan suara (Voice Note) ke WA sambil niruin suara hewan kesukaan kamu dengan cara paling manja! Ditunggu ya Bee! 🐱🐾",
-            6: "🎲 [DARE]\n\nGanti nama kontak WA aku di HP kamu jadi nama panggilan paling manja atau paling alay versi kamu, terus SS buktinya kirim ke aku sekarang! 😂🔥",
-            7: "🎲 [TRUTH]\n\nKalau tiba-tiba kita dapet libur panjang bareng, tempat mana yang paling pengen kamu kunjungi berdua aja sama aku? Ceritain dong Bee..",
-            8: "🎲 [DARE]\n\nKirim pap teks tulisan tangan kamu di kertas kosong yang tulisannya 'I LOVE YOU PIN!' terus kasih emot love sekreatif mungkin! 📝❤️",
-            9: "🎲 [UNDIAN]\n\nSELAMAT!! Kamu dapet VOUCHER SPESIAL! Kamu berhak dapet 1 kali pelukan erat gratis plus aku temenin jajan apa aja yang kamu mau pas kita ketemu nanti! Simpan SS ini ya! 🎫🎁",
-            10: "🎲 [TRUTH]\n\nApa lagu yang kalau kamu dengerin, langsung otomatis bikin kamu inget atau kangen sama aku? Sebutin 2 lagu + judulnya ya sayang! 🎧🖤"
+			3: "🎲 [TANTANGAN]\n\nKirim pap selfie kamu sekarang pakai filter paling estetik atau filter paling lucu yang ada di HP kamu! Mau lihat muka gemesnya hari ini 🌸✨",
+			4: "🎲 [TRUTH]\n\nDi antara semua kado, chat, atau hal yang pernah aku kasih, mana yang paling membekas di hati kamu dan sering kamu inget-inget lagi? 🥺❤️",
+			5: "🎲 [DARE]\n\nKirim pesan suara (Voice Note) ke WA sambil niruin suara hewan kesukaan kamu dengan cara paling manja! Ditunggu ya Bee! 🐱🐾",
+			6: "🎲 [DARE]\n\nGanti nama kontak WA aku di HP kamu jadi nama panggilan paling manja atau paling alay versi kamu, terus SS buktinya kirim ke aku sekarang! 😂🔥",
+			7: "🎲 [TRUTH]\n\nKalau tiba-tiba kita dapet libur panjang bareng, tempat mana yang paling pengen kamu kunjungi berdua aja sama aku? Ceritain dong Bee..",
+			8: "🎲 [DARE]\n\nKirim pap teks tulisan tangan kamu di kertas kosong yang tulisannya 'I LOVE YOU PIN!' terus kasih emot love sekreatif mungkin! 📝❤️",
+			9: "🎲 [UNDIAN]\n\nSELAMAT!! Kamu dapet VOUCHER SPESIAL! Kamu berhak dapet 1 kali pelukan erat gratis plus aku temenin jajan apa aja yang kamu mau pas kita ketemu nanti! Simpan SS ini ya! 🎫🎁",
+			10: "🎲 [TRUTH]\n\nApa lagu yang kalau kamu dengerin, langsung otomatis bikin kamu inget atau kangen sama aku? Sebutin 2 lagu + judulnya ya sayang! 🎧🖤"
+			
         };
 
         const daftarSurat = {};
         const daftarGame = {};
 
-        // Pengacak konten
+        // Fungsi Pengacak Objek
         function acakKonten(mentah, target) {
             const keys = Object.keys(mentah);
             const values = Object.values(mentah);
@@ -580,70 +528,41 @@
             });
         }
         
+        // Jalankan pengacakan saat web dibuka
         acakKonten(daftarSuratMentah, daftarSurat);
         acakKonten(daftarGameMentah, daftarGame);
 
-        const daftarFoto = { 21: "N/A" };
+        // --- PENGATURAN FOTO DI SINI ---
+        const daftarFoto = {
+            21: "N/A",
+        };
 
-        // KALIMAT IDLE ASLI (Diperbaiki tanda koma yang hilang)
+        // --- KUSTOMISASI ISI PERINGATAN IDLE DISINI ---
         const daftarPeringatanIdle = [
             "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
             "WARNING!!✨ Hati-hati ngantuk ya sayangku! Kalau ngantuk dan sudah senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
             "Jangan lupa diminum airnya ya sayang, Kalau sudah senggang yuk baca lagi surat nya! 🥰🌸",
-            "WARNING!! WARNING!! Ada yang kangen nih, yaitu akuh... 😚💙",
-            "Hey! tiati kalau ngantuk ambil BAK aja ya atau kamu bisa lanjut baca suratnya ya bee..🥰💙😚",
-            "Dari pada diem terus pikiran kosong, mending mikirin aku aja sayang! hehe.. 😚",
-            "Jangan lupa, untuk hastag #linkdone selalu di pakai ya saynagku... LOVE YOU BEE !!! 😚",
-            "Dorrr! ✨<br>Rame gak bee? <br>Cuma mau billing aja, Semangat ya shiftnya!🔥 <br>Jangan lupa diminum air nya ya! <br>Love You So Much Bee! 😚🌸",
-            "REMINDER!! Untuk yang tersayang agar selalu semangat shift hari ini, LOVE YOU SO MUCH Syavira Dwi Dinanti. 🧸💙",
-            "PENGINGAT KECIL!! Jangan lupa minum air ya kalau lagi bengong gini bee.. I LOVE YOU 3000 🥰",
+			"WARNING!! WARNING!! Ada yang kangen nih, yaitu akuh... 😚💙",
+			"Hey! tiati kalau ngantuk ambil BAK aja ya atau kamu bisa lanjut baca suratnya ya bee..🥰💙😚",
+			"Dari pada diem terus pikiran kosong, mending mikirin aku aja sayang! hehe.. 😚",
+			"Jangan lupa, untuk hastag #linkdone selalu di pakai ya saynagku... LOVE YOU BEE !!! 😚",
+            "Dorrr! ✨<br>Rame gak bee? <br>Cuma mau bilang aja, Semangat ya shiftnya!🔥 <br>Jangan lupa diminum air nya ya! <br>Love You So Much Bee! 😚🌸",
+			"REMINDER!! Untuk yang tersayang agar selalu semangat shift hari ini, LOVE YOU SO MUCH Syavira Dwi Dinanti. 🧸💙",
+            "PENGINGAT KECIL!! Jangan lupa minum air ya kalau lagi bengong gini bee.. I LOVE YOU 3000 🥰"
             "Ngantuk ya sampai didiamkan begini? <br>Yuk dibuka lagi surat manisnya, masih banyak cerita buat kamu hari ini. 🌌🖤"
         ];
 
         const WAKTU_IDLE = 45000; 
+
         let indeksPesan = 0;
         let currentActiveSurat = null;
         let heartInterval = null; 
         let idleTimer = null;
 
-        // FITUR BARU: Ambil data amplop terbuak saat loading web
-        document.addEventListener("DOMContentLoaded", () => {
-            muatStatusSurat();
-        });
-
-        function muatStatusSurat() {
-            for(let i=1; i<=20; i++) {
-                if(localStorage.getItem("surat_buka_" + i)) {
-                    const amp = document.getElementById("env-" + i);
-                    if(amp) {
-                        amp.classList.add("opened");
-                        perbaruiDropdown(i);
-                    }
-                }
-            }
-            for(let j=1; j<=10; j++) {
-                if(localStorage.getItem("game_buka_" + j)) {
-                    const ampG = document.getElementById("game-" + j);
-                    if(ampG) ampG.classList.add("opened");
-                }
-            }
-        }
-
-        function perbaruiDropdown(nomor) {
-            const dropdown = document.getElementById("dropdownSurat");
-            // Cek apakah opsi sudah ada agar tidak duplikat
-            if (!dropdown.querySelector(`option[value="${nomor}"]`)) {
-                const opt = document.createElement("option");
-                opt.value = nomor;
-                opt.innerText = "Surat " + nomor;
-                dropdown.appendChild(opt);
-            }
-        }
-
         function startEffects() {
             const music = document.getElementById("backsound");
             if (music.paused) {
-                music.play().catch(e => console.log("Autoplay ditolak"));
+                music.play().catch(e => console.log("Autoplay ditolak, aktif di interaksi selanjutnya."));
             }
             if (!heartInterval) {
                 heartInterval = setInterval(createHeart, 1500);
@@ -654,7 +573,7 @@
         function createHeart() {
             const heart = document.createElement("div");
             heart.classList.add("heart-particle");
-            heart.innerHTML = ["❤️", "💖", "🌸", "✨", "💙", "⭐"][Math.floor(Math.random() * 6)];
+            heart.innerHTML = ["❤️", "💖", "🌸", "✨", "💙", "⭐"][Math.floor(Math.random() * 5)];
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.animationDuration = Math.random() * 3 + 2 + "s";
             heart.style.fontSize = Math.random() * 15 + 15 + "px";
@@ -676,43 +595,29 @@
             } else {
                 document.getElementById("msgBox").style.display = "none";
                 document.getElementById("galleryBox").style.display = "block";
-                resetIdleTimer();
             }
         }
 
+        // Fungsi Buka Surat Cinta (Baris Atas)
         function bukaSurat(nomor) {
             currentActiveSurat = "Surat_" + nomor;
+            
+            // MENAMBAHKAN CLASS 'opened' PADA AMPLOP YANG DIKLIK
             const amplop = document.getElementById("env-" + nomor);
             if (amplop) amplop.classList.add("opened");
-
-            // FITUR BARU: Simpan status & masukkan ke list pilihan dropdown
-            localStorage.setItem("surat_buka_" + nomor, "true");
-            perbaruiDropdown(nomor);
 
             prosesBukaPopup(daftarSurat[nomor], nomor);
         }
 
-        // FITUR BARU: Buka surat langsung dari list pilihan
-        function bukaDariDropdown() {
-            const val = document.getElementById("dropdownSurat").value;
-            if(val) bukaSurat(parseInt(val));
-        }
-
+        // Fungsi Buka Game Undian / ToD (Baris Bawah)
         function bukaGame(nomor) {
             currentActiveSurat = "Game_" + nomor;
-            const amplopGame = document.getElementById("game-" + nomor);
+            
+            // MENAMBAHKAN CLASS 'opened' PADA AMPLOP GAME YANG DIKLIK
+            const amplopGame = document.getElementById("game-4" + nomor) || document.getElementById("game-" + nomor);
             if (amplopGame) amplopGame.classList.add("opened");
 
-            // FITUR BARU: Simpan status game terbuka
-            localStorage.setItem("game_buka_" + nomor, "true");
-
             prosesBukaPopup(daftarGame[nomor], nomor, true);
-        }
-
-        // FITUR BARU: Fungsi Acak Game Otomatis (A - J)
-        function pilihGameAcak() {
-            const randomId = Math.floor(Math.random() * 10) + 1;
-            bukaGame(randomId);
         }
 
         function prosesBukaPopup(teks, nomor, isGame = false) {
@@ -722,6 +627,7 @@
             
             isiSurat.innerText = teks;
             
+            // Foto hanya untuk surat cinta baris 1 jika ada konfigurasinya
             if (!isGame && daftarFoto[nomor] && daftarFoto[nomor] !== "N/A") {
                 komponenFoto.src = daftarFoto[nomor];
                 komponenFoto.style.display = "inline-block"; 
@@ -733,12 +639,12 @@
             setTimeout(() => { overlay.classList.add("show"); }, 10);
         }
 
+        // Fungsi Menutup Pop-up Surat
         function tutupSurat() {
             const overlay = document.getElementById("popupOverlay");
             overlay.classList.remove("show");
             setTimeout(() => { overlay.style.display = "none"; }, 400);
             resetIdleTimer();
-            document.getElementById("dropdownSurat").value = "";
         }
 
         function unduhSuratGambar() {
@@ -780,51 +686,17 @@
             });
         }
 
-        // FITUR BARU: Fungsi Download Semua Surat Sekaligus secara berurutan
-        function unduhSemuaSurat() {
-            alert("Sistem akan mengunduh semua surat cinta (1-20) secara massal. Mohon tunggu sebenernya ya Bee sampai semua selesai terdownload! 🌸");
-            let i = 1;
-            function runDownload() {
-                if(i > 20) {
-                    tutupSurat();
-                    return;
-                }
-                prosesBukaPopup(daftarSurat[i], i);
-                setTimeout(() => {
-                    const target = document.getElementById("captureArea");
-                    const elemenTanggal = document.getElementById("tanggalDownload");
-                    const hariIni = new Date();
-                    elemenTanggal.innerText = String(hariIni.getDate()).padStart(2,'0') + "/" + String(hariIni.getMonth()+1).padStart(2,'0') + "/" + hariIni.getFullYear();
-                    elemenTanggal.style.display = "block";
-                    
-                    document.getElementById("btnDownload").style.visibility = "hidden";
-                    document.querySelector(".btn-close").style.visibility = "hidden";
-
-                    html2canvas(target, { backgroundColor: "#fff0f5", scale: 1.5, useCORS: true }).then(canvas => {
-                        const link = document.createElement("a");
-                        link.download = `Surat_Cinta_Semua_No_${i}.png`;
-                        link.href = canvas.toDataURL("image/png");
-                        link.click();
-                        
-                        document.getElementById("btnDownload").style.visibility = "visible";
-                        document.querySelector(".btn-close").style.visibility = "visible";
-                        elemenTanggal.style.display = "none";
-                        i++;
-                        setTimeout(runDownload, 1000); // jeda 1 detik tiap download file biar browser tidak crash
-                    });
-                }, 500);
-            }
-            runDownload();
-        }
-
+        // Fungsi Sistem Peringatan Idle (Melamun)
         function resetIdleTimer() {
             clearTimeout(idleTimer);
+            // Cek jika box gallery sudah aktif, baru aktifkan timer idle
             if (document.getElementById("galleryBox").style.display === "block") {
                 idleTimer = setTimeout(munculkanWarning, WAKTU_IDLE);
             }
         }
 
         function munculkanWarning() {
+            // Jika popup surat sedang terbuka, jangan tampilkan warning idle
             if (document.getElementById("popupOverlay").classList.contains("show")) {
                 resetIdleTimer();
                 return;
@@ -845,6 +717,7 @@
             resetIdleTimer();
         }
 
+        // Deteksi aktivitas user untuk reset timer melamun
         window.onload = resetIdleTimer;
         window.onmousemove = resetIdleTimer;
         window.onmousedown = resetIdleTimer; 
