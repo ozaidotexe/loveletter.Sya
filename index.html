@@ -11,7 +11,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #0b0c10;
+            background-color: #0b0c10; /* Latar Belakang Hitam */
             font-family: 'Quicksand', sans-serif;
             display: flex;
             justify-content: center;
@@ -24,6 +24,7 @@
             overflow-x: hidden;
         }
 
+        /* EFEK HATI JATUH */
         .heart-particle {
             position: fixed;
             top: -10px;
@@ -51,9 +52,10 @@
             z-index: 2;
         }
 
+        /* 1. KOTAK PESAN PEMBUKA */
         .message-box {
             background-color: rgba(31, 40, 51, 0.9);
-            border: 4px solid #ff7597;
+            border: 4px solid #ff7597; /* Pink Border Asli */
             border-radius: 20px;
             padding: 30px;
             max-width: 450px;
@@ -62,7 +64,7 @@
         }
 
         .message-text {
-            color: #66fcf1;
+            color: #66fcf1; /* Biru Pastel */
             font-size: 22px;
             font-family: 'Fredoka', sans-serif;
             margin-bottom: 25px;
@@ -94,6 +96,7 @@
             background-color: #ff4a75;
         }
 
+        /* 2. MENU UTAMA GALERI SURAT */
         .gallery-wrapper {
             display: none;
             width: 100%;
@@ -129,11 +132,12 @@
             margin-bottom: 30px;
         }
 
+        /* 3. KOMPONEN AMPLOP KECIL (SURAT CINTA - BIRU) */
         .envelope-card {
             position: relative;
             width: 200px;
             height: 130px;
-            background-color: #45a29e;
+            background-color: #45a29e; /* Biru Amplop Asli */
             border-radius: 0 0 8px 8px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
             cursor: pointer;
@@ -176,8 +180,9 @@
             transition: border-color 0.3s;
         }
 
+        /* 3B. KOMPONEN AMPLOP TRUTH OR DARE (UNGU) */
         .envelope-game {
-            background-color: #8e44ad !important;
+            background-color: #8e44ad !important; /* Ungu Asli */
         }
         .envelope-game::before {
             border-top-color: #a29bfe !important;
@@ -196,6 +201,7 @@
             transform: translateY(-10px) scale(1.03);
         }
 
+        /* Label Angka Surat */
         .envelope-label {
             position: absolute;
             top: 45px;
@@ -216,6 +222,7 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
+        /* 4. POPUP OVERLAY */
         .popup-overlay {
             display: none;
             position: fixed;
@@ -316,6 +323,7 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        /* POP-UP PERINGATAN IDLE */
         .popup-warning {
             background-color: #1f2833;
             border: 4px dashed #66fcf1;
@@ -360,7 +368,7 @@
 </head>
 <body>
 
-    <audio id="backsound" loop src="Glenn%20Fredly%20-%20Nyali%20Terakhir.mp3"></audio>
+    <audio id="backsound" loop src="Glenn Fredly - Nyali Terakhir.mp3"></audio>
 
     <div class="container">
         <div class="message-box" id="msgBox">
@@ -395,8 +403,10 @@
                 <div class="envelope-card" id="env-20" onclick="bukaSurat(20)"><div class="envelope-label">20</div></div>
             </div>
 
+            <!-- PEMBATAS BARIS BARU -->
             <div class="section-divider"></div>
 
+            <!-- BARIS 2: TRUTH OR DARE -->
             <h1 class="gallery-title" style="color: #9b59b6;">Truth, Dare, or Mini Challenge! 🎲✨</h1>
             <p class="gallery-subtitle" style="color: #a29bfe;">Isinya acak! Coba pilih satu amplop undian di bawah ini dan lakuin tantangannya ya Bee!</p>
 
@@ -418,8 +428,11 @@
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-letter" id="captureArea">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
+             
             <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
+             
             <div class="popup-date" id="tanggalDownload"></div>
+
             <br>
             <button class="btn-download" id="btnDownload" onclick="unduhSuratGambar()">Simpan Surat Jadi Gambar 📸</button>
             <br>
@@ -427,6 +440,7 @@
         </div>
     </div>
 
+    <!-- POP-UP OVERLAY UNTUK PERINGATAN IDLE -->
     <div class="popup-overlay" id="warningOverlay">
         <div class="popup-warning">
             <div class="popup-warning-text" id="warningText">Pesan Peringatan...</div>
@@ -454,7 +468,7 @@
             4: "02/05/2026\n\nBegitulah tanggal,bulan dan tahun itu tercipta dari dua orang manusia yang tidak saling kenal dan saling sibuk dengan urusan masing-masing berujung saling menyayangi satu sama lain, melengkapi sedikit demi sedikit kekurangan yang kita tidak punyai..\nSekarang kedua orang asing itu sudah bukan jadi Aku dan kamu, tapi sudah menjadi Kita.\nLOVE YOU BEE !! SOOOOO MUCH !! 🥺❤️\n\n-pin",
             5: "Yap! Kamu selalu berhasil buat aku selalu jatuh dan jatuh cinta lagi setiap hari.\nAku selalu suka dengan cara kamu bertindak dan berfikir.\nAku selalu suka cara kamu menyayangi aku.\nAku selalu suka cara kamu memandang ku dengan tulus tanpa membedakan ataupun melihat kekurangan aku. Terimakasih sayangku! Love You So Much... Much.... and Much..... ❤️\n\n-pin",
             6: "HARUS !! KUDU !! MESTI !! WAJIB !!! Selalu billing loveyou di akhir kalimat jika sedang dipisahkan jarang, atau sedang sibuk satu sama lain, mengakhiri hari, ataupun sedang lagi berkelahi. INGAT YA !! LOPYU CO MUCH BEE !!! 💋🥰\n\n-pin",
-            7: "Maaf sayangku... jika aku selalu lupa tentang hal penting dari kamu, cuma memang aku sering pelupa. \nTerimakasih kamu selalu sabar mengingatkan aku...\nBahkan malah kamu yang mengingat semuanya tentang aku..\nAku selalu berusaha mengingatnya ....\nSemua tentang kamu, maaf jika waktunya terkadang lama dan butuh beberapa kali di ingat terus.\nLOVEYOU SO MUCH SYAVIRA!! 💙\n\n-pin",
+            7: "Maaf sayangku... jika aku selalu lupa tentang hal penting dari kamu, cuma memang aku sering pelupa. \nTerimakasih kamu selalu sabar reminding aku...\nBahkan malah kamu yang mengingat semuanya tentang aku..\nAku selalu berusaha mengingatnya ....\nSemua tentang kamu, maaf jika waktunya terkadang lama dan butuh beberapa kali di ingat terus.\nLOVEYOU SO MUCH SYAVIRA!! 💙\n\n-pin",
             8: "Aku hanya penakut.. \nBukan berarti aku menyudutkan kamu...\nAku hanya memiliki trauma..\nBukan berarti aku tidak percaya sama kamu.. \nTapi kamu selalu sabar untuk selalu menyakinkan aku bahwasannya pikiran berlebihan ku salah besar.\nTerimakasih wanitaku... Aku sayang kamu! Sangat sayang kamu.. 🥰\n\n-pin",
             9: "Akulah si orang yang tidak pede akan diri sendiri jika bertemu wanita, tapi kamu beda...\nKamu wanita yang tidak pernah memandang kelemahan ku..\nJustru melengkapi kelemahan ku...\nAku... bisa jadi aku... dan ku harap kamu bisa jadi kamu.\nMaaf jika aku egois..\nTapi akan kurubah dan ku perbaiki jika kamu mau.\nBilang! selalu billing saja apa yang membuatmu tidak nyaman.. atau ada hal yang harus ku rubah...\nAku ingin memberikan semua kesempurnaan ku untuk kamu seorang sayang. LOVE YOUU SO MUCH ! ❤🥺️\n\n-pin",
             10: "Aku tidak akan membatasi kamu mau berteman dengan siapa saja, tapi tolong...\nJaga batasan jika memang itu lawan jenismu..\nTapi, terimakasih kamu selalu bilang ...\nKamu selalu cerita...\nKamu selalu meyakinkan aku di saat pemikiran jelekku mengambil alih seluruh otakku..\nLOVE YOU SO MUCH BEE !! 🥰❤️\n\n-pin",
@@ -524,15 +538,10 @@
         let idleTimer = null;
 
         function startEffects() {
-            try {
-                const music = document.getElementById("backsound");
-                if (music && music.paused) {
-                    music.play().catch(e => console.log("Autoplay musik diblokir browser, abaikan."));
-                }
-            } catch(err) {
-                console.log("Audio error bypass aktif.");
+            const music = document.getElementById("backsound");
+            if (music.paused) {
+                music.play().catch(e => console.log("Autoplay ditolak"));
             }
-            
             if (!heartInterval) {
                 heartInterval = setInterval(createHeart, 1500);
             }
