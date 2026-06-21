@@ -613,8 +613,9 @@
                 target[key] = values[index];
             });
         }
-        
-        Object.assign(daftarSurat, daftarSuratMentah);
+
+        acakKonten(daftarSuratMentah, daftarSurat);
+        //Object.assign(daftarSurat, daftarSuratMentah);  // Script Surat Tidak Acak.
         acakKonten(daftarGameMentah, daftarGame);
 
         const daftarFoto = { 
