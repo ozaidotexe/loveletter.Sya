@@ -11,7 +11,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #0b0c10; /* Latar Belakang Hitam */
+            background-color: #0b0c10;
             font-family: 'Quicksand', sans-serif;
             display: flex;
             justify-content: center;
@@ -24,7 +24,6 @@
             overflow-x: hidden;
         }
 
-        /* EFEK HATI JATUH */
         .heart-particle {
             position: fixed;
             top: -10px;
@@ -52,10 +51,9 @@
             z-index: 2;
         }
 
-        /* 1. KOTAK PESAN PEMBUKA */
         .message-box {
             background-color: rgba(31, 40, 51, 0.9);
-            border: 4px solid #ff7597; /* Pink Border Asli */
+            border: 4px solid #ff7597;
             border-radius: 20px;
             padding: 30px;
             max-width: 450px;
@@ -64,7 +62,7 @@
         }
 
         .message-text {
-            color: #66fcf1; /* Biru Pastel */
+            color: #66fcf1;
             font-size: 22px;
             font-family: 'Fredoka', sans-serif;
             margin-bottom: 25px;
@@ -96,7 +94,6 @@
             background-color: #ff4a75;
         }
 
-        /* 2. MENU UTAMA GALERI SURAT */
         .gallery-wrapper {
             display: none;
             width: 100%;
@@ -132,12 +129,11 @@
             margin-bottom: 30px;
         }
 
-        /* 3. KOMPONEN AMPLOP KECIL (SURAT CINTA - BIRU) */
         .envelope-card {
             position: relative;
             width: 200px;
             height: 130px;
-            background-color: #45a29e; /* Biru Amplop Asli */
+            background-color: #45a29e;
             border-radius: 0 0 8px 8px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
             cursor: pointer;
@@ -180,9 +176,8 @@
             transition: border-color 0.3s;
         }
 
-        /* 3B. KOMPONEN AMPLOP TRUTH OR DARE (UNGU) */
         .envelope-game {
-            background-color: #8e44ad !important; /* Ungu Asli */
+            background-color: #8e44ad !important;
         }
         .envelope-game::before {
             border-top-color: #a29bfe !important;
@@ -201,7 +196,6 @@
             transform: translateY(-10px) scale(1.03);
         }
 
-        /* Label Angka Surat */
         .envelope-label {
             position: absolute;
             top: 45px;
@@ -222,7 +216,6 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* 4. POPUP OVERLAY */
         .popup-overlay {
             display: none;
             position: fixed;
@@ -323,7 +316,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* POP-UP PERINGATAN IDLE */
         .popup-warning {
             background-color: #1f2833;
             border: 4px dashed #66fcf1;
@@ -368,7 +360,7 @@
 </head>
 <body>
 
-    <audio id="backsound" loop src="Glenn Fredly - Nyali Terakhir.mp3"></audio>
+    <audio id="backsound" loop src="Glenn%20Fredly%20-%20Nyali%20Terakhir.mp3"></audio>
 
     <div class="container">
         <div class="message-box" id="msgBox">
@@ -403,10 +395,8 @@
                 <div class="envelope-card" id="env-20" onclick="bukaSurat(20)"><div class="envelope-label">20</div></div>
             </div>
 
-            <!-- PEMBATAS BARIS BARU -->
             <div class="section-divider"></div>
 
-            <!-- BARIS 2: TRUTH OR DARE -->
             <h1 class="gallery-title" style="color: #9b59b6;">Truth, Dare, or Mini Challenge! 🎲✨</h1>
             <p class="gallery-subtitle" style="color: #a29bfe;">Isinya acak! Coba pilih satu amplop undian di bawah ini dan lakuin tantangannya ya Bee!</p>
 
@@ -428,11 +418,8 @@
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-letter" id="captureArea">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
-             
             <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
-             
             <div class="popup-date" id="tanggalDownload"></div>
-
             <br>
             <button class="btn-download" id="btnDownload" onclick="unduhSuratGambar()">Simpan Surat Jadi Gambar 📸</button>
             <br>
@@ -440,7 +427,6 @@
         </div>
     </div>
 
-    <!-- POP-UP OVERLAY UNTUK PERINGATAN IDLE -->
     <div class="popup-overlay" id="warningOverlay">
         <div class="popup-warning">
             <div class="popup-warning-text" id="warningText">Pesan Peringatan...</div>
@@ -449,7 +435,6 @@
     </div>
 
     <script>
-        // Teks Pesan Pembuka dengan koma diperbaiki
         const daftarPesan = [
             "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
             "Special song for you LANY - ILYSB",
@@ -462,7 +447,6 @@
             "Silakan klik dibawah buat masuk ke Surat Specialnya ya Bee! 👇❤️"
         ];
 
-        // ISI SURAT ASLI
         const daftarSuratMentah = {
             1: "Dear Belahan Jiwa,\nAkulah yang selalu merasa tidak nyaman ketika jauh dari kamu bee,\nAkulah yang paling pertama mencari kamu jika kamu tidak kamu tidak ada berada diradius pandangan ku sayang.\nMakasih sayang sudah selalu ada disini, selalu disamping aku, selalu sabar, selalu kuatin aku, selalu buat aku percaya akan cinta yang tulus lagi. \nLOVE YOU SYAVIRA..❤🥺️\n\n-pin",
             2: "Kejujuranku...\n\nKu terima semua kekurangan kamu, akan ku lengkapi dengan apa yang kupunya, jangan saling diam jika sedang dingin, selalu buat dia hangat sayang. LOVE YOU SO MUCH ! 💙\n\n-pin",
@@ -486,10 +470,9 @@
             20: "Syavira Dwi Dinanti,\n\nLet's get married someday. have kids.\nkiss every morning. fuck every night.\ncuddle every night, every time and every day. make breakfast together.\nand spend our weekends in our room. like what were destinied to be.\n\nyou belong with me. you're born to be mine. god made you for me. and me, too.\ni love you every day.. \nmore and more and more... again and again... 😚💙\n\n-pin"
         };
 
-        // ISI TANTANGAN GAME ASLI
         const daftarGameMentah = {
             1: "🎲 [TRUTH] 🎲\n\nSebutkan satu sifat atau kebiasaan buruk aku yang menurut kamu paling aneh tapi sebenernya malah bikin kamu makin sayang? Jujur ya Bee! 🫣💙 \n\n*SS dan kirimkan untuk menjawab.",
-            2: "🎲 [DARE] 🎲\n\nTelepon aku sekarang juga via WA, terus langsung bilang 'Halo pacar gantengku' tanpa ketawa dalam 5 detik pertama! 📞😎",
+            2: "🎲 [DARE] 🎲\n\nTelepon aku sekarang juga via WA, terus langsung billing 'Halo pacar gantengku' tanpa ketawa dalam 5 detik pertama! 📞😎",
             3: "🎲 [TANTANGAN] 🎲\n\nKirim pap selfie kamu sekarang pakai filter paling estetik atau filter paling lucu yang ada di HP kamu! Mau lihat muka gemesnya hari ini 🌸✨",
             4: "🎲 [TRUTH]\n\nDi antara semua kado, chat, atau hal yang pernah aku kasih, mana yang paling membekas di hati kamu dan sering kamu inget-inget lagi? 🥺❤️",
             5: "🎲 [DARE]\n\nKirim pesan suara (Voice Note) ke WA sambil niruin suara hewan kesukaan kamu dengan cara paling manja! Ditunggu ya Bee! 🐱🐾",
@@ -503,7 +486,6 @@
         const daftarSurat = {};
         const daftarGame = {};
 
-        // Pengacak konten otomatis agar nomor amplop berbeda di setiap reload
         function acakKonten(mentah, target) {
             const keys = Object.keys(mentah);
             const values = Object.values(mentah);
@@ -521,7 +503,6 @@
 
         const daftarFoto = { 21: "N/A" };
 
-        // KALIMAT IDLE ASLI
         const daftarPeringatanIdle = [
             "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
             "WARNING!!✨ Hati-hati ngantuk ya sayangku! Kalau ngantuk dan sudah senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
@@ -543,10 +524,15 @@
         let idleTimer = null;
 
         function startEffects() {
-            const music = document.getElementById("backsound");
-            if (music.paused) {
-                music.play().catch(e => console.log("Autoplay ditolak"));
+            try {
+                const music = document.getElementById("backsound");
+                if (music && music.paused) {
+                    music.play().catch(e => console.log("Autoplay musik diblokir browser, abaikan."));
+                }
+            } catch(err) {
+                console.log("Audio error bypass aktif.");
             }
+            
             if (!heartInterval) {
                 heartInterval = setInterval(createHeart, 1500);
             }
