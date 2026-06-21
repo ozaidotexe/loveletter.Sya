@@ -141,7 +141,7 @@
             border-radius: 0 0 8px 8px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
             cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s;
+            transition: transform 0.3s, background-color 0.3s, opacity 0.3s;
         }
 
         .envelope-card::before {
@@ -219,7 +219,16 @@
             font-weight: bold;
             font-size: 16px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            transition: background-color 0.3s;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        /* ==================== WARNA JIKA AMPLOP SUDAH TERBUKA ==================== */
+        .envelope-card.opened {
+            opacity: 0.5; /* Membuat amplop terlihat sedikit transparan menandakan sudah dibuka */
+        }
+        .envelope-card.opened .envelope-label {
+            background-color: #7f8c8d !important; /* Mengubah bulatan label menjadi abu-abu */
+            color: #ffffff !important;
         }
 
         /* 4. POPUP OVERLAY */
@@ -413,16 +422,16 @@
             <p class="gallery-subtitle" style="color: #a29bfe;">Isinya acak! Coba pilih satu amplop undian di bawah ini dan lakuin tantangannya ya Bee!</p>
 
             <div class="envelope-grid">
-                <div class="envelope-card envelope-game" onclick="bukaGame(1)"><div class="envelope-label">A</div></div>
-                <div class="envelope-card envelope-game" onclick="bukaGame(2)"><div class="envelope-label">B</div></div>
-                <div class="envelope-card envelope-game" onclick="bukaGame(3)"><div class="envelope-label">C</div></div>
-                <div class="envelope-card envelope-game" onclick="bukaGame(4)"><div class="envelope-label">D</div></div>
-                <div class="envelope-card envelope-game" onclick="bukaGame(5)"><div class="envelope-label">E</div></div>
-                <div class="envelope-card envelope-game" onclick="bukaGame(6)"><div class="envelope-label">F</div></div>
-                <div class="envelope-card envelope-game" onclick="bukaGame(7)"><div class="envelope-label">G</div></div>
-                <div class="envelope-card envelope-game" onclick="bukaGame(8)"><div class="envelope-label">H</div></div>
-                <div class="envelope-card envelope-game" onclick="bukaGame(9)"><div class="envelope-label">I</div></div>
-                <div class="envelope-card envelope-game" onclick="bukaGame(10)"><div class="envelope-label">J</div></div>
+                <div class="envelope-card envelope-game" id="game-1" onclick="bukaGame(1)"><div class="envelope-label">A</div></div>
+                <div class="envelope-card envelope-game" id="game-2" onclick="bukaGame(2)"><div class="envelope-label">B</div></div>
+                <div class="envelope-card envelope-game" id="game-3" onclick="bukaGame(3)"><div class="envelope-label">C</div></div>
+                <div class="envelope-card envelope-game" id="game-4" onclick="bukaGame(4)"><div class="envelope-label">D</div></div>
+                <div class="envelope-card envelope-game" id="game-5" onclick="bukaGame(5)"><div class="envelope-label">E</div></div>
+                <div class="envelope-card envelope-game" id="game-6" onclick="bukaGame(6)"><div class="envelope-label">F</div></div>
+                <div class="envelope-card envelope-game" id="game-7" onclick="bukaGame(7)"><div class="envelope-label">G</div></div>
+                <div class="envelope-card envelope-game" id="game-8" onclick="bukaGame(8)"><div class="envelope-label">H</div></div>
+                <div class="envelope-card envelope-game" id="game-9" onclick="bukaGame(9)"><div class="envelope-label">I</div></div>
+                <div class="envelope-card envelope-game" id="game-10" onclick="bukaGame(10)"><div class="envelope-label">J</div></div>
             </div>
         </div>
     </div>
@@ -467,7 +476,7 @@
         // EDIT ISI SURAT DISINI
         const daftarSuratMentah = {
             1: "Surat 1: Your First Letter...❤️\n\nIni surat pertama buat kamu. Cuma mau bilang,terimakasih kamu sudah hadir disetiap Bahagiaku, sedihku, senangku, susahku..\nAku sangat beruntung memiliki kamu disini sayang.Mungkin kalimat tidak akan cukup panjang untuk mengungkapkan rasa sayang dan terimakasih ku kekamu.\nLove You So Much Bee... 💙\n\n-pin",
-            2: "Surat 2: Dear Manusia Kesayanganku,\n\nMungkin orang bisa bilang aku lebay, berlebihan atau semacamnya...\nCuma itu yang terjadi, aku hanya mengungkapkan apa yang sedang kurasakan saja.\nTidak mau melebihkan apalagi mengurang ngurangkannya..\nLagi senang pasti aku bilang senang, lagi sedih pasti aku akan billing sedih. 🌸\n\n-pin",
+            2: "Surat 2: Dear Manusia Kesayanganku,\n\nMungkin orang bisa billing aku lebay, berlebihan atau semacamnya...\nCuma itu yang terjadi, aku hanya mengungkapkan apa yang sedang kurasakan saja.\nTidak mau melebihkan apalagi mengurang ngurangkannya..\nLagi senang pasti aku bilang senang, lagi sedih pasti aku akan billing sedih. 🌸\n\n-pin",
             3: "Surat 3: Maaf aku aku sedang di situasi rewel, overthingking, ga mood selalu membuat kamu ga nyaman.\nTerimakasih sudah selalu ada selalu di samping aku. Kamu yang mau sabar banget hadapin aku...\n\n\n-pin",
             4: "Surat 4: Pengingat Kecil..✨\n\nDari orang yang selalu khawatir dengan kesehatan kamu setiap hari yaitu aku, Jangan lupa diminum airnya.. Selalu di minum vitamin C nya ya!\nJangan telat makan!aku cuma ga mau senyum manis kamu pudar karena kamu sakit.\n\n-pin",
             5: "Surat 5: Dear Syavira,\n\nAkulah orang yang selalu mau tau kamu kenapa, Bahagiakah? Sedihkah? Betekah? Ya, itu aku..\nSicuek itu yang kini luluh dan mulai bisa memperhatikan seseorang yang dia sayangi dan cintai. LOVE YOU BEE ! 💙\n\n-pin",
@@ -532,7 +541,7 @@
             "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
             "Bee... Hati-hati ngantuk ya! Kalau ngantuk + Senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
             "Jangan lupa diminum airnya ya sayang, Kalau sudah senggang yuk baca lagi surat nya! 🥰🌸",
-            "Dorrr! ✨<br>Kaget gak bee? hehe.. <br>Cuma mau bilang aja, Semangat ya shiftnya! <br>Jangan lupa diminum air nya, di pakai DOC Izinnya, LOVE YOU BE!",
+            "Dorrr! ✨<br>Kaget gak bee? hehe.. <br>Cuma mau billing aja, Semangat ya shiftnya! <br>Jangan lupa diminum air nya, di pakai DOC Izinnya, LOVE YOU BE!",
             "Ngantuk ya sampai didiamkan begini? <br>Yuk dibuka lagi surat manisnya, masih banyak cerita buat kamu hari ini. 🌌🖤"
         ];
 
@@ -585,14 +594,22 @@
         // Fungsi Buka Surat Cinta (Baris Atas)
         function bukaSurat(nomor) {
             currentActiveSurat = "Surat_" + nomor;
+            
+            // MENAMBAHKAN CLASS 'opened' PADA AMPLOP YANG DIKLIK
+            const amplop = document.getElementById("env-" + nomor);
+            if (amplop) amplop.classList.add("opened");
+
             prosesBukaPopup(daftarSurat[nomor], nomor);
         }
 
         // Fungsi Buka Game Undian / ToD (Baris Bawah)
         function bukaGame(nomor) {
             currentActiveSurat = "Game_" + nomor;
-            // Kita konversi index angka ke huruf untuk penamaan file download (1=A, 2=B, dst)
-            const huruf = String.fromCharCode(64 + nomor); 
+            
+            // MENAMBAHKAN CLASS 'opened' PADA AMPLOP GAME YANG DIKLIK
+            const amplopGame = document.getElementById("game-4" + nomor) || document.getElementById("game-" + nomor);
+            if (amplopGame) amplopGame.classList.add("opened");
+
             prosesBukaPopup(daftarGame[nomor], nomor, true);
         }
 
@@ -613,6 +630,14 @@
             
             overlay.style.display = "flex";
             setTimeout(() => { overlay.classList.add("show"); }, 10);
+        }
+
+        // Fungsi Menutup Pop-up Surat
+        function tutupSurat() {
+            const overlay = document.getElementById("popupOverlay");
+            overlay.classList.remove("show");
+            setTimeout(() => { overlay.style.display = "none"; }, 400);
+            resetIdleTimer();
         }
 
         function unduhSuratGambar() {
@@ -650,32 +675,30 @@
                 tombolDownload.style.visibility = "visible";
                 tombolTutup.style.visibility = "visible";
                 elemenTanggal.style.display = "none";
-                alert("Fitur download otomatis ini baru akan aktif 100% setelah filenya kamu upload ke GitHub Pages ya Bee!");
+                console.log(err);
             });
         }
 
-        function tutupSurat() {
-            const overlay = document.getElementById("popupOverlay");
-            overlay.classList.remove("show");
-            setTimeout(() => { overlay.style.display = "none"; }, 400);
-        }
-
+        // Fungsi Sistem Peringatan Idle (Melamun)
         function resetIdleTimer() {
             clearTimeout(idleTimer);
-            const isPopupOpen = document.getElementById("popupOverlay").classList.contains("show");
-            const isWarningOpen = document.getElementById("warningOverlay").classList.contains("show");
-
-            if (!isPopupOpen && !isWarningOpen) {
+            // Cek jika box gallery sudah aktif, baru aktifkan timer idle
+            if (document.getElementById("galleryBox").style.display === "block") {
                 idleTimer = setTimeout(munculkanWarning, WAKTU_IDLE);
             }
         }
 
         function munculkanWarning() {
+            // Jika popup surat sedang terbuka, jangan tampilkan warning idle
+            if (document.getElementById("popupOverlay").classList.contains("show")) {
+                resetIdleTimer();
+                return;
+            }
             const warningOverlay = document.getElementById("warningOverlay");
             const warningText = document.getElementById("warningText");
-            const pesanAcak = daftarPeringatanIdle[Math.floor(Math.random() * daftarPeringatanIdle.length)];
-            warningText.innerHTML = pesanAcak;
-
+            const randomPesan = daftarPeringatanIdle[Math.floor(Math.random() * daftarPeringatanIdle.length)];
+            
+            warningText.innerHTML = randomPesan;
             warningOverlay.style.display = "flex";
             setTimeout(() => { warningOverlay.classList.add("show"); }, 10);
         }
@@ -683,14 +706,17 @@
         function tutupWarning() {
             const warningOverlay = document.getElementById("warningOverlay");
             warningOverlay.classList.remove("show");
-            setTimeout(() => {
-                warningOverlay.style.display = "none";
-                resetIdleTimer();
-            }, 400);
+            setTimeout(() => { warningOverlay.style.display = "none"; }, 400);
+            resetIdleTimer();
         }
 
-        window.onclick = resetIdleTimer;
-        window.ontouchstart = resetIdleTimer;
+        // Deteksi aktivitas user untuk reset timer melamun
+        window.onload = resetIdleTimer;
+        window.onmousemove = resetIdleTimer;
+        window.onmousedown = resetIdleTimer; 
+        window.onclick = resetIdleTimer;     
+        window.onkeypress = resetIdleTimer;   
+        window.scroll = resetIdleTimer;
     </script>
 </body>
 </html>
