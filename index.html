@@ -730,7 +730,6 @@
             currentActiveSurat = "Game_" + nomor;
             currentOpenData = { id: currentActiveSurat, teks: daftarGame[nomor], nomor: nomor, isGame: true };
             
-            // Berubah warna amplop game saat dibuka
             const el = document.getElementById("game-" + nomor);
             if(el) el.classList.add("opened");
             
@@ -752,7 +751,6 @@
                 komponenFoto.style.display = "none"; 
             }
 
-            // Mengubah teks tombol jika item sudah ada di keranjang
             const sudahAda = keranjangSurat.some(item => item.id === currentActiveSurat);
             if(sudahAda) {
                 tombolSimpan.innerText = "Sudah di Keranjang ✔";
