@@ -199,6 +199,36 @@
             color: #ffffff !important;
         }
 
+        /* --- WARNA BARU SETELAH AMPLOP DIBUKA --- */
+        .envelope-card.opened {
+            background-color: #2c3e50 !important; /* Abu-abu Gelap */
+        }
+        .envelope-card.opened::before {
+            border-top-color: #34495e !important;
+        }
+        .envelope-card.opened::after {
+            border-left-color: #1a252f !important;
+            border-right-color: #1a252f !important;
+            border-bottom-color: #1a252f !important;
+        }
+        .envelope-card.opened .envelope-label {
+            background-color: #7f8c8d !important;
+            color: #ffffff !important;
+        }
+
+        .envelope-game.opened {
+            background-color: #574b90 !important; /* Ungu Pudar Gelap */
+        }
+        .envelope-game.opened::before {
+            border-top-color: #706797 !important;
+        }
+        .envelope-game.opened::after {
+            border-left-color: #3d3561 !important;
+            border-right-color: #3d3561 !important;
+            border-bottom-color: #3d3561 !important;
+        }
+        /* --------------------------------------- */
+
         .envelope-card:hover {
             transform: translateY(-10px) scale(1.03);
         }
@@ -685,31 +715,27 @@
             }
         }
 
-// KODE SETELAH DIRUBAH
-function bukaSurat(nomor) {
-    currentActiveSurat = "Surat_" + nomor;
-    currentOpenData = { id: currentActiveSurat, teks: daftarSurat[nomor], nomor: nomor, isGame: false };
-    
-    // --- BARIS BARU YANG DIRUBAH (Pemicu Efek Warna Berubah) ---
-    const el = document.getElementById("env-" + nomor);
-    if(el) el.classList.add("opened"); 
-    // ----------------------------------------------------------
-    
-    prosesBukaPopup(daftarSurat[nomor], nomor);
-}
+        function bukaSurat(nomor) {
+            currentActiveSurat = "Surat_" + nomor;
+            currentOpenData = { id: currentActiveSurat, teks: daftarSurat[nomor], nomor: nomor, isGame: false };
+            
+            // Berubah warna amplop saat dibuka
+            const el = document.getElementById("env-" + nomor);
+            if(el) el.classList.add("opened");
+            
+            prosesBukaPopup(daftarSurat[nomor], nomor);
+        }
 
-        // KODE SETELAH DIRUBAH
-function bukaGame(nomor) {
-    currentActiveSurat = "Game_" + nomor;
-    currentOpenData = { id: currentActiveSurat, teks: daftarGame[nomor], nomor: nomor, isGame: true };
-    
-    // --- BARIS BARU YANG DIRUBAH (Pemicu Efek Warna Berubah) ---
-    const el = document.getElementById("game-" + nomor);
-    if(el) el.classList.add("opened");
-    // ----------------------------------------------------------
-    
-    prosesBukaPopup(daftarGame[nomor], nomor, true);
-}
+        function bukaGame(nomor) {
+            currentActiveSurat = "Game_" + nomor;
+            currentOpenData = { id: currentActiveSurat, teks: daftarGame[nomor], nomor: nomor, isGame: true };
+            
+            // Berubah warna amplop game saat dibuka
+            const el = document.getElementById("game-" + nomor);
+            if(el) el.classList.add("opened");
+            
+            prosesBukaPopup(daftarGame[nomor], nomor, true);
+        }
 
         function prosesBukaPopup(teks, nomor, isGame = false) {
             const overlay = document.getElementById("popupOverlay");
