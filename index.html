@@ -954,7 +954,7 @@
         window.onmousedown = resetIdleTimer; 
         window.onclick = resetIdleTimer;     
         window.onkeypress = resetIdleTimer;   
-        window.scroll = resetIdleTimer;
+        window.addEventListener("scroll", resetIdleTimer);
     </script>
 </body>
 </html>
