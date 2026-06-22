@@ -3,582 +3,474 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Spesial untuk Syavira Dwi Dinanti ✨❤️</title>
+    <title>Surat Spesial Untuk Kesayangan Apin ❤️</title>
+    
+    <!-- Library Eksternal untuk Download Gambar Massal -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Tambahan JSZip untuk fitur download massal menjadi ZIP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap');
 
-        body {
+    <style>
+        /* --- CSS UTAMA & DEKORASI --- */
+        * {
+            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            background-color: #0b0c10; /* Latar Belakang Hitam */
-            font-family: 'Quicksand', sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            background-image: radial-gradient(#1f2833 1px, transparent 1px);
-            background-size: 20px 20px;
-            box-sizing: border-box;
-            padding: 40px 20px;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #fff0f5;
+            color: #333;
             overflow-x: hidden;
+            transition: transform 0.1s;
         }
 
-        /* EFEK HATI JATUH */
-        .heart-particle {
-            position: fixed;
-            top: -10px;
-            color: #ff7597;
-            font-size: 20px;
-            pointer-events: none;
-            z-index: 999;
-            animation: fall linear forwards;
-        }
-        @keyframes fall {
-            to {
-                transform: translateY(105vh) rotate(360deg);
-                opacity: 0;
-            }
+        /* Musik Background Tersembunyi */
+        #backsound {
+            display: none;
         }
 
-        .container {
-            text-align: center;
-            width: 100%;
-            max-width: 1200px;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            z-index: 2;
-        }
-
-        /* 1. KOTAK PESAN PEMBUKA */
+        /* Wadah Utama Pembuka Kata (Bagian 1) */
         .message-box {
-            background-color: rgba(31, 40, 51, 0.9);
-            border: 4px solid #ff7597; /* Pink Border Asli */
-            border-radius: 20px;
+            max-width: 500px;
+            margin: 80px auto;
+            background: white;
             padding: 30px;
-            max-width: 450px;
-            box-shadow: 0 8px 20px rgba(255, 117, 151, 0.3);
-            transition: all 0.5s ease;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(219, 112, 147, 0.2);
+            text-align: center;
+            border: 2px solid #ffb6c1;
         }
 
-        .message-text {
-            color: #66fcf1; /* Biru Pastel */
-            font-size: 22px;
-            font-family: 'Fredoka', sans-serif;
-            margin-bottom: 25px;
-            line-height: 1.5;
+        .message-box p {
+            font-size: 18px;
+            line-height: 1.6;
+            color: #db7093;
+            font-weight: 600;
             min-height: 80px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             transition: opacity 0.3s ease;
-            opacity: 1;
         }
 
-        .btn-next {
-            background-color: #ff7597;
-            color: #0b0c10;
+        .btn-lanjut {
+            background-color: #ff69b4;
+            color: white;
             border: none;
             padding: 12px 30px;
             font-size: 16px;
-            font-weight: bold;
-            border-radius: 50px;
+            border-radius: 25px;
             cursor: pointer;
-            font-family: 'Fredoka', sans-serif;
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 10px rgba(255, 117, 151, 0.4);
+            font-weight: bold;
+            box-shadow: 0 4px 10px rgba(255, 105, 180, 0.4);
+            transition: all 0.2s;
+            margin-top: 20px;
         }
 
-        .btn-next:hover {
+        .btn-lanjut:hover {
             transform: scale(1.05);
-            background-color: #ff4a75;
+            background-color: #ff1493;
         }
 
-        /* 2. MENU UTAMA GALERI SURAT */
-        .gallery-wrapper {
+        /* Wadah Galeri Amplop (Bagian 2) */
+        .gallery-container {
             display: none;
-            width: 100%;
-            animation: fadeIn 1s ease forwards;
-        }
-
-        .gallery-title {
-            color: #ff7597;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 32px;
-            margin-bottom: 10px;
-            text-shadow: 0 0 10px rgba(255,117,151,0.5);
-        }
-
-        .gallery-subtitle {
-            color: #66fcf1;
-            font-size: 16px;
-            margin-bottom: 40px;
-        }
-
-        .section-divider {
-            margin: 60px 0 20px 0;
-            width: 100%;
-            border-top: 2px dashed #9b59b6;
-        }
-
-        .envelope-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 50px;
-            justify-items: center;
+            max-width: 900px;
+            margin: 40px auto;
             padding: 20px;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; } to { opacity: 1; }
+        }
+
+        .header-title {
+            text-align: center;
+            color: #db7093;
             margin-bottom: 30px;
         }
 
-        /* 3. KOMPONEN AMPLOP KECIL (SURAT CINTA - BIRU) */
-        .envelope-card {
-            position: relative;
-            width: 200px;
-            height: 130px;
-            background-color: #45a29e; /* Biru Amplop Asli */
-            border-radius: 0 0 8px 8px;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.4);
+        .section-title {
+            color: #ff69b4;
+            margin: 30px 0 15px 0;
+            border-bottom: 2px dashed #ffb6c1;
+            padding-bottom: 5px;
+            font-size: 22px;
+        }
+
+        /* Grid Kisi-Kisi Item */
+        .grid-amplop {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 20px;
+        }
+
+        /* Kartu Amplop Surat & Game */
+        .amplop-card {
+            background: white;
+            border: 2px solid #ffb6c1;
+            border-radius: 15px;
+            padding: 20px 10px;
+            text-align: center;
             cursor: pointer;
-            transition: transform 0.3s, background-color 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            transition: all 0.3s;
         }
 
-        .envelope-card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-top: 70px solid #52b2ae;
-            z-index: 4;
-            transition: transform 0.3s, border-top-color 0.3s;
-            transform-origin: top;
+        .amplop-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 105, 180, 0.2);
         }
 
-        .envelope-card:hover::before {
-            transform: rotateX(180deg) translateY(0px);
-            z-index: 1;
+        .amplop-card .icon {
+            font-size: 40px;
+            margin-bottom: 10px;
+            display: inline-block;
+            transition: transform 0.3s;
         }
 
-        .envelope-card::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 0;
-            height: 0;
-            border-left: 100px solid #398c89;
-            border-right: 100px solid #398c89;
-            border-top: 65px solid transparent;
-            border-bottom: 65px solid #398c89;
-            border-radius: 0 0 8px 8px;
-            z-index: 3;
-            transition: border-color 0.3s;
+        .amplop-card:hover .icon {
+            transform: scale(1.2) rotate(5deg);
         }
 
-        /* 3B. KOMPONEN AMPLOP TRUTH OR DARE (UNGU) */
-        .envelope-game {
-            background-color: #8e44ad !important; /* Ungu Asli */
-        }
-        .envelope-game::before {
-            border-top-color: #a29bfe !important;
-        }
-        .envelope-game::after {
-            border-left-color: #732d91 !important;
-            border-right-color: #732d91 !important;
-            border-bottom-color: #732d91 !important;
-        }
-        .envelope-game .envelope-label {
-            background-color: #9b59b6 !important;
-            color: #ffffff !important;
+        .amplop-card span {
+            display: block;
+            font-weight: bold;
+            color: #db7093;
+            font-size: 14px;
         }
 
-        /* --- WARNA BARU SETELAH AMPLOP DIBUKA --- */
-        .envelope-card.opened {
-            background-color: #2c3e50 !important; /* Abu-abu Gelap */
+        /* Efek Perubahan Warna saat Item Diklik/Dibuka */
+        .amplop-card.opened {
+            background-color: #ffe4e1;
+            border-color: #ff69b4;
         }
-        .envelope-card.opened::before {
-            border-top-color: #34495e !important;
-        }
-        .envelope-card.opened::after {
-            border-left-color: #1a252f !important;
-            border-right-color: #1a252f !important;
-            border-bottom-color: #1a252f !important;
-        }
-        .envelope-card.opened .envelope-label {
-            background-color: #7f8c8d !important;
-            color: #ffffff !important;
+        .amplop-card.opened span {
+            color: #ff1493;
         }
 
-        .envelope-game.opened {
-            background-color: #574b90 !important; /* Ungu Pudar Gelap */
-        }
-        .envelope-game.opened::before {
-            border-top-color: #706797 !important;
-        }
-        .envelope-game.opened::after {
-            border-left-color: #3d3561 !important;
-            border-right-color: #3d3561 !important;
-            border-bottom-color: #3d3561 !important;
-        }
-        /* --------------------------------------- */
-
-        .envelope-card:hover {
-            transform: translateY(-10px) scale(1.03);
+        /* --- STRUKTUR ARAS KERANJANG MASSAL --- */
+        .keranjang-box {
+            background: white;
+            border: 2px solid #ffb6c1;
+            border-radius: 20px;
+            padding: 20px;
+            margin-top: 40px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         }
 
-        /* Label Angka Surat */
-        .envelope-label {
-            position: absolute;
-            top: 45px;
-            left: 80px;
-            width: 40px;
-            height: 40px;
-            background-color: #ff7597;
-            border-radius: 50%;
-            z-index: 5;
+        .keranjang-box h3 {
+            color: #db7093;
+            margin-bottom: 15px;
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: #0b0c10;
-            font-family: 'Fredoka', sans-serif;
-            font-weight: bold;
-            font-size: 16px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
-            transition: background-color 0.3s, color 0.3s;
+            gap: 10px;
         }
 
-        /* 4. POPUP OVERLAY */
-        .popup-overlay {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
+        .storage-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            min-height: 50px;
+            align-items: center;
+            padding: 10px;
+            background: #fff5f7;
+            border-radius: 10px;
+            margin-bottom: 15px;
+        }
+
+        .storage-item {
+            background: #ff69b4;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .storage-item.game-type {
+            background: #9370db;
+        }
+
+        .btn-delete-item {
+            background: none;
+            border: none;
+            color: white;
+            cursor: pointer;
+            font-size: 11px;
+        }
+
+        .btn-mass-download {
+            background-color: #4cae4c;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 15px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-weight: bold;
             width: 100%;
-            height: 100%;
-            background-color: rgba(11, 12, 16, 0.9);
-            z-index: 100;
+            transition: all 0.2s;
+            box-shadow: 0 4px 10px rgba(76, 174, 76, 0.3);
+        }
+
+        .btn-mass-download:disabled {
+            background-color: #cccccc;
+            box-shadow: none;
+            cursor: not-allowed;
+        }
+
+        /* --- PANEL LAYAR POP-UP (OVERLAY) --- */
+        .overlay-popup {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            display: none;
             justify-content: center;
             align-items: center;
+            z-index: 10000;
             opacity: 0;
             transition: opacity 0.4s ease;
         }
 
-        .popup-letter {
+        .overlay-popup.show {
+            opacity: 1;
+        }
+
+        /* Area Desain Gambar yang dicapture (html2canvas) */
+        .capture-area-box {
             background-color: #fff0f5;
-            border: 5px solid #ff7597;
+            padding: 30px;
             border-radius: 20px;
             width: 90%;
-            max-width: 500px;
-            padding: 30px 30px 40px 30px;
-            box-sizing: border-box;
+            max-width: 420px;
+            text-align: center;
             position: relative;
-            transform: scale(0.7);
-            transition: transform 0.4s ease;
-            box-shadow: 0 10px 30px rgba(255,117,151,0.3);
-            text-align: left;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            border: 8px double #ffb6c1;
         }
 
-        .popup-text {
-            font-size: 18px;
-            color: #0b0c10;
+        .capture-area-box p {
+            font-size: 16px;
             line-height: 1.6;
-            font-weight: 600;
+            color: #444;
             white-space: pre-line;
+            margin-bottom: 20px;
+            font-weight: 500;
         }
 
-        .popup-date {
+        .capture-area-box img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            margin-top: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        .tanggal-footer {
             display: none;
-            font-size: 13px;
-            color: #7f8c8d;
-            margin-top: 25px;
+            margin-top: 15px;
+            font-size: 12px;
+            color: #db7093;
             font-weight: bold;
-            font-family: 'Quicksand', sans-serif;
-            letter-spacing: 1px;
+            text-align: right;
+        }
+
+        /* Tombol Aksi di Pop-up */
+        .btn-action-popup {
+            background-color: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            margin-top: 10px;
+            width: 100%;
         }
 
         .btn-close {
-            margin-top: 15px;
-            background-color: #0b0c10;
-            color: #ff7597;
-            border: 2px solid #ff7597;
-            padding: 10px 25px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Fredoka', sans-serif;
-            font-weight: bold;
-            transition: all 0.2s;
+            position: absolute;
+            top: 10px; right: 15px;
+            background: none; border: none;
+            font-size: 20px; cursor: pointer; color: #db7093;
         }
 
-        .btn-close:hover {
-            background-color: #ff7597;
-            color: #0b0c10;
-        }
-
-        .btn-download {
-            margin-top: 25px;
-            background-color: #ff7597;
-            color: #0b0c10;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Fredoka', sans-serif;
-            font-weight: bold;
-            font-size: 14px;
-            transition: all 0.2s;
-            box-shadow: 0 4px 10px rgba(255, 117, 151, 0.2);
-            display: inline-block;
-        }
-
-        .btn-download:hover {
-            transform: scale(1.03);
-            background-color: #ff4a75;
-        }
-
-        .popup-overlay.show {
-            display: flex;
-            opacity: 1;
-        }
-        .popup-overlay.show .popup-letter {
-            transform: scale(1);
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* POP-UP PERINGATAN IDLE */
-        .popup-warning {
-            background-color: #1f2833;
-            border: 4px dashed #66fcf1;
-            border-radius: 20px;
-            width: 85%;
-            max-width: 400px;
-            padding: 30px;
-            box-sizing: border-box;
-            text-align: center;
-            box-shadow: 0 10px 25px rgba(102, 252, 241, 0.3);
-            transform: scale(0.7);
-            transition: transform 0.4s ease;
-        }
-        .popup-warning-text {
-            color: #ffffff;
-            font-size: 18px;
-            font-family: 'Fredoka', sans-serif;
-            line-height: 1.6;
-            margin-bottom: 20px;
-        }
-        .btn-warning-close {
-            background-color: #66fcf1;
-            color: #0b0c10;
-            border: none;
-            padding: 10px 25px;
-            font-size: 15px;
-            font-weight: bold;
-            border-radius: 50px;
-            cursor: pointer;
-            font-family: 'Fredoka', sans-serif;
-            transition: transform 0.2s, background-color 0.2s;
-        }
-        .btn-warning-close:hover {
-            transform: scale(1.05);
-            background-color: #45a29e;
-            color: #ffffff;
-        }
-        .popup-overlay.show .popup-warning {
-            transform: scale(1);
-        }
-
-        /* DESIGN TAMBAHAN UNTUK CONTAINER STORAGE DOWNLOAD MASSAL */
-        .storage-box {
-            background-color: rgba(31, 40, 51, 0.9);
-            border: 4px dashed #66fcf1;
-            border-radius: 20px;
-            padding: 30px;
-            width: 100%;
-            max-width: 600px;
-            margin: 50px auto 20px auto;
-            box-shadow: 0 8px 25px rgba(102, 252, 241, 0.2);
-            box-sizing: border-box;
-        }
-        .storage-title {
-            color: #66fcf1;
-            font-family: 'Fredoka', sans-serif;
-            font-size: 24px;
-            margin-bottom: 10px;
-        }
-        .storage-subtitle {
-            color: #ffffff;
-            font-size: 14px;
-            margin-bottom: 20px;
+        /* Efek Partikel Hati Melayang */
+        .heart-particle {
+            position: fixed;
+            bottom: -20px;
+            pointer-events: none;
+            z-index: 999;
+            animation: floatUp ease-in forwards;
             opacity: 0.8;
         }
-        .storage-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 12px;
-            justify-content: center;
-            margin-bottom: 25px;
-            min-height: 50px;
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) rotate(0deg); opacity: 0.8; }
+            100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
         }
-        .storage-item {
-            background-color: #ff7597;
-            color: #0b0c10;
-            font-family: 'Fredoka', sans-serif;
-            font-weight: bold;
-            padding: 8px 16px;
-            border-radius: 20px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 14px;
-            animation: fadeIn 0.3s ease;
-            box-shadow: 0 4px 10px rgba(255, 117, 151, 0.3);
-        }
-        .storage-item.game-type {
-            background-color: #9b59b6;
-            color: #ffffff;
-            box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3);
-        }
-        .btn-delete-item {
-            background: none;
-            border: none;
-            color: inherit;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            padding: 0 2px;
-        }
-        .btn-mass-download {
-            background-color: #66fcf1;
-            color: #0b0c10;
-            border: none;
-            padding: 14px 35px;
-            font-size: 16px;
-            font-weight: bold;
+
+        /* --- FITUR PANIC BUTTON MELAYANG (ANTI NGANTUK) --- */
+        #panicButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: linear-gradient(45deg, #ff4500, #ff1493);
+            color: white;
+            padding: 12px 20px;
             border-radius: 50px;
+            font-weight: bold;
+            font-size: 14px;
             cursor: pointer;
-            font-family: 'Fredoka', sans-serif;
-            transition: transform 0.2s, background-color 0.2s;
-            box-shadow: 0 4px 15px rgba(102, 252, 241, 0.4);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            z-index: 9999;
+            animation: denyutPetir 1.5s infinite;
+            transition: transform 0.2s;
         }
-        .btn-mass-download:hover {
-            transform: scale(1.05);
-            background-color: #45a29e;
-            color: #ffffff;
+
+        #panicButton:hover {
+            transform: scale(1.1);
         }
-        .btn-mass-download:disabled {
-            background-color: #555;
-            color: #888;
-            cursor: not-allowed;
-            box-shadow: none;
-            transform: none;
+
+        @keyframes denyutPetir {
+            0% { box-shadow: 0 0 0 0 rgba(255, 69, 0, 0.7); }
+            70% { box-shadow: 0 0 0 15px rgba(255, 69, 0, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(255, 69, 0, 0); }
+        }
+
+        /* Animasi Layar Bergetar (Shake Shock) */
+        .goyang-layar {
+            animation: getarEfek 0.1s infinite;
+        }
+
+        @keyframes getarEfek {
+            0% { transform: translate(2px, 1px) rotate(0deg); }
+            10% { transform: translate(-1px, -2px) rotate(-1deg); }
+            20% { transform: translate(-3px, 0px) rotate(1deg); }
+            30% { transform: translate(0px, 2px) rotate(0deg); }
+            40% { transform: translate(1px, -1px) rotate(1deg); }
+            50% { transform: translate(-1px, 2px) rotate(-1deg); }
+            60% { transform: translate(-3px, 1px) rotate(0deg); }
+            70% { transform: translate(2px, 1px) rotate(-1deg); }
+            80% { transform: translate(-1px, -1px) rotate(1deg); }
+            90% { transform: translate(2px, 2px) rotate(0deg); }
+            100% { transform: translate(1px, -2px) rotate(-1deg); }
+        }
+
+        /* Struktur Kotak Pengingat Bengong/Ngantuk */
+        .warning-box {
+            background-color: white !important;
+            border: 4px solid #ff69b4 !important;
+            max-width: 350px;
         }
     </style>
 </head>
 <body>
 
-    <audio id="backsound" loop src="LANY - ILYSB.mp3"></audio>
+    <!-- Pengait Lagu LANY - ILYSB -->
+    <audio id="backsound" loop prefetch>
+        <source src="https://assets.mixkit.co/music/preview/mixkit-dreaming-big-31.mp3" type="audio/mpeg">
+    </audio>
 
-    <div class="container">
-        <div class="message-box" id="msgBox">
-            <div class="message-text" id="textGanti">Dear Queen Ozai,<br>Yuk kita mulai ya Bee.. 💙🌸</div>
-            <button class="btn-next" onclick="nextPesan()" id="idBtnNext">Next ➡️</button>
+    <!-- ================= BAGIAN 1: PEMBUKA KATA ================= -->
+    <div class="message-box" id="msgBox">
+        <p id="textGanti">Halo Sayangku Syavira! ✨<br>Klik tombol di bawah yaa..</p>
+        <button class="btn-lanjut" onclick="nextPesan()">Klik Disini Sayang ❤️</button>
+    </div>
+
+    <!-- ================= BAGIAN 2: GALERI UTAMA ================= -->
+    <div class="gallery-container" id="galleryBox">
+        <h2 class="header-title">💌 RUANG SURAT & GAME SYAVIRA 💌</h2>
+
+        <!-- Kelompok Surat Romantis -->
+        <div class="section-title">✨ Surat Manis Untuk Bee</div>
+        <div class="grid-amplop">
+            <script>
+                for(let i=1; i<=20; i++){
+                    document.write(`
+                        <div class="amplop-card" id="env-${i}" onclick="bukaSurat(${i})">
+                            <div class="icon">✉️</div>
+                            <span>Surat Spesial ${i}</span>
+                        </div>
+                    `);
+                }
+            </script>
         </div>
 
-        <div class="gallery-wrapper" id="galleryBox">
-            <h1 class="gallery-title">Surat-Surat Cintaku Untukmu Bee 💙🌸</h1>
-            <p class="gallery-subtitle">Bebas pilih dan buka amplop mana saja yang kamu mau dulu ya Bee!</p>
-             
-            <div class="envelope-grid">
-                <div class="envelope-card" id="env-1" onclick="bukaSurat(1)"><div class="envelope-label">1</div></div>
-                <div class="envelope-card" id="env-2" onclick="bukaSurat(2)"><div class="envelope-label">2</div></div>
-                <div class="envelope-card" id="env-3" onclick="bukaSurat(3)"><div class="envelope-label">3</div></div>
-                <div class="envelope-card" id="env-4" onclick="bukaSurat(4)"><div class="envelope-label">4</div></div>
-                <div class="envelope-card" id="env-5" onclick="bukaSurat(5)"><div class="envelope-label">5</div></div>
-                <div class="envelope-card" id="env-6" onclick="bukaSurat(6)"><div class="envelope-label">6</div></div>
-                <div class="envelope-card" id="env-7" onclick="bukaSurat(7)"><div class="envelope-label">7</div></div>
-                <div class="envelope-card" id="env-8" onclick="bukaSurat(8)"><div class="envelope-label">8</div></div>
-                <div class="envelope-card" id="env-9" onclick="bukaSurat(9)"><div class="envelope-label">9</div></div>
-                <div class="envelope-card" id="env-10" onclick="bukaSurat(10)"><div class="envelope-label">10</div></div>
-                <div class="envelope-card" id="env-11" onclick="bukaSurat(11)"><div class="envelope-label">11</div></div>
-                <div class="envelope-card" id="env-12" onclick="bukaSurat(12)"><div class="envelope-label">12</div></div>
-                <div class="envelope-card" id="env-13" onclick="bukaSurat(13)"><div class="envelope-label">13</div></div>
-                <div class="envelope-card" id="env-14" onclick="bukaSurat(14)"><div class="envelope-label">14</div></div>
-                <div class="envelope-card" id="env-15" onclick="bukaSurat(15)"><div class="envelope-label">15</div></div>
-                <div class="envelope-card" id="env-16" onclick="bukaSurat(16)"><div class="envelope-label">16</div></div>
-                <div class="envelope-card" id="env-17" onclick="bukaSurat(17)"><div class="envelope-label">17</div></div>
-                <div class="envelope-card" id="env-18" onclick="bukaSurat(18)"><div class="envelope-label">18</div></div>
-                <div class="envelope-card" id="env-19" onclick="bukaSurat(19)"><div class="envelope-label">19</div></div>
-                <div class="envelope-card" id="env-20" onclick="bukaSurat(20)"><div class="envelope-label">20</div></div>
+        <!-- Kelompok Game & Tantangan Real-Time -->
+        <div class="section-title">🎲 Game & Tantangan Anti-Ngantuk</div>
+        <div class="grid-amplop">
+            <script>
+                for(let j=1; j<=10; j++){
+                    document.write(`
+                        <div class="amplop-card" id="game-${j}" onclick="bukaGame(${j})" style="border-color: #d8bfd8;">
+                            <div class="icon">🎲</div>
+                            <span>Tantangan ${j}</span>
+                        </div>
+                    `);
+                }
+            </script>
+        </div>
+
+        <!-- Sistem Interface Keranjang Download Massal -->
+        <div class="keranjang-box">
+            <h3>🛒 Keranjang Penyimpanan Surat Pilihan</h3>
+            <div class="storage-list" id="storageList">
+                <span style="color: #999; font-size: 13px;">Belum ada surat yang disimpan ke keranjang...</span>
             </div>
-
-            <!-- PEMBATAS BARIS BARU -->
-            <div class="section-divider"></div>
-
-            <!-- BARIS 2: TRUTH OR DARE -->
-            <h1 class="gallery-title" style="color: #9b59b6;">Truth, Dare, or Mini Challenge! 🎲✨</h1>
-            <p class="gallery-subtitle" style="color: #a29bfe;">Isinya acak! Coba pilih satu amplop undian di bawah ini dan lakuin tantangannya ya Bee!</p>
-
-            <div class="envelope-grid">
-                <div class="envelope-card envelope-game" id="game-1" onclick="bukaGame(1)"><div class="envelope-label">A</div></div>
-                <div class="envelope-card envelope-game" id="game-2" onclick="bukaGame(2)"><div class="envelope-label">B</div></div>
-                <div class="envelope-card envelope-game" id="game-3" onclick="bukaGame(3)"><div class="envelope-label">C</div></div>
-                <div class="envelope-card envelope-game" id="game-4" onclick="bukaGame(4)"><div class="envelope-label">D</div></div>
-                <div class="envelope-card envelope-game" id="game-5" onclick="bukaGame(5)"><div class="envelope-label">E</div></div>
-                <div class="envelope-card envelope-game" id="game-6" onclick="bukaGame(6)"><div class="envelope-label">F</div></div>
-                <div class="envelope-card envelope-game" id="game-7" onclick="bukaGame(7)"><div class="envelope-label">G</div></div>
-                <div class="envelope-card envelope-game" id="game-8" onclick="bukaGame(8)"><div class="envelope-label">H</div></div>
-                <div class="envelope-card envelope-game" id="game-9" onclick="bukaGame(9)"><div class="envelope-label">I</div></div>
-                <div class="envelope-card envelope-game" id="game-10" onclick="bukaGame(10)"><div class="envelope-label">J</div></div>
-            </div>
-
-            <!-- PEMBATAS BARIS BARU UNTUK AREA PENYIMPANAN MASSAL -->
-            <div class="section-divider" style="border-top-color: #66fcf1;"></div>
-
-            <!-- KOTAK PENYIMPANAN KHUSUS UNTUK DOWNLOAD MASSAL -->
-            <div class="storage-box">
-                <h2 class="storage-title">Keranjang Surat Pilihanmu 🛒</h2>
-                <p class="storage-subtitle">Surat yang kamu kumpulkan akan muncul di sini. Kamu bisa memilahnya sebelum didownload sekaligus!</p>
-                <div class="storage-list" id="storageList">
-                </div>
-                <button class="btn-mass-download" id="btnMassDownload" onclick="unduhSemuaMassal()" disabled>Unduh Semua Surat Pilihan (ZIP) ⚡</button>
-            </div>
+            <button id="btnMassDownload" class="btn-mass-download" onclick="unduhSemuaMassal()" disabled>
+                Download Semua Surat Pilihan (ZIP) 💾
+            </button>
         </div>
     </div>
 
-    <div class="popup-overlay" id="popupOverlay">
-        <div class="popup-letter" id="captureArea">
-            <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
-             
-            <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
-             
-            <div class="popup-date" id="tanggalDownload"></div>
-
-            <br>
-            <!-- Merubah tombol download satuan menjadi simpan ke keranjang massal -->
-            <button class="btn-download" id="btnDownload" onclick="simpanKeKeranjang()">Simpan Surat 🛒</button>
-            <br>
-            <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
+    <!-- ================= POP-UP UTAMA (CAPTURE AREA) ================= -->
+    <div id="popupOverlay" class="overlay-popup">
+        <div class="capture-area-box" id="captureArea">
+            <button class="btn-close" onclick="tutupSurat()">×</button>
+            <p id="isiSuratDetail">Isi konten surat...</p>
+            <img id="fotoSuratDetail" src="" alt="Foto Lampiran" style="display:none;">
+            <div id="tanggalDownload" class="tanggal-footer">Tanggal</div>
+            <button id="btnDownload" class="btn-action-popup" onclick="simpanKeKeranjang()">
+                Simpan ke Keranjang Massal 🛒
+            </button>
         </div>
     </div>
 
-    <!-- POP-UP OVERLAY UNTUK PERINGATAN IDLE -->
-    <div class="popup-overlay" id="warningOverlay">
-        <div class="popup-warning">
-            <div class="popup-warning-text" id="warningText">Pesan Peringatan...</div>
-            <button class="btn-warning-close" onclick="tutupWarning()">Iya Bey 🥺❤️</button>
+    <!-- ================= POP-UP OTOMATIS JIKA DIIDAMKAN (WARNING IDLE) ================= -->
+    <div id="warningOverlay" class="overlay-popup">
+        <div class="capture-area-box warning-box">
+            <h3 style="color: #ff69b4; margin-bottom: 15px;">⚠️ PENGINGAT SAYANG!</h3>
+            <p id="warningText" style="color: #555;">Pesan deteksi idle...</p>
+            <button class="btn-action-popup" onclick="tutupWarning()" style="background-color: #ff69b4;">
+                Lanjut Baca Lagi Sayang ❤️
+            </button>
         </div>
     </div>
 
+    <!-- ================= POP-UP KHUSUS EMERGENCY ANTI-NGANTUK ================= -->
+    <div id="panicOverlay" class="overlay-popup">
+        <div class="capture-area-box warning-box" id="panicBox" style="border-color: #ff4500 !important;">
+            <h3 style="color: #ff4500; margin-bottom: 10px;">🚨 DARURAT NGANTUK TERDETEKSI! 🚨</h3>
+            <div style="font-size: 50px; margin: 10px 0;">🥱 ➔ ⚡🤩</div>
+            <p id="teksPanic" style="color: #333; font-weight: bold;">Memproses energi cinta tambahan...</p>
+            <button class="btn-action-popup" onclick="tutupPanic()" style="background: linear-gradient(45deg, #ff4500, #ff1493);">
+                Udah Melek, Lanjut Kerja! ❤️
+            </button>
+        </div>
+    </div>
+
+    <!-- Tombol Panic Button Melayang -->
+    <div id="panicButton" onclick="pemicuDaruratNgantuk()">
+        <span>☕ Emergency Anti-Ngantuk! ⚡</span>
+    </div>
+
+    <!-- ================= KODE UTAMA JAVASCRIPT ================= -->
     <script>
         const daftarPesan = [
             "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
@@ -600,7 +492,7 @@
             3: "Iya bener, banyak wanita diluar sana...\nBanyak juga wanita yang ku temui...\nDari beberapa masa laluku,cuma kamu yang berhasil buat aku tau rasanya di mencintai dan di cintai setulus ini sayang.\n\nAku senang sekaligus bersyukur pilih dan dipilih oleh kamu.\nAku bahagia bisa dapetin kamu.\nAku bahagia bisa memiliki kamu sepenuhnya.\nAku bahagia... benar benar sangat bahagia...\nILYSM Bee... 💙\n\n-pin",
             4: "02/05/2026\n\nBegitulah tanggal,bulan dan tahun itu tercipta dari dua orang manusia yang tidak saling kenal dan saling sibuk dengan urusan masing-masing berujung saling menyayangi satu sama lain, melengkapi sedikit demi sedikit kekurangan yang kita tidak punyai..\nSekarang kedua orang asing itu sudah bukan jadi Aku dan kamu, tapi sudah menjadi Kita.\nLOVE YOU BEE !! SOOOOO MUCH !! 🥺❤️\n\n-pin",
             5: "Yap! Kamu selalu berhasil buat aku selalu jatuh dan jatuh cinta lagi setiap hari.\nAku selalu suka dengan cara kamu bertindak dan berfikir.\nAku selalu suka cara kamu menyayangi aku.\n\nAku selalu suka cara kamu memandang ku dengan tulus tanpa membedakan ataupun melihat kekurangan aku. Terimakasih sayangku! Love You So Much... Much.... and Much..... ❤️\n\n-pin",
-            6: "HARUS !! KUDU !! MESTI !! WAJIB !!! \nSelalu bilang loveyou di akhir kalimat jika sedang dipisahkan jarang, atau sedang sibuk satu sama lain, mengakhiri hari, ataupun sedang lagi berkelahi. \nINGAT YA !! LOPYU CO MUCH BEE !!! 💋🥰\n\n-pin",
+            6: "HARUS !! KUDU !! MESTI !! WAJIB !!! \nSelalu billing loveyou di akhir kalimat jika sedang dipisahkan jarang, atau sedang sibuk satu sama lain, mengakhiri hari, ataupun sedang lagi berkelahi. \nINGAT YA !! LOPYU CO MUCH BEE !!! 💋🥰\n\n-pin",
             7: "Maaf sayangku... jika aku lupa tentang hal penting dari kamu, cuma memang aku sering pelupa. \nMulai sekarang aku coba belajar untuk selalu ingat pelan-pelan. \n\nTerimakasih kamu selalu sabar ingatkan aku...\nBahkan malah kamu yang mengingat semuanya tentang aku..\nAku selalu berusaha mengingatnya ....\nSemua tentang kamu, maaf jika waktunya terkadang lama dan butuh beberapa kali di ingat terus.\nLOVEYOU SO MUCH SYAVIRA!! 💙\n\n-pin",
             8: "Aku hanya penakut.. \nBukan berarti aku menyudutkan kamu...\nAku hanya memiliki trauma..\nBukan berarti aku tidak percaya sama kamu.. \nTapi kamu selalu sabar untuk selalu menyakinkan aku bahwasannya pikiran berlebihan ku salah besar.\nTerimakasih wanitaku... Aku sayang kamu! Sangat sayang kamu.. 🥰\n\n-pin",
             9: "Akulah si orang yang tidak pede akan diri sendiri jika bertemu wanita, tapi kamu beda...\nKamu wanita yang tidak pernah memandang kelemahan ku..\n\nTerimakasih sudah mau melengkapi kelemahan ku...\nAku... bisa jadi aku... dan aku harap kamu bisa jadi kamu.\n\n\nMaaf jika aku egois..\nTapi akan kurubah dan ku perbaiki jika kamu mau.\nBilang! selalu billing saja apa yang membuatmu tidak nyaman.. atau ada hal yang harus ku rubah...\nAku ingin memberikan semua kesempurnaan ku untuk kamu seorang sayang. LOVE YOUU SO MUCH ! ❤🥺️\n\n-pin",
@@ -619,7 +511,7 @@
 
         const daftarGameMentah = {
             1: "🎲 [TRUTH] 🎲\n\nSebutkan satu sifat atau kebiasaan buruk aku yang menurut kamu paling aneh tapi sebenernya malah bikin kamu makin sayang? Jujur ya Bee! 🫣💙 \n\n*SS dan kirimkan untuk menjawab.",
-            2: "🎲 [DARE] 🎲\n\nTelepon aku sekarang juga via WA, terus langsung bilang 'Halo pacar gantengku' tanpa ketawa dalam 5 detik pertama! 📞😎",
+            2: "🎲 [DARE] 🎲\n\nTelepon aku sekarang juga via WA, terus langsung billing 'Halo pacar gantengku' tanpa ketawa dalam 5 detik pertama! 📞😎",
             3: "🎲 [TANTANGAN] 🎲\n\nKirim pap selfie kamu sekarang pakai filter paling estetik atau filter paling lucu yang ada di HP kamu! Mau lihat muka gemesnya hari ini 🌸✨",
             4: "🎲 [TRUTH]\n\nDi antara semua kado, chat, atau hal yang pernah aku kasih, mana yang paling membekas di hati kamu dan sering kamu inget-inget lagi? 🥺❤️",
             5: "🎲 [DARE]\n\nKirim pesan suara (Voice Note) ke WA sambil niruin suara hewan kesukaan kamu dengan cara paling manja! Ditunggu ya Bee! 🐱🐾",
@@ -629,6 +521,14 @@
             9: "🎲 [UNDIAN]\n\nSELAMAT!! Kamu dapet VOUCHER SPESIAL! Kamu berhak dapet 1 kali pelukan erat gratis plus aku temenin jajan apa aja yang kamu mau pas kita ketemu nanti! Simpan SS ini ya! 🎫🎁",
             10: "🎲 [TRUTH]\n\nApa lagu yang kalau kamu dengerin, langsung otomatis bikin kamu inget atau kangen sama aku? Sebutin 2 lagu + judulnya ya sayang! 🎧🖤"
         };
+
+        const daftarPesanPanic = [
+            "DORR!! ⚡ Kaget ga? Kaget dong! Ayoo bee, ambil air wudhu atau cuci muka dulu gih, pacar gantengmu memantau dari sini! 😎🔥",
+            "WARNING!! 🚨 Kadar keimutan Syavira menurun 5% karena ngantuk. Cepat minum air putihnya bee! I Love You 3000! ❤️",
+            "Ngantuk ya sayang? Coba cubit pipi kamu sendiri deh. Kalau sakit, berarti kamu ga mimpi kalau kamu punya pacar se-perhatian aku. Hehe.. 😜🧸",
+            "BEE BANGUN BEE!! 🗣️ Lagian semalem bobo jam berapa ih? Semangat kerjanya yaa kesayangan Apin, sedikit lagi pulang kok! 🌸✨",
+            "Cup cup.. yang ngantuk karena shift capek yaa.. 🥺 Sini aku peluk virtual dulu 🫂. Jangan lupa vitamin C-nya di minum biar seger lagi bee! 💙"
+        ];
 
         const daftarSurat = {};
         const daftarGame = {};
@@ -646,12 +546,9 @@
         }
 
         acakKonten(daftarSuratMentah, daftarSurat);
-        //Object.assign(daftarSurat, daftarSuratMentah);  // Script Surat Tidak Acak.
         acakKonten(daftarGameMentah, daftarGame);
 
-        const daftarFoto = { 
-            21: "N/A" 
-        };
+        const daftarFoto = { 21: "N/A" };
 
         const daftarPeringatanIdle = [
             "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
@@ -672,14 +569,13 @@
         let heartInterval = null; 
         let idleTimer = null;
 
-        // Penyimpanan data untuk download massal
         let keranjangSurat = []; 
         let currentOpenData = null; 
 
         function startEffects() {
             const music = document.getElementById("backsound");
             if (music.paused) {
-                music.play().catch(e => console.log("Autoplay ditolak"));
+                music.play().catch(e => console.log("Autoplay dinolak"));
             }
             if (!heartInterval) {
                 heartInterval = setInterval(createHeart, 1500);
@@ -720,7 +616,6 @@
             currentActiveSurat = "Surat_" + nomor;
             currentOpenData = { id: currentActiveSurat, teks: daftarSurat[nomor], nomor: nomor, isGame: false };
             
-            // Berubah warna amplop saat dibuka
             const el = document.getElementById("env-" + nomor);
             if(el) el.classList.add("opened");
             
@@ -772,7 +667,6 @@
             resetIdleTimer();
         }
 
-        // Fungsi baru untuk memasukkan surat yang sedang dibuka ke keranjang massal
         function simpanKeKeranjang() {
             if (!currentOpenData) return;
             
@@ -792,13 +686,13 @@
             }
         }
 
-        // Fungsi baru untuk merefresh komponen list keranjang di bawah halaman beserta tombol hapusnya
         function perbaruiTampilanKeranjang() {
             const wrapperList = document.getElementById("storageList");
             const tombolUnduhMassal = document.getElementById("btnMassDownload");
             wrapperList.innerHTML = "";
 
             if (keranjangSurat.length === 0) {
+                wrapperList.innerHTML = `<span style="color: #999; font-size: 13px;">Belum ada surat yang disimpan ke keranjang...</span>`;
                 tombolUnduhMassal.disabled = true;
                 return;
             }
@@ -812,7 +706,6 @@
                     itemDiv.classList.add("game-type");
                 }
 
-                // Menentukan nama label di dalam list
                 const namaTampilan = item.isGame ? "Game " + item.id.split("_")[1] : "Surat " + item.id.split("_")[1];
                 
                 itemDiv.innerHTML = `
@@ -823,13 +716,11 @@
             });
         }
 
-        // Fungsi baru untuk menghapus item pilihan dari dalam keranjang (fitur pilah-pilih)
         function hapusItemKeranjang(index) {
             keranjangSurat.splice(index, 1);
             perbaruiTampilanKeranjang();
         }
 
-        // Fungsi utama baru untuk mengonversi massal teks isi surat menjadi gambar, digabung ke ZIP dan didownload otomatis
         function unduhSemuaMassal() {
             if (keranjangSurat.length === 0) return;
 
@@ -845,11 +736,9 @@
             tombolUnduhMassal.disabled = true;
             tombolUnduhMassal.innerText = "Sedang Memproses Gambar... ⏳";
 
-            // Sembunyikan elemen dekorasi tombol di dalam pop-up selama pembuatan gambar
             tombolSimpan.style.visibility = "hidden";
             tombolTutup.style.visibility = "hidden";
             
-            // Set tanggal hari ini
             const hariIni = new Date();
             const dd = String(hariIni.getDate()).padStart(2, '0');
             const mm = String(hariIni.getMonth() + 1).padStart(2, '0'); 
@@ -857,9 +746,8 @@
             elemenTanggal.innerText = dd + "/" + mm + "/" + yyyy;
             elemenTanggal.style.display = "block";
 
-            // Buka overlay untuk background html2canvas render secara tersembunyi/aman
             overlayPopup.style.display = "flex";
-            overlayPopup.style.opacity = "0"; // Tidak terlihat di layar tetapi ada di DOM
+            overlayPopup.style.opacity = "0"; 
 
             const zip = new JSZip();
             const targetRender = document.getElementById("captureArea");
@@ -867,7 +755,6 @@
 
             keranjangSurat.forEach((item) => {
                 urutanProses = urutanProses.then(() => {
-                    // Isi data popup secara bergantian di balik layar
                     isiSurat.innerText = item.teks;
                     if (!item.isGame && daftarFoto[item.nomor] && daftarFoto[item.nomor] !== "N/A") {
                         komponenFoto.src = daftarFoto[item.nomor];
@@ -876,7 +763,6 @@
                         komponenFoto.style.display = "none";
                     }
 
-                    // Menunggu render html2canvas per file surat
                     return html2canvas(targetRender, {
                         backgroundColor: "#fff0f5",
                         borderRadius: 20,
@@ -890,24 +776,20 @@
                 });
             });
 
-            // Setelah semua surat selesai dirender menjadi gambar
             urutanProses.then(() => {
                 return zip.generateAsync({ type: "blob" });
             }).then(isiZip => {
-                // Restore status popup asal
                 overlayPopup.style.display = "none";
                 overlayPopup.style.opacity = "1";
                 tombolSimpan.style.visibility = "visible";
                 tombolTutup.style.visibility = "visible";
                 elemenTanggal.style.display = "none";
 
-                // Download file zip secara otomatis ke device
                 const linkZip = document.createElement("a");
                 linkZip.download = "Kumpulan_Surat_Spesial_Bee.zip";
                 linkZip.href = URL.createObjectURL(isiZip);
                 linkZip.click();
 
-                // Kembalikan tombol download massal ke posisi semula
                 tombolUnduhMassal.disabled = false;
                 tombolUnduhMassal.innerText = teksAsliTombol;
             }).catch(err => {
@@ -922,6 +804,31 @@
             });
         }
 
+        // --- FITUR PANIC BUTTON ---
+        function pemicuDaruratNgantuk() {
+            startEffects();
+            const overlay = document.getElementById("panicOverlay");
+            const teks = document.getElementById("teksPanic");
+            
+            const pesanAcak = daftarPesanPanic[Math.floor(Math.random() * daftarPesanPanic.length)];
+            teks.innerHTML = pesanAcak;
+            
+            overlay.style.display = "flex";
+            setTimeout(() => { overlay.classList.add("show"); }, 10);
+            
+            document.body.classList.add("goyang-layar");
+            setTimeout(() => {
+                document.body.classList.remove("goyang-layar");
+            }, 1000);
+        }
+
+        function tutupPanic() {
+            const overlay = document.getElementById("panicOverlay");
+            overlay.classList.remove("show");
+            setTimeout(() => { overlay.style.display = "none"; }, 400);
+            resetIdleTimer();
+        }
+
         function resetIdleTimer() {
             clearTimeout(idleTimer);
             if (document.getElementById("galleryBox").style.display === "block") {
@@ -930,7 +837,9 @@
         }
 
         function munculkanWarning() {
-            if (document.getElementById("popupOverlay").classList.contains("show")) {
+            if (document.getElementById("popupOverlay").classList.contains("show") || 
+                document.getElementById("panicOverlay").classList.contains("show") ||
+                document.getElementById("warningOverlay").classList.contains("show")) {
                 resetIdleTimer();
                 return;
             }
