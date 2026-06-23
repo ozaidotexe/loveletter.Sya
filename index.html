@@ -856,11 +856,15 @@
             const el = document.getElementById("game-" + nomor);
             if(el) el.classList.add("opened");
             
-            // JIKA MEMBUKA GAME NOMOR 9, MASUK KE MODUL SPIN WHEEL
-            if(nomor == 9) {
-                bukaWheel();
+            // --- LOGIKA ACAK SPIN WHEEL ---
+            // Mengatur peluang 40% (0.4) untuk memicu Spin Wheel di amplop mana pun yang diklik.
+            // (Ganti jadi 0.5 jika ingin peluang 50%, atau ganti 'true' jika ingin PASTI keluar).
+            const peluangSpinWheel = Math.random() < 0.4;
+
+            if (peluangSpinWheel) {
+                bukaWheel(); // Buka Spin Wheel jika beruntung
             } else {
-                prosesBukaPopup(daftarGame[nomor], nomor, true);
+                prosesBukaPopup(daftarGame[nomor], nomor, true); // Buka game biasa jika tidak memicu roda
             }
         }
 
@@ -928,28 +932,29 @@
             tombol.disabled = true;
             tombol.innerText = "Berputar... 🤫";
 
-            // Mengambil indeks hadiah secara acak (0-5)
-            const indeksTerpilih = Math.floor(Math.random() * listHadiahWheel.length);
+            // 1. Mengambil indeks hadiah secara acak berdasarkan total jumlah hadiah di list
+            const totalSektor = listHadiahWheel.length;
+            const indeksTerpilih = Math.floor(Math.random() * totalSektor);
             
-            // Perhitungan Derajat: Minimal 5 putaran penuh (1800 deg) + sisa sudut target sektor.
-            // Karena conic-gradient kita punya 6 sektor warna, maka tiap sektor = 60 derajat.
-            const ukuranSektor = 60;
+            // 2. Perhitungan Derajat yang Dinamis agar putaran roda akurat sesuai jumlah hadiah
+            const ukuranSektor = 360 / totalSektor;
             const sudutTarget = 1800 + (indeksTerpilih * ukuranSektor) + (ukuranSektor / 2);
 
-            // Putar Roda
+            // 3. Mulai Putar Roda
             roda.style.transform = `rotate(${sudutTarget}deg)`;
 
             // Tunggu animasi melambat selesai (4 Detik)
             setTimeout(() => {
                 const hadiahDapatkan = listHadiahWheel[indeksTerpilih];
                 
-                // Perbarui teks game nomor 9 secara dinamis berdasarkan hasil roda
-                daftarGame[9] = `✨🎁 [HASIL SPIN WHEEL] 🎁✨\n\nSELAMAT BEE!! Kamu baru saja memutar roda berhadiah dan berhasil mendapatkan:\n\n🎉 ${hadiahDapatkan} 🎉\n\nYuk klik tombol Simpan di bawah ini biar masuk ke keranjang suratmu sayang! 🥰❤️`;
-                currentOpenData.teks = daftarGame[9];
+                // MENGUBAH PENYIMPANAN MENJADI DINAMIS (Mengikuti nomor amplop game yang sedang dibuka Syavira)
+                const nomorGameAktif = currentOpenData.nomor;
+                daftarGame[nomorGameAktif] = `✨🎁 [HASIL SPIN WHEEL] 🎁✨\n\nSELAMAT BEE!! Kamu baru saja memutar roda berhadiah dan berhasil mendapatkan:\n\n🎉 ${hadiahDapatkan} 🎉\n\nYuk klik tombol Simpan di bawah ini biar masuk ke keranjang suratmu sayang! 🥰❤️`;
+                currentOpenData.teks = daftarGame[nomorGameAktif];
 
-                // Tutup roda putar lalu langsung lempar hasilnya ke popup capture agar bisa disimpan/didownload
+                // Tutup roda putar lalu langsung tampilkan hasilnya ke popup utama agar bisa disimpan ke keranjang
                 tutupWheel();
-                prosesBukaPopup(daftarGame[9], 9, true);
+                prosesBukaPopup(daftarGame[nomorGameAktif], nomorGameAktif, true);
             }, 4000);
         }
         /* ------------------------------------------------- */
