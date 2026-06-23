@@ -855,13 +855,13 @@
             const el = document.getElementById("game-" + nomor);
             if(el) el.classList.add("opened");
             
-            // JIKA MEMBUKA GAME NOMOR 9, MASUK KE MODUL SPIN WHEEL
-            if(nomor == 9) {
-                bukaWheel();
-            } else {
-                prosesBukaPopup(daftarGame[nomor], nomor, true);
-            }
-        }
+            // Membuat angka acak antara 0 sampai 1
+			// Jika angka kurang dari 0.3 (peluang 30%), Spin Wheel akan muncul!
+            if (Math.random() < 0.4) { 
+    			bukaWheel();
+			} else {
+			    prosesBukaPopup(daftarGame[nomor], nomor, true);
+			}
 
         function prosesBukaPopup(teks, nomor, isGame = false) {
             const overlay = document.getElementById("popupOverlay");
