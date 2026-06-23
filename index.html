@@ -482,6 +482,82 @@
             box-shadow: none;
             transform: none;
         }
+
+        /* STYLING KHUSUS SPIN WHEEL */
+        .wheel-box {
+            max-width: 420px;
+            text-align: center;
+            background: #1f2833;
+            border: 4px solid #ff7597;
+            box-shadow: 0 10px 30px rgba(255, 117, 151, 0.4);
+        }
+        .wheel-box h2 {
+            color: #ff7597;
+            font-family: 'Fredoka', sans-serif;
+            margin-bottom: 5px;
+            text-shadow: 0 0 8px rgba(255, 117, 151, 0.5);
+        }
+        .wheel-box p {
+            color: #66fcf1;
+            font-size: 14px;
+            padding: 0 10px;
+        }
+        .wheel-container {
+            position: relative;
+            width: 280px;
+            height: 280px;
+            margin: 25px auto;
+        }
+        .wheel-pointer {
+            position: absolute;
+            top: -22px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 36px;
+            z-index: 10;
+        }
+        .wheel {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 6px solid #ff7597;
+            box-shadow: 0 0 20px rgba(255, 117, 151, 0.5);
+            box-sizing: border-box;
+            background: conic-gradient(
+                #ff7597 0deg 60deg, 
+                #8e44ad 60deg 120deg, 
+                #45a29e 120deg 180deg, 
+                #ff4a75 180deg 240deg, 
+                #9b59b6 240deg 300deg, 
+                #398c89 300deg 360deg
+            );
+            transition: transform 4s cubic-bezier(0.1, 0.8, 0.2, 1);
+        }
+        #btnSpin {
+            background-color: #ff7597;
+            color: #0b0c10;
+            border: none;
+            padding: 12px 30px;
+            font-size: 16px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+            box-shadow: 0 4px 12px rgba(255, 117, 151, 0.4);
+            transition: 0.3s;
+            margin-bottom: 10px;
+        }
+        #btnSpin:hover {
+            transform: scale(1.05);
+            background-color: #ff4a75;
+        }
+        #btnSpin:disabled {
+            background-color: #555;
+            color: #888;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
     </style>
 </head>
 <body>
@@ -555,6 +631,7 @@
         </div>
     </div>
 
+    <!-- POPUP OVERLAY UTAMA (SURAT & GAME) -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-letter" id="captureArea">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
@@ -568,6 +645,23 @@
             <button class="btn-download" id="btnDownload" onclick="simpanKeKeranjang()">Simpan Surat 🛒</button>
             <br>
             <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
+        </div>
+    </div>
+
+    <!-- POPUP OVERLAY KHUSUS UNTUK SPIN WHEEL GAME NOMOR 9 -->
+    <div class="popup-overlay" id="wheelOverlay">
+        <div class="popup-letter wheel-box">
+            <h2>✨ SPIN WHEEL BERHADIAH ✨</h2>
+            <p>Khusus buat sayangku, yuk putar rodanya untuk tentukan hadiah spesialmu hari ini! 🎁</p>
+            
+            <div class="wheel-container">
+                <div class="wheel-pointer">👇</div>
+                <div id="spinWheel" class="wheel"></div>
+            </div>
+
+            <button id="btnSpin" onclick="putarRoda()">PUTAR SEKARANG 🎡</button>
+            <br>
+            <button class="btn-close" onclick="tutupWheel()">❌ Tutup</button>
         </div>
     </div>
 
@@ -600,8 +694,8 @@
             5: "POV aku kalau liat video video atau pun pap yang kamu kasih ke aku setiap berkabar. 🥺❤️\n\n-pin",
             6: "Dear my hunny,\n\n\nMAU DI KISS...\nMAU DI PEYUKK...\nMAU SERUMAH...\n\nLOP YU CO MAT !! 🥺❤️\n\n-pin",
             7: "LOVE YOU SO MUCH....\nLOVE YOU SO MUCH....\nLOVE YOU SO MUCH....\nLOVE YOU SO MUCH....\nLOVE YOU SO MUCH....\nLOVE YOU SO MUCH....\n\nApa bedanya kamu sama DPR?\nYAP! BENAR!...\nKalau DPR itu Dewan Perwakilan Rakyat, \nKalau kamu Dewan and Only !! \n-pin",
-            8: "\n\n-pin",
-            9: "\n\n-pin",
+            8: "BEE! CEMANGAT KERJANYA !!\nHARUS FOKUS KERJANYA !!\nINGET DISINI ADA YANG LAGI KANGEN NIH... PENGEN DEKET DEKET TERUS BAWAANNYA...\nNANTI AKU CULIK KAMU AJA KALI YA PAS LAGI BAK..\n\nINI TIDAK TERTAHANKAN! JAM 06.08 RINDU NYA SETENGAH ABAT DARI UBUN-UBUN SAMPE UJUNG JEMPOL!\N LOP YUU CO MAT.... 🥺❤️\n\n-pin",
+            9: "Aku suka banget, baca tulisan tangan kamu.\nHari ini ga apa ga dapet,\nmasih bisa liat tulisan mu yang kemarin kemarin kok.. 🥰🥰\n\n-pin",
             10: "\n\n-pin",
             11: "\n\n-pin",
             12: "\n\n-pin",
@@ -614,21 +708,45 @@
             19: "\n\n-pin",
             20: "\n\n-pin",
         };
-
-	// HISTORY EMOT : 🥺❤️🎁✨🧸💙🖤👇🫣🐱🐾😂🔥🤫💋🎧📝😚🥰        
-        
+		
+	// HISTORY EMOT : 🥺❤️🎁✨🧸💙🖤👇🫣🐱🐾😂🔥🤫💋🎧📝😚
+	
         const daftarGameMentah = {
-            1: "🎲 [TRUTH] 🎲\n\nSebutkan satu sifat atau kebiasaan buruk aku yang menurut kamu paling aneh tapi sebenernya malah bikin kamu makin sayang? Jujur ya Bee! 🫣💙 \n\n*SS dan kirimkan untuk menjawab.",
-            2: "🎲 [DARE] 🎲\n\nKirim VN (Voice Note) bisikan ke WA selama minimal 5 detik, isinya kamu harus niruin cara aku kalau lagi manja atau lagi manggil kamu pas kangen! Ditunggu bee! 🤫💋",
-            3: "🎲 [TANTANGAN] 🎲\n\nKirim pap selfie kamu sekarang pakai filter paling estetik atau filter paling lucu yang ada di HP kamu! Mau lihat muka gemesnya hari ini 🌸✨",
-            4: "🎲 [TRUTH]\n\nDi antara semua kado, chat, atau hal yang pernah aku kasih, mana yang paling membekas di hati kamu dan sering kamu inget-inget lagi? 🥺❤️",
-            5: "🎲 [DARE]\n\nKirim pesan suara (Voice Note) ke WA sambil niruin suara hewan kesukaan kamu dengan cara paling manja! Ditunggu ya Bee! 🐱🐾",
-            6: "🎲 [DARE]\n\nGanti nama kontak WA aku di HP kamu jadi nama panggilan paling manja atau paling alay versi kamu, terus SS buktinya kirim ke aku sekarang! 😂🔥",
-            7: "🎲 [TRUTH]\n\nKalau tiba-tiba kita dapet libur panjang bareng, tempat mana yang paling pengen kamu kunjungi berdua aja sama aku? Ceritain dong Bee..",
-            8: "🎲 [DARE]\n\nKirim pap teks tulisan tangan kamu di kertas kosong yang tulisannya 'I LOVE YOU PIN!' terus kasih emot love sekreatif mungkin! 📝❤️",
-            9: "✨🎁 [HADIAH] 🎁✨\n\nSELAMAT!! Kamu dapet VOUCHER SPESIAL! Kamu berhak dapet 1 kali pelukan erat gratis plus aku temenin jajan apa aja yang kamu mau pas kita ketemu nanti! Simpan SS ini ya! 🎫🎁",
-            10: "🎲 [TRUTH]\n\nApa lagu yang kalau kamu dengerin, langsung otomatis bikin kamu inget atau kangen sama aku? Sebutin 2 lagu + judulnya ya sayang! 🎧🖤"
+            1: "🎲 [TRUTH] 🎲\n\nSebutkan satu momen receh atau gak penting dari aku, tapi entah kenapa malah bikin kamu sadar kalau kamu beneran jatuh cinta sama aku? Jujur ya Bee! 🥺❤️\n\n*SS dan kirimkan untuk menjawab.",
+			2: "🎲 [TRUTH] 🎲\n\nSebutkan satu hal atau hobi kamu yang paling kamu suka, yang pengen banget kamu kenalin atau ajarin ke aku biar kita bisa ngelakuin itu bareng-bareng? 🎮🌸\n\n*SS dan kirimkan untuk menjawab.",
+			3: "🎲 [DARE] 🎲\n\nKirim VN (Voice Note) ke WA sambil ngegombalin aku pakai gombalan paling garing atau paling maut yang kamu tahu sampai aku ketawa! Gak boleh gak lucu ya Bee! 😜🔥",
+			4: "🎲 [DARE] 🎲\n\nSimpan pesan ini, Oneday kamu harus masakkin aku apa saja terus suapin aku sambil kecup pipi aku x3 😜🔥\n\n*WAJIB DILAKUKAN!",
+			5: "🎲 [DARE] 🎲\n\nTolong foto kirim 3 Gambar ke WA ku sekarang dengan foto pap kamu!\n\n*WAJIB foto yang baru di foto ya! \n\n*WAJIB DILAKUKAN!",
+			6: "🎲 [TRUTH] 🎲\n\nAda gak sih satu mimpi atau bayangan masa depan tentang kita berdua yang paling sering kamu pikirin sebelum tidur? Ceritain dong sayang.. 🖤✨",
+			7:
         };
+
+        // Kumpulan Hadiah untuk Roda Berputar (Spin Wheel)
+        const listHadiahWheel = [
+            "🎁 Voucher kamu yang harus kasih pelukan",
+			"🎫 Kamu harus popo cowo kamu x30,Claim x1 cowo kamu juga Bebas request mau dimana aja!",
+			"🎫 Kamu harus peluk cowo kamu 30 detik,Claim x1 cowo kamu juga Bebas request kapan saja!",
+			"🫣 Zonk!!",
+			"🫣 Zonk!!",
+			"🫣 Zonk!!",
+            "✨ JACKPOT! Bebas minta apapun sebanyak x1 permintaan! ✨",
+            "🫣 Zonk!!",
+			"🫣 Zonk!!",
+			"🫣 Zonk!!",
+            "🧸 Bebas Marah / Ngambek ke aku 24 Jam!",
+			"🫣 Zonk!!",
+			"🫣 Zonk!!",
+			"🫣 Zonk!!",
+            "🎫 Voucher Free Hug 30 detik, Claim x1 bebas kapan saja!",
+			"🫣 Zonk!!",
+			"🫣 Zonk!!",
+			"🫣 Zonk!!",
+			"🎫 Voucher Free popo x30 bebas request dimanapun!",
+			"🫣 Zonk!!",
+			"🫣 Zonk!!",
+			"🫣 Zonk!!",
+			"🫣 Zonk!!",
+        ];
 
         const daftarSurat = {};
         const daftarGame = {};
@@ -650,16 +768,14 @@
         acakKonten(daftarGameMentah, daftarGame);
 
         const daftarFoto = { 
-            5: "1.jpg"
-			6: "2.jpg"
-			7: "3.jpg"
+            21: "N/A" 
         };
 
         const daftarPeringatanIdle = [
             "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
             "WARNING!!✨ Hati-hati ngantuk ya sayangku! Kalau ngantuk dan sudah senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
             "Jangan lupa diminum airnya ya sayang, Kalau sudah senggang yuk baca lagi surat nya! 🥰🌸",
-            "Hey! hati-hati kalau ngantuk.. <br>ambil BAK aja ya atau kamu bisa lanjut baca suratnya ya bee..🥰💙😚",
+            "Hey! tiati kalau ngantuk ambil BAK aja ya atau kamu bisa lanjut baca suratnya ya bee..🥰💙😚",
             "Dari pada diem terus pikiran kosong, mending mikirin aku aja sayang! hehe.. 😚",
             "Jangan lupa, untuk hastag #linkdone selalu di pakai ya sayangku... LOVE YOU BEE !!! 😚",
             "Dorrr! ✨<br>Rame gak bee? <br>Cuma mau bilag aja, Semangat ya shiftnya!🔥 <br>Jangan lupa diminum air nya ya! <br>Love You So Much Bee! 😚🌸",
@@ -736,7 +852,12 @@
             const el = document.getElementById("game-" + nomor);
             if(el) el.classList.add("opened");
             
-            prosesBukaPopup(daftarGame[nomor], nomor, true);
+            // JIKA MEMBUKA GAME NOMOR 9, MASUK KE MODUL SPIN WHEEL
+            if(nomor == 9) {
+                bukaWheel();
+            } else {
+                prosesBukaPopup(daftarGame[nomor], nomor, true);
+            }
         }
 
         function prosesBukaPopup(teks, nomor, isGame = false) {
@@ -773,6 +894,61 @@
             setTimeout(() => { overlay.style.display = "none"; }, 400);
             resetIdleTimer();
         }
+
+        /* --- FUNGSI KONTROL LOGIKA SPIN WHEEL (GAME 9) --- */
+        function bukaWheel() {
+            const overlay = document.getElementById("wheelOverlay");
+            const roda = document.getElementById("spinWheel");
+            const tombol = document.getElementById("btnSpin");
+            
+            // Reset state putaran roda & teks tombol saat dibuka kembali
+            roda.style.transform = "rotate(0deg)";
+            tombol.disabled = false;
+            tombol.innerText = "PUTAR SEKARANG 🎡";
+
+            overlay.style.display = "flex";
+            setTimeout(() => { overlay.classList.add("show"); }, 10);
+        }
+
+        function tutupWheel() {
+            const overlay = document.getElementById("wheelOverlay");
+            overlay.classList.remove("show");
+            setTimeout(() => { overlay.style.display = "none"; }, 400);
+            resetIdleTimer();
+        }
+
+        function putarRoda() {
+            const roda = document.getElementById("spinWheel");
+            const tombol = document.getElementById("btnSpin");
+            
+            tombol.disabled = true;
+            tombol.innerText = "Berputar... 🤫";
+
+            // Mengambil indeks hadiah secara acak (0-5)
+            const indeksTerpilih = Math.floor(Math.random() * listHadiahWheel.length);
+            
+            // Perhitungan Derajat: Minimal 5 putaran penuh (1800 deg) + sisa sudut target sektor.
+            // Karena conic-gradient kita punya 6 sektor warna, maka tiap sektor = 60 derajat.
+            const ukuranSektor = 60;
+            const sudutTarget = 1800 + (indeksTerpilih * ukuranSektor) + (ukuranSektor / 2);
+
+            // Putar Roda
+            roda.style.transform = `rotate(${sudutTarget}deg)`;
+
+            // Tunggu animasi melambat selesai (4 Detik)
+            setTimeout(() => {
+                const hadiahDapatkan = listHadiahWheel[indeksTerpilih];
+                
+                // Perbarui teks game nomor 9 secara dinamis berdasarkan hasil roda
+                daftarGame[9] = `✨🎁 [HASIL SPIN WHEEL] 🎁✨\n\nSELAMAT BEE!! Kamu baru saja memutar roda berhadiah dan berhasil mendapatkan:\n\n🎉 ${hadiahDapatkan} 🎉\n\nYuk klik tombol Simpan di bawah ini biar masuk ke keranjang suratmu sayang! 🥰❤️`;
+                currentOpenData.teks = daftarGame[9];
+
+                // Tutup roda putar lalu langsung lempar hasilnya ke popup capture agar bisa disimpan/didownload
+                tutupWheel();
+                prosesBukaPopup(daftarGame[9], 9, true);
+            }, 4000);
+        }
+        /* ------------------------------------------------- */
 
         // Fungsi baru untuk memasukkan surat yang sedang dibuka ke keranjang massal
         function simpanKeKeranjang() {
@@ -932,7 +1108,9 @@
         }
 
         function munculkanWarning() {
-            if (document.getElementById("popupOverlay").classList.contains("show")) {
+            // Jika ada popup surat atau popup roda berputar yang terbuka, jangan trigger idle warning
+            if (document.getElementById("popupOverlay").classList.contains("show") || 
+                document.getElementById("wheelOverlay").classList.contains("show")) {
                 resetIdleTimer();
                 return;
             }
