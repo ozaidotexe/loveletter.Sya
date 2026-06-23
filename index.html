@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Spesial untuk Syavira Dwi Dinanti ✨❤️</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Tambahan JSZip untuk fitur download massal menjadi ZIP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap');
@@ -597,10 +596,8 @@
                 <div class="envelope-card" id="env-20" onclick="bukaSurat(20)"><div class="envelope-label">20</div></div>
             </div>
 
-            <!-- PEMBATAS BARIS BARU -->
             <div class="section-divider"></div>
 
-            <!-- BARIS 2: TRUTH OR DARE -->
             <h1 class="gallery-title" style="color: #9b59b6;">Truth, Dare, or Mini Challenge! 🎲✨</h1>
             <p class="gallery-subtitle" style="color: #a29bfe;">Isinya acak! Coba pilih satu amplop undian di bawah ini dan lakuin tantangannya ya Bee!</p>
 
@@ -617,10 +614,8 @@
                 <div class="envelope-card envelope-game" id="game-10" onclick="bukaGame(10)"><div class="envelope-label">J</div></div>
             </div>
 
-            <!-- PEMBATAS BARIS BARU UNTUK AREA PENYIMPANAN MASSAL -->
             <div class="section-divider" style="border-top-color: #66fcf1;"></div>
 
-            <!-- KOTAK PENYIMPANAN KHUSUS UNTUK DOWNLOAD MASSAL -->
             <div class="storage-box">
                 <h2 class="storage-title">Keranjang Surat Pilihanmu 🛒</h2>
                 <p class="storage-subtitle">Surat yang kamu kumpulkan akan muncul di sini. Kamu bisa memilahnya sebelum didownload sekaligus!</p>
@@ -631,7 +626,6 @@
         </div>
     </div>
 
-    <!-- POPUP OVERLAY UTAMA (SURAT & GAME) -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-letter" id="captureArea">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
@@ -641,14 +635,12 @@
             <div class="popup-date" id="tanggalDownload"></div>
 
             <br>
-            <!-- Merubah tombol download satuan menjadi simpan ke keranjang massal -->
             <button class="btn-download" id="btnDownload" onclick="simpanKeKeranjang()">Simpan Surat 🛒</button>
             <br>
             <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
         </div>
     </div>
 
-    <!-- POPUP OVERLAY KHUSUS UNTUK SPIN WHEEL GAME NOMOR 9 -->
     <div class="popup-overlay" id="wheelOverlay">
         <div class="popup-letter wheel-box">
             <h2>✨ SPIN WHEEL BERHADIAH ✨</h2>
@@ -665,7 +657,6 @@
         </div>
     </div>
 
-    <!-- POP-UP OVERLAY UNTUK PERINGATAN IDLE -->
     <div class="popup-overlay" id="warningOverlay">
         <div class="popup-warning">
             <div class="popup-warning-text" id="warningText">Pesan Peringatan...</div>
@@ -676,16 +667,20 @@
     <script>
         const daftarPesan = [
             "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
-            "Special Song for you, <br>LANY - ILYSB",
+            "Special song for you LANY - ILYSB",
+            "Hari ini adalah hari ke-3, <br>menulis surat special untuk kekasih ku yang ku sayang..",
             "Aku selalu berharap, harimu selalu indah sayangku..",
             "Semoga surat-surat ini dapat temenin kamu di saat shift yang sayangku..🥺❤️",
-            "Pilih surat yang kamu sukai dan download di Hape atau di PC langsung ya..",
-            "Untuk sementara, aku sudah siapkan Gdrive sendiri agar kamu bisa download ya...🥺💙",
-			"Dipassword, jadi ga bisa sembarang orang buka Winrarnya deh... ✨❤️",
-            "Setelah makan,jangan lupa minum Vitamin C ya bee..🧸🖤",
+            "Fitur baru sudah ku tambahkan, jadi kamu bisa langsung download semua..❤️❤️",
+            "Pilih surat yang kamu sukai and download di Hape atau di PC langsung ya..",
+            "Jangan lupa setelah makan minum vitamin C ya bee..🧸🖤",
+            "Jangan lupa diminum airnya ya bee..🧸💙",
+            "LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...<br>LOVE YOU SO MUCH...",
             "Silakan klik dibawah buat masuk ke Surat Specialnya ya Bee! 👇❤️"
         ];
 
+	// HISTORY EMOT : 🥺❤️🎁✨🧸💙🖤👇🫣🐱🐾😂🔥🤫💋🎧📝😚
+		
         const daftarSuratMentah = {
             1: "Entah kamu dapet ini surat diurutan ke berapa sayang, tapi aku mau kasih tau ke kamu bahwasannya aku ini aku takut OVT, \nentah kenapa aku OT ke kamu lagi dijam segini.\nMaafkan aku dijam 04.17 pagi ini aku malah overthinking!\n\nKamu bantu aku yakinkan ya sayang,jangan lelah please..\nTerimakasih sudah sabar..\nTerimakasih mau yakinkan aku terus...\nTerimakasih tidak pernah cape..\nTerimaksih selalu disisi aku...\nSusah yah kalau jauh dari kamu bee..susah banget. 🥺🥺\n\n-pin",
             2: "Bee...!!\nAKU KANGEN IHHH SAMA KAMU ....\NAKU SEDIKIT GELISAH TAU TIDUR...\N10-8\N10-8\N10-8\N10-8\n\nBee! Jangan cepet bete ya kalau aku lagi rewel..\nJangan pernah bosen yakinin aku ya , kalau aku lagi OVT..\nJangan pernah takut ya kalau aku lagi badmood...\nAku si ga tau lagi si harus apa kalau lagi ga sama kamu...\nCandu parah.. Susah parah.. kalau jauh dari kamu...\nLOVE YOU BEE ! 🥺😚\n\n-pin",
@@ -709,8 +704,7 @@
             20: "\n\n-pin",
         };
 		
-	// HISTORY EMOT : 🥺❤️🎁✨🧸💙🖤👇🫣🐱🐾😂🔥🤫💋🎧📝😚
-	
+        // DATA GAME YANG SUDAH DIPERBARUI SESUAI REQUEST KAMU 👍
         const daftarGameMentah = {
             1: "🎲 [TRUTH] 🎲\n\nSebutkan satu momen receh atau gak penting dari aku, tapi entah kenapa malah bikin kamu sadar kalau kamu beneran jatuh cinta sama aku? Jujur ya Bee! 🥺❤️\n\n*SS dan kirimkan untuk menjawab.",
 			2: "🎲 [TRUTH] 🎲\n\nSebutkan satu hal atau hobi kamu yang paling kamu suka, yang pengen banget kamu kenalin atau ajarin ke aku biar kita bisa ngelakuin itu bareng-bareng? 🎮🌸\n\n*SS dan kirimkan untuk menjawab.",
@@ -722,7 +716,6 @@
 			8: "none",
 			9: "🎁 [HADIAH SPESIAL] 🎁\n\nKamu berhak mendapatkan kejutan! Putar rodanya sekarang, Bee! ✨🎡", 
 			10: "none"
-        };
 
         // Kumpulan Hadiah untuk Roda Berputar (Spin Wheel)
         const listHadiahWheel = [
@@ -767,11 +760,12 @@
         }
 
         acakKonten(daftarSuratMentah, daftarSurat);
-        //Object.assign(daftarSurat, daftarSuratMentah);  // Script Surat Tidak Acak.
         acakKonten(daftarGameMentah, daftarGame);
 
         const daftarFoto = { 
-            21: "N/A" 
+            5: "1.jpg"
+			6: "2.jpg"
+			7: "3.jpg"
         };
 
         const daftarPeringatanIdle = [
@@ -855,13 +849,14 @@
             const el = document.getElementById("game-" + nomor);
             if(el) el.classList.add("opened");
             
-            // Membuat angka acak antara 0 sampai 1
-			// Jika angka kurang dari 0.3 (peluang 30%), Spin Wheel akan muncul!
-            if (Math.random() < 0.4) { 
-    			bukaWheel();
-			} else {
-			    prosesBukaPopup(daftarGame[nomor], nomor, true);
-			}
+            // LOGIKA ACAK JALANNYA SPIN WHEEL 🎯
+            // Diatur menggunakan Math.random(). Peluang 0.3 berarti punya probabilitas kemunculan sebesar 30% di amplop mana saja.
+            if(Math.random() < 0.3) {
+                bukaWheel();
+            } else {
+                prosesBukaPopup(daftarGame[nomor], nomor, true);
+            }
+        }
 
         function prosesBukaPopup(teks, nomor, isGame = false) {
             const overlay = document.getElementById("popupOverlay");
@@ -898,13 +893,12 @@
             resetIdleTimer();
         }
 
-        /* --- FUNGSI KONTROL LOGIKA SPIN WHEEL (GAME 9) --- */
+        /* --- FUNGSI KONTROL LOGIKA SPIN WHEEL --- */
         function bukaWheel() {
             const overlay = document.getElementById("wheelOverlay");
             const roda = document.getElementById("spinWheel");
             const tombol = document.getElementById("btnSpin");
             
-            // Reset state putaran roda & teks tombol saat dibuka kembali
             roda.style.transform = "rotate(0deg)";
             tombol.disabled = false;
             tombol.innerText = "PUTAR SEKARANG 🎡";
@@ -927,33 +921,24 @@
             tombol.disabled = true;
             tombol.innerText = "Berputar... 🤫";
 
-            // Mengambil indeks hadiah secara acak (0-5)
             const indeksTerpilih = Math.floor(Math.random() * listHadiahWheel.length);
-            
-            // Perhitungan Derajat: Minimal 5 putaran penuh (1800 deg) + sisa sudut target sektor.
-            // Karena conic-gradient kita punya 6 sektor warna, maka tiap sektor = 60 derajat.
             const ukuranSektor = 60;
             const sudutTarget = 1800 + (indeksTerpilih * ukuranSektor) + (ukuranSektor / 2);
 
-            // Putar Roda
             roda.style.transform = `rotate(${sudutTarget}deg)`;
 
-            // Tunggu animasi melambat selesai (4 Detik)
             setTimeout(() => {
                 const hadiahDapatkan = listHadiahWheel[indeksTerpilih];
                 
-                // Perbarui teks game nomor 9 secara dinamis berdasarkan hasil roda
-                daftarGame[9] = `✨🎁 [HASIL SPIN WHEEL] 🎁✨\n\nSELAMAT BEE!! Kamu baru saja memutar roda berhadiah dan berhasil mendapatkan:\n\n🎉 ${hadiahDapatkan} 🎉\n\nYuk klik tombol Simpan di bawah ini biar masuk ke keranjang suratmu sayang! 🥰❤️`;
-                currentOpenData.teks = daftarGame[9];
+                // Menyuntikkan hasil spin wheel ke teks popup secara dinamis
+                const hasilTeksHadiah = `✨🎁 [HASIL SPIN WHEEL] 🎁✨\n\nSELAMAT BEE!! Kamu baru saja memutar roda berhadiah dan berhasil mendapatkan:\n\n🎉 ${hadiahDapatkan} 🎉\n\nYuk klik tombol Simpan di bawah ini biar masuk ke keranjang suratmu sayang! 🥰❤️`;
+                currentOpenData.teks = hasilTeksHadiah;
 
-                // Tutup roda putar lalu langsung lempar hasilnya ke popup capture agar bisa disimpan/didownload
                 tutupWheel();
-                prosesBukaPopup(daftarGame[9], 9, true);
+                prosesBukaPopup(hasilTeksHadiah, currentOpenData.nomor, true);
             }, 4000);
         }
-        /* ------------------------------------------------- */
 
-        // Fungsi baru untuk memasukkan surat yang sedang dibuka ke keranjang massal
         function simpanKeKeranjang() {
             if (!currentOpenData) return;
             
@@ -973,7 +958,6 @@
             }
         }
 
-        // Fungsi baru untuk merefresh komponen list keranjang di bawah halaman beserta tombol hapusnya
         function perbaruiTampilanKeranjang() {
             const wrapperList = document.getElementById("storageList");
             const tombolUnduhMassal = document.getElementById("btnMassDownload");
@@ -993,7 +977,6 @@
                     itemDiv.classList.add("game-type");
                 }
 
-                // Menentukan nama label di dalam list
                 const namaTampilan = item.isGame ? "Game " + item.id.split("_")[1] : "Surat " + item.id.split("_")[1];
                 
                 itemDiv.innerHTML = `
@@ -1004,13 +987,11 @@
             });
         }
 
-        // Fungsi baru untuk menghapus item pilihan dari dalam keranjang (fitur pilah-pilih)
         function hapusItemKeranjang(index) {
             keranjangSurat.splice(index, 1);
             perbaruiTampilanKeranjang();
         }
 
-        // Fungsi utama baru untuk mengonversi massal teks isi surat menjadi gambar, digabung ke ZIP dan didownload otomatis
         function unduhSemuaMassal() {
             if (keranjangSurat.length === 0) return;
 
@@ -1026,11 +1007,9 @@
             tombolUnduhMassal.disabled = true;
             tombolUnduhMassal.innerText = "Sedang Memproses Gambar... ⏳";
 
-            // Sembunyikan elemen dekorasi tombol di dalam pop-up selama pembuatan gambar
             tombolSimpan.style.visibility = "hidden";
             tombolTutup.style.visibility = "hidden";
             
-            // Set tanggal hari ini
             const hariIni = new Date();
             const dd = String(hariIni.getDate()).padStart(2, '0');
             const mm = String(hariIni.getMonth() + 1).padStart(2, '0'); 
@@ -1038,9 +1017,8 @@
             elemenTanggal.innerText = dd + "/" + mm + "/" + yyyy;
             elemenTanggal.style.display = "block";
 
-            // Buka overlay untuk background html2canvas render secara tersembunyi/aman
             overlayPopup.style.display = "flex";
-            overlayPopup.style.opacity = "0"; // Tidak terlihat di layar tetapi ada di DOM
+            overlayPopup.style.opacity = "0";
 
             const zip = new JSZip();
             const targetRender = document.getElementById("captureArea");
@@ -1048,7 +1026,6 @@
 
             keranjangSurat.forEach((item) => {
                 urutanProses = urutanProses.then(() => {
-                    // Isi data popup secara bergantian di balik layar
                     isiSurat.innerText = item.teks;
                     if (!item.isGame && daftarFoto[item.nomor] && daftarFoto[item.nomor] !== "N/A") {
                         komponenFoto.src = daftarFoto[item.nomor];
@@ -1057,7 +1034,6 @@
                         komponenFoto.style.display = "none";
                     }
 
-                    // Menunggu render html2canvas per file surat
                     return html2canvas(targetRender, {
                         backgroundColor: "#fff0f5",
                         borderRadius: 20,
@@ -1071,24 +1047,20 @@
                 });
             });
 
-            // Setelah semua surat selesai dirender menjadi gambar
             urutanProses.then(() => {
                 return zip.generateAsync({ type: "blob" });
             }).then(isiZip => {
-                // Restore status popup asal
                 overlayPopup.style.display = "none";
                 overlayPopup.style.opacity = "1";
                 tombolSimpan.style.visibility = "visible";
                 tombolTutup.style.visibility = "visible";
                 elemenTanggal.style.display = "none";
 
-                // Download file zip secara otomatis ke device
                 const linkZip = document.createElement("a");
                 linkZip.download = "Kumpulan_Surat_Spesial_Bee.zip";
                 linkZip.href = URL.createObjectURL(isiZip);
                 linkZip.click();
 
-                // Kembalikan tombol download massal ke posisi semula
                 tombolUnduhMassal.disabled = false;
                 tombolUnduhMassal.innerText = teksAsliTombol;
             }).catch(err => {
@@ -1111,7 +1083,6 @@
         }
 
         function munculkanWarning() {
-            // Jika ada popup surat atau popup roda berputar yang terbuka, jangan trigger idle warning
             if (document.getElementById("popupOverlay").classList.contains("show") || 
                 document.getElementById("wheelOverlay").classList.contains("show")) {
                 resetIdleTimer();
