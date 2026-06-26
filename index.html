@@ -675,6 +675,7 @@
 
             <div class="section-divider" style="border-top-color: #66fcf1;"></div>
 
+            <!-- BAGIAN KERANJANG SURAT -->
             <div class="storage-box">
                 <h2 class="storage-title">Keranjang Surat Pilihanmu 🛒</h2>
                 <p class="storage-subtitle">Surat yang kamu kumpulkan akan muncul di sini. Kamu bisa memilahnya sebelum didownload sekaligus!</p>
@@ -682,6 +683,29 @@
                 </div>
                 <button class="btn-mass-download" id="btnMassDownload" onclick="unduhSemuaMassal()" disabled>Unduh Semua Surat Pilihan (ZIP) ⚡</button>
             </div>
+
+            <!-- ========================================================== -->
+            <!-- LIVE CHAT ROOM (MENYATU DENGAN TEMA) -->
+            <!-- ========================================================== -->
+            <div class="storage-box" style="border-color: #ff7597; margin-top: 25px;">
+                <h2 class="storage-title" style="color: #ff7597;">Live Chat Room 💬❤️</h2>
+                <p class="storage-subtitle">Tulis pesan langsung ke aku di sini ya Bee!</p>
+                
+                <!-- Kotak Tampilan Pesan -->
+                <div id="chatBox" style="height: 250px; overflow-y: auto; background: #0b0c10; padding: 12px; border-radius: 15px; border: 2px solid #ff7597; margin-bottom: 15px; display: flex; flex-direction: column; gap: 10px; text-align: left;">
+                    <!-- Pesan otomatis muncul di sini -->
+                </div>
+
+                <!-- Input Nama & Isi Pesan -->
+                <div style="display: flex; gap: 8px; margin-bottom: 10px;">
+                    <input type="text" id="chatSender" placeholder="Pin/Bee" style="width: 25%; background: #1f2833; border: 2px solid #66fcf1; border-radius: 50px; padding: 12px 5px; color: white; font-family: 'Quicksand'; font-weight: bold; text-align: center; font-size: 14px; box-sizing: border-box;">
+                    <input type="text" id="chatInput" placeholder="Ketik pesan manis di sini..." style="width: 75%; background: #1f2833; border: 2px solid #66fcf1; border-radius: 50px; padding: 12px 15px; color: white; font-family: 'Quicksand'; font-weight: 600; font-size: 14px; box-sizing: border-box;">
+                </div>
+                
+                <button class="btn-mass-download" id="btnSendChat" onclick="kirimPesanChat()" style="background-color: #ff7597; box-shadow: 0 4px 15px rgba(255, 117, 151, 0.4); color: #0b0c10;">Kirim Pesan 🚀</button>
+            </div>
+            <!-- ========================================================== -->
+
         </div>
     </div>
 
@@ -727,7 +751,7 @@
     // --- KONFIGURASI SPIN WHEEL ---
     // 'daily' = 1x per hari saja
     // 'unlimited' = bisa berkali-kali setiap buka amplop baru
-    const SPIN_MODE = 'unlimited'; 
+    const SPIN_MODE = 'daily'; 
     // -----------------------------
 
     const daftarPesan = [
@@ -756,7 +780,7 @@
         10: "Eh tahu gak, tadi pas aku lagi capek-capeknya kerja, tiba-tiba kepikiran kamu. \nTerus akunya malah senyum sendiri. \n\nKayaknya kamu punya bakat jadi booster mood aku deh. 🥰\n\n-pin",
         11: "Aku suka deh kalau lagi ngelihat kamu ketawa atau senyum kayak gitu. \nRasanya kayak semua masalah aku hari itu langsung ketutup sama senyum kamu.\n\n-pin",
         12: "Aku tuh kalau ditanya hari favorit aku apa.. \n\nJawabannya pasti hari apa aja, \nasal pas hari itu aku bisa ketemu atau ngobrol lama sama kamu.\n\n-pin",
-        13: "Jangan terlalu keras sayang, \nKamu sudah melakukan yang terbaik hari ini.. \nKalau cape, bilang dan datanglah ke aku ya sayang.. \nKalau lagi bete/badmood, bilang dan datanglah ke aku ya sayang.. \nAku siap ada 7x24 jam untuk kamu... \nLOVE YOU SOOOO MUCH BEE !! 🥺❤️\n\n-pin",
+        13: "Jangan terlalu keras sayang, \nKamu sudah melakukan yang terbaik hari ini.. \nKalau cape, billing dan datanglah ke aku ya sayang.. \nKalau lagi bete/badmood, billing dan datanglah ke aku ya sayang.. \nAku siap ada 7x24 jam untuk kamu... \nLOVE YOU SOOOO MUCH BEE !! 🥺❤️\n\n-pin",
         14: "Hi bee! Gimana kerja kamu sekarang? Aku ga tau kapan kamu dapat pesan ini, dan sepertinya aku sudah tidur... \nSemangat ya sayang , keep fokus... \nKalau ngantuk, coba spamming chat ku aja... biar ketika aku bangun, aku bisa baca chat manis dari kamu sayang... \n LOVE YOU BEE !! ❤️\n\n-pin",
         15: "\n\n-pin",
         16: "\n\n-pin",
@@ -767,27 +791,6 @@
     };
 
     const daftarGameMentah = {
-			// KEEP TANGGAL 7 - 8 JULY !!!
-			//1: "✨Truth: \n\nApa bagian tubuh aku yang paling sering kamu bayangin atau pengen kamu sentuh pas kita lagi gak bareng/lagi bareng? 👀 Badannya aja atau ada yang spesifik?",
-			//2: "✨Truth: \n\nPernah gak kamu dapet fantasi atau pikiran 'nakal' tentang aku di tempat yang gak terduga (misal: pas lagi kerja)? 🤫 tell me!",
-			//3: "✨Truth: \n\nAda ga satu posisi yang pengen banget kamu coba malam nanti ketika sama aku tapi belum pernah kamu omongin ke aku. 🙈 Kamu mau apa hm?",
-			//4: "✨Truth: \n\nApa baju atau outfit yang pernah aku pakai yang menurut kamu paling seksi dan bikin kamu langsung pengen meluk aku?",
-			//5: "✨Truth: \n\nKalau kamu boleh minta satu hal malam ini dan aku gak boleh nolak, kamu mau minta apa? 👅 (pikirin baik-baik ya!)",
-			//6: "✨Truth: \n\nKapan pertama kali kamu ngerasa bener-bener tertarik secara fisik dan 'gemes' banget sama aku?",
-			//7: "✨Truth: \n\nApa hal paling sensitif di tubuh kamu yang kalau aku sentuh sedikit aja, bisa bikin kamu langsung merinding?",
-			//8: "✨Truth: \n\nDari skala 1-10, seberapa tinggi tingkat kegemesan/hasrat kamu ke aku malam ini? Jujur ya!",
-			//9: "✨Truth: \n\nPernah gak kamu sengaja pakai baju tertentu pas mau ketemu aku cuma karena pengen bikin aku nafsu? 🗣️✨",
-			//10: "✨Truth: \n\nAda gak rahasia nakal kamu yang belum pernah ada satu orang pun tahu, termasuk aku? 🤔💭",
-			//11: "🎲Dare: \n\nCium aku di tiga tempat berbeda di tubuh aku yang menurut kamu paling seksi, tapi gak boleh di bibir. 💋 Go!",
-			//12: "🎲Dare: \n\nBisikin hal paling 'kotor' atau fantasi paling liar yang pengen kamu lakuin ke aku malam ini, tepat di telinga aku sambil gigit kecil cuping telingaku...",
-			//13: "🎲Dare: \n\nLepasin satu pakaian yang kamu pakai sekarang, tapi kamu harus lepasinnya pakai cara yang seksi di depan aku. 💃🕺 Show time!",
-			//14: "🎲Dare: \n\nDuduk di pangkuan aku sambil hadap aku, tatap mata aku selama 30 detik tanpa ngomong apa-apa, lalu cium aku sesuka hati kamu.",
-			//15: "🎲Dare: \n\nBiarkan aku tutup mata kamu pakai kain (atau baju), dan kamu gak boleh buka sampai aku selesai ngecup/nyentuh area sensitif kamu.",
-			//16: "🎲Dare: \n\nKasih aku massage (pijatan) lembut di area punggung atau paha selama 3 menit, tapi tangan kamu gak boleh diem di satu tempat ya... 💆‍♂️💆‍♀️",
-			//17: "🎲Dare: \n\nPeluk aku dari belakang dengan sangat erat, terus cium leher aku sampai aku kegelian.",
-			//18: "🎲Dare: \n\nPeluk aku dari depan seerat mungkin sampai gak ada celah di antara kita, terus tahan posisi itu selama 1 menit sambil dengerin detak jantung masing-masing.",
-			//19: "🎲Dare: \n\nSpamming kiss ke area apapun itu, dan yang di spamming kiss wajib suruh tutup mata sampai yang di spam kiss minta udahan!",
-			//20: "🎲Dare: \n\nCium bibir aku selama 15 detik penuh, tapi tangan kamu gak boleh nyentuh tubuh aku sama sekali. Harus nahan!"
 			1: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
 			2: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
 			3: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
@@ -801,8 +804,6 @@
     };
 
     const listHadiahWheel = [
-			//"🎁 Kamu harus popo cowo kamu x30,Claim x1 cowo kamu juga Bebas request mau dimana aja!",
-			//"🎁 Kamu harus peluk cowo kamu 30 detik,Claim x1 cowo kamu juga Bebas request kapan saja!",
 			"🫣 Zonk!!💥",
 			"🫣 Zonk!!💥",
 			"🫣 Zonk!!💥",
@@ -817,8 +818,6 @@
             "🫣 Zonk!!💥",
 			"🫣 Coba lagi!!💥",
 			"🫣 Yah! Belum beruntung kamu sayang!!",
-            //"🧸 Bebas Marah / Ngambek ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
-			//"🧸 Bebas nurutin apa yang kamu mau ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
 			"🫣 Zonk!!💥",
 			"🫣 Coba lagi!!💥",
 			"🫣 Coba lagi!!💥",
@@ -834,19 +833,16 @@
 			"🫣 Yah! Belum beruntung kamu sayang!!💥",
 			"🫣 Yah! Belum beruntung kamu sayang!!💥",
 			"🫣 Zonk!!💥",
-			// KEEP TANGGAL 7 - 8 JULY !!!
-			//"🎁CONGRATS!! \nPopo selama 30 detik penuh tanpa lepas!",
-			//"🎁CONGRATS!! \nDapat pijatan punggung/paha (Bebas Pilih/Keduanya) gratis selama 5 menit",
-			//"🎁CONGRATS!! \nDuduk di pangkuan pasangan sampai putaran roda selanjutnya",
-			//"🎁CONGRATS!! \nPasangan harus lepas satu lapis pakaian yang dipakai sekarang!!",
-			//"🎁CONGRATS!! \nDipeluk erat dari belakang selama 2 menit",
-			//"🎁CONGRATS!! \nDapat 5 kecupan di wajah (kening, pipi, hidung, dagu)"
 			"🫣 Zonk!!💥"
     ];
 
     const daftarSurat = {};
     const daftarGame = {};
-    const daftarFoto = { 10: "9.jpg", 11: "2.jpg", 12: "4.jpg" };
+    const daftarFoto = { 
+		10: "9.jpg", 
+		11: "2.jpg", 
+		12: "4.jpg" 
+	};
     const daftarPeringatanIdle = [
         "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
         "WARNING!!✨ Hati-hati ngantuk ya sayangku! Kalau ngantuk dan sudah senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
@@ -932,7 +928,6 @@
     }
 
     function pointerMenyesuaikanScroll(num) {
-        // Reset posisi scroll pop-up ke atas setiap kali membuka surat baru
         const targetRender = document.getElementById("captureArea");
         if (targetRender) targetRender.scrollTop = 0;
         return num;
@@ -1165,6 +1160,100 @@
     window.onclick = resetIdleTimer;     
     window.onkeypress = resetIdleTimer;   
     window.addEventListener("scroll", resetIdleTimer);
+
+    // ========================================================================
+    // LOGIKA LIVE CHAT REAL-TIME (FIREBASE)
+    // ========================================================================
+    
+    // 1. Memanggil pustaka data cloud Firebase secara otomatis (tanpa download)
+    const fbApp = document.createElement('script');
+    fbApp.src = "https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js";
+    document.head.appendChild(fbApp);
+
+    const fbDb = document.createElement('script');
+    fbDb.src = "https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js";
+    document.head.appendChild(fbDb);
+
+    let dbLove;
+
+    // 2. Menghubungkan ke server database setelah pustaka termuat
+    fbDb.onload = function() {
+        // PENTING: Silakan ganti kode di bawah ini dengan milik akun Firebase-mu nanti agar aman!
+        const firebaseConfig = {
+            apiKey: "AIzaSyYourKeyDisini",
+            authDomain: "surat-cinta-kamu.firebaseapp.com",
+            databaseURL: "https://surat-cinta-kamu-default-rtdb.firebaseio.com",
+            projectId: "surat-cinta-kamu",
+            storageBucket: "surat-cinta-kamu.appspot.com",
+            messagingSenderId: "1234567890",
+            appId: "1:12345:web:abcde"
+        };
+        
+        firebase.initializeApp(firebaseConfig);
+        dbLove = firebase.database();
+        
+        // Membaca kiriman chat masuk secara real-time otomatis (dibatasi 30 terakhir)
+        dbLove.ref('room_chat_kita').limitToLast(30).on('child_added', (snapshot) => {
+            const data = snapshot.val();
+            renderBubbleChat(data.nama, data.teksPesan);
+        });
+    };
+
+    // 3. Fungsi memproses dan mengirimkan chat saat tombol diklik
+    function kirimPesanChat() {
+        const nama = document.getElementById("chatSender").value.trim();
+        const teksPesan = document.getElementById("chatInput").value.trim();
+        
+        if (!nama || !teksPesan) {
+            alert("Nama dan Pesan diisi dulu ya sayang.. 🥺❤️");
+            return;
+        }
+        
+        // Memasukkan data chat ke cloud server database
+        dbLove.ref('room_chat_kita').push({
+            nama: nama,
+            teksPesan: teksPesan,
+            waktu: Date.now()
+        });
+        
+        document.getElementById("chatInput").value = ""; // Membersihkan kolom isian chat
+    }
+
+    // 4. Menyusun dan menampilkan Gelembung Chat (Bubble Chat) ke layar
+    function renderBubbleChat(nama, teksPesan) {
+        const chatBox = document.getElementById("chatBox");
+        const bubble = document.createElement("div");
+        
+        bubble.style.padding = "10px 14px";
+        bubble.style.borderRadius = "18px";
+        bubble.style.maxWidth = "75%";
+        bubble.style.fontSize = "14px";
+        bubble.style.fontWeight = "600";
+        bubble.style.wordBreak = "break-word";
+        bubble.style.animation = "fadeIn 0.3s ease";
+
+        // Membagi posisi: Jika dikirim oleh 'Pin' ditaruh di KANAN, selain itu (Syavira) di KIRI
+        if (nama.toLowerCase() === 'pin') {
+            bubble.style.alignSelf = "flex-end";
+            bubble.style.backgroundColor = "#ff7597"; // Pink tema
+            bubble.style.color = "#0b0c10";
+            bubble.style.borderRadius = "18px 18px 0px 18px";
+        } else {
+            bubble.style.alignSelf = "flex-start";
+            bubble.style.backgroundColor = "#45a29e"; // Biru pastel tema
+            bubble.style.color = "#ffffff";
+            bubble.style.borderRadius = "18px 18px 18px 0px";
+        }
+
+        bubble.innerHTML = `<strong style="font-size: 11px; display:block; opacity: 0.8; margin-bottom: 3px;">${nama}</strong>${teksPesan}`;
+        chatBox.appendChild(bubble);
+        chatBox.scrollTop = chatBox.scrollHeight; // Otomatis scroll ke chat paling bawah/baru
+    }
+
+    // Mengirim chat otomatis hanya dengan menekan Enter pada keyboard laptop/HP
+    document.getElementById("chatInput")?.addEventListener("keypress", function(e) {
+        if (e.key === "Enter") kirimPesanChat();
+    });
 </script>
 </body>
 </html>
