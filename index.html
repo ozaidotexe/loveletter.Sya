@@ -615,6 +615,16 @@
                 <div class="envelope-card envelope-game" id="game-8" onclick="bukaGame(8)"><div class="envelope-label">H</div></div>
                 <div class="envelope-card envelope-game" id="game-9" onclick="bukaGame(9)"><div class="envelope-label">I</div></div>
                 <div class="envelope-card envelope-game" id="game-10" onclick="bukaGame(10)"><div class="envelope-label">J</div></div>
+				<div class="envelope-card envelope-game" id="game-11" onclick="bukaGame(11)"><div class="envelope-label">K</div></div>
+				<div class="envelope-card envelope-game" id="game-12" onclick="bukaGame(12)"><div class="envelope-label">L</div></div>
+				<div class="envelope-card envelope-game" id="game-13" onclick="bukaGame(13)"><div class="envelope-label">M</div></div>
+				<div class="envelope-card envelope-game" id="game-14" onclick="bukaGame(14)"><div class="envelope-label">N</div></div>
+				<div class="envelope-card envelope-game" id="game-15" onclick="bukaGame(15)"><div class="envelope-label">O</div></div>
+				<div class="envelope-card envelope-game" id="game-16" onclick="bukaGame(16)"><div class="envelope-label">P</div></div>
+				<div class="envelope-card envelope-game" id="game-17" onclick="bukaGame(17)"><div class="envelope-label">Q</div></div>
+				<div class="envelope-card envelope-game" id="game-18" onclick="bukaGame(18)"><div class="envelope-label">R</div></div>
+				<div class="envelope-card envelope-game" id="game-19" onclick="bukaGame(19)"><div class="envelope-label">S</div></div>
+				<div class="envelope-card envelope-game" id="game-20" onclick="bukaGame(20)"><div class="envelope-label">T</div></div>
             </div>
 
             <!-- PEMBATAS BARIS BARU UNTUK AREA PENYIMPANAN MASSAL -->
@@ -674,477 +684,433 @@
     </div>
 
     <script>
-        const daftarPesan = [
-            "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
-            "Aku selalu berharap, harimu selalu indah sayangku.. 😚❤️🧸",
-			"Jangan bosan ya baca surat menyuratnya..",
-			"Hari ini gunakan waktu istrahat kamu sepenuhnya ya bee .. 😚",
-            "Semoga surat-surat ini dapat temenin kamu di saat shift yang sayangku..🥺❤️",
-            "Jangan lupa setelah makan minum vitamin C ya bee..🧸🖤",
-            "Jangan lupa diminum airnya ya bee..🧸💙",
-            "I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>",
-            "Silakan klik dibawah buat masuk ke Surat Specialnya ya Bee! 👇❤️"
-        ];
+    // --- KONFIGURASI SPIN WHEEL ---
+    // 'daily' = 1x per hari saja
+    // 'unlimited' = bisa berkali-kali setiap buka amplop baru
+    const SPIN_MODE = 'daily'; 
+    // -----------------------------
 
-        const daftarSuratMentah = {
-            1: "Aku mencintaimu bukan karena aku kesepian,\nAku mencintai kamu bukan juga karena ego atau nafsu. \nAku mencintaimu karena hatiku benar-benar sayang sama kamu. \n\nDi tengah dunia yang serba bising dan melelahkan ini, aku bersyukur sudah punya tempat untuk pulang... \nKamulah rumah ternyaman buat aku.\nMakasih ya, Sayang... Cuma di dekatmu aku bisa jadi diri sendiri,\nCuma di dekatmu, aku gak takut untuk terlihat rapuh. \nMakasih banyak untuk semuanya... \nAku mau kamu, dan cuma kamu untuk selamanya, Bee... 😚❤️\n\n-pin",
-            2: "Aku tahu aku tidak spesial..\Aku bukan orang kaya, bukan juga pria yang paling tampan.\Aku hanya lelaki biasa yang masih punya banyak kelemahan. \n\nKarena itu, terima kasih banyak ya bee, sudah menerimaku apa adanya, bukan karena 'ada apanya'. \nKehadiranmu sungguh berarti buatku. \nMeski aku biasa saja, aku berjanji akan selalu berusaha memberikan yang terbaik untukmu dan untuk masa depan kita nanti. \nI love you so much, Bee! 😚❤️\n\n\n-pin",
-			3: "Kalau ada kalimat yang di ulang , itu bukan aku sengaja sayangku... \nAku hanya menulis apa yang hati ku pengin sampaikan saja ke kamu sayang ... \nMunking bukan hanya ungkapan yang sampai di surat ini ... \nTapi bisa jadi rasa resahku , kangen ku , penat ku atau mungkin keadaan ku saat ini juga .... \nsatu yang hal pasti aku tidak akan pernah bosan atau hanya sebatas formalitas atau kebiasaan bilang LOVE YOU ke kamu ....\nLOVE YOUU SOO MUCCHH BEE !!! ❤️\n\n-pin",
-			4: "Jam 02:37 \n\nAku masih seger , tidak biasanya aku sudah kalah di jam jam segini....\n\n-pin",
-			5: "Jam 04:30 \n\nMasih di posisi yang sama dan entah kenapa belum ngantuk juga. Akhirnya malah bengong sambil mikirin kamu. \nCuma mau ngingetin aja, kalau sayang dan cintaku ke kamu itu nggak ada tanggal kedaluwarsanya. Sekarang, besok, atau kapan pun, bakal tetap sama. \nLOVE YOU BEE !! \n\n-pin",
-			6: "Jam 06:58 \n\nHujan datang sayang,\nKangen ku mulai tak tertampung.. \nKukira bakal mudah, ternyata tidak sayang..\nBerat banget aku jauh dari kamu sayang.. 🥺\n\n-pin",
-			7: "Kami changeshift, kamu di shift sama sedangkan aku di shift ini... \nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU ..... \nLOP YUUU SAYANG ! \n\n-pin",
-			8: "Cuma aku yang selalu mendamba tahu bagaimana harimu berlalu... \nWalaupun aku sudah tahu apa saja kegiatanmu, aku selalu ingin mendengar langsung ceritamu. \nAku rindu selalu diperhatikan dan dikabari olehmu... \n\nBerkejaran dengan waktu, aku selalu mencari cara untuk mencuri perhatianmu. \nWalaupun aku sering gagal, tidak apa-apa... \nSetidaknya aku sudah mencoba memberikan yang terbaik untukmu, sayangku Syavira.."\n\n-pin",
-			9: "\n\n-pin",
-			10: "\n\n-pin",
-			11: "\n\n-pin",
-			12: "\n\n-pin",
-			13: "\n\n-pin",
-			14: "\n\n-pin",
-			15: "\n\n-pin",
-			16: "\n\n-pin",
-			17: "\n\n-pin",
-			18: "\n\n-pin",
-			19: "\n\n-pin",
-			20: "\n\n-pin",
-        };
-		
-	// HISTORY EMOT : 🥺❤️🎁✨🧸💙🖤👇🫣🐱🐾😂🔥🤫💋🎧📝😚
-	
-        const daftarGameMentah = {
-            1: "KOSONG 🥺",
-			2: "KOSONG 🥺",
-			3: "KOSONG 🥺",
-			4: "KOSONG 🥺",
-			5: "KOSONG 🥺",
-			6: "KOSONG 🥺",
-			8: "KOSONG 🥺",
-			9: "KOSONG 🥺",
-			10: "KOSONG 🥺"
-        };
+    const daftarPesan = [
+        "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
+        "Aku selalu berharap, harimu selalu indah sayangku.. 😚❤️",
+        "Jangan bosan ya baca surat menyuratnya dari aku... 🧸💙",
+        "Surat ini ada yang dari tanggal 25/06 dan juga 26/06 ya sayang...",
+        "Hari ini gunakan waktu istrahat kamu sepenuhnya ya bee .. 😚",
+        "Semoga surat-surat ini dapat temenin kamu di saat shift yang sayangku..🥺❤️",
+        "Jangan lupa setelah makan minum vitamin C ya bee..🧸🖤",
+        "Jangan lupa diminum airnya ya bee..🧸💙",
+        "I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>",
+        "Silakan klik dibawah buat masuk ke Surat Specialnya ya Bee! 👇❤️"
+    ];
 
-        // Kumpulan Hadiah untuk Roda Berputar (Spin Wheel)
-        const listHadiahWheel = [
-			"🎁 Kamu harus popo cowo kamu x30,Claim x1 cowo kamu juga Bebas request mau dimana aja!",
-			"🎁 Kamu harus peluk cowo kamu 30 detik,Claim x1 cowo kamu juga Bebas request kapan saja!",
-			"🫣 Zonk!!",
-			"🫣 Zonk!!",
-			"🫣 Coba lagi!!",
-			"🫣 Coba lagi!!",
-            "✨ JACKPOT!!! Bebas minta apapun sebanyak x1 permintaan! ✨",
-            "🫣 Zonk!!",
-			"🫣 Coba lagi!!",
+    const daftarSuratMentah = {
+        1: "Aku sayang sama kamu tuh beneran tulus dari hati, bukan karena lagi kesepian atau sekadar emosi sesaat. \nTapi karena hati aku emang milih kamu. \nTahu gak? Di tengah dunia yang lagi bising dan melelahkan ini, aku bersyukur banget punya tempat untuk pulang. \nBuat aku, kamu itu rumah ternyaman. \n\nMakasih ya... cuma di dekatmu aku bisa jadi diri sendiri tanpa harus jaim, dan gak takut untuk kelihatan rapuh. \nMakasih untuk semuanya. Aku mau kita terus bareng-bareng selamanya, Bee. ❤️\n\n-pin",
+        2: "Aku tahu aku tidak spesial..\nAku bukan orang kaya, bukan juga pria yang paling tampan.\nAku hanya lelaki biasa yang masih punya banyak kelemahan. \n\nKarena itu, terima kasih banyak ya bee, sudah menerimaku apa adanya, bukan karena 'ada apanya'. \nKehadiranmu sungguh berarti buatku. \nMeski aku biasa saja, aku berjanji akan selalu berusaha memberikan yang terbaik untukmu dan untuk masa depan kita nanti. \nI love you so much, Bee! 😚❤️\n\n\n-pin",
+        3: "Kalau ada kalimat yang di ulang , itu bukan aku sengaja sayangku... \nAku hanya menulis apa yang hati ku pengin sampaikan saja ke kamu sayang ... \nMunking bukan hanya ungkapan yang sampai di surat ini ... \nTapi bisa jadi rasa resahku , kangen ku , penat ku atau mungkin keadaan ku saat ini juga .... \nsatu yang hal pasti aku tidak akan pernah bosan atau hanya sebatas formalitas atau kebiasaan bilang LOVE YOU ke kamu ....\nLOVE YOUU SOO MUCCHH BEE !!! ❤️\n\n-pin",
+        4: "Aku di sini ya, Bee... \nAku bakal jaga dan perhatiin kamu sebisa yang aku bisa. \nAku nggak akan biarin kamu jatuh sendirian, dan aku siap jadi orang pertama yang ngusap air mata kamu kalau kamu lagi sedih. \n\nKalau kamu lagi kesal, tumpahin aja semuanya ke aku, aku siap jadi bahan ocehan kamu. \nAku mau jadi orang pertama yang kamu sapa di pagi hari, sekaligus orang terakhir sebelum kamu tidur. \nBahkan kalau bisa, aku mau hadir di setiap mimpi kamu.\n\n\n-pin",
+        5: "Bee... kalau kamu lagi banyak pikiran atau masalah, aku mau ya jadi tempat cerita kamu. \nAku siap duduk diam dan dengerin semua keluh kesah kamu. \nAku pengen terus belajar buat jadi tempat pulang yang paling nyaman dan aman buat kamu. \n\nDaripada sekadar janji, aku bakal buktiin dan terus berusaha buat wujudin itu. \nMaaf ya kalau kadang caraku salah atau malah bikin kamu makin bete, tapi aku nggak akan bosen buat terus belajar biar kamu bisa ngerasa makin nyaman sama aku.\n\n-pin",
+        6: "25/06 - 06:58 \n\nHujan datang, sayang... dan kangenku langsung makin nggak tertampung..\nKukira bakal mudah ngelewatinnya, ternyata nggak sama sekali. \nBerat banget rasanya pas lagi jauh dari kamu gini... 🥺\n\n-pin",
+        7: "Kami changeshift, kamu di shift sama sedangkan aku di shift ini... \nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU ..... \nLOP YUUU SAYANG ! \n\n-pin",
+        8: "Cuma aku yang selalu mengharap bagaimana harimu berlalu di setiap harinya... \nWalaupun aku sudah tahu apa saja kegiatanmu, aku selalu ingin mendengar langsung ceritamu. \nAku rindu selalu diperhatikan dan dikabari olehmu... \n\nBerkejaran dengan waktu, aku selalu mencari cara untuk mencuri perhatianmu. \nWalaupun aku sering gagal, tidak apa-apa... \nSetidaknya aku sudah mencoba memberikan yang terbaik untukmu, sayangku Syavira..\n\n-pin",
+        9: "Maaf ya bee kalau aku masih suka curigaan, overthinking, atau bikin kamu nggak nyaman sama tingkahku. \nKalau ada apa-apa atau ada sikap random-ku yang bikin kamu keganggu, tolong berkabar ya sayang. \n\nJangan dipendem sendiri atau milih diam, ya? Obrolin aja sama aku. \nAku sayang banget sama kamu dan nggak mau kehilangan kamu. \nMakasih banyak ya udah selalu sabar, ngertiin kekurangan, dan nerima segala kelemotanku selama ini.❤️\n\n-pin",
+        10: "Eh tahu gak, tadi pas aku lagi capek-capeknya kerja, tiba-tiba kepikiran kamu. \nTerus akunya malah senyum sendiri. \n\nKayaknya kamu punya bakat jadi booster mood aku deh. 🥰\n\n-pin",
+        11: "Aku suka deh kalau lagi ngelihat kamu ketawa atau senyum kayak gitu. \nRasanya kayak semua masalah aku hari itu langsung ketutup sama senyum kamu.\n\n-pin",
+        12: "Aku tuh kalau ditanya hari favorit aku apa.. \n\nJawabannya pasti hari apa aja, \nasal pas hari itu aku bisa ketemu atau ngobrol lama sama kamu.\n\n-pin",
+        13: "Jangan terlalu keras sayang, \nKamu sudah melakukan yang terbaik hari ini.. \nKalau cape, bilang dan datanglah ke aku ya sayang.. \nKalau lagi bete/badmood, bilang dan datanglah ke aku ya sayang.. \nAku siap ada 7x24 jam untuk kamu... \nLOVE YOU SOOOO MUCH BEE !! 🥺❤️\n\n-pin",
+        14: "Hi bee! Gimana kerja kamu sekarang? Aku ga tau kapan kamu dapat pesan ini, dan sepertinya aku sudah tidur... \nSemangat ya sayang , keep fokus... \nKalau ngantuk, coba spamming chat ku aja... biar ketika aku bangun, aku bisa baca chat manis dari kamu sayang... \n LOVE YOU BEE !! ❤️\n\n-pin",
+        15: "\n\n-pin",
+        16: "\n\n-pin",
+        17: "\n\n-pin",
+        18: "\n\n-pin",
+        19: "\n\n-pin",
+        20: "\n\n-pin",
+    };
+
+    const daftarGameMentah = {
+        // KEEP TANGGAL 7 - 8 JULY !!!
+			//1: "✨Truth: \n\nApa bagian tubuh aku yang paling sering kamu bayangin atau pengen kamu sentuh pas kita lagi gak bareng/lagi bareng? 👀 Badannya aja atau ada yang spesifik?",
+			//2: "✨Truth: \n\nPernah gak kamu dapet fantasi atau pikiran 'nakal' tentang aku di tempat yang gak terduga (misal: pas lagi kerja)? 🤫 tell me!",
+			//3: "✨Truth: \n\nAda ga satu posisi yang pengen banget kamu coba malam nanti ketika sama aku tapi belum pernah kamu omongin ke aku. 🙈 Kamu mau apa hm?",
+			//4: "✨Truth: \n\nApa baju atau outfit yang pernah aku pakai yang menurut kamu paling seksi dan bikin kamu langsung pengen meluk aku?",
+			//5: "✨Truth: \n\nKalau kamu boleh minta satu hal malam ini dan aku gak boleh nolak, kamu mau minta apa? 👅 (pikirin baik-baik ya!)",
+			//6: "✨Truth: \n\nKapan pertama kali kamu ngerasa bener-bener tertarik secara fisik dan 'gemes' banget sama aku?",
+			//7: "✨Truth: \n\nApa hal paling sensitif di tubuh kamu yang kalau aku sentuh sedikit aja, bisa bikin kamu langsung merinding?",
+			//8: "✨Truth: \n\nDari skala 1-10, seberapa tinggi tingkat kegemesan/hasrat kamu ke aku malam ini? Jujur ya!",
+			//9: "✨Truth: \n\nPernah gak kamu sengaja pakai baju tertentu pas mau ketemu aku cuma karena pengen bikin aku nafsu? 🗣️✨",
+			//10: "✨Truth: \n\nAda gak rahasia nakal kamu yang belum pernah ada satu orang pun tahu, termasuk aku? 🤔💭",
+			//11: "🎲Dare: \n\nCium aku di tiga tempat berbeda di tubuh aku yang menurut kamu paling seksi, tapi gak boleh di bibir. 💋 Go!",
+			//12: "🎲Dare: \n\nBisikin hal paling 'kotor' atau fantasi paling liar yang pengen kamu lakuin ke aku malam ini, tepat di telinga aku sambil gigit kecil cuping telingaku...",
+			//13: "🎲Dare: \n\nLepasin satu pakaian yang kamu pakai sekarang, tapi kamu harus lepasinnya pakai cara yang seksi di depan aku. 💃🕺 Show time!",
+			//14: "🎲Dare: \n\nDuduk di pangkuan aku sambil hadap aku, tatap mata aku selama 30 detik tanpa ngomong apa-apa, lalu cium aku sesuka hati kamu.",
+			//15: "🎲Dare: \n\nBiarkan aku tutup mata kamu pakai kain (atau baju), dan kamu gak boleh buka sampai aku selesai ngecup/nyentuh area sensitif kamu.",
+			//16: "🎲Dare: \n\nKasih aku massage (pijatan) lembut di area punggung atau paha selama 3 menit, tapi tangan kamu gak boleh diem di satu tempat ya... 💆‍♂️💆‍♀️",
+			//17: "🎲Dare: \n\nPeluk aku dari belakang dengan sangat erat, terus cium leher aku sampai aku kegelian.",
+			//18: "🎲Dare: \n\nPeluk aku dari depan seerat mungkin sampai gak ada celah di antara kita, terus tahan posisi itu selama 1 menit sambil dengerin detak jantung masing-masing.",
+			//19: "🎲Dare: \n\nSpamming kiss ke area apapun itu, dan yang di spamming kiss wajib suruh tutup mata sampai yang di spam kiss minta udahan!",
+			//20: "🎲Dare: \n\nCium bibir aku selama 15 detik penuh, tapi tangan kamu gak boleh nyentuh tubuh aku sama sekali. Harus nahan!"
+			1: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			2: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			3: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			4: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			5: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			6: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			7: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			8: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			9: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			10: "KOSONG! Truth or Dare belum ada nih bee... 🥺"
+    };
+
+    const listHadiahWheel = [
+			//"🎁 Kamu harus popo cowo kamu x30,Claim x1 cowo kamu juga Bebas request mau dimana aja!",
+			//"🎁 Kamu harus peluk cowo kamu 30 detik,Claim x1 cowo kamu juga Bebas request kapan saja!",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Coba lagi!!💥",
+            "✨👑 JACKPOT!!! Bebas minta apapun sebanyak x1 permintaan! 👑✨",
+            "🫣 Zonk!!💥",
+			"🫣 Coba lagi!!💥",
 			"🫣 Yah! Belum beruntung kamu sayang!!",
             //"🧸 Bebas Marah / Ngambek ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
 			//"🧸 Bebas nurutin apa yang kamu mau ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
-			"🫣 Zonk!!",
-			"🫣 Coba lagi!!",
-			"🫣 Zonk!!",
-            //"🎫 Voucher Free Hug 30 detik, Claim x1 bebas kapan saja!",
-			"🫣 Zonk!!",
-			"🫣 Coba lagi!!",
-			"🫣 Zonk!!",
-			//"🎫 Voucher Free popo x30 bebas request dimanapun!",
-			"🫣 Zonk!!",
-			"🫣 Coba lagi!!",
-			"🫣 Yah! Belum beruntung kamu sayang!!",
-			"🫣 Zonk!!"
-        ];
+			"🫣 Zonk!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Zonk!!💥",
+            "🎫 Voucher Free Hug 30 detik, Claim x1 bebas kapan saja!",
+			"🫣 Zonk!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Zonk!!💥",
+			"🎫 Voucher Free popo x30 bebas request dimanapun!",
+			"🫣 Zonk!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Yah! Belum beruntung kamu sayang!!💥",
+			"🫣 Yah! Belum beruntung kamu sayang!!💥",
+			"🫣 Zonk!!💥"
+			// KEEP TANGGAL 7 - 8 JULY !!!
+			//"🎁CONGRATS!! \nPopo selama 30 detik penuh tanpa lepas!",
+			//"🎁CONGRATS!! \nDapat pijatan punggung/paha (Bebas Pilih/Keduanya) gratis selama 5 menit",
+			//"🎁CONGRATS!! \nDuduk di pangkuan pasangan sampai putaran roda selanjutnya",
+			//"🎁CONGRATS!! \nPasangan harus lepas satu lapis pakaian yang dipakai sekarang!!",
+			//"🎁CONGRATS!! \nDipeluk erat dari belakang selama 2 menit",
+			//"🎁CONGRATS!! \nDapat 5 kecupan di wajah (kening, pipi, hidung, dagu)",
+    ];
 
-        const daftarSurat = {};
-        const daftarGame = {};
+    const daftarSurat = {};
+    const daftarGame = {};
+    const daftarFoto = { 10: "9.jpg", 11: "2.jpg", 12: "4.jpg" };
+    const daftarPeringatanIdle = [
+        "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
+        "WARNING!!✨ Hati-hati ngantuk ya sayangku! Kalau ngantuk dan sudah senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
+        "Jangan lupa diminum airnya ya sayang, Kalau sudah senggang yuk baca lagi surat nya! 🥰🌸",
+        "Hey! tiati kalau ngantuk ambil BAK aja ya atau kamu bisa lanjut baca suratnya ya bee..🥰💙😚",
+        "Dari pada diem terus pikiran kosong, mending mikirin aku aja sayang! hehe.. 😚",
+        "Jangan lupa, untuk hastag #linkdone selalu di pakai ya sayangku... LOVE YOU BEE !!! 😚",
+        "Dorrr! ✨<br>Rame gak bee? <br>Cuma mau bilag aja, Semangat ya shiftnya!🔥 <br>Jangan lupa diminum air nya ya! <br>Love You So Much Bee! 😚🌸",
+        "REMINDER!! Untuk yang tersayang agar selalu semangat shift hari ini, LOVE YOU SO MUCH Syavira Dwi Dinanti. 🧸💙",
+        "PENGINGAT KECIL!! Jangan lupa minum air ya kalau lagi bengong gini bee.. I LOVE YOU 3000 🥰",
+        "Ngantuk ya sampai didiamkan begini? <br>Yuk dibuka lagi surat manisnya, masih banyak cerita buat kamu hari ini. 🌌🖤"
+    ];
 
-        function acakKonten(mentah, target) {
-            const keys = Object.keys(mentah);
-            const values = Object.values(mentah);
-            for (let i = values.length - 1; i > 0; i--) {
-                const j = Math.floor(Math.random() * (i + 1));
-                [values[i], values[j]] = [values[j], values[i]];
-            }
-            keys.forEach((key, index) => {
-                target[key] = values[index];
-            });
+    const WAKTU_IDLE = 65000; 
+    let indeksPesan = 0;
+    let currentActiveSurat = null;
+    let heartInterval = null; 
+    let idleTimer = null;
+    let keranjangSurat = []; 
+    let currentOpenData = null; 
+
+    // --- Helper Functions ---
+    function isDailyLimitReached() {
+        if (SPIN_MODE === 'unlimited') return false;
+        const lastDate = localStorage.getItem('lastSpinDate');
+        return lastDate === new Date().toDateString();
+    }
+
+    function acakKonten(mentah, target) {
+        const keys = Object.keys(mentah);
+        const values = Object.values(mentah);
+        for (let i = values.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [values[i], values[j]] = [values[j], values[i]];
         }
+        keys.forEach((key, index) => { target[key] = values[index]; });
+    }
 
-        acakKonten(daftarSuratMentah, daftarSurat);
-        //Object.assign(daftarSurat, daftarSuratMentah);  // Script Surat Tidak Acak.
-        acakKonten(daftarGameMentah, daftarGame);
+    acakKonten(daftarSuratMentah, daftarSurat);
+    acakKonten(daftarGameMentah, daftarGame);
 
-        const daftarFoto = { 
-            21: "",
-			22: ""
-			
-        };
+    function startEffects() {
+        const music = document.getElementById("backsound");
+        if (music.paused) music.play().catch(e => console.log("Autoplay ditolak"));
+        if (!heartInterval) heartInterval = setInterval(createHeart, 1500);
+        resetIdleTimer();
+    }
 
-        const daftarPeringatanIdle = [
-            "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
-            "WARNING!!✨ Hati-hati ngantuk ya sayangku! Kalau ngantuk dan sudah senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
-            "Jangan lupa diminum airnya ya sayang, Kalau sudah senggang yuk baca lagi surat nya! 🥰🌸",
-            "Hey! tiati kalau ngantuk ambil BAK aja ya atau kamu bisa lanjut baca suratnya ya bee..🥰💙😚",
-            "Dari pada diem terus pikiran kosong, mending mikirin aku aja sayang! hehe.. 😚",
-            "Jangan lupa, untuk hastag #linkdone selalu di pakai ya sayangku... LOVE YOU BEE !!! 😚",
-            "Dorrr! ✨<br>Rame gak bee? <br>Cuma mau bilag aja, Semangat ya shiftnya!🔥 <br>Jangan lupa diminum air nya ya! <br>Love You So Much Bee! 😚🌸",
-            "REMINDER!! Untuk yang tersayang agar selalu semangat shift hari ini, LOVE YOU SO MUCH Syavira Dwi Dinanti. 🧸💙",
-            "PENGINGAT KECIL!! Jangan lupa minum air ya kalau lagi bengong gini bee.. I LOVE YOU 3000 🥰",
-            "Ngantuk ya sampai didiamkan begini? <br>Yuk dibuka lagi surat manisnya, masih banyak cerita buat kamu hari ini. 🌌🖤"
-        ];
-
-        const WAKTU_IDLE = 65000; 
-        let indeksPesan = 0;
-        let currentActiveSurat = null;
-        let heartInterval = null; 
-        let idleTimer = null;
-
-        // Penyimpanan data untuk download massal
-        let keranjangSurat = []; 
-        let currentOpenData = null; 
-
-        function startEffects() {
-            const music = document.getElementById("backsound");
-            if (music.paused) {
-                music.play().catch(e => console.log("Autoplay ditolak"));
-            }
-            if (!heartInterval) {
-                heartInterval = setInterval(createHeart, 1500);
-            }
-            resetIdleTimer();
-        }
-
-        function createHeart() {
-            const heart = document.createElement("div");
-            heart.classList.add("heart-particle");
-            heart.innerHTML = ["❤️", "💖", "🌸", "✨", "💙", "⭐"][Math.floor(Math.random() * 6)];
-            heart.style.left = Math.random() * 100 + "vw";
-            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-            heart.style.fontSize = Math.random() * 15 + 15 + "px";
-            document.body.appendChild(heart);
-            setTimeout(() => { heart.remove(); }, 5000);
-        }
-        
-        function nextPesan() {
-            const textElement = document.getElementById("textGanti");
-            startEffects(); 
-            
-            if (indeksPesan < daftarPesan.length) {
-                textElement.style.opacity = 0;
-                setTimeout(() => {
-                    textElement.innerHTML = daftarPesan[indeksPesan];
-                    textElement.style.opacity = 1;
-                    indeksPesan++;
-                }, 300);
-            } else {
-                document.getElementById("msgBox").style.display = "none";
-                document.getElementById("galleryBox").style.display = "block";
-                resetIdleTimer();
-            }
-        }
-
-        function bukaSurat(nomor) {
-            currentActiveSurat = "Surat_" + nomor;
-            currentOpenData = { id: currentActiveSurat, teks: daftarSurat[nomor], nomor: nomor, isGame: false };
-            
-            // Berubah warna amplop saat dibuka
-            const el = document.getElementById("env-" + nomor);
-            if(el) el.classList.add("opened");
-            
-            prosesBukaPopup(daftarSurat[nomor], nomor);
-        }
-
-        function bukaGame(nomor) {
-            currentActiveSurat = "Game_" + nomor;
-            currentOpenData = { id: currentActiveSurat, teks: daftarGame[nomor], nomor: nomor, isGame: true };
-            
-            const el = document.getElementById("game-" + nomor);
-            if(el) el.classList.add("opened");
-            
-            // --- LOGIKA ACAK SPIN WHEEL ---
-            // Mengatur peluang 40% (0.4) untuk memicu Spin Wheel di amplop mana pun yang diklik.
-            // (Ganti jadi 0.5 jika ingin peluang 50%, atau ganti 'true' jika ingin PASTI keluar).
-            const peluangSpinWheel = Math.random() < 0.1;
-
-            if (peluangSpinWheel) {
-                bukaWheel(); // Buka Spin Wheel jika beruntung
-            } else {
-                prosesBukaPopup(daftarGame[nomor], nomor, true); // Buka game biasa jika tidak memicu roda
-            }
-        }
-
-        function prosesBukaPopup(teks, nomor, isGame = false) {
-            const overlay = document.getElementById("popupOverlay");
-            const isiSurat = document.getElementById("isiSuratDetail");
-            const komponenFoto = document.getElementById("fotoSuratDetail"); 
-            const tombolSimpan = document.getElementById("btnDownload");
-            
-            isiSurat.innerText = teks;
-            
-            if (!isGame && daftarFoto[nomor] && daftarFoto[nomor] !== "N/A") {
-                komponenFoto.src = daftarFoto[nomor];
-                komponenFoto.style.display = "inline-block"; 
-            } else {
-                komponenFoto.style.display = "none"; 
-            }
-
-            const sudahAda = keranjangSurat.some(item => item.id === currentActiveSurat);
-            if(sudahAda) {
-                tombolSimpan.innerText = "Sudah di Keranjang ✔";
-                tombolSimpan.style.opacity = "0.7";
-            } else {
-                tombolSimpan.innerText = "Simpan ke Keranjang Massal 🛒";
-                tombolSimpan.style.opacity = "1";
-            }
-            
-            overlay.style.display = "flex";
-            setTimeout(() => { overlay.classList.add("show"); }, 10);
-        }
-
-        function tutupSurat() {
-            const overlay = document.getElementById("popupOverlay");
-            overlay.classList.remove("show");
-            setTimeout(() => { overlay.style.display = "none"; }, 400);
-            resetIdleTimer();
-        }
-
-        /* --- FUNGSI KONTROL LOGIKA SPIN WHEEL (GAME 9) --- */
-        function bukaWheel() {
-            const overlay = document.getElementById("wheelOverlay");
-            const roda = document.getElementById("spinWheel");
-            const tombol = document.getElementById("btnSpin");
-            
-            // Reset state putaran roda & teks tombol saat dibuka kembali
-            roda.style.transform = "rotate(0deg)";
-            tombol.disabled = false;
-            tombol.innerText = "PUTAR SEKARANG 🎡";
-
-            overlay.style.display = "flex";
-            setTimeout(() => { overlay.classList.add("show"); }, 10);
-        }
-
-        function tutupWheel() {
-            const overlay = document.getElementById("wheelOverlay");
-            overlay.classList.remove("show");
-            setTimeout(() => { overlay.style.display = "none"; }, 400);
-            resetIdleTimer();
-        }
-
-        function putarRoda() {
-            const roda = document.getElementById("spinWheel");
-            const tombol = document.getElementById("btnSpin");
-            
-            tombol.disabled = true;
-            tombol.innerText = "Berputar... 🤫";
-
-            // 1. Mengambil indeks hadiah secara acak berdasarkan total jumlah hadiah di list
-            const totalSektor = listHadiahWheel.length;
-            const indeksTerpilih = Math.floor(Math.random() * totalSektor);
-            
-            // 2. Perhitungan Derajat yang Dinamis agar putaran roda akurat sesuai jumlah hadiah
-            const ukuranSektor = 360 / totalSektor;
-            const sudutTarget = 1800 + (indeksTerpilih * ukuranSektor) + (ukuranSektor / 2);
-
-            // 3. Mulai Putar Roda
-            roda.style.transform = `rotate(${sudutTarget}deg)`;
-
-            // Tunggu animasi melambat selesai (4 Detik)
+    function createHeart() {
+        const heart = document.createElement("div");
+        heart.classList.add("heart-particle");
+        heart.innerHTML = ["❤️", "💖", "🌸", "✨", "💙", "⭐"][Math.floor(Math.random() * 6)];
+        heart.style.left = Math.random() * 100 + "vw";
+        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+        heart.style.fontSize = Math.random() * 15 + 15 + "px";
+        document.body.appendChild(heart);
+        setTimeout(() => { heart.remove(); }, 5000);
+    }
+    
+    function nextPesan() {
+        const textElement = document.getElementById("textGanti");
+        startEffects(); 
+        if (indeksPesan < daftarPesan.length) {
+            textElement.style.opacity = 0;
             setTimeout(() => {
-                const hadiahDapatkan = listHadiahWheel[indeksTerpilih];
-                
-                // MENGUBAH PENYIMPANAN MENJADI DINAMIS (Mengikuti nomor amplop game yang sedang dibuka Syavira)
-                const nomorGameAktif = currentOpenData.nomor;
-                daftarGame[nomorGameAktif] = `✨🎁 [HASIL SPIN WHEEL] 🎁✨\n\nSELAMAT BEE!! Kamu baru saja memutar roda berhadiah dan berhasil mendapatkan:\n\n🎉 ${hadiahDapatkan} 🎉\n\nYuk klik tombol Simpan di bawah ini biar masuk ke keranjang suratmu sayang! 🥰❤️`;
-                currentOpenData.teks = daftarGame[nomorGameAktif];
-
-                // Tutup roda putar lalu langsung tampilkan hasilnya ke popup utama agar bisa disimpan ke keranjang
-                tutupWheel();
-                prosesBukaPopup(daftarGame[nomorGameAktif], nomorGameAktif, true);
-            }, 4000);
+                textElement.innerHTML = daftarPesan[indeksPesan];
+                textElement.style.opacity = 1;
+                indeksPesan++;
+            }, 300);
+        } else {
+            document.getElementById("msgBox").style.display = "none";
+            document.getElementById("galleryBox").style.display = "block";
+            resetIdleTimer();
         }
-        /* ------------------------------------------------- */
+    }
 
-        // Fungsi baru untuk memasukkan surat yang sedang dibuka ke keranjang massal
-        function simpanKeKeranjang() {
-            if (!currentOpenData) return;
+    function bukaSurat(nomor) {
+        currentActiveSurat = "Surat_" + nomor;
+        currentOpenData = { id: currentActiveSurat, teks: daftarSurat[nomor], nomor: nomor, isGame: false };
+        const el = document.getElementById("env-" + nomor);
+        if(el) el.classList.add("opened");
+        prosesBukaPopup(daftarSurat[nomor], nomor);
+    }
+
+    function bukaGame(nomor) {
+        currentActiveSurat = "Game_" + nomor;
+        currentOpenData = { id: currentActiveSurat, teks: daftarGame[nomor], nomor: nomor, isGame: true };
+        
+        const el = document.getElementById("game-" + nomor);
+        
+        if (el.classList.contains("opened")) {
+            prosesBukaPopup(daftarGame[nomor], nomor, true);
+            return;
+        }
+
+        el.classList.add("opened");
+        
+        const peluangSpinWheel = Math.random() < 0.1; // Chance 30%
+        const limitReached = isDailyLimitReached();
+
+        if (peluangSpinWheel && !limitReached) {
+            bukaWheel();
+        } else {
+            prosesBukaPopup(daftarGame[nomor], nomor, true);
+        }
+    }
+
+    function prosesBukaPopup(teks, nomor, isGame = false) {
+        const overlay = document.getElementById("popupOverlay");
+        const isiSurat = document.getElementById("isiSuratDetail");
+        const komponenFoto = document.getElementById("fotoSuratDetail"); 
+        const tombolSimpan = document.getElementById("btnDownload");
+        
+        isiSurat.innerText = teks;
+        if (!isGame && daftarFoto[nomor] && daftarFoto[nomor] !== "N/A") {
+            komponenFoto.src = daftarFoto[nomor];
+            komponenFoto.style.display = "inline-block"; 
+        } else {
+            komponenFoto.style.display = "none"; 
+        }
+
+        const sudahAda = keranjangSurat.some(item => item.id === currentActiveSurat);
+        tombolSimpan.innerText = sudahAda ? "Sudah di Keranjang ✔" : "Simpan ke Keranjang Massal 🛒";
+        tombolSimpan.style.opacity = sudahAda ? "0.7" : "1";
+        
+        overlay.style.display = "flex";
+        setTimeout(() => { overlay.classList.add("show"); }, 10);
+    }
+
+    function tutupSurat() {
+        const overlay = document.getElementById("popupOverlay");
+        overlay.classList.remove("show");
+        setTimeout(() => { overlay.style.display = "none"; }, 400);
+        resetIdleTimer();
+    }
+
+    function bukaWheel() {
+        const overlay = document.getElementById("wheelOverlay");
+        const roda = document.getElementById("spinWheel");
+        const tombol = document.getElementById("btnSpin");
+        roda.style.transform = "rotate(0deg)";
+        tombol.disabled = false;
+        tombol.innerText = "PUTAR SEKARANG 🎡";
+        overlay.style.display = "flex";
+        setTimeout(() => { overlay.classList.add("show"); }, 10);
+    }
+
+    function tutupWheel() {
+        const overlay = document.getElementById("wheelOverlay");
+        overlay.classList.remove("show");
+        setTimeout(() => { overlay.style.display = "none"; }, 400);
+        resetIdleTimer();
+    }
+
+    function putarRoda() {
+        const roda = document.getElementById("spinWheel");
+        const tombol = document.getElementById("btnSpin");
+        tombol.disabled = true;
+        tombol.innerText = "Berputar... 🤫";
+
+        const totalSektor = listHadiahWheel.length;
+        const indeksTerpilih = Math.floor(Math.random() * totalSektor);
+        const ukuranSektor = 360 / totalSektor;
+        const sudutTarget = 1800 + (indeksTerpilih * ukuranSektor) + (ukuranSektor / 2);
+        roda.style.transform = `rotate(${sudutTarget}deg)`;
+
+        setTimeout(() => {
+            const hadiahDapatkan = listHadiahWheel[indeksTerpilih];
+            localStorage.setItem('lastSpinDate', new Date().toDateString());
             
-            const cekDuplikat = keranjangSurat.some(item => item.id === currentOpenData.id);
-            if (!cekDuplikat) {
-                keranjangSurat.push({ ...currentOpenData });
-                perbaruiTampilanKeranjang();
-                
-                const tombolSimpan = document.getElementById("btnDownload");
-                tombolSimpan.innerText = "Berhasil Disimpan! ✔";
-                tombolSimpan.style.opacity = "0.7";
-                setTimeout(() => {
-                    tutupSurat();
-                }, 600);
-            } else {
-                tutupSurat();
-            }
-        }
+            const nomorGameAktif = currentOpenData.nomor;
+            daftarGame[nomorGameAktif] = `✨🎁 [HASIL SPIN WHEEL] 🎁✨\n\nSELAMAT BEE!! Kamu baru saja memutar roda berhadiah dan berhasil mendapatkan:\n\n\n🎉 ${hadiahDapatkan} 🎉\n\nYuk klik tombol Simpan di bawah ini biar masuk ke keranjang suratmu sayang! 🥰❤️`;
+            currentOpenData.teks = daftarGame[nomorGameAktif];
+            tutupWheel();
+            prosesBukaPopup(daftarGame[nomorGameAktif], nomorGameAktif, true);
+        }, 4000);
+    }
 
-        // Fungsi baru untuk merefresh komponen list keranjang di bawah halaman beserta tombol hapusnya
-        function perbaruiTampilanKeranjang() {
-            const wrapperList = document.getElementById("storageList");
-            const tombolUnduhMassal = document.getElementById("btnMassDownload");
-            wrapperList.innerHTML = "";
-
-            if (keranjangSurat.length === 0) {
-                tombolUnduhMassal.disabled = true;
-                return;
-            }
-
-            tombolUnduhMassal.disabled = false;
-
-            keranjangSurat.forEach((item, index) => {
-                const itemDiv = document.createElement("div");
-                itemDiv.classList.add("storage-item");
-                if(item.isGame) {
-                    itemDiv.classList.add("game-type");
-                }
-
-                // Menentukan nama label di dalam list
-                const namaTampilan = item.isGame ? "Game " + item.id.split("_")[1] : "Surat " + item.id.split("_")[1];
-                
-                itemDiv.innerHTML = `
-                    <span>💌 ${namaTampilan}</span>
-                    <button class="btn-delete-item" onclick="hapusItemKeranjang(${index})">❌</button>
-                `;
-                wrapperList.appendChild(itemDiv);
-            });
-        }
-
-        // Fungsi baru untuk menghapus item pilihan dari dalam keranjang (fitur pilah-pilih)
-        function hapusItemKeranjang(index) {
-            keranjangSurat.splice(index, 1);
+    function simpanKeKeranjang() {
+        if (!currentOpenData) return;
+        const cekDuplikat = keranjangSurat.some(item => item.id === currentOpenData.id);
+        if (!cekDuplikat) {
+            keranjangSurat.push({ ...currentOpenData });
             perbaruiTampilanKeranjang();
+            tutupSurat();
+        } else {
+            tutupSurat();
         }
+    }
 
-        // Fungsi utama baru untuk mengonversi massal teks isi surat menjadi gambar, digabung ke ZIP dan didownload otomatis
-        function unduhSemuaMassal() {
-            if (keranjangSurat.length === 0) return;
+    function perbaruiTampilanKeranjang() {
+        const wrapperList = document.getElementById("storageList");
+        const tombolUnduhMassal = document.getElementById("btnMassDownload");
+        wrapperList.innerHTML = "";
+        if (keranjangSurat.length === 0) { tombolUnduhMassal.disabled = true; return; }
+        tombolUnduhMassal.disabled = false;
+        keranjangSurat.forEach((item, index) => {
+            const itemDiv = document.createElement("div");
+            itemDiv.classList.add("storage-item");
+            if(item.isGame) itemDiv.classList.add("game-type");
+            const namaTampilan = item.isGame ? "Game " + item.id.split("_")[1] : "Surat " + item.id.split("_")[1];
+            itemDiv.innerHTML = `<span>💌 ${namaTampilan}</span><button class="btn-delete-item" onclick="hapusItemKeranjang(${index})">❌</button>`;
+            wrapperList.appendChild(itemDiv);
+        });
+    }
 
-            const tombolUnduhMassal = document.getElementById("btnMassDownload");
-            const overlayPopup = document.getElementById("popupOverlay");
-            const isiSurat = document.getElementById("isiSuratDetail");
-            const komponenFoto = document.getElementById("fotoSuratDetail");
-            const tombolSimpan = document.getElementById("btnDownload");
-            const tombolTutup = document.querySelector(".btn-close");
-            const elemenTanggal = document.getElementById("tanggalDownload");
+    function hapusItemKeranjang(index) {
+        keranjangSurat.splice(index, 1);
+        perbaruiTampilanKeranjang();
+    }
 
-            const teksAsliTombol = tombolUnduhMassal.innerText;
-            tombolUnduhMassal.disabled = true;
-            tombolUnduhMassal.innerText = "Sedang Memproses Gambar... ⏳";
+    function unduhSemuaMassal() {
+        if (keranjangSurat.length === 0) return;
+        const tombolUnduhMassal = document.getElementById("btnMassDownload");
+        const overlayPopup = document.getElementById("popupOverlay");
+        const isiSurat = document.getElementById("isiSuratDetail");
+        const komponenFoto = document.getElementById("fotoSuratDetail");
+        const tombolSimpan = document.getElementById("btnDownload");
+        const tombolTutup = document.querySelector(".btn-close");
+        const elemenTanggal = document.getElementById("tanggalDownload");
 
-            // Sembunyikan elemen dekorasi tombol di dalam pop-up selama pembuatan gambar
-            tombolSimpan.style.visibility = "hidden";
-            tombolTutup.style.visibility = "hidden";
-            
-            // Set tanggal hari ini
-            const hariIni = new Date();
-            const dd = String(hariIni.getDate()).padStart(2, '0');
-            const mm = String(hariIni.getMonth() + 1).padStart(2, '0'); 
-            const yyyy = hariIni.getFullYear();
-            elemenTanggal.innerText = dd + "/" + mm + "/" + yyyy;
-            elemenTanggal.style.display = "block";
+        const teksAsliTombol = tombolUnduhMassal.innerText;
+        tombolUnduhMassal.disabled = true;
+        tombolUnduhMassal.innerText = "Sedang Memproses Gambar... ⏳";
+        tombolSimpan.style.visibility = "hidden";
+        tombolTutup.style.visibility = "hidden";
+        
+        const hariIni = new Date();
+        const dd = String(hariIni.getDate()).padStart(2, '0');
+        const mm = String(hariIni.getMonth() + 1).padStart(2, '0'); 
+        const yyyy = hariIni.getFullYear();
+        elemenTanggal.innerText = dd + "/" + mm + "/" + yyyy;
+        elemenTanggal.style.display = "block";
+        overlayPopup.style.display = "flex";
+        overlayPopup.style.opacity = "0";
 
-            // Buka overlay untuk background html2canvas render secara tersembunyi/aman
-            overlayPopup.style.display = "flex";
-            overlayPopup.style.opacity = "0"; // Tidak terlihat di layar tetapi ada di DOM
+        const zip = new JSZip();
+        const targetRender = document.getElementById("captureArea");
+        let urutanProses = Promise.resolve();
 
-            const zip = new JSZip();
-            const targetRender = document.getElementById("captureArea");
-            let urutanProses = Promise.resolve();
-
-            keranjangSurat.forEach((item) => {
-                urutanProses = urutanProses.then(() => {
-                    // Isi data popup secara bergantian di balik layar
-                    isiSurat.innerText = item.teks;
-                    if (!item.isGame && daftarFoto[item.nomor] && daftarFoto[item.nomor] !== "N/A") {
-                        komponenFoto.src = daftarFoto[item.nomor];
-                        komponenFoto.style.display = "inline-block";
-                    } else {
-                        komponenFoto.style.display = "none";
-                    }
-
-                    // Menunggu render html2canvas per file surat
-                    return html2canvas(targetRender, {
-                        backgroundColor: "#fff0f5",
-                        borderRadius: 20,
-                        scale: 2,
-                        useCORS: true
-                    }).then(canvas => {
-                        const dataUrl = canvas.toDataURL("image/png");
-                        const base64Data = dataUrl.split(',')[1];
-                        zip.file("Surat_Cinta_" + item.id + ".png", base64Data, { base64: true });
-                    });
+        keranjangSurat.forEach((item) => {
+            urutanProses = urutanProses.then(() => {
+                isiSurat.innerText = item.teks;
+                if (!item.isGame && daftarFoto[item.nomor] && daftarFoto[item.nomor] !== "N/A") {
+                    komponenFoto.src = daftarFoto[item.nomor];
+                    komponenFoto.style.display = "inline-block";
+                } else {
+                    komponenFoto.style.display = "none";
+                }
+                return html2canvas(targetRender, { backgroundColor: "#fff0f5", borderRadius: 20, scale: 2, useCORS: true }).then(canvas => {
+                    const dataUrl = canvas.toDataURL("image/png");
+                    const base64Data = dataUrl.split(',')[1];
+                    zip.file("Surat_Cinta_" + item.id + ".png", base64Data, { base64: true });
                 });
             });
+        });
 
-            // Setelah semua surat selesai dirender menjadi gambar
-            urutanProses.then(() => {
-                return zip.generateAsync({ type: "blob" });
-            }).then(isiZip => {
-                // Restore status popup asal
-                overlayPopup.style.display = "none";
-                overlayPopup.style.opacity = "1";
-                tombolSimpan.style.visibility = "visible";
-                tombolTutup.style.visibility = "visible";
-                elemenTanggal.style.display = "none";
+        urutanProses.then(() => {
+            return zip.generateAsync({ type: "blob" });
+        }).then(isiZip => {
+            overlayPopup.style.display = "none";
+            overlayPopup.style.opacity = "1";
+            tombolSimpan.style.visibility = "visible";
+            tombolTutup.style.visibility = "visible";
+            elemenTanggal.style.display = "none";
+            const linkZip = document.createElement("a");
+            linkZip.download = "Kumpulan_Surat_Spesial_Bee.zip";
+            linkZip.href = URL.createObjectURL(isiZip);
+            linkZip.click();
+            tombolUnduhMassal.disabled = false;
+            tombolUnduhMassal.innerText = teksAsliTombol;
+        });
+    }
 
-                // Download file zip secara otomatis ke device
-                const linkZip = document.createElement("a");
-                linkZip.download = "Kumpulan_Surat_Spesial_Bee.zip";
-                linkZip.href = URL.createObjectURL(isiZip);
-                linkZip.click();
-
-                // Kembalikan tombol download massal ke posisi semula
-                tombolUnduhMassal.disabled = false;
-                tombolUnduhMassal.innerText = teksAsliTombol;
-            }).catch(err => {
-                console.log(err);
-                overlayPopup.style.display = "none";
-                overlayPopup.style.opacity = "1";
-                tombolSimpan.style.visibility = "visible";
-                tombolTutup.style.visibility = "visible";
-                elemenTanggal.style.display = "none";
-                tombolUnduhMassal.disabled = false;
-                tombolUnduhMassal.innerText = teksAsliTombol;
-            });
+    function resetIdleTimer() {
+        clearTimeout(idleTimer);
+        if (document.getElementById("galleryBox").style.display === "block") {
+            idleTimer = setTimeout(munculkanWarning, WAKTU_IDLE);
         }
+    }
 
-        function resetIdleTimer() {
-            clearTimeout(idleTimer);
-            if (document.getElementById("galleryBox").style.display === "block") {
-                idleTimer = setTimeout(munculkanWarning, WAKTU_IDLE);
-            }
-        }
-
-        function munculkanWarning() {
-            // Jika ada popup surat atau popup roda berputar yang terbuka, jangan trigger idle warning
-            if (document.getElementById("popupOverlay").classList.contains("show") || 
-                document.getElementById("wheelOverlay").classList.contains("show")) {
-                resetIdleTimer();
-                return;
-            }
-            const warningOverlay = document.getElementById("warningOverlay");
-            const warningText = document.getElementById("warningText");
-            const randomPesan = daftarPeringatanIdle[Math.floor(Math.random() * daftarPeringatanIdle.length)];
-            
-            warningText.innerHTML = randomPesan;
-            warningOverlay.style.display = "flex";
-            setTimeout(() => { warningOverlay.classList.add("show"); }, 10);
-        }
-
-        function tutupWarning() {
-            const warningOverlay = document.getElementById("warningOverlay");
-            warningOverlay.classList.remove("show");
-            setTimeout(() => { warningOverlay.style.display = "none"; }, 400);
+    function munculkanWarning() {
+        if (document.getElementById("popupOverlay").classList.contains("show") || 
+            document.getElementById("wheelOverlay").classList.contains("show")) {
             resetIdleTimer();
+            return;
         }
+        const warningOverlay = document.getElementById("warningOverlay");
+        const warningText = document.getElementById("warningText");
+        const randomPesan = daftarPeringatanIdle[Math.floor(Math.random() * daftarPeringatanIdle.length)];
+        warningText.innerHTML = randomPesan;
+        warningOverlay.style.display = "flex";
+        setTimeout(() => { warningOverlay.classList.add("show"); }, 10);
+    }
 
-        window.onmousemove = resetIdleTimer;
-        window.onmousedown = resetIdleTimer; 
-        window.onclick = resetIdleTimer;     
-        window.onkeypress = resetIdleTimer;   
-        window.addEventListener("scroll", resetIdleTimer);
-    </script>
-</body>
-</html>
+    function tutupWarning() {
+        const warningOverlay = document.getElementById("warningOverlay");
+        warningOverlay.classList.remove("show");
+        setTimeout(() => { warningOverlay.style.display = "none"; }, 400);
+        resetIdleTimer();
+    }
+
+    window.onmousemove = resetIdleTimer;
+    window.onmousedown = resetIdleTimer; 
+    window.onclick = resetIdleTimer;     
+    window.onkeypress = resetIdleTimer;   
+    window.addEventListener("scroll", resetIdleTimer);
+</script>
