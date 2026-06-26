@@ -478,6 +478,12 @@
             color: #ffffff;
             box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3);
         }
+        /* Style Khusus Item Balasan Syavira di Keranjang */
+        .storage-item.reply-type {
+            background-color: #1abc9c;
+            color: #ffffff;
+            box-shadow: 0 4px 10px rgba(26, 188, 156, 0.3);
+        }
         .btn-delete-item {
             background: none;
             border: none;
@@ -740,11 +746,16 @@
     // --- KONFIGURASI SPIN WHEEL ---
     // 'daily' = 1x per hari saja
     // 'unlimited' = bisa berkali-kali setiap buka amplop baru
-    const SPIN_MODE = 'daily'; 
+    const SPIN_MODE = 'unlimited'; 
     // -----------------------------
 
     const daftarPesan = [
         "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
+		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
+		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
+		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
+		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
+		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
         "Aku selalu berharap, harimu selalu indah sayangku.. 😚❤️",
         "Jangan bosan ya baca surat menyuratnya dari aku... 🧸💙",
         "Surat ini ada yang dari tanggal 25/06 dan juga 26/06 ya sayang...",
@@ -780,6 +791,27 @@
     };
 
     const daftarGameMentah = {
+			// KEEP AJA !!
+			//1: "✨Truth: \n\nApa bagian tubuh aku yang paling sering kamu bayangin atau pengen kamu sentuh pas kita lagi gak bareng/lagi bareng? 👀 Badannya aja atau ada yang spesifik?",
+			//2: "✨Truth: \n\nPernah gak kamu dapet fantasi atau pikiran 'nakal' tentang aku di tempat yang gak terduga (misal: pas lagi kerja)? 🤫 tell me!",
+			//3: "✨Truth: \n\nAda ga satu posisi yang pengen banget kamu coba malam nanti ketika sama aku tapi belum pernah kamu omongin ke aku. 🙈 Kamu mau apa hm?",
+			//4: "✨Truth: \n\nApa baju atau outfit yang pernah aku pakai yang menurut kamu paling seksi dan bikin kamu langsung pengen meluk aku?",
+			//5: "✨Truth: \n\nKalau kamu boleh minta satu hal malam ini dan aku gak boleh nolak, kamu mau minta apa? 👅 (pikirin baik-baik ya!)",
+			//6: "✨Truth: \n\nKapan pertama kali kamu ngerasa bener-bener tertarik secara fisik dan 'gemes' banget sama aku?",
+			//7: "✨Truth: \n\nApa hal paling sensitif di tubuh kamu yang kalau aku sentuh sedikit aja, bisa bikin kamu langsung merinding?",
+			//8: "✨Truth: \n\nDari skala 1-10, seberapa tinggi tingkat kegemesan/hasrat kamu ke aku malam ini? Jujur ya!",
+			//9: "✨Truth: \n\nPernah gak kamu sengaja pakai baju tertentu pas mau ketemu aku cuma karena pengen bikin aku nafsu? 🗣️✨",
+			//10: "✨Truth: \n\nAda gak rahasia nakal kamu yang belum pernah ada satu orang pun tahu, termasuk aku? 🤔💭",
+			//11: "🎲Dare: \n\nCium aku di tiga tempat berbeda di tubuh aku yang menurut kamu paling seksi, tapi gak boleh di bibir. 💋 Go!",
+			//12: "🎲Dare: \n\nBisikin hal paling 'kotor' atau fantasi paling liar yang pengen kamu lakuin ke aku malam ini, tepat di telinga aku sambil gigit kecil cuping telingaku...",
+			//13: "🎲Dare: \n\nLepasin satu pakaian yang kamu pakai sekarang, tapi kamu harus lepasinnya pakai cara yang seksi di depan aku. 💃🕺 Show time!",
+			//14: "🎲Dare: \n\nDuduk di pangkuan aku sambil hadap aku, tatap mata aku selama 30 detik tanpa ngomong apa-apa, lalu cium aku sesuka hati kamu.",
+			//15: "🎲Dare: \n\nBiarkan aku tutup mata kamu pakai kain (atau baju), dan kamu gak boleh buka sampai aku selesai ngecup/nyentuh area sensitif kamu.",
+			//16: "🎲Dare: \n\nKasih aku massage (pijatan) lembut di area punggung atau paha selama 3 menit, tapi tangan kamu gak boleh diem di satu tempat ya... 💆‍♂️💆‍♀️",
+			//17: "🎲Dare: \n\nPeluk aku dari belakang dengan sangat erat, terus cium leher aku sampai aku kegelian.",
+			//18: "🎲Dare: \n\nPeluk aku dari depan seerat mungkin sampai gak ada celah di antara kita, terus tahan posisi itu selama 1 menit sambil dengerin detak jantung masing-masing.",
+			//19: "🎲Dare: \n\nSpamming kiss ke area apapun itu, dan yang di spamming kiss wajib suruh tutup mata sampai yang di spam kiss minta udahan!",
+			//20: "🎲Dare: \n\nCium bibir aku selama 15 detik penuh, tapi tangan kamu gak boleh nyentuh tubuh aku sama sekali. Harus nahan!"
 			1: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
 			2: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
 			3: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
@@ -793,6 +825,8 @@
     };
 
     const listHadiahWheel = [
+			//"🎁 Kamu harus popo cowo kamu x30,Claim x1 cowo kamu juga Bebas request mau dimana aja!",
+			//"🎁 Kamu harus peluk cowo kamu 30 detik,Claim x1 cowo kamu juga Bebas request kapan saja!",
 			"🫣 Zonk!!💥",
 			"🫣 Zonk!!💥",
 			"🫣 Zonk!!💥",
@@ -807,6 +841,8 @@
             "🫣 Zonk!!💥",
 			"🫣 Coba lagi!!💥",
 			"🫣 Yah! Belum beruntung kamu sayang!!",
+            //"🧸 Bebas Marah / Ngambek ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
+			//"🧸 Bebas nurutin apa yang kamu mau ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
 			"🫣 Zonk!!💥",
 			"🫣 Coba lagi!!💥",
 			"🫣 Coba lagi!!💥",
@@ -822,6 +858,13 @@
 			"🫣 Yah! Belum beruntung kamu sayang!!💥",
 			"🫣 Yah! Belum beruntung kamu sayang!!💥",
 			"🫣 Zonk!!💥",
+			// KEEP TANGGAL 7 - 8 JULY !!!
+			//"🎁CONGRATS!! \nPopo selama 30 detik penuh tanpa lepas!",
+			//"🎁CONGRATS!! \nDapat pijatan punggung/paha (Bebas Pilih/Keduanya) gratis selama 5 menit",
+			//"🎁CONGRATS!! \nDuduk di pangkuan pasangan sampai putaran roda selanjutnya",
+			//"🎁CONGRATS!! \nPasangan harus lepas satu lapis pakaian yang dipakai sekarang!!",
+			//"🎁CONGRATS!! \nDipeluk erat dari belakang selama 2 menit",
+			//"🎁CONGRATS!! \nDapat 5 kecupan di wajah (kening, pipi, hidung, dagu)"
 			"🫣 Zonk!!💥"
     ];
 
@@ -910,7 +953,7 @@
 
     function bukaSurat(nomor) {
         currentActiveSurat = "Surat_" + pointerMenyesuaikanScroll(nomor);
-        currentOpenData = { id: currentActiveSurat, teks: daftarSurat[nomor], nomor: nomor, isGame: false };
+        currentOpenData = { id: currentActiveSurat, teks: daftarSurat[nomor], nomor: nomor, isGame: false, isReply: false };
         const el = document.getElementById("env-" + nomor);
         if(el) el.classList.add("opened");
         
@@ -930,7 +973,7 @@
 
     function bukaGame(nomor) {
         currentActiveSurat = "Game_" + pointerMenyesuaikanScroll(nomor);
-        currentOpenData = { id: currentActiveSurat, teks: daftarGame[nomor], nomor: nomor, isGame: true };
+        currentOpenData = { id: currentActiveSurat, teks: daftarGame[nomor], nomor: nomor, isGame: true, isReply: false };
         
         const el = document.getElementById("game-" + nomor);
         
@@ -961,7 +1004,7 @@
         const tombolSimpan = document.getElementById("btnDownload");
         
         isiSurat.innerText = teks;
-        if (!isGame && daftarFoto[nomor] && daftarFoto[nomor] !== "N/A") {
+        if (!isGame && !currentOpenData.isReply && daftarFoto[nomor] && daftarFoto[nomor] !== "N/A") {
             komponenFoto.src = daftarFoto[nomor];
             komponenFoto.style.display = "inline-block"; 
         } else {
@@ -1057,7 +1100,12 @@
             const itemDiv = document.createElement("div");
             itemDiv.classList.add("storage-item");
             if(item.isGame) itemDiv.classList.add("game-type");
-            const namaTampilan = item.isGame ? "Game " + item.id.split("_")[1] : "Surat " + item.id.split("_")[1];
+            if(item.isReply) itemDiv.classList.add("reply-type");
+            
+            let namaTampilan = "Surat " + item.id.split("_")[1];
+            if(item.isGame) namaTampilan = "Game " + item.id.split("_")[1];
+            if(item.isReply) namaTampilan = "Balasan Syavira";
+            
             itemDiv.innerHTML = `<span>💌 ${namaTampilan}</span><button class="btn-delete-item" onclick="hapusItemKeranjang(${index})">❌</button>`;
             wrapperList.appendChild(itemDiv);
         });
@@ -1100,7 +1148,7 @@
         keranjangSurat.forEach((item) => {
             urutanProses = urutanProses.then(() => {
                 isiSurat.innerText = item.teks;
-                if (!item.isGame && daftarFoto[item.nomor] && daftarFoto[item.nomor] !== "N/A") {
+                if (!item.isGame && !item.isReply && daftarFoto[item.nomor] && daftarFoto[item.nomor] !== "N/A") {
                     komponenFoto.src = daftarFoto[item.nomor];
                     komponenFoto.style.display = "inline-block";
                 } else {
@@ -1171,17 +1219,17 @@
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
   import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-  // ⚠️ !!! GANTI ISI DI BAWAH INI DENGAN KODE CONFIG ASLI KAMU !!! ⚠️
+  // ⚠️ ID PROYEK SUDAH DISESUAIKAN DENGAN AD9E85 ⚠️
   const firebaseConfig = {
-  apiKey: "AIzaSyCTOrx-t7nCx0p7dR-i21Zth7mVCA0E9zo",
-  authDomain: "loveletter2026-8ecbb.firebaseapp.com",
-  databaseURL: "https://loveletter2026-8ecbb-default-rtdb.asia-southeast1.firebasedatabase.app",
-  projectId: "loveletter2026-8ecbb",
-  storageBucket: "loveletter2026-8ecbb.firebasestorage.app",
-  messagingSenderId: "146470753636",
-  appId: "1:146470753636:web:5710e229b40f6efc629671",
-  measurementId: "G-10WRSKZLQD"
-};
+    apiKey: "AIzaSyCTOrx-t7nCx0p7dR-i21Zth7mVCA0E9zo",
+    authDomain: "loveletter2026-8ecbb.firebaseapp.com",
+    databaseURL: "https://loveletter2026-8ecbb-default-rtdb.asia-southeast1.firebasedatabase.app",
+    projectId: "loveletter2026-8ecbb",
+    storageBucket: "loveletter2026-8ecbb.firebasestorage.app",
+    messagingSenderId: "146470753636",
+    appId: "1:146470753636:web:bb758c748101ed47629671",
+    measurementId: "G-10WRSKZLQD"
+  };
 
   // Inisialisasi Firebase & Database
   const app = initializeApp(firebaseConfig);
@@ -1203,7 +1251,7 @@
     }
   };
 
-  // 2. Fungsi Tombol Pengiriman Surat Balik dari Syavira
+  // 2. Fungsi Tombol Pengiriman Surat Balik dari Syavira (UPDATED & SYNCED!)
   window.kirimSuratSyavira = async function() {
     const inputElemen = document.getElementById("inputSuratSyavira");
     const tombolKirim = document.getElementById("btnKirimSuratBalik");
@@ -1220,15 +1268,33 @@
 
     try {
         const dbRef = ref(db, "surat_dari_syavira");
+        const waktuKirim = new Date().toLocaleString("id-ID");
         
         // Mengirimkan payload objek data surat ke Firebase
         await push(dbRef, {
             isi_surat: teksSurat,
-            dikirim_pada: new Date().toLocaleString("id-ID")
+            dikirim_pada: waktuKirim
         });
 
         alert("Surat kamu sudah terkirim dan disimpan dengan aman di hati Pin! 💖✨");
-        inputElemen.value = ""; // Mengosongkan kolom teks ketikan
+        
+        // --- LOGIKA TERBARU: AKTIFKAN POP-UP DAN TAUTKAN STRUKTUR SURAT MENTAH ---
+        currentActiveSurat = "BalasanSyavira_" + Date.now();
+        currentOpenData = { 
+            id: currentActiveSurat, 
+            teks: `💌 SURAT BALASAN DARI SYAVIRA 💌\n\n${teksSurat}\n\nDikirim pada: ${waktuKirim}`, 
+            nomor: 99, 
+            isGame: false,
+            isReply: true 
+        };
+        
+        // Mengosongkan kolom teks ketikan setelah berhasil
+        inputElemen.value = ""; 
+        
+        // Panggil penyesuai scroll halaman & jalankan pop-up
+        pointerMenyesuaikanScroll(99);
+        prosesBukaPopup(currentOpenData.teks, 99, false);
+
     } catch (error) {
         console.error("Error Firebase:", error);
         alert("Aduh gagal kirim, coba cek koneksi internetnya ya bee.. 🥺");
