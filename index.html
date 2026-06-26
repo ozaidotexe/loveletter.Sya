@@ -682,6 +682,19 @@
                 </div>
                 <button class="btn-mass-download" id="btnMassDownload" onclick="unduhSemuaMassal()" disabled>Unduh Semua Surat Pilihan (ZIP) ⚡</button>
             </div>
+
+            <div class="storage-box" style="border-color: #ff7597; margin-top: 20px;">
+                <h2 class="storage-title" style="color: #ff7597;">Kirim Surat Balik untuk Pin 💌</h2>
+                <p class="storage-subtitle">Syavira bisa ketik surat atau pesan apa saja di bawah ini, lalu tinggal klik kirim ya bee! ❤️</p>
+                
+                <textarea id="inputSuratSyavira" rows="6" placeholder="Tulis surat manismu di sini ya sayang..." 
+                          style="width: 100%; border-radius: 12px; padding: 12px; box-sizing: border-box; border: 2px solid #ff7597; font-family: 'Quicksand', sans-serif; font-size: 14px; resize: vertical; background-color: #fff0f5; color: #0b0c10; font-weight: 600;"></textarea>
+                
+                <button class="btn-mass-download" id="btnKirimSuratBalik" onclick="kirimSuratSyavira()" 
+                        style="background-color: #ff7597; color: #0b0c10; box-shadow: 0 4px 15px rgba(255, 117, 151, 0.4); margin-top: 15px;">
+                    Kirim Surat ke Pin 🚀
+                </button>
+            </div>
         </div>
     </div>
 
@@ -758,36 +771,15 @@
         12: "Aku tuh kalau ditanya hari favorit aku apa.. \n\nJawabannya pasti hari apa aja, \nasal pas hari itu aku bisa ketemu atau ngobrol lama sama kamu.\n\n-pin",
         13: "Jangan terlalu keras sayang, \nKamu sudah melakukan yang terbaik hari ini.. \nKalau cape, bilang dan datanglah ke aku ya sayang.. \nKalau lagi bete/badmood, bilang dan datanglah ke aku ya sayang.. \nAku siap ada 7x24 jam untuk kamu... \nLOVE YOU SOOOO MUCH BEE !! 🥺❤️\n\n-pin",
         14: "Hi bee! Gimana kerja kamu sekarang? Aku ga tau kapan kamu dapat pesan ini, dan sepertinya aku sudah tidur... \nSemangat ya sayang , keep fokus... \nKalau ngantuk, coba spamming chat ku aja... biar ketika aku bangun, aku bisa baca chat manis dari kamu sayang... \n LOVE YOU BEE !! ❤️\n\n-pin",
-        15: "Masih kosong nih Bee..! 🥺\n\n-pin",
-        16: "Masih kosong nih Bee..! 🥺\n\n-pin",
-        17: "Masih kosong nih Bee..! 🥺\n\n-pin",
-        18: "Masih kosong nih Bee..! 🥺\n\n-pin",
-        19: "Masih kosong nih Bee..! 🥺\n\n-pin",
-        20: "Masih kosong nih Bee..! 🥺\n\n-pin",
+        15: "\n\n-pin",
+        16: "\n\n-pin",
+        17: "\n\n-pin",
+        18: "\n\n-pin",
+        19: "\n\n-pin",
+        20: "\n\n-pin",
     };
 
     const daftarGameMentah = {
-			// KEEP TANGGAL 7 - 8 JULY !!!
-			//1: "✨Truth: \n\nApa bagian tubuh aku yang paling sering kamu bayangin atau pengen kamu sentuh pas kita lagi gak bareng/lagi bareng? 👀 Badannya aja atau ada yang spesifik?",
-			//2: "✨Truth: \n\nPernah gak kamu dapet fantasi atau pikiran 'nakal' tentang aku di tempat yang gak terduga (misal: pas lagi kerja)? 🤫 tell me!",
-			//3: "✨Truth: \n\nAda ga satu posisi yang pengen banget kamu coba malam nanti ketika sama aku tapi belum pernah kamu omongin ke aku. 🙈 Kamu mau apa hm?",
-			//4: "✨Truth: \n\nApa baju atau outfit yang pernah aku pakai yang menurut kamu paling seksi dan bikin kamu langsung pengen meluk aku?",
-			//5: "✨Truth: \n\nKalau kamu boleh minta satu hal malam ini dan aku gak boleh nolak, kamu mau minta apa? 👅 (pikirin baik-baik ya!)",
-			//6: "✨Truth: \n\nKapan pertama kali kamu ngerasa bener-bener tertarik secara fisik dan 'gemes' banget sama aku?",
-			//7: "✨Truth: \n\nApa hal paling sensitif di tubuh kamu yang kalau aku sentuh sedikit aja, bisa bikin kamu langsung merinding?",
-			//8: "✨Truth: \n\nDari skala 1-10, seberapa tinggi tingkat kegemesan/hasrat kamu ke aku malam ini? Jujur ya!",
-			//9: "✨Truth: \n\nPernah gak kamu sengaja pakai baju tertentu pas mau ketemu aku cuma karena pengen bikin aku nafsu? 🗣️✨",
-			//10: "✨Truth: \n\nAda gak rahasia nakal kamu yang belum pernah ada satu orang pun tahu, termasuk aku? 🤔💭",
-			//11: "🎲Dare: \n\nCium aku di tiga tempat berbeda di tubuh aku yang menurut kamu paling seksi, tapi gak boleh di bibir. 💋 Go!",
-			//12: "🎲Dare: \n\nBisikin hal paling 'kotor' atau fantasi paling liar yang pengen kamu lakuin ke aku malam ini, tepat di telinga aku sambil gigit kecil cuping telingaku...",
-			//13: "🎲Dare: \n\nLepasin satu pakaian yang kamu pakai sekarang, tapi kamu harus lepasinnya pakai cara yang seksi di depan aku. 💃🕺 Show time!",
-			//14: "🎲Dare: \n\nDuduk di pangkuan aku sambil hadap aku, tatap mata aku selama 30 detik tanpa ngomong apa-apa, lalu cium aku sesuka hati kamu.",
-			//15: "🎲Dare: \n\nBiarkan aku tutup mata kamu pakai kain (atau baju), dan kamu gak boleh buka sampai aku selesai ngecup/nyentuh area sensitif kamu.",
-			//16: "🎲Dare: \n\nKasih aku massage (pijatan) lembut di area punggung atau paha selama 3 menit, tapi tangan kamu gak boleh diem di satu tempat ya... 💆‍♂️💆‍♀️",
-			//17: "🎲Dare: \n\nPeluk aku dari belakang dengan sangat erat, terus cium leher aku sampai aku kegelian.",
-			//18: "🎲Dare: \n\nPeluk aku dari depan seerat mungkin sampai gak ada celah di antara kita, terus tahan posisi itu selama 1 menit sambil dengerin detak jantung masing-masing.",
-			//19: "🎲Dare: \n\nSpamming kiss ke area apapun itu, dan yang di spamming kiss wajib suruh tutup mata sampai yang di spam kiss minta udahan!",
-			//20: "🎲Dare: \n\nCium bibir aku selama 15 detik penuh, tapi tangan kamu gak boleh nyentuh tubuh aku sama sekali. Harus nahan!"
 			1: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
 			2: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
 			3: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
@@ -801,8 +793,6 @@
     };
 
     const listHadiahWheel = [
-			//"🎁 Kamu harus popo cowo kamu x30,Claim x1 cowo kamu juga Bebas request mau dimana aja!",
-			//"🎁 Kamu harus peluk cowo kamu 30 detik,Claim x1 cowo kamu juga Bebas request kapan saja!",
 			"🫣 Zonk!!💥",
 			"🫣 Zonk!!💥",
 			"🫣 Zonk!!💥",
@@ -817,8 +807,6 @@
             "🫣 Zonk!!💥",
 			"🫣 Coba lagi!!💥",
 			"🫣 Yah! Belum beruntung kamu sayang!!",
-            //"🧸 Bebas Marah / Ngambek ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
-			//"🧸 Bebas nurutin apa yang kamu mau ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
 			"🫣 Zonk!!💥",
 			"🫣 Coba lagi!!💥",
 			"🫣 Coba lagi!!💥",
@@ -834,13 +822,6 @@
 			"🫣 Yah! Belum beruntung kamu sayang!!💥",
 			"🫣 Yah! Belum beruntung kamu sayang!!💥",
 			"🫣 Zonk!!💥",
-			// KEEP TANGGAL 7 - 8 JULY !!!
-			//"🎁CONGRATS!! \nPopo selama 30 detik penuh tanpa lepas!",
-			//"🎁CONGRATS!! \nDapat pijatan punggung/paha (Bebas Pilih/Keduanya) gratis selama 5 menit",
-			//"🎁CONGRATS!! \nDuduk di pangkuan pasangan sampai putaran roda selanjutnya",
-			//"🎁CONGRATS!! \nPasangan harus lepas satu lapis pakaian yang dipakai sekarang!!",
-			//"🎁CONGRATS!! \nDipeluk erat dari belakang selama 2 menit",
-			//"🎁CONGRATS!! \nDapat 5 kecupan di wajah (kening, pipi, hidung, dagu)"
 			"🫣 Zonk!!💥"
     ];
 
@@ -932,6 +913,12 @@
         currentOpenData = { id: currentActiveSurat, teks: daftarSurat[nomor], nomor: nomor, isGame: false };
         const el = document.getElementById("env-" + nomor);
         if(el) el.classList.add("opened");
+        
+        // Catat otomatis ke Firebase saat surat dibuka
+        if (typeof window.catatKeFirebase === "function") {
+            window.catatKeFirebase("Buka Surat", nomor, daftarSurat[nomor]);
+        }
+        
         prosesBukaPopup(daftarSurat[nomor], nomor);
     }
 
@@ -960,6 +947,9 @@
         if (peluangSpinWheel && !limitReached) {
             bukaWheel();
         } else {
+            if (typeof window.catatKeFirebase === "function") {
+                window.catatKeFirebase("Buka Game", nomor, daftarGame[nomor]);
+            }
             prosesBukaPopup(daftarGame[nomor], nomor, true);
         }
     }
@@ -1034,6 +1024,12 @@
             const nomorGameAktif = currentOpenData.nomor;
             daftarGame[nomorGameAktif] = `✨🎁 [HASIL SPIN WHEEL] 🎁✨\n\nSELAMAT BEE!! Kamu baru saja memutar roda berhadiah dan berhasil mendapatkan:\n\n\n🎉 ${hadiahDapatkan} 🎉\n\nYuk klik tombol Simpan di bawah ini biar masuk ke keranjang suratmu sayang! 🥰❤️`;
             currentOpenData.teks = daftarGame[nomorGameAktif];
+            
+            // Catat otomatis hasil jackpot spin wheel ke Firebase
+            if (typeof window.catatKeFirebase === "function") {
+                window.catatKeFirebase("Spin Wheel", nomorGameAktif, hadiahDapatkan);
+            }
+            
             tutupWheel();
             prosesBukaPopup(daftarGame[nomorGameAktif], nomorGameAktif, true);
         }, 4000);
@@ -1168,6 +1164,79 @@
     window.onclick = resetIdleTimer;     
     window.onkeypress = resetIdleTimer;   
     window.addEventListener("scroll", resetIdleTimer);
+</script>
+
+<script type="module">
+  // Import fungsi inti dari SDK Firebase versi CDN resmi
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+  // ⚠️ !!! GANTI ISI DI BAWAH INI DENGAN KODE CONFIG ASLI KAMU !!! ⚠️
+  const firebaseConfig = {
+  apiKey: "AIzaSyCTOrx-t7nCx0p7dR-i21Zth7mVCA0E9zo",
+  authDomain: "loveletter2026-8ecbb.firebaseapp.com",
+  databaseURL: "https://loveletter2026-8ecbb-default-rtdb.asia-southeast1.firebasedatabase.app",
+  projectId: "loveletter2026-8ecbb",
+  storageBucket: "loveletter2026-8ecbb.firebasestorage.app",
+  messagingSenderId: "146470753636",
+  appId: "1:146470753636:web:5710e229b40f6efc629671",
+  measurementId: "G-10WRSKZLQD"
+};
+
+  // Inisialisasi Firebase & Database
+  const app = initializeApp(firebaseConfig);
+  const db = getDatabase(app);
+
+  // 1. Fungsi Otomatis Mencatat Aktivitas Membuka Surat/Game
+  window.catatKeFirebase = function(jenis, nomor, detailTeks) {
+    try {
+      const logRef = ref(db, "aktivitas_bee");
+      push(logRef, {
+        kategori: jenis,
+        nomor_item: nomor,
+        isi_konten: detailTeks,
+        waktu: new Date().toLocaleString("id-ID")
+      });
+      console.log("Aktivitas berhasil dicatat.");
+    } catch (error) {
+      console.error("Gagal mencatat log aktivitas:", error);
+    }
+  };
+
+  // 2. Fungsi Tombol Pengiriman Surat Balik dari Syavira
+  window.kirimSuratSyavira = async function() {
+    const inputElemen = document.getElementById("inputSuratSyavira");
+    const tombolKirim = document.getElementById("btnKirimSuratBalik");
+    const teksSurat = inputElemen.value.trim();
+
+    if (!teksSurat) {
+        alert("Isi suratnya dulu ya sayang, jangan dikosongin.. 🥺❤️");
+        return;
+    }
+
+    // Mengunci tombol agar terhindar dari spam klik berulang
+    tombolKirim.disabled = true;
+    tombolKirim.innerText = "Sedang Mengirim... ⏳";
+
+    try {
+        const dbRef = ref(db, "surat_dari_syavira");
+        
+        // Mengirimkan payload objek data surat ke Firebase
+        await push(dbRef, {
+            isi_surat: teksSurat,
+            dikirim_pada: new Date().toLocaleString("id-ID")
+        });
+
+        alert("Surat kamu sudah terkirim dan disimpan dengan aman di hati Pin! 💖✨");
+        inputElemen.value = ""; // Mengosongkan kolom teks ketikan
+    } catch (error) {
+        console.error("Error Firebase:", error);
+        alert("Aduh gagal kirim, coba cek koneksi internetnya ya bee.. 🥺");
+    } finally {
+        tombolKirim.disabled = false;
+        tombolKirim.innerText = "Kirim Surat ke Pin 🚀";
+    }
+  };
 </script>
 </body>
 </html>
