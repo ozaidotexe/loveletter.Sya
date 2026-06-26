@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Surat Spesial untuk Syavira Dwi Dinanti ✨❤️</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <!-- Tambahan JSZip untuk fitur download massal menjadi ZIP -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Quicksand:wght@500;700&display=swap');
@@ -22,7 +21,7 @@
             background-image: radial-gradient(#1f2833 1px, transparent 1px);
             background-size: 20px 20px;
             box-sizing: border-box;
-            padding: 40px 20px;
+            padding: 20px 10px; /* Diperkecil agar ramah HP */
             overflow-x: hidden;
         }
 
@@ -59,15 +58,17 @@
             background-color: rgba(31, 40, 51, 0.9);
             border: 4px solid #ff7597; /* Pink Border Asli */
             border-radius: 20px;
-            padding: 30px;
+            padding: 25px 20px;
+            width: 90%;
             max-width: 450px;
             box-shadow: 0 8px 20px rgba(255, 117, 151, 0.3);
             transition: all 0.5s ease;
+            box-sizing: border-box;
         }
 
         .message-text {
             color: #66fcf1; /* Biru Pastel */
-            font-size: 22px;
+            font-size: 20px;
             font-family: 'Fredoka', sans-serif;
             margin-bottom: 25px;
             line-height: 1.5;
@@ -108,44 +109,52 @@
         .gallery-title {
             color: #ff7597;
             font-family: 'Fredoka', sans-serif;
-            font-size: 32px;
+            font-size: 28px;
             margin-bottom: 10px;
             text-shadow: 0 0 10px rgba(255,117,151,0.5);
+            padding: 0 10px;
         }
 
         .gallery-subtitle {
             color: #66fcf1;
-            font-size: 16px;
-            margin-bottom: 40px;
+            font-size: 14px;
+            margin-bottom: 30px;
+            padding: 0 15px;
         }
 
         .section-divider {
-            margin: 60px 0 20px 0;
+            margin: 40px 0 20px 0;
             width: 100%;
             border-top: 2px dashed #9b59b6;
         }
 
         .envelope-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-            gap: 50px;
-            justify-items: center;
-            padding: 20px;
-            margin-bottom: 30px;
+            /* Menggunakan grid auto-fit yang responsif agar pas di layar sekecil apa pun */
+            grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+            gap: 20px;
+            width: 100%;
+            max-width: 1000px;
+            padding: 10px;
+            box-sizing: border-box;
         }
 
         /* 3. KOMPONEN AMPLOP KECIL (SURAT CINTA - BIRU) */
         .envelope-card {
             position: relative;
-            width: 200px;
-            height: 130px;
+            width: 100%;
+            aspect-ratio: 3 / 2; /* Menjaga proporsi ukuran amplop secara otomatis */
             background-color: #45a29e; /* Biru Amplop Asli */
             border-radius: 0 0 8px 8px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
             cursor: pointer;
             transition: transform 0.3s, background-color 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
+        /* Membuat lipatan amplop atas berbasis persentase agar adaptif */
         .envelope-card::before {
             content: '';
             position: absolute;
@@ -153,33 +162,35 @@
             left: 0;
             width: 0;
             height: 0;
-            border-left: 100px solid transparent;
-            border-right: 100px solid transparent;
-            border-top: 70px solid #52b2ae;
+            border-left: 50% solid transparent;
+            border-right: 50% solid transparent;
+            border-top: 50% solid #52b2ae;
             z-index: 4;
             transition: transform 0.3s, border-top-color 0.3s;
             transform-origin: top;
+            box-sizing: border-box;
         }
 
         .envelope-card:hover::before {
-            transform: rotateX(180deg) translateY(0px);
+            transform: rotateX(180deg);
             z-index: 1;
         }
 
         .envelope-card::after {
             content: '';
             position: absolute;
-            bottom: 0;
+            top: 0;
             left: 0;
-            width: 0;
-            height: 0;
-            border-left: 100px solid #398c89;
-            border-right: 100px solid #398c89;
-            border-top: 65px solid transparent;
-            border-bottom: 65px solid #398c89;
+            width: 100%;
+            height: 100%;
+            border-left: 70px solid #398c89;
+            border-right: 70px solid #398c89;
+            border-top: 45px solid transparent;
+            border-bottom: 45px solid #398c89;
             border-radius: 0 0 8px 8px;
             z-index: 3;
             transition: border-color 0.3s;
+            box-sizing: border-box;
         }
 
         /* 3B. KOMPONEN AMPLOP TRUTH OR DARE (UNGU) */
@@ -230,16 +241,14 @@
         /* --------------------------------------- */
 
         .envelope-card:hover {
-            transform: translateY(-10px) scale(1.03);
+            transform: translateY(-5px) scale(1.03);
         }
 
-        /* Label Angka Surat */
+        /* Label Angka Surat posisi tengah otomatis */
         .envelope-label {
-            position: absolute;
-            top: 45px;
-            left: 80px;
-            width: 40px;
-            height: 40px;
+            position: relative;
+            width: 35px;
+            height: 35px;
             background-color: #ff7597;
             border-radius: 50%;
             z-index: 5;
@@ -249,7 +258,7 @@
             color: #0b0c10;
             font-family: 'Fredoka', sans-serif;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 15px;
             box-shadow: 0 2px 5px rgba(0,0,0,0.3);
             transition: background-color 0.3s, color 0.3s;
         }
@@ -268,15 +277,20 @@
             align-items: center;
             opacity: 0;
             transition: opacity 0.4s ease;
+            box-sizing: border-box;
+            padding: 15px;
         }
 
+        /* PERBAIKAN POP-UP: Menambahkan Batas Tinggi Maksimal dan Scrollbar Otomatis jika konten kepanjangan */
         .popup-letter {
             background-color: #fff0f5;
             border: 5px solid #ff7597;
             border-radius: 20px;
-            width: 90%;
-            max-width: 500px;
-            padding: 30px 30px 40px 30px;
+            width: 100%;
+            max-width: 480px;
+            max-height: 85vh; /* Membatasi tinggi pop up maks 85% layar agar tidak terpotong ke bawah */
+            overflow-y: auto; /* Memunculkan scroll otomatis jika teks/gambar melebihi batas tinggi */
+            padding: 25px 20px;
             box-sizing: border-box;
             position: relative;
             transform: scale(0.7);
@@ -285,12 +299,22 @@
             text-align: left;
         }
 
+        /* Kustomisasi scrollbar agar rapi */
+        .popup-letter::-webkit-scrollbar {
+            width: 6px;
+        }
+        .popup-letter::-webkit-scrollbar-thumb {
+            background-color: #ff7597;
+            border-radius: 10px;
+        }
+
         .popup-text {
-            font-size: 18px;
+            font-size: 16px; /* Ukuran default disesuaikan agar pas di layar kecil */
             color: #0b0c10;
             line-height: 1.6;
             font-weight: 600;
             white-space: pre-line;
+            word-break: break-word; /* Menghindari teks melebar merusak layout */
         }
 
         .popup-date {
@@ -314,6 +338,8 @@
             font-family: 'Fredoka', sans-serif;
             font-weight: bold;
             transition: all 0.2s;
+            width: 100%; /* Penuh di layar HP agar mudah di-klik */
+            box-sizing: border-box;
         }
 
         .btn-close:hover {
@@ -322,11 +348,11 @@
         }
 
         .btn-download {
-            margin-top: 25px;
+            margin-top: 20px;
             background-color: #ff7597;
             color: #0b0c10;
             border: none;
-            padding: 10px 20px;
+            padding: 12px 20px;
             border-radius: 50px;
             cursor: pointer;
             font-family: 'Fredoka', sans-serif;
@@ -334,11 +360,14 @@
             font-size: 14px;
             transition: all 0.2s;
             box-shadow: 0 4px 10px rgba(255, 117, 151, 0.2);
-            display: inline-block;
+            display: block;
+            width: 100%; /* Menyesuaikan lebar pop-up */
+            box-sizing: border-box;
+            text-align: center;
         }
 
         .btn-download:hover {
-            transform: scale(1.03);
+            transform: scale(1.02);
             background-color: #ff4a75;
         }
 
@@ -360,9 +389,9 @@
             background-color: #1f2833;
             border: 4px dashed #66fcf1;
             border-radius: 20px;
-            width: 85%;
+            width: 95%;
             max-width: 400px;
-            padding: 30px;
+            padding: 25px;
             box-sizing: border-box;
             text-align: center;
             box-shadow: 0 10px 25px rgba(102, 252, 241, 0.3);
@@ -371,7 +400,7 @@
         }
         .popup-warning-text {
             color: #ffffff;
-            font-size: 18px;
+            font-size: 16px;
             font-family: 'Fredoka', sans-serif;
             line-height: 1.6;
             margin-bottom: 20px;
@@ -387,6 +416,7 @@
             cursor: pointer;
             font-family: 'Fredoka', sans-serif;
             transition: transform 0.2s, background-color 0.2s;
+            width: 100%;
         }
         .btn-warning-close:hover {
             transform: scale(1.05);
@@ -402,44 +432,44 @@
             background-color: rgba(31, 40, 51, 0.9);
             border: 4px dashed #66fcf1;
             border-radius: 20px;
-            padding: 30px;
+            padding: 20px;
             width: 100%;
             max-width: 600px;
-            margin: 50px auto 20px auto;
+            margin: 40px auto 20px auto;
             box-shadow: 0 8px 25px rgba(102, 252, 241, 0.2);
             box-sizing: border-box;
         }
         .storage-title {
             color: #66fcf1;
             font-family: 'Fredoka', sans-serif;
-            font-size: 24px;
+            font-size: 22px;
             margin-bottom: 10px;
         }
         .storage-subtitle {
             color: #ffffff;
-            font-size: 14px;
+            font-size: 13px;
             margin-bottom: 20px;
             opacity: 0.8;
         }
         .storage-list {
             display: flex;
             flex-wrap: wrap;
-            gap: 12px;
+            gap: 10px;
             justify-content: center;
             margin-bottom: 25px;
-            min-height: 50px;
+            min-height: 40px;
         }
         .storage-item {
             background-color: #ff7597;
             color: #0b0c10;
             font-family: 'Fredoka', sans-serif;
             font-weight: bold;
-            padding: 8px 16px;
+            padding: 8px 14px;
             border-radius: 20px;
             display: flex;
             align-items: center;
             gap: 8px;
-            font-size: 14px;
+            font-size: 13px;
             animation: fadeIn 0.3s ease;
             box-shadow: 0 4px 10px rgba(255, 117, 151, 0.3);
         }
@@ -454,24 +484,26 @@
             color: inherit;
             cursor: pointer;
             font-weight: bold;
-            font-size: 14px;
+            font-size: 13px;
             padding: 0 2px;
         }
         .btn-mass-download {
             background-color: #66fcf1;
             color: #0b0c10;
             border: none;
-            padding: 14px 35px;
-            font-size: 16px;
+            padding: 14px 25px;
+            font-size: 15px;
             font-weight: bold;
             border-radius: 50px;
             cursor: pointer;
             font-family: 'Fredoka', sans-serif;
             transition: transform 0.2s, background-color 0.2s;
             box-shadow: 0 4px 15px rgba(102, 252, 241, 0.4);
+            width: 100%;
+            box-sizing: border-box;
         }
         .btn-mass-download:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
             background-color: #45a29e;
             color: #ffffff;
         }
@@ -485,35 +517,40 @@
 
         /* STYLING KHUSUS SPIN WHEEL */
         .wheel-box {
-            max-width: 420px;
+            width: 100%;
+            max-width: 400px;
+            max-height: 90vh;
+            overflow-y: auto;
             text-align: center;
             background: #1f2833;
             border: 4px solid #ff7597;
             box-shadow: 0 10px 30px rgba(255, 117, 151, 0.4);
+            padding: 20px 15px;
         }
         .wheel-box h2 {
             color: #ff7597;
             font-family: 'Fredoka', sans-serif;
             margin-bottom: 5px;
+            font-size: 22px;
             text-shadow: 0 0 8px rgba(255, 117, 151, 0.5);
         }
         .wheel-box p {
             color: #66fcf1;
-            font-size: 14px;
+            font-size: 13px;
             padding: 0 10px;
         }
         .wheel-container {
             position: relative;
-            width: 280px;
-            height: 280px;
-            margin: 25px auto;
+            width: 240px;
+            height: 240px;
+            margin: 20px auto;
         }
         .wheel-pointer {
             position: absolute;
-            top: -22px;
+            top: -20px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 36px;
+            font-size: 30px;
             z-index: 10;
         }
         .wheel {
@@ -546,9 +583,11 @@
             box-shadow: 0 4px 12px rgba(255, 117, 151, 0.4);
             transition: 0.3s;
             margin-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
         }
         #btnSpin:hover {
-            transform: scale(1.05);
+            transform: scale(1.02);
             background-color: #ff4a75;
         }
         #btnSpin:disabled {
@@ -557,6 +596,25 @@
             cursor: not-allowed;
             box-shadow: none;
             transform: none;
+        }
+
+        /* --- MEDIA QUERIES OPTIMALISASI LAYAR SMARTPHONE (DI BAWAH 480PX) --- */
+        @media screen and (max-width: 480px) {
+            .gallery-title { font-size: 24px; }
+            .popup-text { font-size: 15px; }
+            .envelope-grid {
+                grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+                gap: 15px;
+            }
+            .envelope-card::after {
+                border-left-width: 55px;
+                border-right-width: 55px;
+            }
+            .envelope-label {
+                width: 30px;
+                height: 30px;
+                font-size: 13px;
+            }
         }
     </style>
 </head>
@@ -597,10 +655,8 @@
 				<div class="envelope-card" id="env-20" onclick="bukaSurat(20)"><div class="envelope-label">20</div></div>	
             </div>
 
-            <!-- PEMBATAS BARIS BARU -->
             <div class="section-divider"></div>
 
-            <!-- BARIS 2: TRUTH OR DARE -->
             <h1 class="gallery-title" style="color: #9b59b6;">Truth, Dare, or Mini Challenge! 🎲✨</h1>
             <p class="gallery-subtitle" style="color: #a29bfe;">Isinya acak! Coba pilih satu amplop undian di bawah ini dan lakuin tantangannya ya Bee!</p>
 
@@ -627,10 +683,8 @@
 				<div class="envelope-card envelope-game" id="game-20" onclick="bukaGame(20)"><div class="envelope-label">T</div></div>
             </div>
 
-            <!-- PEMBATAS BARIS BARU UNTUK AREA PENYIMPANAN MASSAL -->
             <div class="section-divider" style="border-top-color: #66fcf1;"></div>
 
-            <!-- KOTAK PENYIMPANAN KHUSUS UNTUK DOWNLOAD MASSAL -->
             <div class="storage-box">
                 <h2 class="storage-title">Keranjang Surat Pilihanmu 🛒</h2>
                 <p class="storage-subtitle">Surat yang kamu kumpulkan akan muncul di sini. Kamu bisa memilahnya sebelum didownload sekaligus!</p>
@@ -641,7 +695,6 @@
         </div>
     </div>
 
-    <!-- POPUP OVERLAY UTAMA (SURAT & GAME) -->
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-letter" id="captureArea">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
@@ -651,14 +704,12 @@
             <div class="popup-date" id="tanggalDownload"></div>
 
             <br>
-            <!-- Merubah tombol download satuan menjadi simpan ke keranjang massal -->
             <button class="btn-download" id="btnDownload" onclick="simpanKeKeranjang()">Simpan Surat 🛒</button>
             <br>
             <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
         </div>
     </div>
 
-    <!-- POPUP OVERLAY KHUSUS UNTUK SPIN WHEEL GAME NOMOR 9 -->
     <div class="popup-overlay" id="wheelOverlay">
         <div class="popup-letter wheel-box">
             <h2>✨ SPIN WHEEL BERHADIAH ✨</h2>
@@ -675,7 +726,6 @@
         </div>
     </div>
 
-    <!-- POP-UP OVERLAY UNTUK PERINGATAN IDLE -->
     <div class="popup-overlay" id="warningOverlay">
         <div class="popup-warning">
             <div class="popup-warning-text" id="warningText">Pesan Peringatan...</div>
@@ -706,8 +756,8 @@
     const daftarSuratMentah = {
         1: "Aku sayang sama kamu tuh beneran tulus dari hati, bukan karena lagi kesepian atau sekadar emosi sesaat. \nTapi karena hati aku emang milih kamu. \nTahu gak? Di tengah dunia yang lagi bising dan melelahkan ini, aku bersyukur banget punya tempat untuk pulang. \nBuat aku, kamu itu rumah ternyaman. \n\nMakasih ya... cuma di dekatmu aku bisa jadi diri sendiri tanpa harus jaim, dan gak takut untuk kelihatan rapuh. \nMakasih untuk semuanya. Aku mau kita terus bareng-bareng selamanya, Bee. ❤️\n\n-pin",
         2: "Aku tahu aku tidak spesial..\nAku bukan orang kaya, bukan juga pria yang paling tampan.\nAku hanya lelaki biasa yang masih punya banyak kelemahan. \n\nKarena itu, terima kasih banyak ya bee, sudah menerimaku apa adanya, bukan karena 'ada apanya'. \nKehadiranmu sungguh berarti buatku. \nMeski aku biasa saja, aku berjanji akan selalu berusaha memberikan yang terbaik untukmu dan untuk masa depan kita nanti. \nI love you so much, Bee! 😚❤️\n\n\n-pin",
-        3: "Kalau ada kalimat yang di ulang , itu bukan aku sengaja sayangku... \nAku hanya menulis apa yang hati ku pengin sampaikan saja ke kamu sayang ... \nMunking bukan hanya ungkapan yang sampai di surat ini ... \nTapi bisa jadi rasa resahku , kangen ku , penat ku atau mungkin keadaan ku saat ini juga .... \nsatu yang hal pasti aku tidak akan pernah bosan atau hanya sebatas formalitas atau kebiasaan bilang LOVE YOU ke kamu ....\nLOVE YOUU SOO MUCCHH BEE !!! ❤️\n\n-pin",
-        4: "Aku di sini ya, Bee... \nAku bakal jaga dan perhatiin kamu sebisa yang aku bisa. \nAku nggak akan biarin kamu jatuh sendirian, dan aku siap jadi orang pertama yang ngusap air mata kamu kalau kamu lagi sedih. \n\nKalau kamu lagi kesal, tumpahin aja semuanya ke aku, aku siap jadi bahan ocehan kamu. \nAku mau jadi orang pertama yang kamu sapa di pagi hari, sekaligus orang terakhir sebelum kamu tidur. \nBahkan kalau bisa, aku mau hadir di setiap mimpi kamu.\n\n\n-pin",
+        3: "Kalau ada kalimat yang di ulang , itu bukan aku sengaja sayangku... \nAku hanya menulis apa yang hati ku pengin sampaikan saja ke kamu sayang ... \nMunking bukan hanya ungkapan yang sampai di surat ini ... \nTapi bisa jadi rasa resahku , kangen ku , penat ku atau mungkin keadaan ku saat ini juga .... \nsatu yang hal pasti aku tidak akan pernah bosan atau hanya sebatas formalitas atau kebiasaan billing LOVE YOU ke kamu ....\nLOVE YOUU SOO MUCCHH BEE !!! ❤️\n\n-pin",
+        4: "Aku di sini ya, Bee... \nAku bakal jaga dan perhatiin kamu sebisa yang aku bisa. \nAku nggak akan biarin kamu jatuh sendirian, dan aku siap jadi orang pertama yang ngusap air mata kamu kalau kamu lagi sedih. \n\nKalau kamu lagi kesal, tumpahin aja semuanya ke aku, aku siap jadi bahan ocehan kamu. \nAku mau jadi orang pertama yang kamu sapa di pagi hari, sekaligus orang terakhir sebelum kamu tidur. \nBeben kalau bisa, aku mau hadir di setiap mimpi kamu.\n\n\n-pin",
         5: "Bee... kalau kamu lagi banyak pikiran atau masalah, aku mau ya jadi tempat cerita kamu. \nAku siap duduk diam dan dengerin semua keluh kesah kamu. \nAku pengen terus belajar buat jadi tempat pulang yang paling nyaman dan aman buat kamu. \n\nDaripada sekadar janji, aku bakal buktiin dan terus berusaha buat wujudin itu. \nMaaf ya kalau kadang caraku salah atau malah bikin kamu makin bete, tapi aku nggak akan bosen buat terus belajar biar kamu bisa ngerasa makin nyaman sama aku.\n\n-pin",
         6: "25/06 - 06:58 \n\nHujan datang, sayang... dan kangenku langsung makin nggak tertampung..\nKukira bakal mudah ngelewatinnya, ternyata nggak sama sekali. \nBerat banget rasanya pas lagi jauh dari kamu gini... 🥺\n\n-pin",
         7: "Kami changeshift, kamu di shift sama sedangkan aku di shift ini... \nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU ..... \nLOP YUUU SAYANG ! \n\n-pin",
@@ -727,7 +777,7 @@
     };
 
     const daftarGameMentah = {
-        // KEEP TANGGAL 7 - 8 JULY !!!
+			// KEEP TANGGAL 7 - 8 JULY !!!
 			//1: "✨Truth: \n\nApa bagian tubuh aku yang paling sering kamu bayangin atau pengen kamu sentuh pas kita lagi gak bareng/lagi bareng? 👀 Badannya aja atau ada yang spesifik?",
 			//2: "✨Truth: \n\nPernah gak kamu dapet fantasi atau pikiran 'nakal' tentang aku di tempat yang gak terduga (misal: pas lagi kerja)? 🤫 tell me!",
 			//3: "✨Truth: \n\nAda ga satu posisi yang pengen banget kamu coba malam nanti ketika sama aku tapi belum pernah kamu omongin ke aku. 🙈 Kamu mau apa hm?",
@@ -793,14 +843,15 @@
 			"🫣 Coba lagi!!💥",
 			"🫣 Yah! Belum beruntung kamu sayang!!💥",
 			"🫣 Yah! Belum beruntung kamu sayang!!💥",
-			"🫣 Zonk!!💥"
+			"🫣 Zonk!!💥",
 			// KEEP TANGGAL 7 - 8 JULY !!!
 			//"🎁CONGRATS!! \nPopo selama 30 detik penuh tanpa lepas!",
 			//"🎁CONGRATS!! \nDapat pijatan punggung/paha (Bebas Pilih/Keduanya) gratis selama 5 menit",
 			//"🎁CONGRATS!! \nDuduk di pangkuan pasangan sampai putaran roda selanjutnya",
 			//"🎁CONGRATS!! \nPasangan harus lepas satu lapis pakaian yang dipakai sekarang!!",
 			//"🎁CONGRATS!! \nDipeluk erat dari belakang selama 2 menit",
-			//"🎁CONGRATS!! \nDapat 5 kecupan di wajah (kening, pipi, hidung, dagu)",
+			//"🎁CONGRATS!! \nDapat 5 kecupan di wajah (kening, pipi, hidung, dagu)"
+			"🫣 Zonk!!💥"
     ];
 
     const daftarSurat = {};
@@ -883,15 +934,22 @@
     }
 
     function bukaSurat(nomor) {
-        currentActiveSurat = "Surat_" + nomor;
+        currentActiveSurat = "Surat_" + pointerMenyesuaikanScroll(nomor);
         currentOpenData = { id: currentActiveSurat, teks: daftarSurat[nomor], nomor: nomor, isGame: false };
         const el = document.getElementById("env-" + nomor);
         if(el) el.classList.add("opened");
         prosesBukaPopup(daftarSurat[nomor], nomor);
     }
 
+    function pointerMenyesuaikanScroll(num) {
+        // Reset posisi scroll pop-up ke atas setiap kali membuka surat baru
+        const targetRender = document.getElementById("captureArea");
+        if (targetRender) targetRender.scrollTop = 0;
+        return num;
+    }
+
     function bukaGame(nomor) {
-        currentActiveSurat = "Game_" + nomor;
+        currentActiveSurat = "Game_" + pointerMenyesuaikanScroll(nomor);
         currentOpenData = { id: currentActiveSurat, teks: daftarGame[nomor], nomor: nomor, isGame: true };
         
         const el = document.getElementById("game-" + nomor);
@@ -903,7 +961,7 @@
 
         el.classList.add("opened");
         
-        const peluangSpinWheel = Math.random() < 0.1; // Chance 30%
+        const peluangSpinWheel = Math.random() < 0.1; 
         const limitReached = isDailyLimitReached();
 
         if (peluangSpinWheel && !limitReached) {
@@ -946,6 +1004,10 @@
         const overlay = document.getElementById("wheelOverlay");
         const roda = document.getElementById("spinWheel");
         const tombol = document.getElementById("btnSpin");
+        
+        const targetWheelBox = document.querySelector(".wheel-box");
+        if (targetWheelBox) targetWheelBox.scrollTop = 0;
+
         roda.style.transform = "rotate(0deg)";
         tombol.disabled = false;
         tombol.innerText = "PUTAR SEKARANG 🎡";
@@ -1114,3 +1176,5 @@
     window.onkeypress = resetIdleTimer;   
     window.addEventListener("scroll", resetIdleTimer);
 </script>
+</body>
+</html>
