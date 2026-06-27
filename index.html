@@ -53,7 +53,7 @@
             z-index: 2;
         }
 
-        /* 1. KOTAK PESAN PEMBUKA */
+        /* STYLING SISTEM LOGIN & KOTAK PESAN PEMBUKA */
         .message-box {
             background-color: rgba(31, 40, 51, 0.9);
             border: 4px solid #ff7597; /* Pink Border Asli */
@@ -64,6 +64,25 @@
             box-shadow: 0 8px 20px rgba(255, 117, 151, 0.3);
             transition: all 0.5s ease;
             box-sizing: border-box;
+        }
+
+        /* Input khusus halaman login */
+        .login-select, .login-input {
+            width: 100%;
+            padding: 12px 15px;
+            margin-bottom: 15px;
+            border-radius: 50px;
+            border: 2px solid #45a29e;
+            background-color: #ffffff;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 15px;
+            font-weight: 600;
+            box-sizing: border-box;
+            outline: none;
+            text-align: center;
+        }
+        .login-select:focus, .login-input:focus {
+            border-color: #66fcf1;
         }
 
         .message-text {
@@ -92,6 +111,8 @@
             font-family: 'Fredoka', sans-serif;
             transition: transform 0.2s, background-color 0.2s;
             box-shadow: 0 4px 10px rgba(255, 117, 151, 0.4);
+            width: 100%; /* Disesuaikan agar proporsional di box login/pesan */
+            max-width: 200px;
         }
 
         .btn-next:hover {
@@ -130,7 +151,6 @@
 
         .envelope-grid {
             display: grid;
-            /* Menggunakan grid auto-fit yang responsif agar pas di layar sekecil apa pun */
             grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
             gap: 20px;
             width: 100%;
@@ -143,8 +163,8 @@
         .envelope-card {
             position: relative;
             width: 100%;
-            aspect-ratio: 3 / 2; /* Menjaga proporsi ukuran amplop secara otomatis */
-            background-color: #45a29e; /* Biru Amplop Asli */
+            aspect-ratio: 3 / 2;
+            background-color: #45a29e;
             border-radius: 0 0 8px 8px;
             box-shadow: 0 10px 20px rgba(0,0,0,0.4);
             cursor: pointer;
@@ -154,7 +174,6 @@
             justify-content: center;
         }
 
-        /* Membuat lipatan amplop atas berbasis persentase agar adaptif */
         .envelope-card::before {
             content: '';
             position: absolute;
@@ -195,7 +214,7 @@
 
         /* 3B. KOMPONEN AMPLOP TRUTH OR DARE (UNGU) */
         .envelope-game {
-            background-color: #8e44ad !important; /* Ungu Asli */
+            background-color: #8e44ad !important;
         }
         .envelope-game::before {
             border-top-color: #a29bfe !important;
@@ -212,7 +231,7 @@
 
         /* --- WARNA BARU SETELAH AMPLOP DIBUKA --- */
         .envelope-card.opened {
-            background-color: #2c3e50 !important; /* Abu-abu Gelap */
+            background-color: #2c3e50 !important;
         }
         .envelope-card.opened::before {
             border-top-color: #34495e !important;
@@ -228,7 +247,7 @@
         }
 
         .envelope-game.opened {
-            background-color: #574b90 !important; /* Ungu Pudar Gelap */
+            background-color: #574b90 !important;
         }
         .envelope-game.opened::before {
             border-top-color: #706797 !important;
@@ -238,13 +257,11 @@
             border-right-color: #3d3561 !important;
             border-bottom-color: #3d3561 !important;
         }
-        /* --------------------------------------- */
 
         .envelope-card:hover {
             transform: translateY(-5px) scale(1.03);
         }
 
-        /* Label Angka Surat posisi tengah otomatis */
         .envelope-label {
             position: relative;
             width: 35px;
@@ -281,15 +298,14 @@
             padding: 15px;
         }
 
-        /* PERBAIKAN POP-UP: Menambahkan Batas Tinggi Maksimal dan Scrollbar Otomatis jika konten kepanjangan */
         .popup-letter {
             background-color: #fff0f5;
             border: 5px solid #ff7597;
             border-radius: 20px;
             width: 100%;
             max-width: 480px;
-            max-height: 85vh; /* Membatasi tinggi pop up maks 85% layar agar tidak terpotong ke bawah */
-            overflow-y: auto; /* Memunculkan scroll otomatis jika teks/gambar melebihi batas tinggi */
+            max-height: 85vh;
+            overflow-y: auto;
             padding: 25px 20px;
             box-sizing: border-box;
             position: relative;
@@ -299,7 +315,6 @@
             text-align: left;
         }
 
-        /* Kustomisasi scrollbar agar rapi */
         .popup-letter::-webkit-scrollbar {
             width: 6px;
         }
@@ -309,12 +324,12 @@
         }
 
         .popup-text {
-            font-size: 16px; /* Ukuran default disesuaikan agar pas di layar kecil */
+            font-size: 16px;
             color: #0b0c10;
             line-height: 1.6;
             font-weight: 600;
             white-space: pre-line;
-            word-break: break-word; /* Menghindari teks melebar merusak layout */
+            word-break: break-word;
         }
 
         .popup-date {
@@ -338,7 +353,7 @@
             font-family: 'Fredoka', sans-serif;
             font-weight: bold;
             transition: all 0.2s;
-            width: 100%; /* Penuh di layar HP agar mudah di-klik */
+            width: 100%;
             box-sizing: border-box;
         }
 
@@ -361,7 +376,7 @@
             transition: all 0.2s;
             box-shadow: 0 4px 10px rgba(255, 117, 151, 0.2);
             display: block;
-            width: 100%; /* Menyesuaikan lebar pop-up */
+            width: 100%;
             box-sizing: border-box;
             text-align: center;
         }
@@ -427,7 +442,7 @@
             transform: scale(1);
         }
 
-        /* DESIGN TAMBAHAN UNTUK CONTAINER STORAGE DOWNLOAD MASSAL */
+        /* CONTAINER STORAGE DOWNLOAD MASSAL */
         .storage-box {
             background-color: rgba(31, 40, 51, 0.9);
             border: 4px dashed #66fcf1;
@@ -515,7 +530,7 @@
             transform: none;
         }
 
-        /* STYLING KHUSUS SPIN WHEEL */
+        /* SPIN WHEEL */
         .wheel-box {
             width: 100%;
             max-width: 400px;
@@ -598,21 +613,65 @@
             transform: none;
         }
 
-        /* --- STYLING TERBARU UNTUK LIVE CHAT ROOM --- */
+        /* LIVE CHAT ROOM (DIUBAH MENJADI SISTEM POPOUT DI SISI KANAN BAWAH) */
         .chat-container {
+            display: none; /* Baru muncul setelah login sukses */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
             background-color: rgba(26, 26, 36, 0.95);
             border: 3px solid #66fcf1;
             border-radius: 20px;
             padding: 15px;
-            width: 100%;
-            max-width: 600px;
-            margin: 30px auto;
-            box-shadow: 0 8px 30px rgba(102, 252, 241, 0.2);
+            width: 320px; /* Ukuran pas popout */
+            box-shadow: 0 8px 30px rgba(102, 252, 241, 0.4);
             box-sizing: border-box;
             text-align: left;
+            z-index: 1000;
+            transition: all 0.3s ease;
         }
+        
+        /* Tombol Pemicu Buka/Tutup Chat (Floating Widget) */
+        .chat-toggle-btn {
+            display: none; /* Baru muncul setelah login sukses */
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: rgba(26, 26, 36, 0.95);
+            border: 3px solid #66fcf1;
+            color: #66fcf1;
+            font-family: 'Fredoka', sans-serif;
+            font-size: 15px;
+            font-weight: bold;
+            padding: 12px 20px;
+            border-radius: 50px;
+            cursor: pointer;
+            z-index: 1001;
+            box-shadow: 0 4px 15px rgba(102, 252, 241, 0.4);
+            transition: transform 0.2s;
+        }
+        .chat-toggle-btn:hover {
+            transform: scale(1.05);
+        }
+
+        /* Tombol minimize kecil di header chat */
+        .chat-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .btn-minimize-chat {
+            background: none;
+            border: none;
+            color: #ff7597;
+            font-size: 18px;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+
         .chat-messages {
-            height: 300px;
+            height: 220px; /* Diperkecil agar proporsional untuk popout */
             overflow-y: auto;
             border-radius: 12px;
             background: #0b0c10;
@@ -633,14 +692,12 @@
             word-wrap: break-word;
             display: inline-block;
         }
-        /* Style Chat jika pengirimnya Pin */
         .bubble-pin {
             background-color: #ff7597;
             color: #0b0c10;
             align-self: flex-end;
             border-bottom-right-radius: 2px;
         }
-        /* Style Chat jika pengirimnya Syavira */
         .bubble-syavira {
             background-color: #45a29e;
             color: #ffffff;
@@ -699,7 +756,6 @@
             outline: none;
         }
 
-        /* --- MEDIA QUERIES OPTIMALISASI LAYAR SMARTPHONE (DI BAWAH 480PX) --- */
         @media screen and (max-width: 480px) {
             .gallery-title { font-size: 24px; }
             .popup-text { font-size: 15px; }
@@ -716,6 +772,15 @@
                 height: 30px;
                 font-size: 13px;
             }
+            .chat-container {
+                width: calc(100% - 40px);
+                bottom: 10px;
+                right: 20px;
+            }
+            .chat-toggle-btn {
+                bottom: 10px;
+                right: 20px;
+            }
         }
     </style>
 </head>
@@ -724,9 +789,24 @@
     <audio id="backsound" loop src="LANY - ILYSB.mp3"></audio>
 
     <div class="container">
+        <!-- KOTAK INTERFASE UTAMA (BISA BERUPA LOGIN / PESAN SAMBUTAN) -->
         <div class="message-box" id="msgBox">
-            <div class="message-text" id="textGanti">Dear Queen Ozai,<br>Yuk kita mulai ya Bee.. 💙🌸</div>
-            <button class="btn-next" onclick="nextPesan()" id="idBtnNext">Next ➡️</button>
+            <!-- Tampilan Form Login di Awal -->
+            <div id="loginArea">
+                <div class="message-text" style="min-height: auto; margin-bottom: 15px;">🔒 SIAPA KAMU?</div>
+                <select id="pilihUserLogin" class="login-select">
+                    <option value="Syavira">Syavira 🌸</option>
+                    <option value="Pin">Pin 💙</option>
+                </select>
+                <input type="password" id="inputPasswordLogin" class="login-input" placeholder="Masukkan Kode PIN...">
+                <button class="btn-next" onclick="prosesLogin()">Masuk 🔐</button>
+            </div>
+
+            <!-- Tampilan Pesan Sambutan (Disembunyikan, baru muncul setelah Login Sukses) -->
+            <div id="welcomeArea" style="display: none;">
+                <div class="message-text" id="textGanti">Dear Queen Ozai,<br>Yuk kita mulai ya Bee.. 💙🌸</div>
+                <button class="btn-next" onclick="nextPesan()" id="idBtnNext">Next ➡️</button>
+            </div>
         </div>
 
         <div class="gallery-wrapper" id="galleryBox">
@@ -776,30 +856,7 @@
 
             <div class="section-divider" style="border-top-color: #66fcf1;"></div>
 
-            <!-- KOTAK LIVE CHAT ROOM TERBARU -->
-            <div class="chat-container">
-                <h2 class="storage-title" style="color: #66fcf1; font-size: 22px; margin-bottom: 5px;">Bincang Berdua Yuk! 💬🌸</h2>
-                <p class="storage-subtitle">Pesan di sini terkirim secara langsung (Realtime) tanpa di-refresh.</p>
-                
-                <!-- Pilihan Identitas Pengirim -->
-                <label for="pilihUser" style="color:#fff; font-size:12px; font-weight:bold;">Kamu Sebagai: </label>
-                <select id="pilihUser" class="identity-select">
-                    <option value="Syavira">Syavira 🌸</option>
-                    <option value="Pin">Pin 💙</option>
-                </select>
-
-                <div class="chat-messages" id="kotakPesanChat">
-                    <!-- Obrolan otomatis muncul di sini -->
-                </div>
-
-                <div class="chat-input-area">
-                    <input type="text" id="inputChatBaru" class="chat-input" placeholder="Ketik pesan manismu..." onkeypress="deteksiEnterChat(event)">
-                    <button class="btn-send-chat" id="btnKirimChat" onclick="kirimChatRealtime()">Kirim 🚀</button>
-                </div>
-            </div>
-
-            <div class="section-divider" style="border-top-color: #66fcf1;"></div>
-
+            <!-- TANGGA STORAGE UTAMA TETAP SAMA -->
             <div class="storage-box">
                 <h2 class="storage-title">Keranjang Surat Pilihanmu 🛒</h2>
                 <p class="storage-subtitle">Surat yang kamu kumpulkan akan muncul di sini. Kamu bisa memilahnya sebelum didownload sekaligus!</p>
@@ -810,14 +867,39 @@
         </div>
     </div>
 
+    <!-- FLOATING WIDGET TOMBOL UTK MEMBUKA CHATBOX KEMBALI -->
+    <button class="chat-toggle-btn" id="tombolBukaChat" onclick="bukaPopoutChat()">💬🌸</button>
+
+    <!-- KOTAK LIVE CHAT ROOM (PINDAH POSISI JADI POPOUT KANAN BAWAH) -->
+    <div class="chat-container" id="kotakUtamaChat">
+        <div class="chat-header">
+            <h2 class="storage-title" style="color: #66fcf1; font-size: 18px; margin-bottom: 0;">Bincang Berdua Yuk! 💬🌸</h2>
+            <button class="btn-minimize-chat" onclick="tutupPopoutChat()">➖</button>
+        </div>
+        <p class="storage-subtitle" style="margin-bottom: 10px;">Pesan terkirim secara Realtime.</p>
+        
+        <!-- Pilihan Identitas Pengirim -->
+        <label for="pilihUser" style="color:#fff; font-size:12px; font-weight:bold;">Kamu Sebagai: </label>
+        <select id="pilihUser" class="identity-select" style="-webkit-appearance: none; -moz-appearance: none; appearance: none; text-align-last: center;">
+            <option value="Syavira">Syavira 🌸</option>
+            <option value="Pin">Pin 💙</option>
+        </select>
+
+        <div class="chat-messages" id="kotakPesanChat">
+            <!-- Obrolan otomatis muncul di sini -->
+        </div>
+
+        <div class="chat-input-area">
+            <input type="text" id="inputChatBaru" class="chat-input" placeholder="Ketik pesan..." onkeypress="deteksiEnterChat(event)">
+            <button class="btn-send-chat" id="btnKirimChat" onclick="kirimChatRealtime()">Kirim 🚀</button>
+        </div>
+    </div>
+
     <div class="popup-overlay" id="popupOverlay">
         <div class="popup-letter" id="captureArea">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
-             
             <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
-             
             <div class="popup-date" id="tanggalDownload"></div>
-
             <br>
             <button class="btn-download" id="btnDownload" onclick="simpanKeKeranjang()">Simpan Surat 🛒</button>
             <br>
@@ -829,12 +911,10 @@
         <div class="popup-letter wheel-box">
             <h2>✨ SPIN WHEEL BERHADIAH ✨</h2>
             <p>Khusus buat sayangku, yuk putar rodanya untuk tentukan hadiah spesialmu hari ini! 🎁</p>
-            
             <div class="wheel-container">
                 <div class="wheel-pointer">👇</div>
                 <div id="spinWheel" class="wheel"></div>
             </div>
-
             <button id="btnSpin" onclick="putarRoda()">PUTAR SEKARANG 🎡</button>
             <br>
             <button class="btn-close" onclick="tutupWheel()">❌ Tutup</button>
@@ -849,7 +929,13 @@
     </div>
 
     <script>
-    /// --- KONFIGURASI SPIN WHEEL ---
+    // --- DI SINI PENGATURAN PASSWORD LOGIN KAMU ---
+    const KODE_LOGIN = {
+        "Pin": "2526",       // Silakan ganti disini untuk Pin
+        "Syavira": "2526"   // Silakan ganti disini untuk Sya
+    };
+	
+	// --- KONFIGURASI SPIN WHEEL ---
     // 'daily' = 1x per hari saja
     // 'unlimited' = bisa berkali-kali setiap buka amplop baru
     const SPIN_MODE = 'unlimited'; 
@@ -857,21 +943,18 @@
     const daftarPesan = [
         "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
 		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
-		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
-		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
-		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
-		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
-		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
-		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
-		"JANGAN BANDEL YA SAYANG ... JANGAN DI BUKA SAYANG KUU... 💙",
+		"BECANDA !!! Sudah selesai ya sayang .. 🥰",
+		"Untung ga langsung kamu close bee ... 😚❤️",
         "Aku selalu berharap, harimu selalu indah sayangku.. 😚❤️",
-        "Jangan bosan ya baca surat menyuratnya dari aku... 🧸💙",
-        "Surat ini ada yang dari tanggal 25/06 dan juga 26/06 ya sayang...",
+        "Sudah 3 hari, aku tidak menuliskan ini untuk kamu sayangku...🥺",
+		"Jangan bosan ya baca surat menyuratnya dari aku... 🧸💙",
+		"Semoga suka, semoga tidak pernah bosen ya sayangku... 🥺",
         "Hari ini gunakan waktu istrahat kamu sepenuhnya ya bee .. 😚",
         "Semoga surat-surat ini dapat temenin kamu di saat shift yang sayangku..🥺❤️",
         "Jangan lupa setelah makan minum vitamin C ya bee..🧸🖤",
         "Jangan lupa diminum airnya ya bee..🧸💙",
-        "I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>",
+		"Oh ya, fitur baru sudah ku perbaharui , kita bisa chat disini sayangku... 🥰",
+        "I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>🥰🥰",
         "Silakan klik dibawah buat masuk ke Surat Specialnya ya Bee! 👇❤️"
     ];
 
@@ -890,7 +973,7 @@
         12: "Aku tuh kalau ditanya hari favorit aku apa.. \n\nJawabannya pasti hari apa aja, \nasal pas hari itu aku bisa ketemu atau ngobrol lama sama kamu.\n\n-pin",
         13: "Jangan terlalu keras sayang, \nKamu sudah melakukan yang terbaik hari ini.. \nKalau cape, bilang dan datanglah ke aku ya sayang.. \nKalau lagi bete/badmood, bilang dan datanglah ke aku ya sayang.. \nAku siap ada 7x24 jam untuk kamu... \nLOVE YOU SOOOO MUCH BEE !! 🥺❤️\n\n-pin",
         14: "Hi bee! Gimana kerja kamu sekarang? Aku ga tau kapan kamu dapat pesan ini, dan sepertinya aku sudah tidur... \nSemangat ya sayang , keep fokus... \nKalau ngantuk, coba spamming chat ku aja... biar ketika aku bangun, aku bisa baca chat manis dari kamu sayang... \n LOVE YOU BEE !! ❤️\n\n-pin",
-        15: "\n\n-pin",
+        15: "28/06 04:36 \n\nHalo sayang! \nSudah lama ya ga baca pesan aku ... \nAku juga udah lama nih ga tulis untuk kamu.... \nBukannya udah lama si, cuma lagi perbaikan sistem aja biar lebih okey sayang... \nAkhirnya selesai juga ... \nAku harap ini berjalan sesuai dengan apa yang aku mau... \nKalau ada kendala , coba bantu kasih tau aku ya sayang... \nOh ya,\n\n-pin",
         16: "\n\n-pin",
         17: "\n\n-pin",
         18: "\n\n-pin",
@@ -946,7 +1029,7 @@
 			"🫣 Zonk!!💥",
 			"🫣 Coba lagi!!💥",
 			"🫣 Coba lagi!!💥",
-            "✨👑 JACKPOT!!! Bebas minta apapun sebanyak x1 permintaan! 👑✨",
+            //"✨👑 JACKPOT!!! Bebas minta apapun sebanyak x1 permintaan! 👑✨",
             "🫣 Zonk!!💥",
 			"🫣 Coba lagi!!💥",
 			"🫣 Yah! Belum beruntung kamu sayang!!",
@@ -957,11 +1040,11 @@
 			"🫣 Coba lagi!!💥",
 			"🫣 Coba lagi!!💥",
 			"🫣 Zonk!!💥",
-            "🎫 Voucher Free Hug 30 detik, Claim x1 bebas kapan saja!",
+            //"🎫 Voucher Free Hug 30 detik, Claim x1 bebas kapan saja!",
 			"🫣 Zonk!!💥",
 			"🫣 Coba lagi!!💥",
 			"🫣 Zonk!!💥",
-			"🎫 Voucher Free popo x30 bebas request dimanapun!",
+			//"🎫 Voucher Free popo x30 bebas request dimanapun!",
 			"🫣 Zonk!!💥",
 			"🫣 Coba lagi!!💥",
 			"🫣 Yah! Belum beruntung kamu sayang!!💥",
@@ -979,10 +1062,22 @@
 
     const daftarSurat = {};
     const daftarGame = {};
-    const daftarFoto = { 10: "9.jpg", 11: "2.jpg", 12: "4.jpg" };
+    const daftarFoto = { 
+			10: "9.jpg", 
+			11: "2.jpg", 
+			12: "4.jpg" 
+	};
     const daftarPeringatanIdle = [
         "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
-        "Jangan lupa diminum airnya ya sayang, Kalau sudah senggang yuk baca lagi surat nya! 🥰🌸"
+        "WARNING!!✨ Hati-hati ngantuk ya sayangku! Kalau ngantuk dan sudah senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
+        "Jangan lupa diminum airnya ya sayang, Kalau sudah senggang yuk baca lagi surat nya! 🥰🌸",
+        "Hey! tiati kalau ngantuk ambil BAK aja ya atau kamu bisa lanjut baca suratnya ya bee..🥰💙😚",
+        "Dari pada diem terus pikiran kosong, mending mikirin aku aja sayang! hehe.. 😚",
+        "Jangan lupa, untuk hastag #linkdone selalu di pakai ya sayangku... LOVE YOU BEE !!! 😚",
+        "Dorrr! ✨<br>Rame gak bee? <br>Cuma mau bilag aja, Semangat ya shiftnya!🔥 <br>Jangan lupa diminum air nya ya! <br>Love You So Much Bee! 😚🌸",
+        "REMINDER!! Untuk yang tersayang agar selalu semangat shift hari ini, LOVE YOU SO MUCH Syavira Dwi Dinanti. 🧸💙",
+        "PENGINGAT KECIL!! Jangan lupa minum air ya kalau lagi bengong gini bee.. I LOVE YOU 3000 🥰",
+        "Ngantuk ya sampai didiamkan begini? <br>Yuk dibuka lagi surat manisnya, masih banyak cerita buat kamu hari ini. 🌌🖤"
     ];
 
     const WAKTU_IDLE = 65000; 
@@ -992,6 +1087,42 @@
     let idleTimer = null;
     let keranjangSurat = []; 
     let currentOpenData = null; 
+
+    /* FUNGSI BARU UNTUK POPOUT LIVECHAT */
+    function bukaPopoutChat() {
+        document.getElementById("kotakUtamaChat").style.display = "block";
+        document.getElementById("tombolBukaChat").style.display = "none";
+        // Auto scroll otomatis ke chat terbawah setelah dibuka
+        const kotakPesan = document.getElementById("kotakPesanChat");
+        kotakPesan.scrollTop = kotakPesan.scrollHeight;
+    }
+
+    function tutupPopoutChat() {
+        document.getElementById("kotakUtamaChat").style.display = "none";
+        document.getElementById("tombolBukaChat").style.display = "block";
+    }
+
+    // LOGIKA FUNGSI LOGIN
+    function prosesLogin() {
+    const userYangDipilih = document.getElementById("pilihUserLogin").value;
+    const passwordInput = document.getElementById("inputPasswordLogin").value;
+
+    if (passwordInput === KODE_LOGIN[userYangDipilih]) {
+        document.getElementById("loginArea").style.display = "none";
+        document.getElementById("welcomeArea").style.display = "block";
+        
+        const chatUserSelect = document.getElementById("pilihUser");
+        chatUserSelect.value = userYangDipilih;
+        chatUserSelect.disabled = true; 
+        chatUserSelect.style.pointerEvents = "none"; 
+        chatUserSelect.style.appearance = "none"; 
+        chatUserSelect.style.opacity = "0.9"; 
+        
+        startEffects(); 
+    } else {
+        alert("Password Salah! Silakan coba lagi ya.. 🫣❌");
+    }
+}
 
     function isDailyLimitReached() {
         if (SPIN_MODE === 'unlimited') return false;
@@ -1032,7 +1163,6 @@
     
     function nextPesan() {
         const textElement = document.getElementById("textGanti");
-        startEffects(); 
         if (indeksPesan < daftarPesan.length) {
             textElement.style.opacity = 0;
             setTimeout(() => {
@@ -1043,6 +1173,10 @@
         } else {
             document.getElementById("msgBox").style.display = "none";
             document.getElementById("galleryBox").style.display = "block";
+            
+            // TAMPILKAN TOMBOL POPOUT LIVECHAT SECARA ELEGAN SAAT MASUK DASHBOARD UTAMA
+            document.getElementById("tombolBukaChat").style.display = "block";
+            
             resetIdleTimer();
         }
     }
@@ -1295,7 +1429,6 @@
         resetIdleTimer();
     }
 
-    // Fungsi Pembantu Pemicu Tombol Enter pada Chat Box
     function deteksiEnterChat(event) {
         if (event.key === "Enter") {
             kirimChatRealtime();
@@ -1327,7 +1460,6 @@
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
 
-  // 1. Fungsi Log Aktivitas
   window.catatKeFirebase = function(jenis, nomor, detailTeks) {
     try {
       const logRef = ref(db, "aktivitas_bee");
@@ -1342,7 +1474,6 @@
     }
   };
 
-  // A. Fungsi Mengirim Pesan Chat Singkat
   window.kirimChatRealtime = async function() {
     const inputChat = document.getElementById("inputChatBaru");
     const userSelect = document.getElementById("pilihUser");
@@ -1366,7 +1497,6 @@
     }
   };
 
-  // B. Fungsi Mendengarkan Pesan Masuk Di Firebase
   const chatRoomRef = ref(db, "ruang_chat");
   
   onChildAdded(chatRoomRef, (snapshot) => {
