@@ -789,20 +789,17 @@
     <audio id="backsound" loop src="LANY - ILYSB.mp3"></audio>
 
     <div class="container">
-        <!-- KOTAK INTERFASE UTAMA (BISA BERUPA LOGIN / PESAN SAMBUTAN) -->
         <div class="message-box" id="msgBox">
-            <!-- Tampilan Form Login di Awal -->
             <div id="loginArea">
                 <div class="message-text" style="min-height: auto; margin-bottom: 15px;">🔒 SIAPA KAMU?</div>
                 <select id="pilihUserLogin" class="login-select">
-                    <option value="Syavira">Syavira 🌸</option>
+                    <option value="Syavira">Sya 🌸</option>
                     <option value="Pin">Pin 💙</option>
                 </select>
                 <input type="password" id="inputPasswordLogin" class="login-input" placeholder="Masukkan Kode PIN...">
                 <button class="btn-next" onclick="prosesLogin()">Masuk 🔐</button>
             </div>
 
-            <!-- Tampilan Pesan Sambutan (Disembunyikan, baru muncul setelah Login Sukses) -->
             <div id="welcomeArea" style="display: none;">
                 <div class="message-text" id="textGanti">Dear Queen Ozai,<br>Yuk kita mulai ya Bee.. 💙🌸</div>
                 <button class="btn-next" onclick="nextPesan()" id="idBtnNext">Next ➡️</button>
@@ -856,7 +853,6 @@
 
             <div class="section-divider" style="border-top-color: #66fcf1;"></div>
 
-            <!-- TANGGA STORAGE UTAMA TETAP SAMA -->
             <div class="storage-box">
                 <h2 class="storage-title">Keranjang Surat Pilihanmu 🛒</h2>
                 <p class="storage-subtitle">Surat yang kamu kumpulkan akan muncul di sini. Kamu bisa memilahnya sebelum didownload sekaligus!</p>
@@ -867,10 +863,8 @@
         </div>
     </div>
 
-    <!-- FLOATING WIDGET TOMBOL UTK MEMBUKA CHATBOX KEMBALI -->
     <button class="chat-toggle-btn" id="tombolBukaChat" onclick="bukaPopoutChat()">💬🌸</button>
 
-    <!-- KOTAK LIVE CHAT ROOM (PINDAH POSISI JADI POPOUT KANAN BAWAH) -->
     <div class="chat-container" id="kotakUtamaChat">
         <div class="chat-header">
             <h2 class="storage-title" style="color: #66fcf1; font-size: 18px; margin-bottom: 0;">Bincang Berdua Yuk! 💬🌸</h2>
@@ -878,7 +872,6 @@
         </div>
         <p class="storage-subtitle" style="margin-bottom: 10px;">Pesan terkirim secara Realtime.</p>
         
-        <!-- Pilihan Identitas Pengirim -->
         <label for="pilihUser" style="color:#fff; font-size:12px; font-weight:bold;">Kamu Sebagai: </label>
         <select id="pilihUser" class="identity-select" style="-webkit-appearance: none; -moz-appearance: none; appearance: none; text-align-last: center;">
             <option value="Syavira">Syavira 🌸</option>
@@ -886,7 +879,6 @@
         </select>
 
         <div class="chat-messages" id="kotakPesanChat">
-            <!-- Obrolan otomatis muncul di sini -->
         </div>
 
         <div class="chat-input-area">
@@ -1060,6 +1052,7 @@
 			"🫣 Zonk!!💥"
     ];
 
+	// FITUR GAMBAR GITHUB ONLY!
     const daftarSurat = {};
     const daftarGame = {};
     const daftarFoto = { 
@@ -1092,7 +1085,7 @@
     function bukaPopoutChat() {
         document.getElementById("kotakUtamaChat").style.display = "block";
         document.getElementById("tombolBukaChat").style.display = "none";
-        // Auto scroll otomatis ke chat terbawah setelah dibuka
+		
         const kotakPesan = document.getElementById("kotakPesanChat");
         kotakPesan.scrollTop = kotakPesan.scrollHeight;
     }
@@ -1102,7 +1095,7 @@
         document.getElementById("tombolBukaChat").style.display = "block";
     }
 
-    // LOGIKA FUNGSI LOGIN
+    // FITUR FUNGSI LOGIN
     function prosesLogin() {
     const userYangDipilih = document.getElementById("pilihUserLogin").value;
     const passwordInput = document.getElementById("inputPasswordLogin").value;
@@ -1139,8 +1132,10 @@
         }
         keys.forEach((key, index) => { target[key] = values[index]; });
     }
-
-    acakKonten(daftarSuratMentah, daftarSurat);
+	
+	// SETTING ACAK ATAU TIDAK DI BAGIAN SURAT.
+    //acakKonten(daftarSuratMentah, daftarSurat); // Settingan agar bisa ngacak.
+	Object.assign(daftarSurat, daftarSuratMentah);
     acakKonten(daftarGameMentah, daftarGame);
 
     function startEffects() {
@@ -1173,8 +1168,6 @@
         } else {
             document.getElementById("msgBox").style.display = "none";
             document.getElementById("galleryBox").style.display = "block";
-            
-            // TAMPILKAN TOMBOL POPOUT LIVECHAT SECARA ELEGAN SAAT MASUK DASHBOARD UTAMA
             document.getElementById("tombolBukaChat").style.display = "block";
             
             resetIdleTimer();
