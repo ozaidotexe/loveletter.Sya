@@ -478,12 +478,6 @@
             color: #ffffff;
             box-shadow: 0 4px 10px rgba(155, 89, 182, 0.3);
         }
-        /* Style Khusus Item Balasan Syavira di Keranjang */
-        .storage-item.reply-type {
-            background-color: #1abc9c;
-            color: #ffffff;
-            box-shadow: 0 4px 10px rgba(26, 188, 156, 0.3);
-        }
         .btn-delete-item {
             background: none;
             border: none;
@@ -604,6 +598,107 @@
             transform: none;
         }
 
+        /* --- STYLING TERBARU UNTUK LIVE CHAT ROOM --- */
+        .chat-container {
+            background-color: rgba(26, 26, 36, 0.95);
+            border: 3px solid #66fcf1;
+            border-radius: 20px;
+            padding: 15px;
+            width: 100%;
+            max-width: 600px;
+            margin: 30px auto;
+            box-shadow: 0 8px 30px rgba(102, 252, 241, 0.2);
+            box-sizing: border-box;
+            text-align: left;
+        }
+        .chat-messages {
+            height: 300px;
+            overflow-y: auto;
+            border-radius: 12px;
+            background: #0b0c10;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #45a29e;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .chat-bubble {
+            max-width: 75%;
+            padding: 10px 14px;
+            border-radius: 15px;
+            font-size: 14px;
+            line-height: 1.4;
+            font-weight: 600;
+            word-wrap: break-word;
+            display: inline-block;
+        }
+        /* Style Chat jika pengirimnya Pin */
+        .bubble-pin {
+            background-color: #ff7597;
+            color: #0b0c10;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+        /* Style Chat jika pengirimnya Syavira */
+        .bubble-syavira {
+            background-color: #45a29e;
+            color: #ffffff;
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+        .chat-meta {
+            font-size: 10px;
+            display: block;
+            margin-top: 4px;
+            opacity: 0.7;
+            text-align: right;
+        }
+        .chat-input-area {
+            display: flex;
+            gap: 10px;
+        }
+        .chat-input {
+            flex: 1;
+            border-radius: 50px;
+            padding: 10px 18px;
+            border: 2px solid #45a29e;
+            background: #fff;
+            font-family: 'Quicksand', sans-serif;
+            font-size: 14px;
+            font-weight: 600;
+            outline: none;
+        }
+        .chat-input:focus {
+            border-color: #66fcf1;
+        }
+        .btn-send-chat {
+            background-color: #66fcf1;
+            color: #0b0c10;
+            border: none;
+            padding: 0 22px;
+            font-weight: bold;
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: 'Fredoka', sans-serif;
+            transition: 0.2s;
+        }
+        .btn-send-chat:hover {
+            background-color: #45a29e;
+            color: white;
+        }
+        .identity-select {
+            background: #1f2833;
+            color: #66fcf1;
+            border: 1px solid #45a29e;
+            border-radius: 8px;
+            padding: 5px 10px;
+            font-size: 12px;
+            font-family: 'Fredoka', sans-serif;
+            margin-bottom: 10px;
+            outline: none;
+        }
+
         /* --- MEDIA QUERIES OPTIMALISASI LAYAR SMARTPHONE (DI BAWAH 480PX) --- */
         @media screen and (max-width: 480px) {
             .gallery-title { font-size: 24px; }
@@ -681,25 +776,36 @@
 
             <div class="section-divider" style="border-top-color: #66fcf1;"></div>
 
+            <!-- KOTAK LIVE CHAT ROOM TERBARU -->
+            <div class="chat-container">
+                <h2 class="storage-title" style="color: #66fcf1; font-size: 22px; margin-bottom: 5px;">Bincang Berdua Yuk! 💬🌸</h2>
+                <p class="storage-subtitle">Pesan di sini terkirim secara langsung (Realtime) tanpa di-refresh.</p>
+                
+                <!-- Pilihan Identitas Pengirim -->
+                <label for="pilihUser" style="color:#fff; font-size:12px; font-weight:bold;">Kamu Sebagai: </label>
+                <select id="pilihUser" class="identity-select">
+                    <option value="Syavira">Syavira 🌸</option>
+                    <option value="Pin">Pin 💙</option>
+                </select>
+
+                <div class="chat-messages" id="kotakPesanChat">
+                    <!-- Obrolan otomatis muncul di sini -->
+                </div>
+
+                <div class="chat-input-area">
+                    <input type="text" id="inputChatBaru" class="chat-input" placeholder="Ketik pesan manismu..." onkeypress="deteksiEnterChat(event)">
+                    <button class="btn-send-chat" id="btnKirimChat" onclick="kirimChatRealtime()">Kirim 🚀</button>
+                </div>
+            </div>
+
+            <div class="section-divider" style="border-top-color: #66fcf1;"></div>
+
             <div class="storage-box">
                 <h2 class="storage-title">Keranjang Surat Pilihanmu 🛒</h2>
                 <p class="storage-subtitle">Surat yang kamu kumpulkan akan muncul di sini. Kamu bisa memilahnya sebelum didownload sekaligus!</p>
                 <div class="storage-list" id="storageList">
                 </div>
                 <button class="btn-mass-download" id="btnMassDownload" onclick="unduhSemuaMassal()" disabled>Unduh Semua Surat Pilihan (ZIP) ⚡</button>
-            </div>
-
-            <div class="storage-box" style="border-color: #ff7597; margin-top: 20px;">
-                <h2 class="storage-title" style="color: #ff7597;">Kirim Surat Balik untuk Pin 💌</h2>
-                <p class="storage-subtitle">Syavira bisa ketik surat atau pesan apa saja di bawah ini, lalu tinggal klik kirim ya bee! ❤️</p>
-                
-                <textarea id="inputSuratSyavira" rows="6" placeholder="Tulis surat manismu di sini ya sayang..." 
-                          style="width: 100%; border-radius: 12px; padding: 12px; box-sizing: border-box; border: 2px solid #ff7597; font-family: 'Quicksand', sans-serif; font-size: 14px; resize: vertical; background-color: #fff0f5; color: #0b0c10; font-weight: 600;"></textarea>
-                
-                <button class="btn-mass-download" id="btnKirimSuratBalik" onclick="kirimSuratSyavira()" 
-                        style="background-color: #ff7597; color: #0b0c10; box-shadow: 0 4px 15px rgba(255, 117, 151, 0.4); margin-top: 15px;">
-                    Kirim Surat ke Pin 🚀
-                </button>
             </div>
         </div>
     </div>
@@ -743,11 +849,10 @@
     </div>
 
     <script>
-    // --- KONFIGURASI SPIN WHEEL ---
+    /// --- KONFIGURASI SPIN WHEEL ---
     // 'daily' = 1x per hari saja
     // 'unlimited' = bisa berkali-kali setiap buka amplop baru
     const SPIN_MODE = 'unlimited'; 
-    // -----------------------------
 
     const daftarPesan = [
         "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
@@ -756,6 +861,9 @@
 		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
 		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
 		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
+		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
+		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
+		"JANGAN BANDEL YA SAYANG ... JANGAN DI BUKA SAYANG KUU... 💙",
         "Aku selalu berharap, harimu selalu indah sayangku.. 😚❤️",
         "Jangan bosan ya baca surat menyuratnya dari aku... 🧸💙",
         "Surat ini ada yang dari tanggal 25/06 dan juga 26/06 ya sayang...",
@@ -782,16 +890,16 @@
         12: "Aku tuh kalau ditanya hari favorit aku apa.. \n\nJawabannya pasti hari apa aja, \nasal pas hari itu aku bisa ketemu atau ngobrol lama sama kamu.\n\n-pin",
         13: "Jangan terlalu keras sayang, \nKamu sudah melakukan yang terbaik hari ini.. \nKalau cape, bilang dan datanglah ke aku ya sayang.. \nKalau lagi bete/badmood, bilang dan datanglah ke aku ya sayang.. \nAku siap ada 7x24 jam untuk kamu... \nLOVE YOU SOOOO MUCH BEE !! 🥺❤️\n\n-pin",
         14: "Hi bee! Gimana kerja kamu sekarang? Aku ga tau kapan kamu dapat pesan ini, dan sepertinya aku sudah tidur... \nSemangat ya sayang , keep fokus... \nKalau ngantuk, coba spamming chat ku aja... biar ketika aku bangun, aku bisa baca chat manis dari kamu sayang... \n LOVE YOU BEE !! ❤️\n\n-pin",
-        15: "Masih Kosong nih bee.. ! 🥺\n\n-pin",
-        16: "Masih Kosong nih bee.. ! 🥺\n\n-pin",
-        17: "Masih Kosong nih bee.. ! 🥺\n\n-pin",
-        18: "Masih Kosong nih bee.. ! 🥺\n\n-pin",
-        19: "Masih Kosong nih bee.. ! 🥺\n\n-pin",
-        20: "Masih Kosong nih bee.. ! 🥺\n\n-pin",
+        15: "\n\n-pin",
+        16: "\n\n-pin",
+        17: "\n\n-pin",
+        18: "\n\n-pin",
+        19: "\n\n-pin",
+        20: "\n\n-pin"
     };
 
     const daftarGameMentah = {
-			// KEEP AJA !!
+        // KEEP TANGGAL
 			//1: "✨Truth: \n\nApa bagian tubuh aku yang paling sering kamu bayangin atau pengen kamu sentuh pas kita lagi gak bareng/lagi bareng? 👀 Badannya aja atau ada yang spesifik?",
 			//2: "✨Truth: \n\nPernah gak kamu dapet fantasi atau pikiran 'nakal' tentang aku di tempat yang gak terduga (misal: pas lagi kerja)? 🤫 tell me!",
 			//3: "✨Truth: \n\nAda ga satu posisi yang pengen banget kamu coba malam nanti ketika sama aku tapi belum pernah kamu omongin ke aku. 🙈 Kamu mau apa hm?",
@@ -825,6 +933,7 @@
     };
 
     const listHadiahWheel = [
+			"🫣 Zonk!!💥",
 			//"🎁 Kamu harus popo cowo kamu x30,Claim x1 cowo kamu juga Bebas request mau dimana aja!",
 			//"🎁 Kamu harus peluk cowo kamu 30 detik,Claim x1 cowo kamu juga Bebas request kapan saja!",
 			"🫣 Zonk!!💥",
@@ -870,22 +979,10 @@
 
     const daftarSurat = {};
     const daftarGame = {};
-    const daftarFoto = { 
-		10: "9.jpg", 
-		11: "2.jpg", 
-		12: "4.jpg" 
-	};
+    const daftarFoto = { 10: "9.jpg", 11: "2.jpg", 12: "4.jpg" };
     const daftarPeringatanIdle = [
         "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
-        "WARNING!!✨ Hati-hati ngantuk ya sayangku! Kalau ngantuk dan sudah senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
-        "Jangan lupa diminum airnya ya sayang, Kalau sudah senggang yuk baca lagi surat nya! 🥰🌸",
-        "Hey! tiati kalau ngantuk ambil BAK aja ya atau kamu bisa lanjut baca suratnya ya bee..🥰💙😚",
-        "Dari pada diem terus pikiran kosong, mending mikirin aku aja sayang! hehe.. 😚",
-        "Jangan lupa, untuk hastag #linkdone selalu di pakai ya sayangku... LOVE YOU BEE !!! 😚",
-        "Dorrr! ✨<br>Rame gak bee? <br>Cuma mau bilag aja, Semangat ya shiftnya!🔥 <br>Jangan lupa diminum air nya ya! <br>Love You So Much Bee! 😚🌸",
-        "REMINDER!! Untuk yang tersayang agar selalu semangat shift hari ini, LOVE YOU SO MUCH Syavira Dwi Dinanti. 🧸💙",
-        "PENGINGAT KECIL!! Jangan lupa minum air ya kalau lagi bengong gini bee.. I LOVE YOU 3000 🥰",
-        "Ngantuk ya sampai didiamkan begini? <br>Yuk dibuka lagi surat manisnya, masih banyak cerita buat kamu hari ini. 🌌🖤"
+        "Jangan lupa diminum airnya ya sayang, Kalau sudah senggang yuk baca lagi surat nya! 🥰🌸"
     ];
 
     const WAKTU_IDLE = 65000; 
@@ -896,7 +993,6 @@
     let keranjangSurat = []; 
     let currentOpenData = null; 
 
-    // --- Helper Functions ---
     function isDailyLimitReached() {
         if (SPIN_MODE === 'unlimited') return false;
         const lastDate = localStorage.getItem('lastSpinDate');
@@ -957,11 +1053,9 @@
         const el = document.getElementById("env-" + nomor);
         if(el) el.classList.add("opened");
         
-        // Catat otomatis ke Firebase saat surat dibuka
         if (typeof window.catatKeFirebase === "function") {
             window.catatKeFirebase("Buka Surat", nomor, daftarSurat[nomor]);
         }
-        
         prosesBukaPopup(daftarSurat[nomor], nomor);
     }
 
@@ -974,14 +1068,12 @@
     function bukaGame(nomor) {
         currentActiveSurat = "Game_" + pointerMenyesuaikanScroll(nomor);
         currentOpenData = { id: currentActiveSurat, teks: daftarGame[nomor], nomor: nomor, isGame: true, isReply: false };
-        
         const el = document.getElementById("game-" + nomor);
         
         if (el.classList.contains("opened")) {
             prosesBukaPopup(daftarGame[nomor], nomor, true);
             return;
         }
-
         el.classList.add("opened");
         
         const peluangSpinWheel = Math.random() < 0.1; 
@@ -1030,7 +1122,6 @@
         const overlay = document.getElementById("wheelOverlay");
         const roda = document.getElementById("spinWheel");
         const tombol = document.getElementById("btnSpin");
-        
         const targetWheelBox = document.querySelector(".wheel-box");
         if (targetWheelBox) targetWheelBox.scrollTop = 0;
 
@@ -1068,7 +1159,6 @@
             daftarGame[nomorGameAktif] = `✨🎁 [HASIL SPIN WHEEL] 🎁✨\n\nSELAMAT BEE!! Kamu baru saja memutar roda berhadiah dan berhasil mendapatkan:\n\n\n🎉 ${hadiahDapatkan} 🎉\n\nYuk klik tombol Simpan di bawah ini biar masuk ke keranjang suratmu sayang! 🥰❤️`;
             currentOpenData.teks = daftarGame[nomorGameAktif];
             
-            // Catat otomatis hasil jackpot spin wheel ke Firebase
             if (typeof window.catatKeFirebase === "function") {
                 window.catatKeFirebase("Spin Wheel", nomorGameAktif, hadiahDapatkan);
             }
@@ -1100,11 +1190,9 @@
             const itemDiv = document.createElement("div");
             itemDiv.classList.add("storage-item");
             if(item.isGame) itemDiv.classList.add("game-type");
-            if(item.isReply) itemDiv.classList.add("reply-type");
             
             let namaTampilan = "Surat " + item.id.split("_")[1];
             if(item.isGame) namaTampilan = "Game " + item.id.split("_")[1];
-            if(item.isReply) namaTampilan = "Balasan Syavira";
             
             itemDiv.innerHTML = `<span>💌 ${namaTampilan}</span><button class="btn-delete-item" onclick="hapusItemKeranjang(${index})">❌</button>`;
             wrapperList.appendChild(itemDiv);
@@ -1148,7 +1236,7 @@
         keranjangSurat.forEach((item) => {
             urutanProses = urutanProses.then(() => {
                 isiSurat.innerText = item.teks;
-                if (!item.isGame && !item.isReply && daftarFoto[item.nomor] && daftarFoto[item.nomor] !== "N/A") {
+                if (!item.isGame && daftarFoto[item.nomor] && daftarFoto[item.nomor] !== "N/A") {
                     komponenFoto.src = daftarFoto[item.nomor];
                     komponenFoto.style.display = "inline-block";
                 } else {
@@ -1207,6 +1295,13 @@
         resetIdleTimer();
     }
 
+    // Fungsi Pembantu Pemicu Tombol Enter pada Chat Box
+    function deteksiEnterChat(event) {
+        if (event.key === "Enter") {
+            kirimChatRealtime();
+        }
+    }
+
     window.onmousemove = resetIdleTimer;
     window.onmousedown = resetIdleTimer; 
     window.onclick = resetIdleTimer;     
@@ -1215,11 +1310,9 @@
 </script>
 
 <script type="module">
-  // Import fungsi inti dari SDK Firebase versi CDN resmi
   import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, push } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+  import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
 
-  // ⚠️ ID PROYEK SUDAH DISESUAIKAN DENGAN AD9E85 ⚠️
   const firebaseConfig = {
     apiKey: "AIzaSyCTOrx-t7nCx0p7dR-i21Zth7mVCA0E9zo",
     authDomain: "loveletter2026-8ecbb.firebaseapp.com",
@@ -1231,11 +1324,10 @@
     measurementId: "G-10WRSKZLQD"
   };
 
-  // Inisialisasi Firebase & Database
   const app = initializeApp(firebaseConfig);
   const db = getDatabase(app);
 
-  // 1. Fungsi Otomatis Mencatat Aktivitas Membuka Surat/Game
+  // 1. Fungsi Log Aktivitas
   window.catatKeFirebase = function(jenis, nomor, detailTeks) {
     try {
       const logRef = ref(db, "aktivitas_bee");
@@ -1245,64 +1337,61 @@
         isi_konten: detailTeks,
         waktu: new Date().toLocaleString("id-ID")
       });
-      console.log("Aktivitas berhasil dicatat.");
     } catch (error) {
       console.error("Gagal mencatat log aktivitas:", error);
     }
   };
 
-  // 2. Fungsi Tombol Pengiriman Surat Balik dari Syavira (UPDATED & SYNCED!)
-  window.kirimSuratSyavira = async function() {
-    const inputElemen = document.getElementById("inputSuratSyavira");
-    const tombolKirim = document.getElementById("btnKirimSuratBalik");
-    const teksSurat = inputElemen.value.trim();
+  // A. Fungsi Mengirim Pesan Chat Singkat
+  window.kirimChatRealtime = async function() {
+    const inputChat = document.getElementById("inputChatBaru");
+    const userSelect = document.getElementById("pilihUser");
+    const teksPesan = inputChat.value.trim();
 
-    if (!teksSurat) {
-        alert("Isi suratnya dulu ya sayang, jangan dikosongin.. 🥺❤️");
-        return;
-    }
-
-    // Mengunci tombol agar terhindar dari spam klik berulang
-    tombolKirim.disabled = true;
-    tombolKirim.innerText = "Sedang Mengirim... ⏳";
+    if (!teksPesan) return; 
 
     try {
-        const dbRef = ref(db, "surat_dari_syavira");
-        const waktuKirim = new Date().toLocaleString("id-ID");
-        
-        // Mengirimkan payload objek data surat ke Firebase
-        await push(dbRef, {
-            isi_surat: teksSurat,
-            dikirim_pada: waktuKirim
+        const chatRef = ref(db, "ruang_chat");
+        const waktuSekarang = new Date().toLocaleTimeString("id-ID", { hour: '2-digit', minute: '2-digit' });
+
+        await push(chatRef, {
+            pengirim: userSelect.value,
+            pesan: teksPesan,
+            waktu: waktuSekarang
         });
 
-        alert("Surat kamu sudah terkirim dan disimpan dengan aman di hati Pin! 💖✨");
-        
-        // --- LOGIKA TERBARU: AKTIFKAN POP-UP DAN TAUTKAN STRUKTUR SURAT MENTAH ---
-        currentActiveSurat = "BalasanSyavira_" + Date.now();
-        currentOpenData = { 
-            id: currentActiveSurat, 
-            teks: `💌 SURAT BALASAN DARI SYAVIRA 💌\n\n${teksSurat}\n\nDikirim pada: ${waktuKirim}`, 
-            nomor: 99, 
-            isGame: false,
-            isReply: true 
-        };
-        
-        // Mengosongkan kolom teks ketikan setelah berhasil
-        inputElemen.value = ""; 
-        
-        // Panggil penyesuai scroll halaman & jalankan pop-up
-        pointerMenyesuaikanScroll(99);
-        prosesBukaPopup(currentOpenData.teks, 99, false);
-
-    } catch (error) {
-        console.error("Error Firebase:", error);
-        alert("Aduh gagal kirim, coba cek koneksi internetnya ya bee.. 🥺");
-    } finally {
-        tombolKirim.disabled = false;
-        tombolKirim.innerText = "Kirim Surat ke Pin 🚀";
+        inputChat.value = ""; 
+    } catch (e) {
+        console.error("Gagal mengirim chat:", e);
     }
   };
+
+  // B. Fungsi Mendengarkan Pesan Masuk Di Firebase
+  const chatRoomRef = ref(db, "ruang_chat");
+  
+  onChildAdded(chatRoomRef, (snapshot) => {
+      const dataChat = snapshot.val();
+      const kotakPesan = document.getElementById("kotakPesanChat");
+
+      const bubbleChat = document.createElement("div");
+      bubbleChat.classList.add("chat-bubble");
+
+      if (dataChat.pengirim === "Pin") {
+          bubbleChat.classList.add("bubble-pin");
+      } else {
+          bubbleChat.classList.add("bubble-syavira");
+      }
+
+      bubbleChat.innerHTML = `
+          <strong>${dataChat.pengirim}:</strong><br>
+          ${dataChat.pesan}
+          <span class="chat-meta">${dataChat.waktu}</span>
+      `;
+
+      kotakPesan.appendChild(bubbleChat);
+      kotakPesan.scrollTop = kotakPesan.scrollHeight;
+  });
+
 </script>
 </body>
 </html>
