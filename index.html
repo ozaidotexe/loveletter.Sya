@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Surat Spesial untuk Syavira Dwi Dinanti ✨❤️</title>
+    <title>Kotak Surat Special Khusus Pin & Sya ✨❤️</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
     <style>
@@ -12,7 +12,7 @@
         body {
             margin: 0;
             padding: 0;
-            background-color: #0b0c10; /* Latar Belakang Hitam */
+            background-color: #0b0c10;
             font-family: 'Quicksand', sans-serif;
             display: flex;
             justify-content: center;
@@ -21,11 +21,10 @@
             background-image: radial-gradient(#1f2833 1px, transparent 1px);
             background-size: 20px 20px;
             box-sizing: border-box;
-            padding: 20px 10px; /* Diperkecil agar ramah HP */
+            padding: 20px 10px;
             overflow-x: hidden;
         }
 
-        /* EFEK HATI JATUH */
         .heart-particle {
             position: fixed;
             top: -10px;
@@ -53,10 +52,9 @@
             z-index: 2;
         }
 
-        /* STYLING SISTEM LOGIN & KOTAK PESAN PEMBUKA */
         .message-box {
             background-color: rgba(31, 40, 51, 0.9);
-            border: 4px solid #ff7597; /* Pink Border Asli */
+            border: 4px solid #ff7597;
             border-radius: 20px;
             padding: 25px 20px;
             width: 90%;
@@ -66,7 +64,6 @@
             box-sizing: border-box;
         }
 
-        /* Input khusus halaman login */
         .login-select, .login-input {
             width: 100%;
             padding: 12px 15px;
@@ -86,7 +83,7 @@
         }
 
         .message-text {
-            color: #66fcf1; /* Biru Pastel */
+            color: #66fcf1;
             font-size: 20px;
             font-family: 'Fredoka', sans-serif;
             margin-bottom: 25px;
@@ -111,7 +108,7 @@
             font-family: 'Fredoka', sans-serif;
             transition: transform 0.2s, background-color 0.2s;
             box-shadow: 0 4px 10px rgba(255, 117, 151, 0.4);
-            width: 100%; /* Disesuaikan agar proporsional di box login/pesan */
+            width: 100%;
             max-width: 200px;
         }
 
@@ -120,7 +117,6 @@
             background-color: #ff4a75;
         }
 
-        /* 2. MENU UTAMA GALERI SURAT */
         .gallery-wrapper {
             display: none;
             width: 100%;
@@ -159,7 +155,6 @@
             box-sizing: border-box;
         }
 
-        /* 3. KOMPONEN AMPLOP KECIL (SURAT CINTA - BIRU) */
         .envelope-card {
             position: relative;
             width: 100%;
@@ -212,7 +207,6 @@
             box-sizing: border-box;
         }
 
-        /* 3B. KOMPONEN AMPLOP TRUTH OR DARE (UNGU) */
         .envelope-game {
             background-color: #8e44ad !important;
         }
@@ -229,7 +223,6 @@
             color: #ffffff !important;
         }
 
-        /* --- WARNA BARU SETELAH AMPLOP DIBUKA --- */
         .envelope-card.opened {
             background-color: #2c3e50 !important;
         }
@@ -280,7 +273,6 @@
             transition: background-color 0.3s, color 0.3s;
         }
 
-        /* 4. POPUP OVERLAY */
         .popup-overlay {
             display: none;
             position: fixed;
@@ -399,7 +391,6 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* POP-UP PERINGATAN IDLE */
         .popup-warning {
             background-color: #1f2833;
             border: 4px dashed #66fcf1;
@@ -442,7 +433,6 @@
             transform: scale(1);
         }
 
-        /* CONTAINER STORAGE DOWNLOAD MASSAL */
         .storage-box {
             background-color: rgba(31, 40, 51, 0.9);
             border: 4px dashed #66fcf1;
@@ -530,7 +520,6 @@
             transform: none;
         }
 
-        /* SPIN WHEEL */
         .wheel-box {
             width: 100%;
             max-width: 400px;
@@ -613,9 +602,8 @@
             transform: none;
         }
 
-        /* LIVE CHAT ROOM (DIUBAH MENJADI SISTEM POPOUT DI SISI KANAN BAWAH) */
         .chat-container {
-            display: none; /* Baru muncul setelah login sukses */
+            display: none;
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -623,7 +611,7 @@
             border: 3px solid #66fcf1;
             border-radius: 20px;
             padding: 15px;
-            width: 320px; /* Ukuran pas popout */
+            width: 320px;
             box-shadow: 0 8px 30px rgba(102, 252, 241, 0.4);
             box-sizing: border-box;
             text-align: left;
@@ -631,9 +619,8 @@
             transition: all 0.3s ease;
         }
         
-        /* Tombol Pemicu Buka/Tutup Chat (Floating Widget) */
         .chat-toggle-btn {
-            display: none; /* Baru muncul setelah login sukses */
+            display: none;
             position: fixed;
             bottom: 20px;
             right: 20px;
@@ -654,7 +641,6 @@
             transform: scale(1.05);
         }
 
-        /* Tombol minimize kecil di header chat */
         .chat-header {
             display: flex;
             justify-content: space-between;
@@ -671,7 +657,7 @@
         }
 
         .chat-messages {
-            height: 220px; /* Diperkecil agar proporsional untuk popout */
+            height: 220px;
             overflow-y: auto;
             border-radius: 12px;
             background: #0b0c10;
@@ -797,18 +783,18 @@
                     <option value="Pin">Pin 💙</option>
                 </select>
                 <input type="password" id="inputPasswordLogin" class="login-input" placeholder="Masukkan Kode PIN...">
-                <button class="btn-next" onclick="prosesLogin()">Masuk 🔐</button>
+                <button class="btn-next" id="btnProsesLogin">Masuk 🔐</button>
             </div>
 
             <div id="welcomeArea" style="display: none;">
-                <div class="message-text" id="textGanti">Dear Queen Ozai,<br>Yuk kita mulai ya Bee.. 💙🌸</div>
-                <button class="btn-next" onclick="nextPesan()" id="idBtnNext">Next ➡️</button>
+                <div class="message-text" id="textGanti">Dear Lord & Queen Ozai,<br>Yuk kita mulai ya buka pesannya.. 💙🌸</div>
+                <button class="btn-next" id="idBtnNext">Next ➡️</button>
             </div>
         </div>
 
         <div class="gallery-wrapper" id="galleryBox">
-            <h1 class="gallery-title">Surat-Surat Cintaku Untukmu Bee 💙🌸</h1>
-            <p class="gallery-subtitle">Bebas pilih dan buka amplop mana saja yang kamu mau dulu ya Bee!</p>
+            <h1 class="gallery-title">Surat-Surat Cintaku..💙🌸</h1>
+            <p class="gallery-subtitle">Bebas pilih dan buka amplop mana saja yang kamu mau dulu ya!</p>
              
             <div class="envelope-grid">
                 <div class="envelope-card" id="env-1" onclick="bukaSurat(1)"><div class="envelope-label">1</div></div>
@@ -882,7 +868,7 @@
         </div>
 
         <div class="chat-input-area">
-            <input type="text" id="inputChatBaru" class="chat-input" placeholder="Ketik pesan..." onkeypress="deteksiEnterChat(event)">
+            <input type="text" id="inputChatBaru" class="chat-input" placeholder="Ketik pesan...">
             <button class="btn-send-chat" id="btnKirimChat" onclick="kirimChatRealtime()">Kirim 🚀</button>
         </div>
     </div>
@@ -891,6 +877,21 @@
         <div class="popup-letter" id="captureArea">
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
             <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
+            
+            <div id="areaEditSurat" style="display: none; margin-top: 15px; border-top: 2px dashed #ff7597; padding-top: 15px;">
+                <label style="color: #0b0c10; font-weight: bold; font-size: 14px; display: block; margin-bottom: 5px;">
+                    ✍️ Tulis / Edit Surat (Sebagai: <span id="labelPenulisAktif" style="color:#ff7597;"></span>)
+                </label>
+                <textarea id="textareaEditSurat" style="width: 100%; height: 120px; border-radius: 10px; border: 2px solid #ff7597; padding: 10px; font-family: 'Quicksand', sans-serif; font-size: 14px; font-weight: 600; box-sizing: border-box; resize: vertical; outline: none; margin-bottom: 10px;"></textarea>
+                
+                <label style="color: #0b0c10; font-weight: bold; font-size: 14px; display: block; margin-bottom: 5px;">
+                    🖼️ Tambah/Ganti Link Foto Baru:
+                </label>
+                <input type="text" id="inputLinkFotoBaru" placeholder="Tempel link foto (.jpg/.png) di sini..." style="width: 100%; padding: 10px; border-radius: 10px; border: 2px solid #45a29e; font-family: 'Quicksand', sans-serif; font-size: 13px; font-weight: 600; box-sizing: border-box; outline: none;">
+                
+                <button class="btn-download" style="background-color: #45a29e; color: white; margin-top: 15px;" id="btnSimpanEditRealtime">Simpan & Perbaharui Surat + Foto 💾</button>
+            </div>
+
             <div class="popup-date" id="tanggalDownload"></div>
             <br>
             <button class="btn-download" id="btnDownload" onclick="simpanKeKeranjang()">Simpan Surat 🛒</button>
@@ -920,601 +921,468 @@
         </div>
     </div>
 
-    <script>
-    // --- DI SINI PENGATURAN PASSWORD LOGIN KAMU ---
-    const KODE_LOGIN = {
-        "Pin": "2526",       // Silakan ganti disini untuk Pin
-        "Syavira": "2526"   // Silakan ganti disini untuk Sya
-    };
-	
-	// --- KONFIGURASI SPIN WHEEL ---
-    // 'daily' = 1x per hari saja
-    // 'unlimited' = bisa berkali-kali setiap buka amplop baru
-    const SPIN_MODE = 'unlimited'; 
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+        import { getDatabase, ref, set, push, onValue, onChildAdded, serverTimestamp, query, orderByChild } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
-    const daftarPesan = [
-        "Surat Special khusus untuk <br>Syavira Dwi Dinanti. 💙",
-		"JANGAN DI BUKA DULU YA SAYANG ... BELUM SELESAI.. 💙",
-		"BECANDA !!! Sudah selesai ya sayang .. 🥰",
-		"Untung ga langsung kamu close bee ... 😚❤️",
-        "Aku selalu berharap, harimu selalu indah sayangku.. 😚❤️",
-        "Sudah 3 hari, aku tidak menuliskan ini untuk kamu sayangku...🥺",
-		"Jangan bosan ya baca surat menyuratnya dari aku... 🧸💙",
-		"Semoga suka, semoga tidak pernah bosen ya sayangku... 🥺",
-        "Hari ini gunakan waktu istrahat kamu sepenuhnya ya bee .. 😚",
-        "Semoga surat-surat ini dapat temenin kamu di saat shift yang sayangku..🥺❤️",
-        "Jangan lupa setelah makan minum vitamin C ya bee..🧸🖤",
-        "Jangan lupa diminum airnya ya bee..🧸💙",
-		"Oh ya, fitur baru sudah ku perbaharui , kita bisa chat disini sayangku... 🥰",
-        "I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>I LOVE YOU...<br>🥰🥰",
-        "Silakan klik dibawah buat masuk ke Surat Specialnya ya Bee! 👇❤️"
-    ];
+        // =================================================================
+        // ⚠️ KONFIGURASI FIREBASE AKTIF
+        // =================================================================
+        const firebaseConfig = {
+            apiKey: "AIzaSyCTOrx-t7nCx0p7dR-i21Zth7mVCA0E9zo",
+            authDomain: "loveletter2026-8ecbb.firebaseapp.com",
+            databaseURL: "https://loveletter2026-8ecbb-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "loveletter2026-8ecbb",
+            storageBucket: "loveletter2026-8ecbb.firebasestorage.app",
+            messagingSenderId: "146470753636",
+            appId: "1:146470753636:web:bb758c748101ed47629671",
+            measurementId: "G-10WRSKZLQD"
+        };
 
-    const daftarSuratMentah = {
-        1: "Aku sayang sama kamu tuh beneran tulus dari hati, bukan karena lagi kesepian atau sekadar emosi sesaat. \nTapi karena hati aku emang milih kamu. \nTahu gak? Di tengah dunia yang lagi bising dan melelahkan ini, aku bersyukur banget punya tempat untuk pulang. \nBuat aku, kamu itu rumah ternyaman. \n\nMakasih ya... cuma di dekatmu aku bisa jadi diri sendiri tanpa harus jaim, dan gak takut untuk kelihatan rapuh. \nMakasih untuk semuanya. Aku mau kita terus bareng-bareng selamanya, Bee. ❤️\n\n-pin",
-        2: "Aku tahu aku tidak spesial..\nAku bukan orang kaya, bukan juga pria yang paling tampan.\nAku hanya lelaki biasa yang masih punya banyak kelemahan. \n\nKarena itu, terima kasih banyak ya bee, sudah menerimaku apa adanya, bukan karena 'ada apanya'. \nKehadiranmu sungguh berarti buatku. \nMeski aku biasa saja, aku berjanji akan selalu berusaha memberikan yang terbaik untukmu dan untuk masa depan kita nanti. \nI love you so much, Bee! 😚❤️\n\n\n-pin",
-        3: "Kalau ada kalimat yang di ulang , itu bukan aku sengaja sayangku... \nAku hanya menulis apa yang hati ku pengin sampaikan saja ke kamu sayang ... \nMunking bukan hanya ungkapan yang sampai di surat ini ... \nTapi bisa jadi rasa resahku , kangen ku , penat ku atau mungkin keadaan ku saat ini juga .... \nsatu yang hal pasti aku tidak akan pernah bosan atau hanya sebatas formalitas atau kebiasaan billing LOVE YOU ke kamu ....\nLOVE YOUU SOO MUCCHH BEE !!! ❤️\n\n-pin",
-        4: "Aku di sini ya, Bee... \nAku bakal jaga dan perhatiin kamu sebisa yang aku bisa. \nAku nggak akan biarin kamu jatuh sendirian, dan aku siap jadi orang pertama yang ngusap air mata kamu kalau kamu lagi sedih. \n\nKalau kamu lagi kesal, tumpahin aja semuanya ke aku, aku siap jadi bahan ocehan kamu. \nAku mau jadi orang pertama yang kamu sapa di pagi hari, sekaligus orang terakhir sebelum kamu tidur. \nBeben kalau bisa, aku mau hadir di setiap mimpi kamu.\n\n\n-pin",
-        5: "Bee... kalau kamu lagi banyak pikiran atau masalah, aku mau ya jadi tempat cerita kamu. \nAku siap duduk diam dan dengerin semua keluh kesah kamu. \nAku pengen terus belajar buat jadi tempat pulang yang paling nyaman dan aman buat kamu. \n\nDaripada sekadar janji, aku bakal buktiin dan terus berusaha buat wujudin itu. \nMaaf ya kalau kadang caraku salah atau malah bikin kamu makin bete, tapi aku nggak akan bosen buat terus belajar biar kamu bisa ngerasa makin nyaman sama aku.\n\n-pin",
-        6: "25/06 - 06:58 \n\nHujan datang, sayang... dan kangenku langsung makin nggak tertampung..\nKukira bakal mudah ngelewatinnya, ternyata nggak sama sekali. \nBerat banget rasanya pas lagi jauh dari kamu gini... 🥺\n\n-pin",
-        7: "Kami changeshift, kamu di shift sama sedangkan aku di shift ini... \nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU ..... \nLOP YUUU SAYANG ! \n\n-pin",
-        8: "Cuma aku yang selalu mengharap bagaimana harimu berlalu di setiap harinya... \nWalaupun aku sudah tahu apa saja kegiatanmu, aku selalu ingin mendengar langsung ceritamu. \nAku rindu selalu diperhatikan dan dikabari olehmu... \n\nBerkejaran dengan waktu, aku selalu mencari cara untuk mencuri perhatianmu. \nWalaupun aku sering gagal, tidak apa-apa... \nSetidaknya aku sudah mencoba memberikan yang terbaik untukmu, sayangku Syavira..\n\n-pin",
-        9: "Maaf ya bee kalau aku masih suka curigaan, overthinking, atau bikin kamu nggak nyaman sama tingkahku. \nKalau ada apa-apa atau ada sikap random-ku yang bikin kamu keganggu, tolong berkabar ya sayang. \n\nJangan dipendem sendiri atau milih diam, ya? Obrolin aja sama aku. \nAku sayang banget sama kamu dan nggak mau kehilangan kamu. \nMakasih banyak ya udah selalu sabar, ngertiin kekurangan, dan nerima segala kelemotanku selama ini.❤️\n\n-pin",
-        10: "Eh tahu gak, tadi pas aku lagi capek-capeknya kerja, tiba-tiba kepikiran kamu. \nTerus akunya malah senyum sendiri. \n\nKayaknya kamu punya bakat jadi booster mood aku deh. 🥰\n\n-pin",
-        11: "Aku suka deh kalau lagi ngelihat kamu ketawa atau senyum kayak gitu. \nRasanya kayak semua masalah aku hari itu langsung ketutup sama senyum kamu.\n\n-pin",
-        12: "Aku tuh kalau ditanya hari favorit aku apa.. \n\nJawabannya pasti hari apa aja, \nasal pas hari itu aku bisa ketemu atau ngobrol lama sama kamu.\n\n-pin",
-        13: "Jangan terlalu keras sayang, \nKamu sudah melakukan yang terbaik hari ini.. \nKalau cape, bilang dan datanglah ke aku ya sayang.. \nKalau lagi bete/badmood, bilang dan datanglah ke aku ya sayang.. \nAku siap ada 7x24 jam untuk kamu... \nLOVE YOU SOOOO MUCH BEE !! 🥺❤️\n\n-pin",
-        14: "Hi bee! Gimana kerja kamu sekarang? Aku ga tau kapan kamu dapat pesan ini, dan sepertinya aku sudah tidur... \nSemangat ya sayang , keep fokus... \nKalau ngantuk, coba spamming chat ku aja... biar ketika aku bangun, aku bisa baca chat manis dari kamu sayang... \n LOVE YOU BEE !! ❤️\n\n-pin",
-        15: "28/06 04:36 \n\nHalo sayang! \nSudah lama ya ga baca pesan aku ... \nAku juga udah lama nih ga tulis untuk kamu.... \nBukannya udah lama si, cuma lagi perbaikan sistem aja biar lebih okey sayang... \nAkhirnya selesai juga ... \nAku harap ini berjalan sesuai dengan apa yang aku mau... \nKalau ada kendala , coba bantu kasih tau aku ya sayang... \nOh ya,\n\n-pin",
-        16: "\n\n-pin",
-        17: "\n\n-pin",
-        18: "\n\n-pin",
-        19: "\n\n-pin",
-        20: "\n\n-pin"
-    };
+        const app = initializeApp(firebaseConfig);
+        const db = getDatabase(app);
 
-    const daftarGameMentah = {
-        // KEEP TANGGAL
-			//1: "✨Truth: \n\nApa bagian tubuh aku yang paling sering kamu bayangin atau pengen kamu sentuh pas kita lagi gak bareng/lagi bareng? 👀 Badannya aja atau ada yang spesifik?",
-			//2: "✨Truth: \n\nPernah gak kamu dapet fantasi atau pikiran 'nakal' tentang aku di tempat yang gak terduga (misal: pas lagi kerja)? 🤫 tell me!",
-			//3: "✨Truth: \n\nAda ga satu posisi yang pengen banget kamu coba malam nanti ketika sama aku tapi belum pernah kamu omongin ke aku. 🙈 Kamu mau apa hm?",
-			//4: "✨Truth: \n\nApa baju atau outfit yang pernah aku pakai yang menurut kamu paling seksi dan bikin kamu langsung pengen meluk aku?",
-			//5: "✨Truth: \n\nKalau kamu boleh minta satu hal malam ini dan aku gak boleh nolak, kamu mau minta apa? 👅 (pikirin baik-baik ya!)",
-			//6: "✨Truth: \n\nKapan pertama kali kamu ngerasa bener-bener tertarik secara fisik dan 'gemes' banget sama aku?",
-			//7: "✨Truth: \n\nApa hal paling sensitif di tubuh kamu yang kalau aku sentuh sedikit aja, bisa bikin kamu langsung merinding?",
-			//8: "✨Truth: \n\nDari skala 1-10, seberapa tinggi tingkat kegemesan/hasrat kamu ke aku malam ini? Jujur ya!",
-			//9: "✨Truth: \n\nPernah gak kamu sengaja pakai baju tertentu pas mau ketemu aku cuma karena pengen bikin aku nafsu? 🗣️✨",
-			//10: "✨Truth: \n\nAda gak rahasia nakal kamu yang belum pernah ada satu orang pun tahu, termasuk aku? 🤔💭",
-			//11: "🎲Dare: \n\nCium aku di tiga tempat berbeda di tubuh aku yang menurut kamu paling seksi, tapi gak boleh di bibir. 💋 Go!",
-			//12: "🎲Dare: \n\nBisikin hal paling 'kotor' atau fantasi paling liar yang pengen kamu lakuin ke aku malam ini, tepat di telinga aku sambil gigit kecil cuping telingaku...",
-			//13: "🎲Dare: \n\nLepasin satu pakaian yang kamu pakai sekarang, tapi kamu harus lepasinnya pakai cara yang seksi di depan aku. 💃🕺 Show time!",
-			//14: "🎲Dare: \n\nDuduk di pangkuan aku sambil hadap aku, tatap mata aku selama 30 detik tanpa ngomong apa-apa, lalu cium aku sesuka hati kamu.",
-			//15: "🎲Dare: \n\nBiarkan aku tutup mata kamu pakai kain (atau baju), dan kamu gak boleh buka sampai aku selesai ngecup/nyentuh area sensitif kamu.",
-			//16: "🎲Dare: \n\nKasih aku massage (pijatan) lembut di area punggung atau paha selama 3 menit, tapi tangan kamu gak boleh diem di satu tempat ya... 💆‍♂️💆‍♀️",
-			//17: "🎲Dare: \n\nPeluk aku dari belakang dengan sangat erat, terus cium leher aku sampai aku kegelian.",
-			//18: "🎲Dare: \n\nPeluk aku dari depan seerat mungkin sampai gak ada celah di antara kita, terus tahan posisi itu selama 1 menit sambil dengerin detak jantung masing-masing.",
-			//19: "🎲Dare: \n\nSpamming kiss ke area apapun itu, dan yang di spamming kiss wajib suruh tutup mata sampai yang di spam kiss minta udahan!",
-			//20: "🎲Dare: \n\nCium bibir aku selama 15 detik penuh, tapi tangan kamu gak boleh nyentuh tubuh aku sama sekali. Harus nahan!"
-			1: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
-			2: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
-			3: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
-			4: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
-			5: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
-			6: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
-			7: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
-			8: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
-			9: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
-			10: "KOSONG! Truth or Dare belum ada nih bee... 🥺"
-    };
+        const KODE_LOGIN = { 
+			"Pin": "2526", 
+			"Syavira": "2526" 
+		};
+        let userAktifSesi = "Syavira";
+        let nomorSuratAktif = null;
+        let jenisKontenAktif = null; 
+        let keranjangMassal = [];
 
-    const listHadiahWheel = [
-			"🫣 Zonk!!💥",
-			//"🎁 Kamu harus popo cowo kamu x30,Claim x1 cowo kamu juga Bebas request mau dimana aja!",
-			//"🎁 Kamu harus peluk cowo kamu 30 detik,Claim x1 cowo kamu juga Bebas request kapan saja!",
-			"🫣 Zonk!!💥",
-			"🫣 Zonk!!💥",
-			"🫣 Zonk!!💥",
-			"🫣 Zonk!!💥",
-			"🫣 Zonk!!💥",
-			"🫣 Zonk!!💥",
-			"🫣 Zonk!!💥",
-			"🫣 Zonk!!💥",
-			"🫣 Coba lagi!!💥",
-			"🫣 Coba lagi!!💥",
-            //"✨👑 JACKPOT!!! Bebas minta apapun sebanyak x1 permintaan! 👑✨",
-            "🫣 Zonk!!💥",
-			"🫣 Coba lagi!!💥",
-			"🫣 Yah! Belum beruntung kamu sayang!!",
-            //"🧸 Bebas Marah / Ngambek ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
-			//"🧸 Bebas nurutin apa yang kamu mau ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
-			"🫣 Zonk!!💥",
-			"🫣 Coba lagi!!💥",
-			"🫣 Coba lagi!!💥",
-			"🫣 Coba lagi!!💥",
-			"🫣 Zonk!!💥",
-            //"🎫 Voucher Free Hug 30 detik, Claim x1 bebas kapan saja!",
-			"🫣 Zonk!!💥",
-			"🫣 Coba lagi!!💥",
-			"🫣 Zonk!!💥",
-			//"🎫 Voucher Free popo x30 bebas request dimanapun!",
-			"🫣 Zonk!!💥",
-			"🫣 Coba lagi!!💥",
-			"🫣 Yah! Belum beruntung kamu sayang!!💥",
-			"🫣 Yah! Belum beruntung kamu sayang!!💥",
-			"🫣 Zonk!!💥",
-			// KEEP TANGGAL 7 - 8 JULY !!!
-			//"🎁CONGRATS!! \nPopo selama 30 detik penuh tanpa lepas!",
-			//"🎁CONGRATS!! \nDapat pijatan punggung/paha (Bebas Pilih/Keduanya) gratis selama 5 menit",
-			//"🎁CONGRATS!! \nDuduk di pangkuan pasangan sampai putaran roda selanjutnya",
-			//"🎁CONGRATS!! \nPasangan harus lepas satu lapis pakaian yang dipakai sekarang!!",
-			//"🎁CONGRATS!! \nDipeluk erat dari belakang selama 2 menit",
-			//"🎁CONGRATS!! \nDapat 5 kecupan di wajah (kening, pipi, hidung, dagu)"
-			"🫣 Zonk!!💥"
-    ];
+        const daftarPesan = [
+            "Surat Special khusus untuk <br>Pin & Sya.. 💙",
+            "Surat menyurat jadi lebih mudah..🥺❤️",
+            "Semoga suka dengan fitur barunya ya bee... 🥰",
+			"Jika ada yang salah, atau ada ide kasih tau aku ya bee...🥰",
+            "Silakan klik dibawah buat masuk ke Surat Specialnya ya.. 👇❤️"
+        ];
 
-	// FITUR GAMBAR GITHUB ONLY!
-    const daftarSurat = {};
-    const daftarGame = {};
-    const daftarFoto = { 
-			10: "9.jpg", 
-			11: "2.jpg", 
-			12: "4.jpg" 
-	};
-    const daftarPeringatanIdle = [
-        "Bee... Kenapa didiemin? <br>Jangan melamun yaa sayang, Keep fokus ya atau lanjut baca suratnya yuk! 🧸💙",
-        "WARNING!!✨ Hati-hati ngantuk ya sayangku! Kalau ngantuk dan sudah senggang mending baca lagi yuk, masih ada cerita buat kamu hari ini. 🧸🌸",
-        "Jangan lupa diminum airnya ya sayang, Kalau sudah senggang yuk baca lagi surat nya! 🥰🌸",
-        "Hey! tiati kalau ngantuk ambil BAK aja ya atau kamu bisa lanjut baca suratnya ya bee..🥰💙😚",
-        "Dari pada diem terus pikiran kosong, mending mikirin aku aja sayang! hehe.. 😚",
-        "Jangan lupa, untuk hastag #linkdone selalu di pakai ya sayangku... LOVE YOU BEE !!! 😚",
-        "Dorrr! ✨<br>Rame gak bee? <br>Cuma mau bilag aja, Semangat ya shiftnya!🔥 <br>Jangan lupa diminum air nya ya! <br>Love You So Much Bee! 😚🌸",
-        "REMINDER!! Untuk yang tersayang agar selalu semangat shift hari ini, LOVE YOU SO MUCH Syavira Dwi Dinanti. 🧸💙",
-        "PENGINGAT KECIL!! Jangan lupa minum air ya kalau lagi bengong gini bee.. I LOVE YOU 3000 🥰",
-        "Ngantuk ya sampai didiamkan begini? <br>Yuk dibuka lagi surat manisnya, masih banyak cerita buat kamu hari ini. 🌌🖤"
-    ];
+        const daftarSuratMentah = {
+            1: "Aku sayang sama kamu tuh beneran tulus dari hati, bukan karena lagi kesepian atau sekadar emosi sesaat. \nTapi karena hati aku emang milih kamu. \nTahu gak? Di tengah dunia yang lagi bising dan melelahkan ini, aku bersyukur banget punya tempat untuk pulang. \nBuat aku, kamu itu rumah ternyaman. \n\nMakasih ya... cuma di dekatmu aku bisa jadi diri sendiri tanpa harus jaim, dan gak takut untuk kelihatan rampuh. \nMakasih untuk semuanya. Aku mau kita terus bareng-bareng selamanya, Bee. ❤️\n\n-pin",
+            2: "Aku tahu aku tidak spesial..\nAku bukan orang kaya, bukan juga pria yang paling tampan.\nAku hanya lelaki biasa yang masih punya banyak kelemahan. \n\nKarena itu, terima kasih banyak ya bee, sudah menerimaku apa adanya, bukan karena 'ada apanya'. \nKehadiranmu sungguh berarti buatku. \nMeski aku biasa saja, aku berjanji akan selalu berusaha memberikan yang terbaik untukmu dan untuk masa depan kita nanti. \nI love you so much, Bee! 😚❤️\n\n\n-pin",
+            3: "Kalau ada kalimat yang di ulang , itu bukan aku sengaja sayangku... \nAku hanya menulis apa yang hati ku pengin sampaikan saja ke kamu sayang ... \nMunking bukan hanya ungkapan yang sampai di surat ini ... \nTapi bisa jadi rasa resahku , kangen ku , penat ku atau mungkin keadaan ku saat ini juga .... \nsatu yang hal pasti aku tidak akan pernah bosan atau hanya sebatas formalitas atau kebiasaan billing LOVE YOU ke kamu ....\nLOVE YOUU SOO MUCCHH BEE !!! ❤️\n\n-pin",
+            4: "Aku di sini ya, Bee... \nAku bakal jaga dan perhatiin kamu sebisa yang aku bisa. \nAku nggak akan biarin kamu jatuh sendirian, dan aku siap jadi orang pertama yang ngusap air mata kamu kalau kamu lagi sedih. \n\nKalau kamu lagi kesal, tumpahin aja semuanya ke aku, aku siap jadi bahan ocehan kamu. \nAku mau jadi orang pertama yang kamu sapa di pagi hari, sekaligus orang terakhir sebelum kamu tidur. \nBeben kalau bisa, aku mau hadir di setiap mimpi kamu.\n\n\n-pin",
+            5: "Bee... kalau kamu lagi banyak pikiran atau masalah, aku mau ya jadi tempat cerita kamu. \nAku siap duduk diam dan dengerin semua keluh kesah kamu. \nAku pengen terus belajar buat jadi tempat pulang yang paling nyaman dan aman buat kamu. \n\nDaripada sekadar janji, aku bakal buktiin dan terus berusaha buat wujudin itu. \nMaaf ya kalau kadang caraku salah atau malah bikin kamu makin bete, tapi aku nggak akan bosen buat terus belajar biar kamu bisa ngerasa makin nyaman sama aku.\n\n-pin",
+            6: "25/06 06:58 \n\nHujan datang, sayang... dan kangenku langsung makin nggak tertampung..\nKukira bakal mudah ngelewatinnya, ternyata nggak sama sekali. \nBerat banget rasanya pas lagi jauh dari kamu gini... 🥺\n\n-pin",
+            7: "Kami changeshift, kamu di shift sama sedangkan aku di shift ini... \nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU ..... \nLOP YUUU SAYANG ! \n\n-pin",
+            8: "Cuma aku yang selalu mengharap bagaimana harimu berlalu di setiap harinya... \nWalaupun aku sudah tahu apa saja kegiatanmu, aku selalu ingin mendengar langsung ceritamu. \nAku rindu selalu diperhatikan dan dikabari olehmu... \n\nBerkejaran dengan waktu, aku selalu mencari cara untuk mencuri perhatianmu. \nWalaupun aku sering gagal, tidak apa-apa... \nSetidaknya aku sudah mencoba memberikan yang terbaik untukmu, sayangku Syavira..\n\n-pin",
+            9: "Maaf ya bee kalau aku masih suka curigaan, overthinking, atau bikin kamu nggak nyaman...\nTapi jujur, itu semua muncul cuma karena aku teramat sayang dan takut kehilangan kamu, Bee. \nAku bakal terus belajar mengendalikan ego aku demi hubungan kita. \n\nMakasih ya bee udah selalu sabar ngehadepin aku selama ini. Love you more! 🥰",
+            10: "Setiap kali melihat senyummu, rasanya seluruh lelah yang kurasakan seharian langsung menguap begitu saja. \nKamu punya kekuatan hebat itu dalam hidupku, Bee. \nTetap jadi Syavira yang ceria dan penuh kasih ya. Bersamamu, aku merasa lengkap. 🌸💙",
+            11: "Jangan pernah ngerasa sendirian ya sayang. \nKapan pun kamu butuh sandaran, bahuku selalu siap buat kamu. \nJarak atau waktu shift tidak akan pernah mengurangi rasa sayangku ke kamu. Semangat kerjanya hari ini bidadariku! ✨",
+            12: "Aku suka caramu memperhatikanku dari hal-hal kecil. \nHal itu bikin aku sadar kalau aku adalah pria paling beruntung karena dicintai oleh wanita sehebat kamu. \nSemoga kita selalu diberi kekuatan untuk menjaga komitmen ini ya sayang. 💙🧸",
+            13: "Sya, makasih ya sudah mengajarkanku banyak hal tentang kesabaran dan arti ketulusan. \nAku bersyukur Tuhan mempertemukan kita. \nAku janji gak akan sia-siain kesempatan untuk membahagiakanmu setiap hari. I Love You! 🥰",
+            14: "Menghitung hari dan jam untuk bisa bertukar kabar denganmu adalah rutinitas favoritku sekarang. \nMeskipun kadang melelahkan, mengetahui ada kamu di ujung sana yang menungguku membuat semuanya jadi bermakna. 🥰🌸",
+            15: "Ingat pesan aku ya sayang: jangan telat makan, jaga kesehatan, dan jangan terlalu memaksakan diri kalau sudah capek. \nKesehatan kamu itu prioritas nomor satu buat aku. Love you, Bee! 🌸💙",
+            16: "Kadang aku suka senyum-senyum sendiri kalau ingat chat-chat lucu kita. \nKamu selalu bisa jadi alasan kebahagiaanku. \nMakasih ya bee sudah menjadi warna paling indah di hidupku yang biasa saja ini. 🧸",
+            17: "Menghadapi masa depan bersamamu adalah impian terbesar yang sedang kuperjuangkan saat ini. \nMari kita menabung, berjuang bersama, dan membuktikan kalau kita bisa melewati semua badai ini berdua ya sayang! 💪❤️",
+            18: "Aku ingin kita terus bertumbuh bersama, saling memperbaiki diri, dan menjadi versi terbaik untuk satu sama lain. \nJangan bosan mengingatkanku kalau aku salah ya sayang. Bersamamu aku bahagia. 💙",
+            19: "Terima kasih sudah menjadi penyemangat terbaikku di kala duniaku sedang tidak baik-baik saja. \nPelukan virtual dan kata-kata manismu selalu berhasil menenangkan hatiku. I Love you so much Syavira! ✨",
+            20: "Surat ke-20 ini adalah bukti kalau ruang hatiku sudah sepenuhnya dipenuhi oleh namamu. \nTidak ada ruang untuk orang lain, hanya ada kamu sekarang, esok, dan selamanya. Love you seluas semesta, Queen Ozai-ku! 👑❤️"
+        };
 
-    const WAKTU_IDLE = 65000; 
-    let indeksPesan = 0;
-    let currentActiveSurat = null;
-    let heartInterval = null; 
-    let idleTimer = null;
-    let keranjangSurat = []; 
-    let currentOpenData = null; 
+        const daftarGameMentah = {
+            1: "[TRUTH]\nSiapa orang yang paling sering bikin kamu kangen belakangan ini? Sebutkan namanya langsung ke dia! 😚",
+            2: "[DARE]\nKirimkan pesan suara (Voice Note) bernyanyi lagu kesukaanmu selama 15 detik ke room chat kita sekarang juga! 🎤",
+            3: "[MINI CHALLENGE]\nMinum segelas air putih sekarang demi kesehatanmu, lalu chat 'Sudah minum air, Pin! 💙'",
+            4: "[TRUTH]\nApa sifat dari aku (Pin) yang paling kamu suka dan yang paling pengen kamu ubah? Jujur ya! 🧸",
+            5: "[DARE]\nAmbil foto wajah jelek/lucu kamu sekarang (no filter) lalu kirim langsung ke chat! Gak boleh nolak! 😜",
+            6: "[MINI CHALLENGE]\nPikirkan satu momen paling bahagia bareng aku, lalu ceritain singkat di chat realtime di bawah! 🌸",
+            7: "[TRUTH]\nApa ketakutan terbesar kamu tentang hubungan kita? Yuk obrolin biar kita bisa saling menguatkan. 🥺",
+            8: "[DARE]\nKirimkan text 'I Love You Pin 💙' sebanyak 5 kali berturut-turut di room chat sekarang!",
+            9: "[MINI CHALLENGE]\nLakukan peregangan tangan dan leher selama 1 menit. Jangan terlalu tegang kerjanya ya sayang! 🧘‍♀️",
+            10: "[TRUTH]\nKapan momen pertama kali kamu ngerasa bener-bener sayang dan takut kehilangan aku? Ceritain dong.. 👉👈"
+        };
 
-    /* FUNGSI BARU UNTUK POPOUT LIVECHAT */
-    function bukaPopoutChat() {
-        document.getElementById("kotakUtamaChat").style.display = "block";
-        document.getElementById("tombolBukaChat").style.display = "none";
-		
-        const kotakPesan = document.getElementById("kotakPesanChat");
-        kotakPesan.scrollTop = kotakPesan.scrollHeight;
-    }
+        // Buat partikel hati berjatuhan
+        setInterval(() => {
+            const heart = document.createElement("div");
+            heart.classList.add("heart-particle");
+            heart.innerHTML = "❤️", "💖", "🌸", "✨", "💙", "⭐";
+            heart.style.left = Math.random() * 100 + "vw";
+            heart.style.animationDuration = Math.random() * 3 + 2 + "s";
+            heart.style.fontSize = Math.random() * 15 + 15 + "px";
+            document.body.appendChild(heart);
+            setTimeout(() => heart.remove(), 5000);
+        }, 400);
 
-    function tutupPopoutChat() {
-        document.getElementById("kotakUtamaChat").style.display = "none";
-        document.getElementById("tombolBukaChat").style.display = "block";
-    }
+        // LOGIN SYSTEM
+        window.prosesLogin = function() {
+            const user = document.getElementById("pilihUserLogin").value;
+            const pass = document.getElementById("inputPasswordLogin").value;
 
-    // FITUR FUNGSI LOGIN
-    function prosesLogin() {
-    const userYangDipilih = document.getElementById("pilihUserLogin").value;
-    const passwordInput = document.getElementById("inputPasswordLogin").value;
-
-    if (passwordInput === KODE_LOGIN[userYangDipilih]) {
-        document.getElementById("loginArea").style.display = "none";
-        document.getElementById("welcomeArea").style.display = "block";
-        
-        const chatUserSelect = document.getElementById("pilihUser");
-        chatUserSelect.value = userYangDipilih;
-        chatUserSelect.disabled = true; 
-        chatUserSelect.style.pointerEvents = "none"; 
-        chatUserSelect.style.appearance = "none"; 
-        chatUserSelect.style.opacity = "0.9"; 
-        
-        startEffects(); 
-    } else {
-        alert("Password Salah! Silakan coba lagi ya.. 🫣❌");
-    }
-}
-
-    function isDailyLimitReached() {
-        if (SPIN_MODE === 'unlimited') return false;
-        const lastDate = localStorage.getItem('lastSpinDate');
-        return lastDate === new Date().toDateString();
-    }
-
-    function acakKonten(mentah, target) {
-        const keys = Object.keys(mentah);
-        const values = Object.values(mentah);
-        for (let i = values.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [values[i], values[j]] = [values[j], values[i]];
-        }
-        keys.forEach((key, index) => { target[key] = values[index]; });
-    }
-	
-	// SETTING ACAK ATAU TIDAK DI BAGIAN SURAT.
-    //acakKonten(daftarSuratMentah, daftarSurat); // Settingan agar bisa ngacak.
-	Object.assign(daftarSurat, daftarSuratMentah);
-    acakKonten(daftarGameMentah, daftarGame);
-
-    function startEffects() {
-        const music = document.getElementById("backsound");
-        if (music.paused) music.play().catch(e => console.log("Autoplay ditolak"));
-        if (!heartInterval) heartInterval = setInterval(createHeart, 1500);
-        resetIdleTimer();
-    }
-
-    function createHeart() {
-        const heart = document.createElement("div");
-        heart.classList.add("heart-particle");
-        heart.innerHTML = ["❤️", "💖", "🌸", "✨", "💙", "⭐"][Math.floor(Math.random() * 6)];
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.animationDuration = Math.random() * 3 + 2 + "s";
-        heart.style.fontSize = Math.random() * 15 + 15 + "px";
-        document.body.appendChild(heart);
-        setTimeout(() => { heart.remove(); }, 5000);
-    }
-    
-    function nextPesan() {
-        const textElement = document.getElementById("textGanti");
-        if (indeksPesan < daftarPesan.length) {
-            textElement.style.opacity = 0;
-            setTimeout(() => {
-                textElement.innerHTML = daftarPesan[indeksPesan];
-                textElement.style.opacity = 1;
-                indeksPesan++;
-            }, 300);
-        } else {
-            document.getElementById("msgBox").style.display = "none";
-            document.getElementById("galleryBox").style.display = "block";
-            document.getElementById("tombolBukaChat").style.display = "block";
-            
-            resetIdleTimer();
-        }
-    }
-
-    function bukaSurat(nomor) {
-        currentActiveSurat = "Surat_" + pointerMenyesuaikanScroll(nomor);
-        currentOpenData = { id: currentActiveSurat, teks: daftarSurat[nomor], nomor: nomor, isGame: false, isReply: false };
-        const el = document.getElementById("env-" + nomor);
-        if(el) el.classList.add("opened");
-        
-        if (typeof window.catatKeFirebase === "function") {
-            window.catatKeFirebase("Buka Surat", nomor, daftarSurat[nomor]);
-        }
-        prosesBukaPopup(daftarSurat[nomor], nomor);
-    }
-
-    function pointerMenyesuaikanScroll(num) {
-        const targetRender = document.getElementById("captureArea");
-        if (targetRender) targetRender.scrollTop = 0;
-        return num;
-    }
-
-    function bukaGame(nomor) {
-        currentActiveSurat = "Game_" + pointerMenyesuaikanScroll(nomor);
-        currentOpenData = { id: currentActiveSurat, teks: daftarGame[nomor], nomor: nomor, isGame: true, isReply: false };
-        const el = document.getElementById("game-" + nomor);
-        
-        if (el.classList.contains("opened")) {
-            prosesBukaPopup(daftarGame[nomor], nomor, true);
-            return;
-        }
-        el.classList.add("opened");
-        
-        const peluangSpinWheel = Math.random() < 0.1; 
-        const limitReached = isDailyLimitReached();
-
-        if (peluangSpinWheel && !limitReached) {
-            bukaWheel();
-        } else {
-            if (typeof window.catatKeFirebase === "function") {
-                window.catatKeFirebase("Buka Game", nomor, daftarGame[nomor]);
+            if (KODE_LOGIN[user] === pass) {
+                userAktifSesi = user;
+                document.getElementById("pilihUser").value = user;
+                document.getElementById("loginArea").style.display = "none";
+                document.getElementById("welcomeArea").style.display = "block";
+                document.getElementById("backsound").play().catch(() => {});
+            } else {
+                bukaWarning("❌ Kode PIN yang kamu masukkan salah sayang, coba diingat-ingat lagi ya.. 🥺");
             }
-            prosesBukaPopup(daftarGame[nomor], nomor, true);
-        }
-    }
+        };
 
-    function prosesBukaPopup(teks, nomor, isGame = false) {
-        const overlay = document.getElementById("popupOverlay");
-        const isiSurat = document.getElementById("isiSuratDetail");
-        const komponenFoto = document.getElementById("fotoSuratDetail"); 
-        const tombolSimpan = document.getElementById("btnDownload");
-        
-        isiSurat.innerText = teks;
-        if (!isGame && !currentOpenData.isReply && daftarFoto[nomor] && daftarFoto[nomor] !== "N/A") {
-            komponenFoto.src = daftarFoto[nomor];
-            komponenFoto.style.display = "inline-block"; 
-        } else {
-            komponenFoto.style.display = "none"; 
-        }
+        // PESAN PEMBUKA
+        let indexPesan = 0;
+        window.nextPesan = function() {
+            indexPesan++;
+            const textGanti = document.getElementById("textGanti");
+            const btnNext = document.getElementById("idBtnNext");
 
-        const sudahAda = keranjangSurat.some(item => item.id === currentActiveSurat);
-        tombolSimpan.innerText = sudahAda ? "Sudah di Keranjang ✔" : "Simpan ke Keranjang Massal 🛒";
-        tombolSimpan.style.opacity = sudahAda ? "0.7" : "1";
-        
-        overlay.style.display = "flex";
-        setTimeout(() => { overlay.classList.add("show"); }, 10);
-    }
-
-    function tutupSurat() {
-        const overlay = document.getElementById("popupOverlay");
-        overlay.classList.remove("show");
-        setTimeout(() => { overlay.style.display = "none"; }, 400);
-        resetIdleTimer();
-    }
-
-    function bukaWheel() {
-        const overlay = document.getElementById("wheelOverlay");
-        const roda = document.getElementById("spinWheel");
-        const tombol = document.getElementById("btnSpin");
-        const targetWheelBox = document.querySelector(".wheel-box");
-        if (targetWheelBox) targetWheelBox.scrollTop = 0;
-
-        roda.style.transform = "rotate(0deg)";
-        tombol.disabled = false;
-        tombol.innerText = "PUTAR SEKARANG 🎡";
-        overlay.style.display = "flex";
-        setTimeout(() => { overlay.classList.add("show"); }, 10);
-    }
-
-    function tutupWheel() {
-        const overlay = document.getElementById("wheelOverlay");
-        overlay.classList.remove("show");
-        setTimeout(() => { overlay.style.display = "none"; }, 400);
-        resetIdleTimer();
-    }
-
-    function putarRoda() {
-        const roda = document.getElementById("spinWheel");
-        const tombol = document.getElementById("btnSpin");
-        tombol.disabled = true;
-        tombol.innerText = "Berputar... 🤫";
-
-        const totalSektor = listHadiahWheel.length;
-        const indeksTerpilih = Math.floor(Math.random() * totalSektor);
-        const ukuranSektor = 360 / totalSektor;
-        const sudutTarget = 1800 + (indeksTerpilih * ukuranSektor) + (ukuranSektor / 2);
-        roda.style.transform = `rotate(${sudutTarget}deg)`;
-
-        setTimeout(() => {
-            const hadiahDapatkan = listHadiahWheel[indeksTerpilih];
-            localStorage.setItem('lastSpinDate', new Date().toDateString());
-            
-            const nomorGameAktif = currentOpenData.nomor;
-            daftarGame[nomorGameAktif] = `✨🎁 [HASIL SPIN WHEEL] 🎁✨\n\nSELAMAT BEE!! Kamu baru saja memutar roda berhadiah dan berhasil mendapatkan:\n\n\n🎉 ${hadiahDapatkan} 🎉\n\nYuk klik tombol Simpan di bawah ini biar masuk ke keranjang suratmu sayang! 🥰❤️`;
-            currentOpenData.teks = daftarGame[nomorGameAktif];
-            
-            if (typeof window.catatKeFirebase === "function") {
-                window.catatKeFirebase("Spin Wheel", nomorGameAktif, hadiahDapatkan);
+            if (indexPesan < daftarPesan.length) {
+                textGanti.style.opacity = 0;
+                setTimeout(() => {
+                    textGanti.innerHTML = daftarPesan[indexPesan];
+                    textGanti.style.opacity = 1;
+                    if (indexPesan === daftarPesan.length - 1) {
+                        btnNext.innerHTML = "Buka Surat 💌";
+                    }
+                }, 300);
+            } else {
+                document.getElementById("msgBox").style.display = "none";
+                document.getElementById("galleryBox").style.display = "block";
+                document.getElementById("tombolBukaChat").style.display = "block";
+                initStatusAmplop();
             }
-            
-            tutupWheel();
-            prosesBukaPopup(daftarGame[nomorGameAktif], nomorGameAktif, true);
-        }, 4000);
-    }
+        };
 
-    function simpanKeKeranjang() {
-        if (!currentOpenData) return;
-        const cekDuplikat = keranjangSurat.some(item => item.id === currentOpenData.id);
-        if (!cekDuplikat) {
-            keranjangSurat.push({ ...currentOpenData });
-            perbaruiTampilanKeranjang();
-            tutupSurat();
-        } else {
-            tutupSurat();
-        }
-    }
-
-    function perbaruiTampilanKeranjang() {
-        const wrapperList = document.getElementById("storageList");
-        const tombolUnduhMassal = document.getElementById("btnMassDownload");
-        wrapperList.innerHTML = "";
-        if (keranjangSurat.length === 0) { tombolUnduhMassal.disabled = true; return; }
-        tombolUnduhMassal.disabled = false;
-        keranjangSurat.forEach((item, index) => {
-            const itemDiv = document.createElement("div");
-            itemDiv.classList.add("storage-item");
-            if(item.isGame) itemDiv.classList.add("game-type");
-            
-            let namaTampilan = "Surat " + item.id.split("_")[1];
-            if(item.isGame) namaTampilan = "Game " + item.id.split("_")[1];
-            
-            itemDiv.innerHTML = `<span>💌 ${namaTampilan}</span><button class="btn-delete-item" onclick="hapusItemKeranjang(${index})">❌</button>`;
-            wrapperList.appendChild(itemDiv);
-        });
-    }
-
-    function hapusItemKeranjang(index) {
-        keranjangSurat.splice(index, 1);
-        perbaruiTampilanKeranjang();
-    }
-
-    function unduhSemuaMassal() {
-        if (keranjangSurat.length === 0) return;
-        const tombolUnduhMassal = document.getElementById("btnMassDownload");
-        const overlayPopup = document.getElementById("popupOverlay");
-        const isiSurat = document.getElementById("isiSuratDetail");
-        const komponenFoto = document.getElementById("fotoSuratDetail");
-        const tombolSimpan = document.getElementById("btnDownload");
-        const tombolTutup = document.querySelector(".btn-close");
-        const elemenTanggal = document.getElementById("tanggalDownload");
-
-        const teksAsliTombol = tombolUnduhMassal.innerText;
-        tombolUnduhMassal.disabled = true;
-        tombolUnduhMassal.innerText = "Sedang Memproses Gambar... ⏳";
-        tombolSimpan.style.visibility = "hidden";
-        tombolTutup.style.visibility = "hidden";
-        
-        const hariIni = new Date();
-        const dd = String(hariIni.getDate()).padStart(2, '0');
-        const mm = String(hariIni.getMonth() + 1).padStart(2, '0'); 
-        const yyyy = hariIni.getFullYear();
-        elemenTanggal.innerText = dd + "/" + mm + "/" + yyyy;
-        elemenTanggal.style.display = "block";
-        overlayPopup.style.display = "flex";
-        overlayPopup.style.opacity = "0";
-
-        const zip = new JSZip();
-        const targetRender = document.getElementById("captureArea");
-        let urutanProses = Promise.resolve();
-
-        keranjangSurat.forEach((item) => {
-            urutanProses = urutanProses.then(() => {
-                isiSurat.innerText = item.teks;
-                if (!item.isGame && daftarFoto[item.nomor] && daftarFoto[item.nomor] !== "N/A") {
-                    komponenFoto.src = daftarFoto[item.nomor];
-                    komponenFoto.style.display = "inline-block";
-                } else {
-                    komponenFoto.style.display = "none";
+        // STATUS AMPLOP REALTIME DARI DATABASE
+        function initStatusAmplop() {
+            onValue(ref(db, "status_amplop"), (snapshot) => {
+                const data = snapshot.val() || {};
+                for (let i = 1; i <= 20; i++) {
+                    const card = document.getElementById(`env-${i}`);
+                    if (card && data[`surat_${i}`]) card.classList.add("opened");
                 }
-                return html2canvas(targetRender, { backgroundColor: "#fff0f5", borderRadius: 20, scale: 2, useCORS: true }).then(canvas => {
-                    const dataUrl = canvas.toDataURL("image/png");
-                    const base64Data = dataUrl.split(',')[1];
-                    zip.file("Surat_Cinta_" + item.id + ".png", base64Data, { base64: true });
-                });
+                for (let i = 1; i <= 10; i++) {
+                    const card = document.getElementById(`game-${i}`);
+                    if (card && data[`game_${i}`]) card.classList.add("opened");
+                }
             });
+        }
+
+        // BUKA SURAT DENGAN FITUR EDIT & FOTO OTOMATIS TANPA CODING
+        window.bukaSurat = function(nomor) {
+            nomorSuratAktif = nomor;
+            jenisKontenAktif = "surat";
+
+            const teksDetail = document.getElementById("isiSuratDetail");
+            const fotoDetail = document.getElementById("fotoSuratDetail");
+            const areaEdit = document.getElementById("areaEditSurat");
+
+            // Mengambil isi data surat & foto dari Firebase secara Realtime
+            onValue(ref(db, `konten_surat/${nomor}`), (snapshot) => {
+                const data = snapshot.val();
+                const teksAsli = data && data.teks ? data.teks : (daftarSuratMentah[nomor] || "");
+                const linkFoto = data && data.foto ? data.foto : "";
+
+                teksDetail.innerText = teksAsli;
+                document.getElementById("textareaEditSurat").value = teksAsli;
+                document.getElementById("inputLinkFotoBaru").value = linkFoto;
+
+                if (linkFoto) {
+                    fotoDetail.src = linkFoto;
+                    fotoDetail.style.display = "block";
+                } else {
+                    fotoDetail.style.display = "none";
+                }
+            }, { onlyOnce: true });
+
+            // Fitur manajemen penulisan langsung di aplikasi
+            document.getElementById("labelPenulisAktif").innerText = userAktifSesi;
+            areaEdit.style.display = "block"; 
+
+            document.getElementById("popupOverlay").classList.add("show");
+            set(ref(db, `status_amplop/surat_${nomor}`), true);
+        };
+
+        // SIMPAN HASIL EDIT SURAT & LINK FOTO LANGSUNG KE FIREBASE
+        document.getElementById("btnSimpanEditRealtime").onclick = async function() {
+            if (!nomorSuratAktif || !jenisKontenAktif) return;
+
+            const teksBaru = document.getElementById("textareaEditSurat").value;
+            const linkFotoBaru = document.getElementById("inputLinkFotoBaru").value.trim();
+
+            const pathDb = jenisKontenAktif === "surat" ? `konten_surat/${nomorSuratAktif}` : `konten_game/${nomorSuratAktif}`;
+
+            try {
+                await set(ref(db, pathDb), {
+                    teks: teksBaru,
+                    foto: linkFotoBaru
+                });
+                bukaWarning("💾 Sukses memperbarui surat dan foto secara langsung ke database!");
+                
+                document.getElementById("isiSuratDetail").innerText = teksBaru;
+                const img = document.getElementById("fotoSuratDetail");
+                if (linkFotoBaru) {
+                    img.src = linkFotoBaru;
+                    img.style.display = "block";
+                } else {
+                    img.style.display = "none";
+                }
+            } catch (e) {
+                console.error(e);
+                bukaWarning("Gagal menyimpan data ke Firebase.");
+            }
+        };
+
+        // BUKA MINI GAMES
+        window.bukaGame = function(nomor) {
+            nomorSuratAktif = nomor;
+            jenisKontenAktif = "game";
+
+            const teksDetail = document.getElementById("isiSuratDetail");
+            const fotoDetail = document.getElementById("fotoSuratDetail");
+            const areaEdit = document.getElementById("areaEditSurat");
+
+            onValue(ref(db, `konten_game/${nomor}`), (snapshot) => {
+                const data = snapshot.val();
+                const teksAsli = data && data.teks ? data.teks : (daftarGameMentah[nomor] || "");
+                const linkFoto = data && data.foto ? data.foto : "";
+
+                teksDetail.innerText = teksAsli;
+                document.getElementById("textareaEditSurat").value = teksAsli;
+                document.getElementById("inputLinkFotoBaru").value = linkFoto;
+
+                if (linkFoto) {
+                    fotoDetail.src = linkFoto;
+                    fotoDetail.style.display = "block";
+                } else {
+                    fotoDetail.style.display = "none";
+                }
+            }, { onlyOnce: true });
+
+            document.getElementById("labelPenulisAktif").innerText = userAktifSesi;
+            areaEdit.style.display = "block";
+
+            document.getElementById("popupOverlay").classList.add("show");
+            set(ref(db, `status_amplop/game_${nomor}`), true);
+        };
+
+        window.tutupSurat = function() {
+            document.getElementById("popupOverlay").classList.remove("show");
+            nomorSuratAktif = null;
+            jenisKontenAktif = null;
+        };
+
+        // MANAGEMENT KERANJANG BELANJA SURAT (ZIP DOWNLOAD)
+        window.simpanKeKeranjang = function() {
+            if (!nomorSuratAktif || !jenisKontenAktif) return;
+            
+            const namaItem = `${jenisKontenAktif === 'surat' ? 'Surat' : 'Game'} ${nomorSuratAktif}`;
+            if (keranjangMassal.includes(namaItem)) {
+                bukaWarning("🛒 Item ini sudah ada di dalam keranjangmu, Bee!");
+                return;
+            }
+
+            keranjangMassal.push(namaItem);
+            renderKeranjang();
+            bukaWarning(`🛒 Berhasil memasukkan ${namaItem} ke keranjang pilihanmu!`);
+        };
+
+        function renderKeranjang() {
+            const list = document.getElementById("storageList");
+            const btn = document.getElementById("btnMassDownload");
+            list.innerHTML = "";
+
+            if (keranjangMassal.length === 0) {
+                btn.disabled = true;
+                return;
+            }
+
+            btn.disabled = false;
+            keranjangMassal.forEach((item, index) => {
+                const div = document.createElement("div");
+                div.classList.add("storage-item");
+                if (item.includes("Game")) div.classList.add("game-type");
+
+                div.innerHTML = `${item} <button class="btn-delete-item" onclick="hapusItemKeranjang(${index})">❌</button>`;
+                list.appendChild(div);
+            });
+        }
+
+        window.hapusItemKeranjang = function(index) {
+            keranjangMassal.splice(index, 1);
+            renderKeranjang();
+        };
+
+        // UNDUH MASAL MENGGUNAKAN JSZIP & HTML2CANVAS
+        window.unduhSemuaMassal = async function() {
+            const zip = new JSZip();
+            const overlay = document.getElementById("popupOverlay");
+            const teksDetail = document.getElementById("isiSuratDetail");
+            const fotoDetail = document.getElementById("fotoSuratDetail");
+            const areaEdit = document.getElementById("areaEditSurat");
+            const areaTgl = document.getElementById("tanggalDownload");
+
+            bukaWarning("⚡ Sedang memproses pembuatan file ZIP gambar. Mohon tunggu sebentar ya Bee...");
+            
+            // Tampilkan popup secara offscreen untuk screenshot bersih
+            overlay.style.display = "flex";
+            overlay.style.opacity = "1";
+            areaEdit.style.display = "none"; 
+            areaTgl.style.display = "block";
+            areaTgl.innerText = "Downloaded on: " + new Date().toLocaleString("id-ID");
+
+            for (let item of keranjangMassal) {
+                const parts = item.split(" ");
+                const type = parts[0].toLowerCase();
+                const num = parts[1];
+
+                // Tarik data realtime final sebelum diubah jadi gambar
+                await new Promise((resolve) => {
+                    const path = type === "surat" ? `konten_surat/${num}` : `konten_game/${num}`;
+                    onValue(ref(db, path), (snap) => {
+                        const d = snap.val();
+                        teksDetail.innerText = d && d.teks ? d.teks : (type === "surat" ? daftarSuratMentah[num] : daftarGameMentah[num]);
+                        if (d && d.foto) {
+                            fotoDetail.src = d.foto;
+                            fotoDetail.style.display = "block";
+                        } else {
+                            fotoDetail.style.display = "none";
+                        }
+                        setTimeout(resolve, 400); // Beri jeda render gambar link internet
+                    }, { onlyOnce: true });
+                });
+
+                const canvas = await html2canvas(document.getElementById("captureArea"), {
+                    useCORS: true,
+                    allowTaint: false,
+                    backgroundColor: "#fff0f5"
+                });
+                
+                const blob = await new Promise(res => canvas.toBlob(res, "image/png"));
+                zip.file(`${item}.png`, blob);
+            }
+
+            overlay.style.display = "";
+            overlay.style.opacity = "";
+            areaTgl.style.display = "none";
+
+            const content = await zip.generateAsync({ type: "blob" });
+            const link = document.createElement("a");
+            link.href = URL.createObjectURL(content);
+            link.download = `Bundel_Surat_Spesial_${userAktifSesi}.zip`;
+            link.click();
+
+            keranjangMassal = [];
+            renderKeranjang();
+            bukaWarning("🎉 Berhasil mendownload semua surat pilihan ke dalam format ZIP!");
+        };
+
+        window.kirimChatRealtime = async function() {
+            const inputChat = document.getElementById("inputChatBaru");
+            const userSelect = document.getElementById("pilihUser");
+            const teksPesan = inputChat.value.trim();
+
+            if (!teksPesan) return; 
+
+            try {
+                const chatRef = ref(db, "ruang_chat");
+                const waktuSekarang = new Date().toLocaleTimeString("id-ID", { hour: '2-digit', minute: '2-digit' });
+
+                await push(chatRef, {
+                    pengirim: userSelect.value,
+                    pesan: teksPesan,
+                    waktu: waktuSekarang,
+                    timestamp: serverTimestamp() 
+                });
+
+                inputChat.value = ""; 
+            } catch (e) {
+                console.error("Gagal mengirim chat:", e);
+            }
+        };
+
+        const chatRoomRef = query(ref(db, "ruang_chat"), orderByChild("timestamp"));
+
+        onChildAdded(chatRoomRef, (snapshot) => {
+            const dataChat = snapshot.val();
+            const kotakPesan = document.getElementById("kotakPesanChat");
+
+            if (!kotakPesan) return;
+
+            const bubbleChat = document.createElement("div");
+            bubbleChat.classList.add("chat-bubble");
+
+            if (dataChat.pengirim === "Pin") {
+                bubbleChat.classList.add("bubble-pin");
+            } else {
+                bubbleChat.classList.add("bubble-syavira");
+            }
+
+            bubbleChat.innerHTML = `${dataChat.pesan} <span class="chat-meta">${dataChat.waktu || ''}</span>`;
+            kotakPesan.appendChild(bubbleChat);
+            kotakPesan.scrollTop = kotakPesan.scrollHeight;
         });
 
-        urutanProses.then(() => {
-            return zip.generateAsync({ type: "blob" });
-        }).then(isiZip => {
-            overlayPopup.style.display = "none";
-            overlayPopup.style.opacity = "1";
-            tombolSimpan.style.visibility = "visible";
-            tombolTutup.style.visibility = "visible";
-            elemenTanggal.style.display = "none";
-            const linkZip = document.createElement("a");
-            linkZip.download = "Kumpulan_Surat_Spesial_Bee.zip";
-            linkZip.href = URL.createObjectURL(isiZip);
-            linkZip.click();
-            tombolUnduhMassal.disabled = false;
-            tombolUnduhMassal.innerText = teksAsliTombol;
-        });
-    }
+        window.bukaPopoutChat = function() {
+            document.getElementById("kotakUtamaChat").style.display = "block";
+            document.getElementById("tombolBukaChat").style.display = "none";
+            const k = document.getElementById("kotakPesanChat");
+            if(k) k.scrollTop = k.scrollHeight;
+        };
 
-    function resetIdleTimer() {
-        clearTimeout(idleTimer);
-        if (document.getElementById("galleryBox").style.display === "block") {
-            idleTimer = setTimeout(munculkanWarning, WAKTU_IDLE);
-        }
-    }
+        window.tutupPopoutChat = function() {
+            document.getElementById("kotakUtamaChat").style.display = "none";
+            document.getElementById("tombolBukaChat").style.display = "block";
+        };
 
-    function munculkanWarning() {
-        if (document.getElementById("popupOverlay").classList.contains("show") || 
-            document.getElementById("wheelOverlay").classList.contains("show")) {
-            resetIdleTimer();
-            return;
-        }
-        const warningOverlay = document.getElementById("warningOverlay");
-        const warningText = document.getElementById("warningText");
-        const randomPesan = daftarPeringatanIdle[Math.floor(Math.random() * daftarPeringatanIdle.length)];
-        warningText.innerHTML = randomPesan;
-        warningOverlay.style.display = "flex";
-        setTimeout(() => { warningOverlay.classList.add("show"); }, 10);
-    }
+        window.bukaWarning = function(teks) {
+            document.getElementById("warningText").innerHTML = teks;
+            document.getElementById("warningOverlay").classList.add("show");
+        };
 
-    function tutupWarning() {
-        const warningOverlay = document.getElementById("warningOverlay");
-        warningOverlay.classList.remove("show");
-        setTimeout(() => { warningOverlay.style.display = "none"; }, 400);
-        resetIdleTimer();
-    }
+        window.tutupWarning = function() {
+            document.getElementById("warningOverlay").classList.remove("show");
+        };
 
-    function deteksiEnterChat(event) {
-        if (event.key === "Enter") {
-            kirimChatRealtime();
-        }
-    }
+        window.putarRoda = function() {
+            const wheel = document.getElementById("spinWheel");
+            const btn = document.getElementById("btnSpin");
+            
+            btn.disabled = true;
+            const derajatAcak = Math.floor(Math.random() * 360) + 1800; // Putar minimal 5 kali
+            wheel.style.transform = `rotate(${derajatAcak}deg)`;
 
-    window.onmousemove = resetIdleTimer;
-    window.onmousedown = resetIdleTimer; 
-    window.onclick = resetIdleTimer;     
-    window.onkeypress = resetIdleTimer;   
-    window.addEventListener("scroll", resetIdleTimer);
-</script>
+            setTimeout(() => {
+                btn.disabled = false;
+                const sisaDerajat = derajatAcak % 360;
+                let hadiah = "";
 
-<script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-  import { getDatabase, ref, push, onChildAdded } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+                if (sisaDerajat >= 0 && sisaDerajat < 60) hadiah = "Pelukan Hangat Sekali 🤗";
+                else if (sisaDerajat >= 60 && sisaDerajat < 120) hadiah = "Es Krim Rasa Favoritmu 🍦";
+                else if (sisaDerajat >= 120 && sisaDerajat < 180) hadiah = "Ditemani Sepenuhnya Seharian 🧸";
+                else if (sisaDerajat >= 180 && sisaDerajat < 240) hadiah = "Bebas Perintah Pin 1 Hari 👑";
+                else if (sisaDerajat >= 240 && sisaDerajat < 300) hadiah = "Voucher Jajan Kuliner Gratis 🎟️";
+                else hadiah = "Cium Kening Sekali 💋";
 
-  const firebaseConfig = {
-    apiKey: "AIzaSyCTOrx-t7nCx0p7dR-i21Zth7mVCA0E9zo",
-    authDomain: "loveletter2026-8ecbb.firebaseapp.com",
-    databaseURL: "https://loveletter2026-8ecbb-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "loveletter2026-8ecbb",
-    storageBucket: "loveletter2026-8ecbb.firebasestorage.app",
-    messagingSenderId: "146470753636",
-    appId: "1:146470753636:web:bb758c748101ed47629671",
-    measurementId: "G-10WRSKZLQD"
-  };
+                bukaWarning(`🎉 Selamat Sayangku! Kamu mendapatkan:<br><b>${hadiah}</b>`);
+            }, 4000);
+        };
 
-  const app = initializeApp(firebaseConfig);
-  const db = getDatabase(app);
+        window.tutupWheel = function() {
+            document.getElementById("wheelOverlay").classList.remove("show");
+        };
 
-  window.catatKeFirebase = function(jenis, nomor, detailTeks) {
-    try {
-      const logRef = ref(db, "aktivitas_bee");
-      push(logRef, {
-        kategori: jenis,
-        nomor_item: nomor,
-        isi_konten: detailTeks,
-        waktu: new Date().toLocaleString("id-ID")
-      });
-    } catch (error) {
-      console.error("Gagal mencatat log aktivitas:", error);
-    }
-  };
-
-  window.kirimChatRealtime = async function() {
-    const inputChat = document.getElementById("inputChatBaru");
-    const userSelect = document.getElementById("pilihUser");
-    const teksPesan = inputChat.value.trim();
-
-    if (!teksPesan) return; 
-
-    try {
-        const chatRef = ref(db, "ruang_chat");
-        const waktuSekarang = new Date().toLocaleTimeString("id-ID", { hour: '2-digit', minute: '2-digit' });
-
-        await push(chatRef, {
-            pengirim: userSelect.value,
-            pesan: teksPesan,
-            waktu: waktuSekarang
+        // =================================================================
+        // 🔥 PERBAIKAN SCOPE TYPE="MODULE" (EVENT LISTENERS)
+        // =================================================================
+        
+        document.getElementById("btnProsesLogin").addEventListener("click", function() {
+            prosesLogin();
         });
 
-        inputChat.value = ""; 
-    } catch (e) {
-        console.error("Gagal mengirim chat:", e);
-    }
-  };
+        document.getElementById("idBtnNext").addEventListener("click", function() {
+            nextPesan();
+        });
 
-  const chatRoomRef = ref(db, "ruang_chat");
-  
-  onChildAdded(chatRoomRef, (snapshot) => {
-      const dataChat = snapshot.val();
-      const kotakPesan = document.getElementById("kotakPesanChat");
-
-      const bubbleChat = document.createElement("div");
-      bubbleChat.classList.add("chat-bubble");
-
-      if (dataChat.pengirim === "Pin") {
-          bubbleChat.classList.add("bubble-pin");
-      } else {
-          bubbleChat.classList.add("bubble-syavira");
-      }
-
-      bubbleChat.innerHTML = `
-          <strong>${dataChat.pengirim}:</strong><br>
-          ${dataChat.pesan}
-          <span class="chat-meta">${dataChat.waktu}</span>
-      `;
-
-      kotakPesan.appendChild(bubbleChat);
-      kotakPesan.scrollTop = kotakPesan.scrollHeight;
-  });
-
+        document.getElementById("inputChatBaru").addEventListener("keypress", function(event) {
+            if (event.key === "Enter") {
+                kirimChatRealtime();
+            }
+        });
 </script>
 </body>
 </html>
