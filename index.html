@@ -1118,18 +1118,31 @@
 
         // STATUS AMPLOP REALTIME DARI DATABASE
         function initStatusAmplop() {
-            onValue(ref(db, "status_amplop"), (snapshot) => {
-                const data = snapshot.val() || {};
-                for (let i = 1; i <= 20; i++) {
-                    const card = document.getElementById(`env-${i}`);
-                    if (card && data[`surat_${i}`]) card.classList.add("opened");
-                }
-                for (let i = 1; i <= 10; i++) {
-                    const card = document.getElementById(`game-${i}`);
-                    if (card && data[`game_${i}`]) card.classList.add("opened");
-                }
-            });
-        }
+			onValue(ref(db, "status_amplop"), (snapshot) => {
+				const data = snapshot.val() || {};
+				for (let i = 1; i <= 20; i++) {
+					const card = document.getElementById(`env-${i}`);
+					// SEKARANG: Cek status spesifik berdasarkan siapa yang sedang login (userAktifSesi)
+					if (card) {
+						if (data[`surat_${i}`] && data[`surat_${i}`][userAktifSesi] === true) {
+							card.classList.add("opened");
+						} else {
+							card.classList.remove("opened"); // Mengembalikan jadi warna terang jika belum dibaca
+						}
+					}
+				}
+				for (let i = 1; i <= 10; i++) {
+					const card = document.getElementById(`game-${i}`);
+					if (card) {
+						if (data[`game_${i}`] && data[`game_${i}`][userAktifSesi] === true) {
+							card.classList.add("opened");
+						} else {
+							card.classList.remove("opened");
+						}
+					}
+				}
+			});
+		}
 
         // BUKA SURAT DENGAN FITUR EDIT & FOTO OTOMATIS TANPA CODING
         window.bukaSurat = function(nomor) {
@@ -1163,8 +1176,8 @@
 
             document.getElementById("labelPenulisAktif").innerText = userAktifSesi;
 
-            document.getElementById("popupOverlay").classList.add("show");
-            set(ref(db, `status_amplop/surat_${nomor}`), true);
+            ocument.getElementById("popupOverlay").classList.add("show")
+            set(ref(db, `status_amplop/surat_${nomor}/${userAktifSesi}`), true);
         };
 
         // FUNGSI BARU UNTUK MEMBUKA PANEL EDITOR SAAT TOMBOL DI-KLIK
@@ -1183,10 +1196,16 @@
             const pathDb = jenisKontenAktif === "surat" ? `konten_surat/${nomorSuratAktif}` : `konten_game/${nomorSuratAktif}`;
 
             try {
-                await set(ref(db, pathDb), {
-                    teks: teksBaru,
-                    foto: linkFotoBaru
-                });
+				await set(ref(db, pathDb), {
+					teks: teksBaru,
+					foto: linkFotoBaru
+				});
+
+				const pasangan = userAktifSesi === "Sya" ? "Pin" : "Sya";
+				const pathStatus = jenisKontenAktif === "surat" ? `status_amplop/surat_${nomorSuratAktif}` : `status_amplop/game_${nomorSuratAktif}`;
+				
+				await set(ref(db, `${pathStatus}/${userAktifSesi}`), true);
+				await set(ref(db, `${pathStatus}/${pasangan}`), false);
                 bukaWarning("💾 Sukses memperbarui surat dan foto secara langsung ke database!");
                 
                 document.getElementById("isiSuratDetail").innerText = teksBaru;
@@ -1235,7 +1254,7 @@
             document.getElementById("labelPenulisAktif").innerText = userAktifSesi;
 
             document.getElementById("popupOverlay").classList.add("show");
-            set(ref(db, `status_amplop/game_${nomor}`), true);
+            set(ref(db, `status_amplop/game_${nomor}/${userAktifSesi}`), true);
         };
 
         window.tutupSurat = function() {
