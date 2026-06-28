@@ -1074,7 +1074,7 @@
             heart.style.fontSize = Math.random() * 15 + 15 + "px";
             document.body.appendChild(heart);
             setTimeout(() => heart.remove(), 5000);
-        }, 400);
+        }, 1000);
 
         // LOGIN SYSTEM
         window.prosesLogin = function() {
@@ -1176,7 +1176,7 @@
 
             document.getElementById("labelPenulisAktif").innerText = userAktifSesi;
 
-            ocument.getElementById("popupOverlay").classList.add("show")
+            document.getElementById("popupOverlay").classList.add("show")
             set(ref(db, `status_amplop/surat_${nomor}/${userAktifSesi}`), true);
         };
 
@@ -1206,17 +1206,9 @@
 				
 				await set(ref(db, `${pathStatus}/${userAktifSesi}`), true);
 				await set(ref(db, `${pathStatus}/${pasangan}`), false);
-                bukaWarning("💾 Sukses memperbarui surat dan foto secara langsung ke database!");
-                
-                document.getElementById("isiSuratDetail").innerText = teksBaru;
-                const img = document.getElementById("fotoSuratDetail");
-                if (linkFotoBaru) {
-                    img.src = linkFotoBaru;
-                    img.style.display = "block";
-                } else {
-                    img.style.display = "none";
-                }
-            } catch (e) {
+
+				bukaWarning("💾 Sukses memperbarui surat dan membuat surat ini menjadi baru kembali di pasanganmu! ❤️");
+			} catch (error) {
                 console.error(e);
                 bukaWarning("Gagal menyimpan data ke Firebase.");
             }
