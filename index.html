@@ -767,12 +767,16 @@
                 bottom: 10px;
                 right: 20px;
             }
+			@keyframes pulse {
+            from { transform: scale(1); }
+            to { transform: scale(1.15); box-shadow: 0 0 20px #ff7597; }
         }
     </style>
 </head>
 <body>
 
     <audio id="backsound" loop src="LANY - ILYSB.mp3"></audio>
+	<audio id="soundNotif" src="notif.mp3"></audio>
 
     <div class="container">
         <div class="message-box" id="msgBox">
@@ -1084,6 +1088,10 @@
                 document.getElementById("loginArea").style.display = "none";
                 document.getElementById("welcomeArea").style.display = "block";
                 document.getElementById("backsound").play().catch(() => {});
+				
+				if (Notification.permission !== "granted" && Notification.permission !== "denied") {
+                Notification.requestPermission();
+            }
             } else {
                 bukaWarning("❌ Kode PIN yang kamu masukkan salah sayang, coba diingat-ingat lagi ya.. 🥺");
             }
@@ -1384,6 +1392,13 @@
         };
 
         const chatRoomRef = query(ref(db, "ruang_chat"), orderByChild("timestamp"));
+		
+		let dataAwalSelesai = false;
+
+        // Ambil data pertama kali untuk menandai bahwa pesan-pesan lama sudah selesai dimuat
+        onValue(chatRoomRef, () => { 
+            dataAwalSelesai = true; 
+        }, { onlyOnce: true });
 
         onChildAdded(chatRoomRef, (snapshot) => {
             const dataChat = snapshot.val();
@@ -1391,6 +1406,7 @@
 
             if (!kotakPesan) return;
 
+            // 1. Render Bubble Chat ke layar
             const bubbleChat = document.createElement("div");
             bubbleChat.classList.add("chat-bubble");
 
@@ -1403,11 +1419,43 @@
             bubbleChat.innerHTML = `${dataChat.pesan} <span class="chat-meta">${dataChat.waktu || ''}</span>`;
             kotakPesan.appendChild(bubbleChat);
             kotakPesan.scrollTop = kotakPesan.scrollHeight;
+
+            if (dataAwalSelesai && dataChat.pengirim !== userAktifSesi) {
+
+                const suara = document.getElementById("soundNotif");
+                if (suara) {
+                    suara.currentTime = 0;
+                    suara.play().catch(e => console.log("Gagal memutar suara:", e));
+                }
+
+                const kotakUtama = document.getElementById("kotakUtamaChat");
+                if (!kotakUtama || kotakUtama.style.display !== "block") {
+                    const tombolChat = document.getElementById("tombolBukaChat");
+                    if (tombolChat) {
+                        tombolChat.innerHTML = "🔴 💌";
+                        tombolChat.style.animation = "pulse 1s infinite alternate";
+                    }
+                }
+
+                if (Notification.permission === "granted") {
+                    new Notification(`Pesan Baru dari ${dataChat.pengirim} ✨`, {
+                        body: dataChat.pesan,
+                        icon: "https://cdn-icons-png.flaticon.com/512/3199/3199878.png"
+                    });
+                }
+            }
         });
 
         window.bukaPopoutChat = function() {
             document.getElementById("kotakUtamaChat").style.display = "block";
             document.getElementById("tombolBukaChat").style.display = "none";
+			
+			const tombolChat = document.getElementById("tombolBukaChat");
+            if (tombolChat) {
+                tombolChat.innerHTML = "💌";
+                tombolChat.style.animation = "none";
+            }
+			
             const k = document.getElementById("kotakPesanChat");
             if(k) k.scrollTop = k.scrollHeight;
         };
