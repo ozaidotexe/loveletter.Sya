@@ -849,14 +849,14 @@
         </div>
     </div>
 
-    <button class="chat-toggle-btn" id="tombolBukaChat" onclick="bukaPopoutChat()">💬🌸</button>
+    <button class="chat-toggle-btn" id="tombolBukaChat" onclick="bukaPopoutChat()">💌</button>
 
     <div class="chat-container" id="kotakUtamaChat">
         <div class="chat-header">
-            <h2 class="storage-title" style="color: #66fcf1; font-size: 18px; margin-bottom: 0;">Bincang Berdua Yuk! 💬🌸</h2>
+            <h2 class="storage-title" style="color: #66fcf1; font-size: 18px; margin-bottom: 0;">💌💬🌸</h2>
             <button class="btn-minimize-chat" onclick="tutupPopoutChat()">➖</button>
         </div>
-        <p class="storage-subtitle" style="margin-bottom: 10px;">Pesan terkirim secara Realtime.</p>
+        <p class="storage-subtitle" style="margin-bottom: 10px;">Terkirim secara Realtime.</p>
         
         <label for="pilihUser" style="color:#fff; font-size:12px; font-weight:bold;">Kamu Sebagai: </label>
         <select id="pilihUser" class="identity-select" style="-webkit-appearance: none; -moz-appearance: none; appearance: none; text-align-last: center;">
@@ -956,9 +956,6 @@
 
         const daftarPesan = [
             "Surat Special khusus untuk <br>Pin & Sya.. 💙",
-            "Surat menyurat jadi lebih mudah..🥺❤️",
-            "Semoga suka dengan fitur barunya ya bee... 🥰",
-			"Jika ada yang salah, atau ada ide kasih tau aku ya bee...🥰",
             "Silakan klik dibawah buat masuk ke Surat Specialnya ya.. 👇❤️"
         ];
 
@@ -1008,26 +1005,26 @@
         ];
 
         const daftarSuratMentah = {
-            1: "Aku sayang sama kamu tuh beneran tulus dari hati, bukan karena lagi kesepian atau sekadar emosi sesaat. \nTapi karena hati aku emang milih kamu. \nTahu gak? Di tengah dunia yang lagi bising dan melelahkan ini, aku bersyukur banget punya tempat untuk pulang. \nBuat aku, kamu itu rumah ternyaman. \n\nMakasih ya... cuma di dekatmu aku bisa jadi diri sendiri tanpa harus jaim, dan gak takut untuk kelihatan rapuh. \nMakasih untuk semuanya. Aku mau kita terus bareng-bareng selamanya, Bee. ❤️\n\n-pin",
-        2: "Aku tahu aku tidak spesial..\nAku bukan orang kaya, bukan juga pria yang paling tampan.\nAku hanya lelaki biasa yang masih punya banyak kelemahan. \n\nKarena itu, terima kasih banyak ya bee, sudah menerimaku apa adanya, bukan karena 'ada apanya'. \nKehadiranmu sungguh berarti buatku. \nMeski aku biasa saja, aku berjanji akan selalu berusaha memberikan yang terbaik untukmu dan untuk masa depan kita nanti. \nI love you so much, Bee! 😚❤️\n\n\n-pin",
-        3: "Kalau ada kalimat yang di ulang , itu bukan aku sengaja sayangku... \nAku hanya menulis apa yang hati ku pengin sampaikan saja ke kamu sayang ... \nMunking bukan hanya ungkapan yang sampai di surat ini ... \nTapi bisa jadi rasa resahku , kangen ku , penat ku atau mungkin keadaan ku saat ini juga .... \nsatu yang hal pasti aku tidak akan pernah bosan atau hanya sebatas formalitas atau kebiasaan billing LOVE YOU ke kamu ....\nLOVE YOUU SOO MUCCHH BEE !!! ❤️\n\n-pin",
-        4: "Aku di sini ya, Bee... \nAku bakal jaga dan perhatiin kamu sebisa yang aku bisa. \nAku nggak akan biarin kamu jatuh sendirian, dan aku siap jadi orang pertama yang ngusap air mata kamu kalau kamu lagi sedih. \n\nKalau kamu lagi kesal, tumpahin aja semuanya ke aku, aku siap jadi bahan ocehan kamu. \nAku mau jadi orang pertama yang kamu sapa di pagi hari, sekaligus orang terakhir sebelum kamu tidur. \nBeben kalau bisa, aku mau hadir di setiap mimpi kamu.\n\n\n-pin",
-        5: "Bee... kalau kamu lagi banyak pikiran atau masalah, aku mau ya jadi tempat cerita kamu. \nAku siap duduk diam dan dengerin semua keluh kesah kamu. \nAku pengen terus belajar buat jadi tempat pulang yang paling nyaman dan aman buat kamu. \n\nDaripada sekadar janji, aku bakal buktiin dan terus berusaha buat wujudin itu. \nMaaf ya kalau kadang caraku salah atau malah bikin kamu makin bete, tapi aku nggak akan bosen buat terus belajar biar kamu bisa ngerasa makin nyaman sama aku.\n\n-pin",
-        6: "25/06 06:58 \n\nHujan datang, sayang... dan kangenku langsung makin nggak tertampung..\nKukira bakal mudah ngelewatinnya, ternyata nggak sama sekali. \nBerat banget rasanya pas lagi jauh dari kamu gini... 🥺\n\n-pin",
-        7: "Kami changeshift, kamu di shift sama sedangkan aku di shift ini... \nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU ..... \nLOP YUUU SAYANG ! \n\n-pin",
-        8: "Cuma aku yang selalu mengharap bagaimana harimu berlalu di setiap harinya... \nWalaupun aku sudah tahu apa saja kegiatanmu, aku selalu ingin mendengar langsung ceritamu. \nAku rindu selalu diperhatikan dan dikabari olehmu... \n\nBerkejaran dengan waktu, aku selalu mencari cara untuk mencuri perhatianmu. \nWalaupun aku sering gagal, tidak apa-apa... \nSetidaknya aku sudah mencoba memberikan yang terbaik untukmu, sayangku Syavira..\n\n-pin",
-        9: "Maaf ya bee kalau aku masih suka curigaan, overthinking, atau bikin kamu nggak nyaman sama tingkahku. \nKalau ada apa-apa atau ada sikap random-ku yang bikin kamu keganggu, tolong berkabar ya sayang. \n\nJangan dipendem sendiri atau milih diam, ya? Obrolin aja sama aku. \nAku sayang banget sama kamu dan nggak mau kehilangan kamu. \nMakasih banyak ya udah selalu sabar, ngertiin kekurangan, dan nerima segala kelemotanku selama ini.❤️\n\n-pin",
-        10: "26/06 04:30 \n\nEh tahu gak, tadi pas aku lagi capek-capeknya kerja, tiba-tiba kepikiran kamu. \nTerus akunya malah senyum sendiri. \n\nKayaknya kamu punya bakat jadi booster mood aku deh. 🥰\n\n-pin",
-        11: "Aku suka deh kalau lagi ngelihat kamu ketawa atau senyum kayak gitu. \nRasanya kayak semua masalah aku hari itu langsung ketutup sama senyum kamu.\n\n-pin",
-        12: "Aku tuh kalau ditanya hari favorit aku apa.. \n\nJawabannya pasti hari apa aja, \nasal pas hari itu aku bisa ketemu atau ngobrol lama sama kamu.\n\n-pin",
-        13: "Jangan terlalu keras sayang, \nKamu sudah melakukan yang terbaik hari ini.. \nKalau cape, bilang dan datanglah ke aku ya sayang.. \nKalau lagi bete/badmood, bilang dan datanglah ke aku ya sayang.. \nAku siap ada 7x24 jam untuk kamu... \nLOVE YOU SOOOO MUCH BEE !! 🥺❤️\n\n-pin",
-        14: "Hi bee! \nGimana kerja kamu sekarang? Aku ga tau kapan kamu dapat pesan ini, dan sepertinya aku sudah tidur... \nSemangat ya sayang , keep fokus... \nKalau ngantuk, coba spamming chat ku aja... biar ketika aku bangun, aku bisa baca chat manis dari kamu sayang... \n LOVE YOU BEE !! ❤️\n\n-pin",
-        15: "28/06 04:36 \n\nHalo sayang! \nSudah lama ya ga baca pesan aku ... \nAku juga udah lama nih ga tulis untuk kamu.... \nBukannya udah lama si, cuma lagi perbaikan sistem aja biar lebih okey sayang... \nAkhirnya selesai juga ... \nAku harap ini berjalan sesuai dengan apa yang aku mau... \nKalau ada kendala , coba bantu kasih tau aku ya sayang... \nOh ya,\n\n-pin",
-        16: "Aku tau negara ini sungguh gila orang-orangbnya ... \nTapi itu semua bukan tergantung negaranya si sayang, itu karena pribadi masing-masing sayang... \nAku tau kamu tidak akan melepas rasa sayang kamu\nAku tau juga kamu akan terus bertahan walapun sekeras apa nanti halangannya... \nAku harap kamu begitu terus, karena aku disini akan berjuang juga sayang... \n\nUntuk apa? yap untuk hubungan kita... \nEntah aku lagi overthingking aja sayang hehehe... \nLOVEYOU SOOOO MUCH BEE !!\n\n-pin",
-        17: "28/06 06:45 \n\nBee..\nJika fase bosen dan dingin mulai datang... \bTolong di bantu hangatkan lagi ya sayang... \n\nBerarti itu saatnya kita butuh untuk 10-1 or butuh deep talk untuk sharing berdua... \nTerus hangatkan ya sayang, karena disini aku ga bisa berjuang sendiri... \nLOVE YOUUU SOO MUCH WANITA KU , Syavira Dwi Dinanti! ❤️\n\n-pin",
-            18: "Aku ingin kita terus bertumbuh bersama, saling memperbaiki diri, dan menjadi versi terbaik untuk satu sama lain. \nJangan bosan mengingatkanku kalau aku salah ya sayang. Bersamamu aku bahagia. 💙\n\n-pin",
-            19: "Terima kasih sudah menjadi penyemangat terbaikku di kala duniaku sedang tidak baik-baik saja. \nPelukan virtual dan kata-kata manismu selalu berhasil menenangkan hatiku. I Love you so much Syavira! ✨\n\n-pin",
-            20: "Surat ke-20 ini adalah bukti kalau ruang hatiku sudah sepenuhnya dipenuhi oleh namamu. \nTidak ada ruang untuk orang lain, hanya ada kamu sekarang, esok, dan selamanya. Love you seluas semesta, Queen Ozai-ku! 👑❤️\n\n-pin"
+            1: "Masih kosong nih, Yuk di isi ...🥺",
+			2: "Masih kosong nih, Yuk di isi ...🥺",
+			3: "Masih kosong nih, Yuk di isi ...🥺",
+			4: "Masih kosong nih, Yuk di isi ...🥺",
+			5: "Masih kosong nih, Yuk di isi ...🥺",
+			6: "Masih kosong nih, Yuk di isi ...🥺",
+			7: "Masih kosong nih, Yuk di isi ...🥺",
+			8: "Masih kosong nih, Yuk di isi ...🥺",
+			9: "Masih kosong nih, Yuk di isi ...🥺",
+			10: "Masih kosong nih, Yuk di isi ...🥺",
+			11: "Masih kosong nih, Yuk di isi ...🥺",
+			12: "Masih kosong nih, Yuk di isi ...🥺",
+			13: "Masih kosong nih, Yuk di isi ...🥺",
+			14: "Masih kosong nih, Yuk di isi ...🥺",
+			15: "Masih kosong nih, Yuk di isi ...🥺",
+			16: "Masih kosong nih, Yuk di isi ...🥺",
+			17: "Masih kosong nih, Yuk di isi ...🥺",
+			18: "Masih kosong nih, Yuk di isi ...🥺",
+			19: "Masih kosong nih, Yuk di isi ...🥺",
+			20: "Masih kosong nih, Yuk di isi ...🥺"
         };
 
         const daftarGameMentah = {
