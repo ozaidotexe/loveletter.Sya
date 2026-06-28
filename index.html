@@ -684,7 +684,7 @@
             align-self: flex-end;
             border-bottom-right-radius: 2px;
         }
-        .bubble-syavira {
+        .bubble-sya {
             background-color: #45a29e;
             color: #ffffff;
             align-self: flex-start;
@@ -779,7 +779,7 @@
             <div id="loginArea">
                 <div class="message-text" style="min-height: auto; margin-bottom: 15px;">🔒 SIAPA KAMU?</div>
                 <select id="pilihUserLogin" class="login-select">
-                    <option value="Syavira">Sya 🌸</option>
+                    <option value="Sya">Sya 🌸</option>
                     <option value="Pin">Pin 💙</option>
                 </select>
                 <input type="password" id="inputPasswordLogin" class="login-input" placeholder="Masukkan Kode PIN...">
@@ -860,7 +860,7 @@
         
         <label for="pilihUser" style="color:#fff; font-size:12px; font-weight:bold;">Kamu Sebagai: </label>
         <select id="pilihUser" class="identity-select" style="-webkit-appearance: none; -moz-appearance: none; appearance: none; text-align-last: center;">
-            <option value="Syavira">Syavira 🌸</option>
+            <option value="Sya">Sya 🌸</option>
             <option value="Pin">Pin 💙</option>
         </select>
 
@@ -878,6 +878,9 @@
             <div class="popup-text" id="isiSuratDetail">Isi surat akan muncul di sini...</div>
             <img id="fotoSuratDetail" src="" style="width: 100%; max-width: 260px; border-radius: 12px; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.15); display: none;">
             
+            <!-- Tombol Pemicu Membuka Mode Edit Surat -->
+            <button class="btn-download" style="background-color: #ff7597; color: #0b0c10; margin-top: 20px;" id="btnBukaEditSurat" onclick="aktifkanModeEdit()">Edit Surat ✍️</button>
+
             <div id="areaEditSurat" style="display: none; margin-top: 15px; border-top: 2px dashed #ff7597; padding-top: 15px;">
                 <label style="color: #0b0c10; font-weight: bold; font-size: 14px; display: block; margin-bottom: 5px;">
                     ✍️ Tulis / Edit Surat (Sebagai: <span id="labelPenulisAktif" style="color:#ff7597;"></span>)
@@ -894,7 +897,7 @@
 
             <div class="popup-date" id="tanggalDownload"></div>
             <br>
-            <button class="btn-download" id="btnDownload" onclick="simpanKeKeranjang()">Simpan Surat 🛒</button>
+            <button class="btn-download" id="btnDownload" onclick="simpanKeKeranjang()">Simpan Surat ke Keranjang 🛒</button>
             <br>
             <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
         </div>
@@ -944,9 +947,9 @@
 
         const KODE_LOGIN = { 
 			"Pin": "2526", 
-			"Syavira": "2526" 
+			"Sya": "2526" 
 		};
-        let userAktifSesi = "Syavira";
+        let userAktifSesi = "Sya";
         let nomorSuratAktif = null;
         let jenisKontenAktif = null; 
         let keranjangMassal = [];
@@ -959,40 +962,106 @@
             "Silakan klik dibawah buat masuk ke Surat Specialnya ya.. 👇❤️"
         ];
 
+        const listHadiahWheel = [
+			"🫣 Zonk!!💥",
+			//"🎁 Kamu harus popo cowo kamu x30,Claim x1 cowo kamu juga Bebas request mau dimana aja!",
+			//"🎁 Kamu harus peluk cowo kamu 30 detik,Claim x1 cowo kamu juga Bebas request kapan saja!",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Zonk!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Coba lagi!!💥",
+            //"✨👑 JACKPOT!!! Bebas minta apapun sebanyak x1 permintaan! 👑✨",
+            "🫣 Zonk!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Yah! Belum beruntung kamu sayang!!",
+            //"🧸 Bebas Marah / Ngambek ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
+			//"🧸 Bebas nurutin apa yang kamu mau ke aku 24 Jam! Claim x1 berlaku 1x24 jam.",
+			"🫣 Zonk!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Zonk!!💥",
+            //"🎫 Voucher Free Hug 30 detik, Claim x1 bebas kapan saja!",
+			"🫣 Zonk!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Zonk!!💥",
+			//"🎫 Voucher Free popo x30 bebas request dimanapun!",
+			"🫣 Zonk!!💥",
+			"🫣 Coba lagi!!💥",
+			"🫣 Yah! Belum beruntung kamu sayang!!💥",
+			"🫣 Yah! Belum beruntung kamu sayang!!💥",
+			"🫣 Zonk!!💥",
+			// KEEP TANGGAL 7 - 8 JULY !!!
+			//"🎁CONGRATS!! \nPopo selama 30 detik penuh tanpa lepas!",
+			//"🎁CONGRATS!! \nDapat pijatan punggung/paha (Bebas Pilih/Keduanya) gratis selama 5 menit",
+			//"🎁CONGRATS!! \nDuduk di pangkuan pasangan sampai putaran roda selanjutnya",
+			//"🎁CONGRATS!! \nPasangan harus lepas satu lapis pakaian yang dipakai sekarang!!",
+			//"🎁CONGRATS!! \nDipeluk erat dari belakang selama 2 menit",
+			//"🎁CONGRATS!! \nDapat 5 kecupan di wajah (kening, pipi, hidung, dagu)"
+			"🫣 Zonk!!💥"
+        ];
+
         const daftarSuratMentah = {
-            1: "Aku sayang sama kamu tuh beneran tulus dari hati, bukan karena lagi kesepian atau sekadar emosi sesaat. \nTapi karena hati aku emang milih kamu. \nTahu gak? Di tengah dunia yang lagi bising dan melelahkan ini, aku bersyukur banget punya tempat untuk pulang. \nBuat aku, kamu itu rumah ternyaman. \n\nMakasih ya... cuma di dekatmu aku bisa jadi diri sendiri tanpa harus jaim, dan gak takut untuk kelihatan rampuh. \nMakasih untuk semuanya. Aku mau kita terus bareng-bareng selamanya, Bee. ❤️\n\n-pin",
-            2: "Aku tahu aku tidak spesial..\nAku bukan orang kaya, bukan juga pria yang paling tampan.\nAku hanya lelaki biasa yang masih punya banyak kelemahan. \n\nKarena itu, terima kasih banyak ya bee, sudah menerimaku apa adanya, bukan karena 'ada apanya'. \nKehadiranmu sungguh berarti buatku. \nMeski aku biasa saja, aku berjanji akan selalu berusaha memberikan yang terbaik untukmu dan untuk masa depan kita nanti. \nI love you so much, Bee! 😚❤️\n\n\n-pin",
-            3: "Kalau ada kalimat yang di ulang , itu bukan aku sengaja sayangku... \nAku hanya menulis apa yang hati ku pengin sampaikan saja ke kamu sayang ... \nMunking bukan hanya ungkapan yang sampai di surat ini ... \nTapi bisa jadi rasa resahku , kangen ku , penat ku atau mungkin keadaan ku saat ini juga .... \nsatu yang hal pasti aku tidak akan pernah bosan atau hanya sebatas formalitas atau kebiasaan billing LOVE YOU ke kamu ....\nLOVE YOUU SOO MUCCHH BEE !!! ❤️\n\n-pin",
-            4: "Aku di sini ya, Bee... \nAku bakal jaga dan perhatiin kamu sebisa yang aku bisa. \nAku nggak akan biarin kamu jatuh sendirian, dan aku siap jadi orang pertama yang ngusap air mata kamu kalau kamu lagi sedih. \n\nKalau kamu lagi kesal, tumpahin aja semuanya ke aku, aku siap jadi bahan ocehan kamu. \nAku mau jadi orang pertama yang kamu sapa di pagi hari, sekaligus orang terakhir sebelum kamu tidur. \nBeben kalau bisa, aku mau hadir di setiap mimpi kamu.\n\n\n-pin",
-            5: "Bee... kalau kamu lagi banyak pikiran atau masalah, aku mau ya jadi tempat cerita kamu. \nAku siap duduk diam dan dengerin semua keluh kesah kamu. \nAku pengen terus belajar buat jadi tempat pulang yang paling nyaman dan aman buat kamu. \n\nDaripada sekadar janji, aku bakal buktiin dan terus berusaha buat wujudin itu. \nMaaf ya kalau kadang caraku salah atau malah bikin kamu makin bete, tapi aku nggak akan bosen buat terus belajar biar kamu bisa ngerasa makin nyaman sama aku.\n\n-pin",
-            6: "25/06 06:58 \n\nHujan datang, sayang... dan kangenku langsung makin nggak tertampung..\nKukira bakal mudah ngelewatinnya, ternyata nggak sama sekali. \nBerat banget rasanya pas lagi jauh dari kamu gini... 🥺\n\n-pin",
-            7: "Kami changeshift, kamu di shift sama sedangkan aku di shift ini... \nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU ..... \nLOP YUUU SAYANG ! \n\n-pin",
-            8: "Cuma aku yang selalu mengharap bagaimana harimu berlalu di setiap harinya... \nWalaupun aku sudah tahu apa saja kegiatanmu, aku selalu ingin mendengar langsung ceritamu. \nAku rindu selalu diperhatikan dan dikabari olehmu... \n\nBerkejaran dengan waktu, aku selalu mencari cara untuk mencuri perhatianmu. \nWalaupun aku sering gagal, tidak apa-apa... \nSetidaknya aku sudah mencoba memberikan yang terbaik untukmu, sayangku Syavira..\n\n-pin",
-            9: "Maaf ya bee kalau aku masih suka curigaan, overthinking, atau bikin kamu nggak nyaman...\nTapi jujur, itu semua muncul cuma karena aku teramat sayang dan takut kehilangan kamu, Bee. \nAku bakal terus belajar mengendalikan ego aku demi hubungan kita. \n\nMakasih ya bee udah selalu sabar ngehadepin aku selama ini. Love you more! 🥰",
-            10: "Setiap kali melihat senyummu, rasanya seluruh lelah yang kurasakan seharian langsung menguap begitu saja. \nKamu punya kekuatan hebat itu dalam hidupku, Bee. \nTetap jadi Syavira yang ceria dan penuh kasih ya. Bersamamu, aku merasa lengkap. 🌸💙",
-            11: "Jangan pernah ngerasa sendirian ya sayang. \nKapan pun kamu butuh sandaran, bahuku selalu siap buat kamu. \nJarak atau waktu shift tidak akan pernah mengurangi rasa sayangku ke kamu. Semangat kerjanya hari ini bidadariku! ✨",
-            12: "Aku suka caramu memperhatikanku dari hal-hal kecil. \nHal itu bikin aku sadar kalau aku adalah pria paling beruntung karena dicintai oleh wanita sehebat kamu. \nSemoga kita selalu diberi kekuatan untuk menjaga komitmen ini ya sayang. 💙🧸",
-            13: "Sya, makasih ya sudah mengajarkanku banyak hal tentang kesabaran dan arti ketulusan. \nAku bersyukur Tuhan mempertemukan kita. \nAku janji gak akan sia-siain kesempatan untuk membahagiakanmu setiap hari. I Love You! 🥰",
-            14: "Menghitung hari dan jam untuk bisa bertukar kabar denganmu adalah rutinitas favoritku sekarang. \nMeskipun kadang melelahkan, mengetahui ada kamu di ujung sana yang menungguku membuat semuanya jadi bermakna. 🥰🌸",
-            15: "Ingat pesan aku ya sayang: jangan telat makan, jaga kesehatan, dan jangan terlalu memaksakan diri kalau sudah capek. \nKesehatan kamu itu prioritas nomor satu buat aku. Love you, Bee! 🌸💙",
-            16: "Kadang aku suka senyum-senyum sendiri kalau ingat chat-chat lucu kita. \nKamu selalu bisa jadi alasan kebahagiaanku. \nMakasih ya bee sudah menjadi warna paling indah di hidupku yang biasa saja ini. 🧸",
-            17: "Menghadapi masa depan bersamamu adalah impian terbesar yang sedang kuperjuangkan saat ini. \nMari kita menabung, berjuang bersama, dan membuktikan kalau kita bisa melewati semua badai ini berdua ya sayang! 💪❤️",
-            18: "Aku ingin kita terus bertumbuh bersama, saling memperbaiki diri, dan menjadi versi terbaik untuk satu sama lain. \nJangan bosan mengingatkanku kalau aku salah ya sayang. Bersamamu aku bahagia. 💙",
-            19: "Terima kasih sudah menjadi penyemangat terbaikku di kala duniaku sedang tidak baik-baik saja. \nPelukan virtual dan kata-kata manismu selalu berhasil menenangkan hatiku. I Love you so much Syavira! ✨",
-            20: "Surat ke-20 ini adalah bukti kalau ruang hatiku sudah sepenuhnya dipenuhi oleh namamu. \nTidak ada ruang untuk orang lain, hanya ada kamu sekarang, esok, dan selamanya. Love you seluas semesta, Queen Ozai-ku! 👑❤️"
+            1: "Aku sayang sama kamu tuh beneran tulus dari hati, bukan karena lagi kesepian atau sekadar emosi sesaat. \nTapi karena hati aku emang milih kamu. \nTahu gak? Di tengah dunia yang lagi bising dan melelahkan ini, aku bersyukur banget punya tempat untuk pulang. \nBuat aku, kamu itu rumah ternyaman. \n\nMakasih ya... cuma di dekatmu aku bisa jadi diri sendiri tanpa harus jaim, dan gak takut untuk kelihatan rapuh. \nMakasih untuk semuanya. Aku mau kita terus bareng-bareng selamanya, Bee. ❤️\n\n-pin",
+        2: "Aku tahu aku tidak spesial..\nAku bukan orang kaya, bukan juga pria yang paling tampan.\nAku hanya lelaki biasa yang masih punya banyak kelemahan. \n\nKarena itu, terima kasih banyak ya bee, sudah menerimaku apa adanya, bukan karena 'ada apanya'. \nKehadiranmu sungguh berarti buatku. \nMeski aku biasa saja, aku berjanji akan selalu berusaha memberikan yang terbaik untukmu dan untuk masa depan kita nanti. \nI love you so much, Bee! 😚❤️\n\n\n-pin",
+        3: "Kalau ada kalimat yang di ulang , itu bukan aku sengaja sayangku... \nAku hanya menulis apa yang hati ku pengin sampaikan saja ke kamu sayang ... \nMunking bukan hanya ungkapan yang sampai di surat ini ... \nTapi bisa jadi rasa resahku , kangen ku , penat ku atau mungkin keadaan ku saat ini juga .... \nsatu yang hal pasti aku tidak akan pernah bosan atau hanya sebatas formalitas atau kebiasaan billing LOVE YOU ke kamu ....\nLOVE YOUU SOO MUCCHH BEE !!! ❤️\n\n-pin",
+        4: "Aku di sini ya, Bee... \nAku bakal jaga dan perhatiin kamu sebisa yang aku bisa. \nAku nggak akan biarin kamu jatuh sendirian, dan aku siap jadi orang pertama yang ngusap air mata kamu kalau kamu lagi sedih. \n\nKalau kamu lagi kesal, tumpahin aja semuanya ke aku, aku siap jadi bahan ocehan kamu. \nAku mau jadi orang pertama yang kamu sapa di pagi hari, sekaligus orang terakhir sebelum kamu tidur. \nBeben kalau bisa, aku mau hadir di setiap mimpi kamu.\n\n\n-pin",
+        5: "Bee... kalau kamu lagi banyak pikiran atau masalah, aku mau ya jadi tempat cerita kamu. \nAku siap duduk diam dan dengerin semua keluh kesah kamu. \nAku pengen terus belajar buat jadi tempat pulang yang paling nyaman dan aman buat kamu. \n\nDaripada sekadar janji, aku bakal buktiin dan terus berusaha buat wujudin itu. \nMaaf ya kalau kadang caraku salah atau malah bikin kamu makin bete, tapi aku nggak akan bosen buat terus belajar biar kamu bisa ngerasa makin nyaman sama aku.\n\n-pin",
+        6: "25/06 06:58 \n\nHujan datang, sayang... dan kangenku langsung makin nggak tertampung..\nKukira bakal mudah ngelewatinnya, ternyata nggak sama sekali. \nBerat banget rasanya pas lagi jauh dari kamu gini... 🥺\n\n-pin",
+        7: "Kami changeshift, kamu di shift sama sedangkan aku di shift ini... \nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU .....\nAKU KANGEN KAMU ..... \nLOP YUUU SAYANG ! \n\n-pin",
+        8: "Cuma aku yang selalu mengharap bagaimana harimu berlalu di setiap harinya... \nWalaupun aku sudah tahu apa saja kegiatanmu, aku selalu ingin mendengar langsung ceritamu. \nAku rindu selalu diperhatikan dan dikabari olehmu... \n\nBerkejaran dengan waktu, aku selalu mencari cara untuk mencuri perhatianmu. \nWalaupun aku sering gagal, tidak apa-apa... \nSetidaknya aku sudah mencoba memberikan yang terbaik untukmu, sayangku Syavira..\n\n-pin",
+        9: "Maaf ya bee kalau aku masih suka curigaan, overthinking, atau bikin kamu nggak nyaman sama tingkahku. \nKalau ada apa-apa atau ada sikap random-ku yang bikin kamu keganggu, tolong berkabar ya sayang. \n\nJangan dipendem sendiri atau milih diam, ya? Obrolin aja sama aku. \nAku sayang banget sama kamu dan nggak mau kehilangan kamu. \nMakasih banyak ya udah selalu sabar, ngertiin kekurangan, dan nerima segala kelemotanku selama ini.❤️\n\n-pin",
+        10: "26/06 04:30 \n\nEh tahu gak, tadi pas aku lagi capek-capeknya kerja, tiba-tiba kepikiran kamu. \nTerus akunya malah senyum sendiri. \n\nKayaknya kamu punya bakat jadi booster mood aku deh. 🥰\n\n-pin",
+        11: "Aku suka deh kalau lagi ngelihat kamu ketawa atau senyum kayak gitu. \nRasanya kayak semua masalah aku hari itu langsung ketutup sama senyum kamu.\n\n-pin",
+        12: "Aku tuh kalau ditanya hari favorit aku apa.. \n\nJawabannya pasti hari apa aja, \nasal pas hari itu aku bisa ketemu atau ngobrol lama sama kamu.\n\n-pin",
+        13: "Jangan terlalu keras sayang, \nKamu sudah melakukan yang terbaik hari ini.. \nKalau cape, bilang dan datanglah ke aku ya sayang.. \nKalau lagi bete/badmood, bilang dan datanglah ke aku ya sayang.. \nAku siap ada 7x24 jam untuk kamu... \nLOVE YOU SOOOO MUCH BEE !! 🥺❤️\n\n-pin",
+        14: "Hi bee! \nGimana kerja kamu sekarang? Aku ga tau kapan kamu dapat pesan ini, dan sepertinya aku sudah tidur... \nSemangat ya sayang , keep fokus... \nKalau ngantuk, coba spamming chat ku aja... biar ketika aku bangun, aku bisa baca chat manis dari kamu sayang... \n LOVE YOU BEE !! ❤️\n\n-pin",
+        15: "28/06 04:36 \n\nHalo sayang! \nSudah lama ya ga baca pesan aku ... \nAku juga udah lama nih ga tulis untuk kamu.... \nBukannya udah lama si, cuma lagi perbaikan sistem aja biar lebih okey sayang... \nAkhirnya selesai juga ... \nAku harap ini berjalan sesuai dengan apa yang aku mau... \nKalau ada kendala , coba bantu kasih tau aku ya sayang... \nOh ya,\n\n-pin",
+        16: "Aku tau negara ini sungguh gila orang-orangbnya ... \nTapi itu semua bukan tergantung negaranya si sayang, itu karena pribadi masing-masing sayang... \nAku tau kamu tidak akan melepas rasa sayang kamu\nAku tau juga kamu akan terus bertahan walapun sekeras apa nanti halangannya... \nAku harap kamu begitu terus, karena aku disini akan berjuang juga sayang... \n\nUntuk apa? yap untuk hubungan kita... \nEntah aku lagi overthingking aja sayang hehehe... \nLOVEYOU SOOOO MUCH BEE !!\n\n-pin",
+        17: "28/06 06:45 \n\nBee..\nJika fase bosen dan dingin mulai datang... \bTolong di bantu hangatkan lagi ya sayang... \n\nBerarti itu saatnya kita butuh untuk 10-1 or butuh deep talk untuk sharing berdua... \nTerus hangatkan ya sayang, karena disini aku ga bisa berjuang sendiri... \nLOVE YOUUU SOO MUCH WANITA KU , Syavira Dwi Dinanti! ❤️\n\n-pin",
+            18: "Aku ingin kita terus bertumbuh bersama, saling memperbaiki diri, dan menjadi versi terbaik untuk satu sama lain. \nJangan bosan mengingatkanku kalau aku salah ya sayang. Bersamamu aku bahagia. 💙\n\n-pin",
+            19: "Terima kasih sudah menjadi penyemangat terbaikku di kala duniaku sedang tidak baik-baik saja. \nPelukan virtual dan kata-kata manismu selalu berhasil menenangkan hatiku. I Love you so much Syavira! ✨\n\n-pin",
+            20: "Surat ke-20 ini adalah bukti kalau ruang hatiku sudah sepenuhnya dipenuhi oleh namamu. \nTidak ada ruang untuk orang lain, hanya ada kamu sekarang, esok, dan selamanya. Love you seluas semesta, Queen Ozai-ku! 👑❤️\n\n-pin"
         };
 
         const daftarGameMentah = {
-            1: "[TRUTH]\nSiapa orang yang paling sering bikin kamu kangen belakangan ini? Sebutkan namanya langsung ke dia! 😚",
-            2: "[DARE]\nKirimkan pesan suara (Voice Note) bernyanyi lagu kesukaanmu selama 15 detik ke room chat kita sekarang juga! 🎤",
-            3: "[MINI CHALLENGE]\nMinum segelas air putih sekarang demi kesehatanmu, lalu chat 'Sudah minum air, Pin! 💙'",
-            4: "[TRUTH]\nApa sifat dari aku (Pin) yang paling kamu suka dan yang paling pengen kamu ubah? Jujur ya! 🧸",
-            5: "[DARE]\nAmbil foto wajah jelek/lucu kamu sekarang (no filter) lalu kirim langsung ke chat! Gak boleh nolak! 😜",
-            6: "[MINI CHALLENGE]\nPikirkan satu momen paling bahagia bareng aku, lalu ceritain singkat di chat realtime di bawah! 🌸",
-            7: "[TRUTH]\nApa ketakutan terbesar kamu tentang hubungan kita? Yuk obrolin biar kita bisa saling menguatkan. 🥺",
-            8: "[DARE]\nKirimkan text 'I Love You Pin 💙' sebanyak 5 kali berturut-turut di room chat sekarang!",
-            9: "[MINI CHALLENGE]\nLakukan peregangan tangan dan leher selama 1 menit. Jangan terlalu tegang kerjanya ya sayang! 🧘‍♀️",
-            10: "[TRUTH]\nKapan momen pertama kali kamu ngerasa bener-bener sayang dan takut kehilangan aku? Ceritain dong.. 👉👈"
+			// KEEP TANGGAL
+			//1: "✨Truth: \n\nApa bagian tubuh aku yang paling sering kamu bayangin atau pengen kamu sentuh pas kita lagi gak bareng/lagi bareng? 👀 Badannya aja atau ada yang spesifik?",
+			//2: "✨Truth: \n\nPernah gak kamu dapet fantasi atau pikiran 'nakal' tentang aku di tempat yang gak terduga (misal: pas lagi kerja)? 🤫 tell me!",
+			//3: "✨Truth: \n\nAda ga satu posisi yang pengen banget kamu coba malam nanti ketika sama aku tapi belum pernah kamu omongin ke aku. 🙈 Kamu mau apa hm?",
+			//4: "✨Truth: \n\nApa baju atau outfit yang pernah aku pakai yang menurut kamu paling seksi dan bikin kamu langsung pengen meluk aku?",
+			//5: "✨Truth: \n\nKalau kamu boleh minta satu hal malam ini dan aku gak boleh nolak, kamu mau minta apa? 👅 (pikirin baik-baik ya!)",
+			//6: "✨Truth: \n\nKapan pertama kali kamu ngerasa bener-bener tertarik secara fisik dan 'gemes' banget sama aku?",
+			//7: "✨Truth: \n\nApa hal paling sensitif di tubuh kamu yang kalau aku sentuh sedikit aja, bisa bikin kamu langsung merinding?",
+			//8: "✨Truth: \n\nDari skala 1-10, seberapa tinggi tingkat kegemesan/hasrat kamu ke aku malam ini? Jujur ya!",
+			//9: "✨Truth: \n\nPernah gak kamu sengaja pakai baju tertentu pas mau ketemu aku cuma karena pengen bikin aku nafsu? 🗣️✨",
+			//10: "✨Truth: \n\nAda gak rahasia nakal kamu yang belum pernah ada satu orang pun tahu, termasuk aku? 🤔💭",
+			//11: "🎲Dare: \n\nCium aku di tiga tempat berbeda di tubuh aku yang menurut kamu paling seksi, tapi gak boleh di bibir. 💋 Go!",
+			//12: "🎲Dare: \n\nBisikin hal paling 'kotor' atau fantasi paling liar yang pengen kamu lakuin ke aku malam ini, tepat di telinga aku sambil gigit kecil cuping telingaku...",
+			//13: "🎲Dare: \n\nLepasin satu pakaian yang kamu pakai sekarang, tapi kamu harus lepasinnya pakai cara yang seksi di depan aku. 💃🕺 Show time!",
+			//14: "🎲Dare: \n\nDuduk di pangkuan aku sambil hadap aku, tatap mata aku selama 30 detik tanpa ngomong apa-apa, lalu cium aku sesuka hati kamu.",
+			//15: "🎲Dare: \n\nBiarkan aku tutup mata kamu pakai kain (atau baju), dan kamu gak boleh buka sampai aku selesai ngecup/nyentuh area sensitif kamu.",
+			//16: "🎲Dare: \n\nKasih aku massage (pijatan) lembut di area punggung atau paha selama 3 menit, tapi tangan kamu gak boleh diem di satu tempat ya... 💆‍♂️💆‍♀️",
+			//17: "🎲Dare: \n\nPeluk aku dari belakang dengan sangat erat, terus cium leher aku sampai aku kegelian.",
+			//18: "🎲Dare: \n\nPeluk aku dari depan seerat mungkin sampai gak ada celah di antara kita, terus tahan posisi itu selama 1 menit sambil dengerin detak jantung masing-masing.",
+			//19: "🎲Dare: \n\nSpamming kiss ke area apapun itu, dan yang di spamming kiss wajib suruh tutup mata sampai yang di spam kiss minta udahan!",
+			//20: "🎲Dare: \n\nCium bibir aku selama 15 detik penuh, tapi tangan kamu gak boleh nyentuh tubuh aku sama sekali. Harus nahan!"
+			1: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			2: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			3: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			4: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			5: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			6: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			7: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			8: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			9: "KOSONG! Truth or Dare belum ada nih bee... 🥺",
+			10: "KOSONG! Truth or Dare belum ada nih bee... 🥺"
         };
 
         // Buat partikel hati berjatuhan
@@ -1069,7 +1138,10 @@
 
             const teksDetail = document.getElementById("isiSuratDetail");
             const fotoDetail = document.getElementById("fotoSuratDetail");
-            const areaEdit = document.getElementById("areaEditSurat");
+            
+            // Menyembunyikan area edit terlebih dahulu & memunculkan tombol Edit Surat
+            document.getElementById("areaEditSurat").style.display = "none";
+            document.getElementById("btnBukaEditSurat").style.display = "block";
 
             // Mengambil isi data surat & foto dari Firebase secara Realtime
             onValue(ref(db, `konten_surat/${nomor}`), (snapshot) => {
@@ -1089,12 +1161,16 @@
                 }
             }, { onlyOnce: true });
 
-            // Fitur manajemen penulisan langsung di aplikasi
             document.getElementById("labelPenulisAktif").innerText = userAktifSesi;
-            areaEdit.style.display = "block"; 
 
             document.getElementById("popupOverlay").classList.add("show");
             set(ref(db, `status_amplop/surat_${nomor}`), true);
+        };
+
+        // FUNGSI BARU UNTUK MEMBUKA PANEL EDITOR SAAT TOMBOL DI-KLIK
+        window.aktifkanModeEdit = function() {
+            document.getElementById("areaEditSurat").style.display = "block";
+            document.getElementById("btnBukaEditSurat").style.display = "none";
         };
 
         // SIMPAN HASIL EDIT SURAT & LINK FOTO LANGSUNG KE FIREBASE
@@ -1134,7 +1210,10 @@
 
             const teksDetail = document.getElementById("isiSuratDetail");
             const fotoDetail = document.getElementById("fotoSuratDetail");
-            const areaEdit = document.getElementById("areaEditSurat");
+            
+            // Menyembunyikan area edit terlebih dahulu & memunculkan tombol Edit Surat
+            document.getElementById("areaEditSurat").style.display = "none";
+            document.getElementById("btnBukaEditSurat").style.display = "block";
 
             onValue(ref(db, `konten_game/${nomor}`), (snapshot) => {
                 const data = snapshot.val();
@@ -1154,7 +1233,6 @@
             }, { onlyOnce: true });
 
             document.getElementById("labelPenulisAktif").innerText = userAktifSesi;
-            areaEdit.style.display = "block";
 
             document.getElementById("popupOverlay").classList.add("show");
             set(ref(db, `status_amplop/game_${nomor}`), true);
@@ -1214,6 +1292,7 @@
             const teksDetail = document.getElementById("isiSuratDetail");
             const fotoDetail = document.getElementById("fotoSuratDetail");
             const areaEdit = document.getElementById("areaEditSurat");
+            const btnBukaEdit = document.getElementById("btnBukaEditSurat");
             const areaTgl = document.getElementById("tanggalDownload");
 
             bukaWarning("⚡ Sedang memproses pembuatan file ZIP gambar. Mohon tunggu sebentar ya Bee...");
@@ -1222,6 +1301,7 @@
             overlay.style.display = "flex";
             overlay.style.opacity = "1";
             areaEdit.style.display = "none"; 
+            btnBukaEdit.style.display = "none"; // Sembunyikan tombol edit saat download gambar
             areaTgl.style.display = "block";
             areaTgl.innerText = "Downloaded on: " + new Date().toLocaleString("id-ID");
 
@@ -1309,7 +1389,7 @@
             if (dataChat.pengirim === "Pin") {
                 bubbleChat.classList.add("bubble-pin");
             } else {
-                bubbleChat.classList.add("bubble-syavira");
+                bubbleChat.classList.add("bubble-sya");
             }
 
             bubbleChat.innerHTML = `${dataChat.pesan} <span class="chat-meta">${dataChat.waktu || ''}</span>`;
@@ -1349,14 +1429,12 @@
             setTimeout(() => {
                 btn.disabled = false;
                 const sisaDerajat = derajatAcak % 360;
-                let hadiah = "";
-
-                if (sisaDerajat >= 0 && sisaDerajat < 60) hadiah = "Pelukan Hangat Sekali 🤗";
-                else if (sisaDerajat >= 60 && sisaDerajat < 120) hadiah = "Es Krim Rasa Favoritmu 🍦";
-                else if (sisaDerajat >= 120 && sisaDerajat < 180) hadiah = "Ditemani Sepenuhnya Seharian 🧸";
-                else if (sisaDerajat >= 180 && sisaDerajat < 240) hadiah = "Bebas Perintah Pin 1 Hari 👑";
-                else if (sisaDerajat >= 240 && sisaDerajat < 300) hadiah = "Voucher Jajan Kuliner Gratis 🎟️";
-                else hadiah = "Cium Kening Sekali 💋";
+                
+                const totalHadiah = listHadiahWheel.length;
+                const derajatPerSegmen = 360 / totalHadiah;
+                
+                const indeksHadiah = Math.floor(((360 - sisaDerajat) % 360) / derajatPerSegmen);
+                const hadiah = listHadiahWheel[indeksHadiah];
 
                 bukaWarning(`🎉 Selamat Sayangku! Kamu mendapatkan:<br><b>${hadiah}</b>`);
             }, 4000);
