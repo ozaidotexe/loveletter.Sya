@@ -767,7 +767,8 @@
                 bottom: 10px;
                 right: 20px;
             }
-			@keyframes pulse {
+		}
+		@keyframes pulse {
             from { transform: scale(1); }
             to { transform: scale(1.15); box-shadow: 0 0 20px #ff7597; }
         }
@@ -957,6 +958,14 @@
         let nomorSuratAktif = null;
         let jenisKontenAktif = null; 
         let keranjangMassal = [];
+		
+		// =================================================================
+        // 📞 DATA NOMOR WHATSAPP (UBAH DENGAN NOMOR ASLI FORMAT KODE NEGARA)
+        // =================================================================
+        const NOMOR_WA = {
+            "Pin": "855968101997", // Kirim ke nomor Pin jika yang login Sya
+            "Sya": "6281360919370"  // Kirim ke nomor Sya jika yang login Pin
+        };
 
         const daftarPesan = [
             "Surat Special khusus untuk <br>Pin & Sya.. 💙",
@@ -1067,9 +1076,10 @@
 
         // Buat partikel hati berjatuhan
         setInterval(() => {
+            const emojis = ["❤️", "💖", "🌸", "✨", "💙", "⭐"];
             const heart = document.createElement("div");
             heart.classList.add("heart-particle");
-            heart.innerHTML = "❤️", "💖", "🌸", "✨", "💙", "⭐";
+            heart.innerHTML = emojis[Math.floor(Math.random() * emojis.length)];
             heart.style.left = Math.random() * 100 + "vw";
             heart.style.animationDuration = Math.random() * 3 + 2 + "s";
             heart.style.fontSize = Math.random() * 15 + 15 + "px";
@@ -1211,10 +1221,30 @@
 				
 				await set(ref(db, `${pathStatus}/${userAktifSesi}`), true);
 				await set(ref(db, `${pathStatus}/${pasangan}`), false);
+				
+				// ==========================================================
+                // 🔥 LOGIKA OTOMATIS KIRIM KE WHATSAPP PASANGAN
+                // ==========================================================
+                const nomorTujuan = NOMOR_WA[pasangan]; 
+                const tipeKonten = jenisKontenAktif === "surat" ? "Surat 💌" : "Tantangan 🎲";
+                
+                // Menyusun template teks pesan
+                let pesanWA = `Halo ${pasangan}! ❤️\n\nAda ${tipeKonten} nomor *${nomorSuratAktif}* baru nih dari *${userAktifSesi}*.\n\n`;
+                pesanWA += `_"${teksBaru}"_\n\n`;
+                if (linkFotoBaru) {
+                    pesanWA += `Lihat foto: ${linkFotoBaru}\n\n`;
+                }
+                pesanWA += `Yuk buruan buka web Love Letter-nya! Link: bit.ly/dearsya ✨❤️`;
 
-				bukaWarning("💾 Sukses memperbarui surat dan membuat surat ini menjadi baru kembali di pasanganmu! ❤️");
+                // Melakukan encode text agar aman saat dilempar ke URL WhatsApp
+                const urlWA = `https://api.whatsapp.com/send?phone=${nomorTujuan}&text=${encodeURIComponent(pesanWA)}`;
+                
+                // Membuka tab baru otomatis mengarah ke WhatsApp tujuan
+                window.open(urlWA, '_blank');
+				
+				bukaWarning(`💾 Sukses memperbarui surat! Tab WhatsApp otomatis terbuka untuk memberi tahu ${pasangan}. ❤️`);
 			} catch (error) {
-                console.error(e);
+                console.error(error);
                 bukaWarning("Gagal menyimpan data ke Firebase.");
             }
         };
