@@ -775,11 +775,10 @@
 </head>
 <body>
 
-    <audio id="backsound" loop src="LANY - ILYSB.mp3"></audio>
-	<audio id="backsound2" loop src="Westlife - When You Tell Me That You Love Me.mp3"></audio>
-	<audio id="backsound3" loop src="Glenn Fredly - Nyali Terakhir.mp3"></audio>
-	<audio id="backsound4" loop src="Acha Septriasa & Irwansyah - My Heart.mp3"></audio>
-	<audio id="soundNotif" src="notif.mp3"></audio>
+    <audio id="backsound" src="LANY - ILYSB.mp3"></audio>
+	<audio id="backsound2" src="Westlife - When You Tell Me That You Love Me.mp3"></audio>
+	<audio id="backsound3" src="Glenn Fredly - Nyali Terakhir.mp3"></audio>
+	<audio id="backsound4" src="Acha Septriasa & Irwansyah - My Heart.mp3"></audio>
 
     <div class="container">
         <div class="message-box" id="msgBox">
@@ -1084,6 +1083,26 @@
         window.prosesLogin = function() {
             const user = document.getElementById("pilihUserLogin").value;
             const pass = document.getElementById("inputPasswordLogin").value;
+			const lagu1 = document.getElementById("backsound");
+			const lagu2 = document.getElementById("backsound2");
+			const lagu3 = document.getElementById("backsound3");
+			const lagu4 = document.getElementById("backsound4");
+
+			lagu1.addEventListener("ended", function() {
+				lagu2.play().catch(() => {});
+			});
+
+			lagu2.addEventListener("ended", function() {
+				lagu3.play().catch(() => {});
+			});
+
+			lagu3.addEventListener("ended", function() {
+				lagu4.play().catch(() => {});
+			});
+
+			lagu4.addEventListener("ended", function() {
+				lagu1.play().catch(() => {});
+			});
 
             if (KODE_LOGIN[user] === pass) {
                 userAktifSesi = user;
@@ -1091,9 +1110,6 @@
                 document.getElementById("loginArea").style.display = "none";
                 document.getElementById("welcomeArea").style.display = "block";
                 document.getElementById("backsound").play().catch(() => {});
-				document.getElementById("backsound2").play().catch(() => {});
-				document.getElementById("backsound3").play().catch(() => {});
-				document.getElementById("backsound4").play().catch(() => {});
 				
 				if (Notification.permission !== "granted" && Notification.permission !== "denied") {
                 Notification.requestPermission();
