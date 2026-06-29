@@ -960,12 +960,18 @@
         let keranjangMassal = [];
 		
 		// =================================================================
-        // 📞 DATA NOMOR WHATSAPP (UBAH DENGAN NOMOR ASLI FORMAT KODE NEGARA)
-        // =================================================================
-        const NOMOR_WA = {
-            "Pin": "855968101997", // Kirim ke nomor Pin jika yang login Sya
-            "Sya": "6281360919370"  // Kirim ke nomor Sya jika yang login Pin
-        };
+		// 📞 DATA CALLMEBOT (NOMOR HP & API KEY)
+		// =================================================================
+		const DATA_CALLMEBOT = {
+			"Pin": {
+				"nomor": "855968101997", // Nomor WA Pin (tanpa tanda +)
+				"apikey": "2210505"       // API Key CallMeBot milik Pin
+			},
+			"Sya": {
+				"nomor": "6281360919370", // Nomor WA Sya (tanpa tanda +)
+				"apikey": "2210505"       // API Key CallMeBot milik Sya
+			}
+		};
 
         const daftarPesan = [
             "Surat Special khusus untuk <br>Pin & Sya.. 💙",
@@ -1223,31 +1229,36 @@
 				await set(ref(db, `${pathStatus}/${pasangan}`), false);
 				
 				// ==========================================================
-                // 🔥 LOGIKA OTOMATIS KIRIM KE WHATSAPP PASANGAN
-                // ==========================================================
-                const nomorTujuan = NOMOR_WA[pasangan]; 
-                const tipeKonten = jenisKontenAktif === "surat" ? "Surat 💌" : "Tantangan 🎲";
-                
-                // Menyusun template teks pesan
-                let pesanWA = `Halo ${pasangan}! ❤️\n\nAda ${tipeKonten} nomor *${nomorSuratAktif}* baru nih dari *${userAktifSesi}*.\n\n`;
-                pesanWA += `_"${teksBaru}"_\n\n`;
-                if (linkFotoBaru) {
-                    pesanWA += `Lihat foto: ${linkFotoBaru}\n\n`;
-                }
-                pesanWA += `Yuk buruan buka web Love Letter-nya! Link: bit.ly/dearsya ✨❤️`;
+				// 🔥 LOGIKA OTOMATIS KIRIM VIA CALLMEBOT (BACKGROUND)
+				// ==========================================================
+				const tujuan = DATA_CALLMEBOT[pasangan]; 
+				const tipeKonten = jenisKontenAktif === "surat" ? "Surat 💌" : "Tantangan 🎲";
 
-                // Melakukan encode text agar aman saat dilempar ke URL WhatsApp
-                const urlWA = `https://api.whatsapp.com/send?phone=${nomorTujuan}&text=${encodeURIComponent(pesanWA)}`;
-                
-                // Membuka tab baru otomatis mengarah ke WhatsApp tujuan
-                window.open(urlWA, '_blank');
-				
-				bukaWarning(`💾 Sukses memperbarui surat! Tab WhatsApp otomatis terbuka untuk memberi tahu ${pasangan}. ❤️`);
-			} catch (error) {
-                console.error(error);
-                bukaWarning("Gagal menyimpan data ke Firebase.");
-            }
-        };
+				// Menyusun template teks pesan (Gunakan \n untuk baris baru)
+				let pesanBot = `Halo ${pasangan}! ❤️\n\nAda ${tipeKonten} nomor *${nomorSuratAktif}* baru nih dari *${userAktifSesi}*.\n\n`;
+				pesanBot += `"${teksBaru}"\n\n`;
+				if (linkFotoBaru) {
+					pesanBot += `Lihat foto: ${linkFotoBaru}\n\n`;
+				}
+				pesanBot += `Yuk buruan buka web Love Letter-nya! ✨❤️`;
+
+				// Menyusun URL API CallMeBot
+				const urlCallMeBot = `https://api.callmebot.com/whatsapp.php?phone=${tujuan.nomor}&text=${encodeURIComponent(pesanBot)}&apikey=${tujuan.apikey}`;
+
+				// Mengirim pesan secara diam-diam di background (Tanpa buka tab baru)
+				fetch(urlCallMeBot, { mode: 'no-cors' })
+					.then(() => {
+						bukaWarning(`💾 Sukses memperbarui surat! Notifikasi WhatsApp telah dikirim otomatis ke ${pasangan} via Bot. ❤️`);
+					})
+					.catch((err) => {
+						console.error("Gagal mengirim via CallMeBot:", err);
+                bukaWarning(`💾 Surat tersimpan, namun gagal mengirim notifikasi bot ke ${pasangan}.`);
+			});
+        }catch (error) {
+			console.error("Gagal menyimpan ke Firebase:", error);
+			bukaWarning("❌ Gagal memperbarui surat ke database Firebase.");
+		}
+	};
 
         // BUKA MINI GAMES
         window.bukaGame = function(nomor) {
