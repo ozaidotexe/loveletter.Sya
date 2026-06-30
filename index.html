@@ -746,6 +746,71 @@
             margin-bottom: 10px;
             outline: none;
         }
+		
+		/* Style Tambahan untuk Fitur Stiker Chat */
+        .sticker-panel {
+            display: none;
+            background: #1f2833;
+            border: 2px solid #45a29e;
+            border-radius: 12px;
+            padding: 10px;
+            margin-top: 10px;
+            max-height: 150px;
+            overflow-y: auto;
+        }
+        .sticker-list-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 8px;
+            margin-bottom: 10px;
+        }
+        .sticker-list-grid img {
+            width: 100%;
+            aspect-ratio: 1/1;
+            cursor: pointer;
+            object-fit: cover;
+            border-radius: 8px;
+            transition: transform 0.2s;
+        }
+        .sticker-list-grid img:hover {
+            transform: scale(1.1);
+        }
+        .sticker-upload-area {
+            display: flex;
+            gap: 5px;
+        }
+        .sticker-upload-input {
+            flex: 1;
+            padding: 5px;
+            border-radius: 5px;
+            border: 1px solid #45a29e;
+            font-size: 11px;
+        }
+        .btn-sticker-upload {
+            background: #66fcf1;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-weight: bold;
+            font-size: 11px;
+            cursor: pointer;
+        }
+        .btn-sticker-toggle {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+        }
+        .chat-bubble-sticker {
+            background: transparent !important;
+            box-shadow: none !important;
+            padding: 0 !important;
+        }
+        .chat-bubble-sticker img {
+            max-width: 100px;
+            border-radius: 8px;
+            display: block;
+        }
 
         @media screen and (max-width: 480px) {
             .gallery-title { font-size: 24px; }
@@ -878,8 +943,18 @@
         </div>
 
         <div class="chat-input-area">
-			<textarea id="inputChatBaru" class="chat-input" placeholder="Ketik pesan..." rows="1"></textarea>
-			<button class="btn-send-chat" id="btnKirimChat" onclick="kirimChatRealtime()">Kirim</button>
+			<button class="btn-sticker-toggle" id="btnBukaStiker" onclick="togglePanelStiker()">🎭</button>
+			<textarea id="inputChatBaru" class="chat-input" placeholder="Ketik pesan..."></textarea>
+			<button class="btn-send-chat" id="btnKirimChat">Kirim</button>
+		</div>
+		<div class="sticker-panel" id="panelStikerChat">
+			<div class="sticker-list-grid" id="kontainerDaftarStiker">
+				<!-- Stiker Realtime Dimuat Di Sini -->
+			</div>
+			<div class="sticker-upload-area">
+				<input type="text" id="inputLinkStikerBaru" class="sticker-upload-input" placeholder="Tempel URL Gambar...">
+				<button class="btn-sticker-upload" id="btnSimpanStikerBaru">Buat Stiker ➕</button>
+			</div>
 		</div>
     </div>
 
@@ -963,6 +1038,55 @@
         let nomorSuratAktif = null;
         let jenisKontenAktif = null; 
         let keranjangMassal = [];
+		
+		// --- LOGIKA FITUR STIKER ---
+        window.togglePanelStiker = function() {
+            const panel = document.getElementById("panelStikerChat");
+            panel.style.display = panel.style.display === "block" ? "none" : "block";
+        };
+
+        // Memuat daftar stiker dari Firebase Realtime Database
+        onValue(ref(db, "daftar_stiker"), (snapshot) => {
+            const grid = document.getElementById("kontainerDaftarStiker");
+            grid.innerHTML = "";
+            const data = snapshot.val();
+            if(data) {
+                Object.keys(data).forEach(key => {
+                    const img = document.createElement("img");
+                    img.src = data[key].url;
+                    img.onclick = function() {
+                        kirimStikerRealtime(data[key].url);
+                    };
+                    grid.appendChild(img);
+                });
+            }
+        });
+
+        // Fungsi Simpan Stiker Baru ke DB
+        document.getElementById("btnSimpanStikerBaru").addEventListener("click", async function() {
+            const input = document.getElementById("inputLinkStikerBaru");
+            const url = input.value.trim();
+            if(!url) return;
+            try {
+                await push(ref(db, "daftar_stiker"), { url: url });
+                input.value = "";
+            } catch(e) { console.error(e); }
+        });
+
+        // Fungsi Kirim Stiker ke Ruang Chat
+        async function kirimStikerRealtime(urlStiker) {
+            try {
+                const userSelect = document.getElementById("pilihUser");
+                const waktuSekarang = new Date().toLocaleTimeString("id-ID", { hour: '2-digit', minute: '2-digit' });
+                await push(ref(db, "ruang_chat"), {
+                    pengirim: userSelect.value,
+                    pesan: `[STIKER]::${urlStiker}`,
+                    waktu: waktuSekarang,
+                    timestamp: serverTimestamp()
+                });
+                togglePanelStiker();
+            } catch(e) { console.error(e); }
+        }
 		
 		// =================================================================
 		// 📞 DATA CALLMEBOT (NOMOR HP & API KEY)
@@ -1213,12 +1337,11 @@
         };
 
         // SIMPAN HASIL EDIT SURAT & LINK FOTO LANGSUNG KE FIREBASE
-        document.getElementById("btnSimpanEditRealtime").onclick = async function() {
+		window.simpanEditRealtime = async function() {
             if (!nomorSuratAktif || !jenisKontenAktif) return;
 
             const teksBaru = document.getElementById("textareaEditSurat").value;
             const linkFotoBaru = document.getElementById("inputLinkFotoBaru").value.trim();
-
             const pathDb = jenisKontenAktif === "surat" ? `konten_surat/${nomorSuratAktif}` : `konten_game/${nomorSuratAktif}`;
 
             try {
@@ -1239,7 +1362,6 @@
 				const tujuan = DATA_CALLMEBOT[pasangan]; 
 				const tipeKonten = jenisKontenAktif === "surat" ? "Surat 💌" : "Tantangan 🎲";
 
-				// Menyusun template teks pesan (Gunakan \n untuk baris baru)
 				let pesanBot = `Halo ${pasangan}! ❤️\n\nAda ${tipeKonten} nomor *${nomorSuratAktif}* baru nih dari *${userAktifSesi}*.\n\n`;
 				pesanBot += `"${teksBaru}"\n\n`;
 				if (linkFotoBaru) {
@@ -1247,7 +1369,6 @@
 				}
 				pesanBot += `Yuk buruan buka web Love Letter-nya! ✨❤️`;
 
-				// Menyusun URL API CallMeBot
 				const urlCallMeBot = `https://api.callmebot.com/whatsapp.php?phone=${tujuan.nomor}&text=${encodeURIComponent(pesanBot)}&apikey=${tujuan.apikey}`;
 
 				// Mengirim pesan secara diam-diam di background (Tanpa buka tab baru)
@@ -1257,14 +1378,14 @@
 					})
 					.catch((err) => {
 						console.error("Gagal mengirim via CallMeBot:", err);
-                bukaWarning(`💾 Surat tersimpan, namun gagal mengirim notifikasi bot ke ${pasangan}.`);
-			});
-        }catch (error) {
-			console.error("Gagal menyimpan ke Firebase:", error);
-			bukaWarning("❌ Gagal memperbarui surat ke database Firebase.");
-		}
-	};
-
+						bukaWarning(`💾 Surat tersimpan, namun gagal mengirim notifikasi bot ke ${pasangan}.`);
+					});
+			} catch (error) {
+				console.error("Gagal menyimpan ke Firebase:", error);
+				bukaWarning("❌ Gagal memperbarui surat ke database Firebase.");
+			}
+		};
+		
         // BUKA MINI GAMES
         window.bukaGame = function(nomor) {
             nomorSuratAktif = nomor;
@@ -1462,26 +1583,32 @@
                 bubbleChat.classList.add("bubble-sya");
             }
 
-            bubbleChat.innerHTML = `${dataChat.pesan} <span class="chat-meta">${dataChat.waktu || ''}</span>`;
+            if (dataChat.pesan.startsWith("[STIKER]::")) {
+				const urlStikerPesan = dataChat.pesan.replace("[STIKER]::", "");
+				bubbleChat.classList.add("chat-bubble-sticker");
+				bubbleChat.innerHTML = `<img src="${urlStikerPesan}"><span class="chat-meta" style="color:#66fcf1;">${dataChat.waktu || ''}</span>`;
+			} else {
+				bubbleChat.innerHTML = `${dataChat.pesan} <span class="chat-meta">${dataChat.waktu || ''}</span>`;
+			}
+			
             kotakPesan.appendChild(bubbleChat);
             kotakPesan.scrollTop = kotakPesan.scrollHeight;
 
             if (dataAwalSelesai && dataChat.pengirim !== userAktifSesi) {
-
                 const suara = document.getElementById("soundNotif");
                 if (suara) {
                     suara.currentTime = 0;
                     suara.play().catch(e => console.log("Gagal memutar suara:", e));
                 }
-
-                const kotakUtama = document.getElementById("kotakUtamaChat");
+				const kotakUtama = document.getElementById("kotakUtamaChat");
                 if (!kotakUtama || kotakUtama.style.display !== "block") {
                     const tombolChat = document.getElementById("tombolBukaChat");
                     if (tombolChat) {
                         tombolChat.innerHTML = "✨💌";
                         tombolChat.style.animation = "pulse 1s infinite alternate";
-                    }
+					}
                 }
+			
 
                 if (Notification.permission === "granted") {
                     new Notification(`Pesan Baru dari ${dataChat.pengirim} ✨`, {
@@ -1551,11 +1678,19 @@
         // =================================================================
         
         document.getElementById("btnProsesLogin").addEventListener("click", function() {
-            prosesLogin();
-        });
+			prosesLogin();
+		});
 
-        document.getElementById("idBtnNext").addEventListener("click", function() {
-            nextPesan();
+		document.getElementById("idBtnNext").addEventListener("click", function() {
+			nextPesan();
+		});
+
+		document.getElementById("btnSimpanEditRealtime").addEventListener("click", function() {
+			window.simpanEditRealtime();
+		});
+		
+		document.getElementById("btnKirimChat").addEventListener("click", function() {
+            kirimChatRealtime();
         });
 
         document.getElementById("inputChatBaru").addEventListener("keydown", function(event) {
@@ -1563,8 +1698,6 @@
                 if (event.shiftKey) {
                     return; 
                 }
-                
-                // Jika HANYA menekan Enter saja, cegah baris baru lalu kirim chat
                 event.preventDefault();
                 kirimChatRealtime();
             }
