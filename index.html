@@ -982,6 +982,14 @@
 
             <div class="popup-date" id="tanggalDownload"></div>
             <br>
+            <button class="btn-download" style="background-color: #9b59b6; color: white;" id="btnBukaHistory" onclick="toggleHistoryLog()">Lihat Riwayat Edit (History) 📜</button>
+            
+            <div id="areaHistorySurat" style="display: none; margin-top: 15px; border-top: 2px dashed #9b59b6; padding-top: 15px; max-height: 250px; overflow-y: auto;">
+                <h3 style="color: #0b0c10; font-family: 'Fredoka', sans-serif; font-size: 16px; margin: 0 0 10px 0;">📜 Riwayat Perubahan Surat</h3>
+                <div id="listHistoryLog" style="display: flex; flex-direction: column; gap: 10px; text-align: left;">
+                </div>
+            </div>
+            <br style="clear: both;">
             <button class="btn-download" id="btnDownload" onclick="simpanKeKeranjang()">Simpan Surat ke Keranjang 🛒</button>
             <br>
             <button class="btn-close" onclick="tutupSurat()">Tutup Surat 💌</button>
@@ -1087,7 +1095,7 @@
                 togglePanelStiker();
             } catch(e) { console.error(e); }
         }
-		
+	
 		// =================================================================
 		// 📞 DATA CALLMEBOT (NOMOR HP & API KEY)
 		// =================================================================
@@ -1336,7 +1344,7 @@
             document.getElementById("btnBukaEditSurat").style.display = "none";
         };
 
-        // SIMPAN HASIL EDIT SURAT & LINK FOTO LANGSUNG KE FIREBASE
+                // SIMPAN HASIL EDIT SURAT & LINK FOTO LANGSUNG KE FIREBASE + SEKALIGUS CATAT HISTORY
 		window.simpanEditRealtime = async function() {
             if (!nomorSuratAktif || !jenisKontenAktif) return;
 
@@ -1345,6 +1353,37 @@
             const pathDb = jenisKontenAktif === "surat" ? `konten_surat/${nomorSuratAktif}` : `konten_game/${nomorSuratAktif}`;
 
             try {
+                // 1. AMBIL DATA LAMA TERLEBIH DAHULU UNTUK DIJADIKAN "BEFORE"
+                let teksBefore = jenisKontenAktif === "surat" ? (daftarSuratMentah[nomorSuratAktif] || "") : (daftarGameMentah[nomorSuratAktif] || "");
+                let fotoBefore = "";
+                
+                await new Promise((resolve) => {
+                    onValue(ref(db, pathDb), (snapshot) => {
+                        const dataLama = snapshot.val();
+                        if (dataLama) {
+                            if (dataLama.teks) teksBefore = dataLama.teks;
+                            if (dataLama.foto) fotoBefore = dataLama.foto;
+                        }
+                        resolve();
+                    }, { onlyOnce: true });
+                });
+
+                // 2. SIMPAN DATA SEBAGAI HISTORY BARU (Disimpan per item surat/game agar mudah dipanggil)
+                const historyRef = ref(db, `history_log/${jenisKontenAktif}_${nomorSuratAktif}`);
+                const waktuWIB = new Date().toLocaleString("id-ID");
+                const timestampSekarang = Date.now(); // Untuk filter hapus 3 bandwidth/data 3 bulan mendatang
+                
+                await push(historyRef, {
+                    pengedit: userAktifSesi,
+                    waktu_string: waktuWIB,
+                    timestamp: timestampSekarang,
+                    before_teks: teksBefore,
+                    before_foto: fotoBefore,
+                    after_teks: teksBaru,
+                    after_foto: linkFotoBaru
+                });
+
+				// 3. UPDATE DATA UTAMA SEPERTI BIASA
 				await set(ref(db, pathDb), {
 					teks: teksBaru,
 					foto: linkFotoBaru
@@ -1355,7 +1394,7 @@
 				
 				await set(ref(db, `${pathStatus}/${userAktifSesi}`), true);
 				await set(ref(db, `${pathStatus}/${pasangan}`), false);
-				
+
 				// ==========================================================
 				// 🔥 LOGIKA OTOMATIS KIRIM VIA CALLMEBOT (BACKGROUND)
 				// ==========================================================
@@ -1371,15 +1410,20 @@
 
 				const urlCallMeBot = `https://api.callmebot.com/whatsapp.php?phone=${tujuan.nomor}&text=${encodeURIComponent(pesanBot)}&apikey=${tujuan.apikey}`;
 
-				// Mengirim pesan secara diam-diam di background (Tanpa buka tab baru)
 				fetch(urlCallMeBot, { mode: 'no-cors' })
 					.then(() => {
-						bukaWarning(`💾 Sukses memperbarui surat! Notifikasi WhatsApp telah dikirim otomatis ke ${pasangan} via Bot. ❤️`);
+						bukaWarning(`💾 Sukses memperbarui surat & mencatat history! Notifikasi WhatsApp telah dikirim otomatis ke ${pasangan} via Bot. ❤️`);
 					})
 					.catch((err) => {
 						console.error("Gagal mengirim via CallMeBot:", err);
-						bukaWarning(`💾 Surat tersimpan, namun gagal mengirim notifikasi bot ke ${pasangan}.`);
+						bukaWarning(`💾 Surat & History tersimpan, namun gagal mengirim notifikasi bot ke ${pasangan}.`);
 					});
+                    
+                // Sembunyikan area edit kembali dan segarkan log jika terbuka
+                document.getElementById("areaEditSurat").style.display = "none";
+                document.getElementById("btnBukaEditSurat").style.display = "block";
+                muatHistoryLogDariDatabase();
+
 			} catch (error) {
 				console.error("Gagal menyimpan ke Firebase:", error);
 				bukaWarning("❌ Gagal memperbarui surat ke database Firebase.");
@@ -1423,6 +1467,7 @@
 
         window.tutupSurat = function() {
             document.getElementById("popupOverlay").classList.remove("show");
+            document.getElementById("areaHistorySurat").style.display = "none"; // Tambahan baris ini
             nomorSuratAktif = null;
             jenisKontenAktif = null;
         };
@@ -1480,11 +1525,10 @@
 
             bukaWarning("⚡ Sedang memproses pembuatan file ZIP gambar. Mohon tunggu sebentar ya Bee...");
             
-            // Tampilkan popup secara offscreen untuk screenshot bersih
             overlay.style.display = "flex";
             overlay.style.opacity = "1";
             areaEdit.style.display = "none"; 
-            btnBukaEdit.style.display = "none"; // Sembunyikan tombol edit saat download gambar
+            btnBukaEdit.style.display = "none";
             areaTgl.style.display = "block";
             areaTgl.innerText = "Downloaded on: " + new Date().toLocaleString("id-ID");
 
@@ -1493,20 +1537,49 @@
                 const type = parts[0].toLowerCase();
                 const num = parts[1];
 
-                // Tarik data realtime final sebelum diubah jadi gambar
                 await new Promise((resolve) => {
-                    const path = type === "surat" ? `konten_surat/${num}` : `konten_game/${num}`;
-                    onValue(ref(db, path), (snap) => {
-                        const d = snap.val();
-                        teksDetail.innerText = d && d.teks ? d.teks : (type === "surat" ? daftarSuratMentah[num] : daftarGameMentah[num]);
-                        if (d && d.foto) {
-                            fotoDetail.src = d.foto;
-                            fotoDetail.style.display = "block";
-                        } else {
-                            fotoDetail.style.display = "none";
-                        }
-                        setTimeout(resolve, 400); // Beri jeda render gambar link internet
-                    }, { onlyOnce: true });
+                    if (item.includes("(Editan_")) {
+                        const historyPath = `history_log/${type}_${num}`;
+                        onValue(ref(db, historyPath), (snap) => {
+                            const dataLog = snap.val();
+                            let ketemu = false;
+                            if (dataLog) {
+                                Object.keys(dataLog).forEach(k => {
+                                    const labelCek = dataLog[k].waktu_string.replace(/[\/ :,]/g, '_');
+                                    if (item.includes(labelCek)) {
+                                        teksDetail.innerText = dataLog[k].after_teks;
+                                        if (dataLog[k].after_foto) {
+                                            fotoDetail.src = dataLog[k].after_foto;
+                                            fotoDetail.style.display = "block";
+                                        } else {
+                                            fotoDetail.style.display = "none";
+                                        }
+                                        ketemu = true;
+                                    }
+                                });
+                            }
+                            if (!ketemu) {
+                                teksDetail.innerText = "Data log lama telah terhapus otomatis (melebihi batas 3 bulan).";
+                                fotoDetail.style.display = "none";
+                            }
+                            setTimeout(resolve, 400);
+                        }, { onlyOnce: true });
+                    }
+                    else {
+                        // Jika item surat utama/terbaru
+                        const path = type === "surat" ? `konten_surat/${num}` : `konten_game/${num}`;
+                        onValue(ref(db, path), (snap) => {
+                            const d = snap.val();
+                            teksDetail.innerText = d && d.teks ? d.teks : (type === "surat" ? daftarSuratMentah[num] : daftarGameMentah[num]);
+                            if (d && d.foto) {
+                                fotoDetail.src = d.foto;
+                                fotoDetail.style.display = "block";
+                            } else {
+                                fotoDetail.style.display = "none";
+                            }
+                            setTimeout(resolve, 400);
+                        }, { onlyOnce: true });
+                    }
                 });
 
                 const canvas = await html2canvas(document.getElementById("captureArea"), {
@@ -1674,15 +1747,101 @@
         };
 
         // =================================================================
+        // 📜 KODE BARU: FUNGSI PENDUKUNG RIWAYAT (HISTORY LOG)
+        // =================================================================
+        window.toggleHistoryLog = function() {
+            const area = document.getElementById("areaHistorySurat");
+            if (area.style.display === "block") {
+                area.style.display = "none";
+            } else {
+                area.style.display = "block";
+                muatHistoryLogDariDatabase();
+            }
+        };
+
+        function muatHistoryLogDariDatabase() {
+            if (!nomorSuratAktif || !jenisKontenAktif) return;
+            
+            const listContainer = document.getElementById("listHistoryLog");
+            listContainer.innerHTML = "<p style='color:#7f8c8d; font-size:12px;'>Sedang memuat riwayat...</p>";
+            
+            const historyPath = `history_log/${jenisKontenAktif}_${nomorSuratAktif}`;
+            
+            onValue(ref(db, historyPath), (snapshot) => {
+                listContainer.innerHTML = "";
+                const data = snapshot.val();
+                
+                if (!data) {
+                    listContainer.innerHTML = "<p style='color:#7f8c8d; font-size:12px; text-align:center;'>Belum ada riwayat pengeditan pada amplop ini. 🌱</p>";
+                    return;
+                }
+                
+                const BATAS_WAKTU_MILISEC = 90 * 24 * 60 * 60 * 1000;
+                const waktuSekarang = Date.now();
+                
+                Object.keys(data).forEach(key => {
+                    const log = data[key];
+                    
+                    if (log.timestamp && (waktuSekarang - log.timestamp > BATAS_WAKTU_MILISEC)) {
+                        set(ref(db, `${historyPath}/${key}`), null);
+                        return; 
+                    }
+                    
+                    const logCard = document.createElement("div");
+                    logCard.style.cssText = "background: #ffffff; border: 1px solid #ff7597; border-radius: 10px; padding: 10px; font-size: 13px; color: #333; box-shadow: 0 2px 5px rgba(0,0,0,0.05); text-align: left;";
+                    
+                    logCard.innerHTML = `
+                        <div style="display:flex; justify-content:space-between; font-weight:bold; color:#9b59b6; margin-bottom:5px; font-size:11px;">
+                            <span>✍️ Oleh: ${log.pengedit}</span>
+                            <span>📅 ${log.waktu_string}</span>
+                        </div>
+                        <div style="background:#f9f9f9; padding:5px; border-radius:5px; margin-bottom:5px; border-left:3px solid #7f8c8d;">
+                            <b style="color:#e74c3c; font-size:11px;">[BEFORE / SEBELUM]:</b><br>
+                            <span style="font-style:italic;">"${log.before_teks}"</span>
+                        </div>
+                        <div style="background:#fff0f5; padding:5px; border-radius:5px; border-left:3px solid #ff7597;">
+                            <b style="color:#2ecc71; font-size:11px;">[AFTER / SESUDAH]:</b><br>
+                            <span>"${log.after_teks}"</span>
+                            ${log.after_foto ? `<br><a href="${log.after_foto}" target="_blank" style="color:#45a29e; font-size:11px; font-weight:bold;">🔗 Lihat Gambar Pendukung</a>` : ''}
+                        </div>
+                        <button class="btn-download" style="background-color:#66fcf1; color:#0b0c10; font-size:11px; padding:5px 10px; margin-top:8px; border-radius:5px; width:100%; cursor:pointer;" 
+                                onclick="simpanHistoryKeKeranjang('${jenisKontenAktif}', '${nomorSuratAktif}', '${log.waktu_string.replace(/[\/ :,]/g, '_')}')">
+                            Simpan Versi Ini ke Keranjang 🛒
+                        </button>
+                    `;
+                    listContainer.appendChild(logCard);
+                });
+                
+                if(listContainer.innerHTML === "") {
+                    listContainer.innerHTML = "<p style='color:#7f8c8d; font-size:12px; text-align:center;'>Belum ada riwayat pengeditan pada amplop ini. 🌱</p>";
+                }
+            }, { onlyOnce: true });
+        };
+
+        window.simpanHistoryKeKeranjang = function(jenis, nomor, labelWaktu) {
+            const namaItemHistory = `${jenis === 'surat' ? 'Surat' : 'Game'} ${nomor} (Editan_${labelWaktu})`;
+            
+            if (keranjangMassal.includes(namaItemHistory)) {
+                bukaWarning("🛒 Versi riwayat lama ini sudah ada di dalam keranjangmu, Bee!");
+                return;
+            }
+
+            keranjangMassal.push(namaItemHistory);
+            renderKeranjang();
+            bukaWarning(`🛒 Berhasil memasukkan cadangan riwayat kuno [${namaItemHistory}] ke dalam keranjang pilihan!`);
+        };
+
+
+        // =================================================================
         // 🔥 PERBAIKAN SCOPE TYPE="MODULE" (EVENT LISTENERS)
         // =================================================================
         
         document.getElementById("btnProsesLogin").addEventListener("click", function() {
-			prosesLogin();
+			window.prosesLogin();
 		});
 
 		document.getElementById("idBtnNext").addEventListener("click", function() {
-			nextPesan();
+			window.nextPesan();
 		});
 
 		document.getElementById("btnSimpanEditRealtime").addEventListener("click", function() {
@@ -1690,7 +1849,7 @@
 		});
 		
 		document.getElementById("btnKirimChat").addEventListener("click", function() {
-            kirimChatRealtime();
+            window.kirimChatRealtime();
         });
 
         document.getElementById("inputChatBaru").addEventListener("keydown", function(event) {
@@ -1699,7 +1858,7 @@
                     return; 
                 }
                 event.preventDefault();
-                kirimChatRealtime();
+                window.kirimChatRealtime();
             }
         });
 </script>
