@@ -1522,15 +1522,32 @@
             const areaEdit = document.getElementById("areaEditSurat");
             const btnBukaEdit = document.getElementById("btnBukaEditSurat");
             const areaTgl = document.getElementById("tanggalDownload");
+            
+            // 1. TAMBAHAN: Seleksi elemen tombol lain dan area capture
+            const btnBukaHistory = document.getElementById("btnBukaHistory");
+            const areaHistorySurat = document.getElementById("areaHistorySurat");
+            const btnDownload = document.getElementById("btnDownload");
+            const btnClose = document.querySelector("#captureArea .btn-close");
+            const captureArea = document.getElementById("captureArea");
 
             bukaWarning("⚡ Sedang memproses pembuatan file ZIP gambar. Mohon tunggu sebentar ya Bee...");
             
             overlay.style.display = "flex";
             overlay.style.opacity = "1";
+            
+            // 2. TAMBAHAN: Sembunyikan semua elemen UI/tombol agar hasil rapi
             areaEdit.style.display = "none"; 
             btnBukaEdit.style.display = "none";
+            btnBukaHistory.style.display = "none";
+            areaHistorySurat.style.display = "none";
+            btnDownload.style.display = "none";
+            if(btnClose) btnClose.style.display = "none";
+            
             areaTgl.style.display = "block";
             areaTgl.innerText = "Downloaded on: " + new Date().toLocaleString("id-ID");
+
+            // 3. TAMBAHAN: Reset scroll ke paling atas agar teks tidak terpotong saat di-capture
+            captureArea.scrollTop = 0;
 
             for (let item of keranjangMassal) {
                 const parts = item.split(" ");
@@ -1566,7 +1583,6 @@
                         }, { onlyOnce: true });
                     }
                     else {
-                        // Jika item surat utama/terbaru
                         const path = type === "surat" ? `konten_surat/${num}` : `konten_game/${num}`;
                         onValue(ref(db, path), (snap) => {
                             const d = snap.val();
@@ -1585,7 +1601,8 @@
                 const canvas = await html2canvas(document.getElementById("captureArea"), {
                     useCORS: true,
                     allowTaint: false,
-                    backgroundColor: "#fff0f5"
+                    backgroundColor: "#fff0f5",
+                    scale: 2
                 });
                 
                 const blob = await new Promise(res => canvas.toBlob(res, "image/png"));
@@ -1595,6 +1612,10 @@
             overlay.style.display = "";
             overlay.style.opacity = "";
             areaTgl.style.display = "none";
+            
+            btnBukaHistory.style.display = "block";
+            btnDownload.style.display = "block";
+            if(btnClose) btnClose.style.display = "block";
 
             const content = await zip.generateAsync({ type: "blob" });
             const link = document.createElement("a");
@@ -1635,7 +1656,6 @@
 		
 		let dataAwalSelesai = false;
 
-        // Ambil data pertama kali untuk menandai bahwa pesan-pesan lama sudah selesai dimuat
         onValue(chatRoomRef, () => { 
             dataAwalSelesai = true; 
         }, { onlyOnce: true });
